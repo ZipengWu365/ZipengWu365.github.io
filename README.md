@@ -4,7 +4,7 @@ This repository hosts the root GitHub Pages site for Zipeng Wu:
 
 https://zipengwu365.github.io/
 
-The homepage uses a lightweight academic profile structure. It presents:
+The site uses a lightweight multi-page academic profile structure. It presents:
 
 - about/profile information;
 - current research focuses in temporal/time-series representation for foundation and world models;
@@ -15,4 +15,4 @@ The homepage uses a lightweight academic profile structure. It presents:
 - selected research software: De-Time and EchoTime;
 - one current CV: `Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf`.
 
-The site is intentionally static: `index.html`, `styles.css`, and files under `assets/`.
+The site is intentionally static: `index.html`, topic pages such as `publications.html` and `awards.html`, `styles.css`, and files under `assets/`.

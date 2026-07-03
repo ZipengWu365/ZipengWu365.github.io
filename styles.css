@@ -28,8 +28,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  font-size: 15.5px;
-  line-height: 1.58;
+  font-size: 14.5px;
+  line-height: 1.52;
 }
 
 .skip-link {
@@ -73,7 +73,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem max(1rem, calc((100vw - 960px) / 2));
+  padding: 0.5rem max(1rem, calc((100vw - 980px) / 2));
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(10px);
@@ -81,7 +81,7 @@ button:focus-visible {
 
 .brand {
   color: var(--accent-dark);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 760;
 }
 
@@ -89,33 +89,43 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.82rem;
   flex-wrap: wrap;
 }
 
 .site-header nav a {
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 620;
 }
 
+.site-header nav a.active {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
 .page {
-  width: min(960px, calc(100% - 2rem));
+  width: min(980px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
 .section {
-  padding: 1.45rem 0;
+  padding: 0.95rem 0;
   border-bottom: 1px solid var(--line);
   scroll-margin-top: 76px;
 }
 
+.page-title {
+  padding-top: 1.2rem;
+}
+
 .intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 210px;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 1.45rem;
   align-items: start;
-  padding-top: 2.1rem;
+  padding-top: 1.1rem;
 }
 
 h1,
@@ -126,36 +136,36 @@ p {
 }
 
 h1 {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
   color: #111820;
-  font-size: clamp(2rem, 4.5vw, 2.65rem);
-  line-height: 1.18;
+  font-size: clamp(1.75rem, 3.8vw, 2.25rem);
+  line-height: 1.14;
   letter-spacing: 0;
 }
 
 h2 {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   color: var(--accent-dark);
-  font-size: 1.32rem;
+  font-size: 1.12rem;
   line-height: 1.25;
   letter-spacing: 0;
 }
 
 h3 {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.18rem;
   color: var(--ink);
-  font-size: 1rem;
+  font-size: 0.96rem;
   line-height: 1.35;
 }
 
 p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .tagline {
-  margin-bottom: 0.95rem;
+  margin-bottom: 0.65rem;
   color: var(--accent-dark);
-  font-size: 1.08rem;
+  font-size: 0.98rem;
   font-weight: 700;
 }
 
@@ -168,13 +178,18 @@ p {
 }
 
 .link-row {
-  margin-top: 0.95rem;
+  margin-top: 0.65rem;
 }
 
 .link-row a,
 .footer-links a,
 .cv-button {
   font-weight: 700;
+}
+
+.intro-side {
+  display: grid;
+  gap: 0.75rem;
 }
 
 .portrait-card {
@@ -184,9 +199,9 @@ p {
 
 .portrait-card img {
   display: block;
-  width: 178px;
-  height: 178px;
-  margin: 0 auto 0.65rem;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 0.45rem;
   border: 1px solid var(--line);
   border-radius: 50%;
   object-fit: cover;
@@ -196,7 +211,7 @@ p {
 .portrait-card p {
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   line-height: 1.35;
 }
 
@@ -204,7 +219,7 @@ p {
 .award-list,
 .news-list {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.38rem;
   margin: 0;
   padding-left: 1.2rem;
 }
@@ -215,8 +230,8 @@ p {
 }
 
 .research-map {
-  margin: 1rem 0 0;
-  padding: 0.65rem;
+  margin: 0.75rem 0 0;
+  padding: 0.45rem;
   border: 1px solid var(--line);
   background: var(--panel);
 }
@@ -224,7 +239,7 @@ p {
 .research-map img {
   display: block;
   width: 100%;
-  max-height: 230px;
+  max-height: 150px;
   object-fit: cover;
   object-position: center;
 }
@@ -236,8 +251,8 @@ p {
 
 .news-list li {
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
-  gap: 1rem;
+  grid-template-columns: 4.9rem minmax(0, 1fr);
+  gap: 0.55rem;
 }
 
 .news-list time {
@@ -245,15 +260,31 @@ p {
   font-weight: 760;
 }
 
+.news-card {
+  border-top: 1px solid var(--line);
+  padding-top: 0.65rem;
+}
+
+.news-card .news-list {
+  font-size: 0.87rem;
+  line-height: 1.42;
+}
+
+.more-link {
+  display: inline-flex;
+  margin-top: 0.45rem;
+  font-weight: 700;
+}
+
 .publication-list,
 .software-list {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.62rem;
 }
 
 .publication,
 .software-list article {
-  padding-bottom: 0.85rem;
+  padding-bottom: 0.62rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -264,9 +295,9 @@ p {
 }
 
 .pub-meta {
-  margin-bottom: 0.18rem;
+  margin-bottom: 0.12rem;
   color: var(--red);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 760;
 }
 
@@ -280,21 +311,35 @@ p {
 
 .software-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.home-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
+.plain-list {
+  display: grid;
+  gap: 0.38rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
 .cv-section {
-  padding-bottom: 2rem;
+  padding-bottom: 1.35rem;
 }
 
 .cv-button {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 36px;
   align-items: center;
   justify-content: center;
   margin-top: 0.3rem;
   border: 1px solid var(--accent);
-  padding: 0.5rem 0.75rem;
+  padding: 0.42rem 0.65rem;
   background: var(--panel);
   color: var(--accent-dark);
 }
@@ -306,9 +351,9 @@ p {
 }
 
 .site-footer {
-  width: min(960px, calc(100% - 2rem));
+  width: min(980px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 1.4rem 0 2.2rem;
+  padding: 1rem 0 1.7rem;
 }
 
 .site-footer p {
@@ -338,8 +383,8 @@ p {
 
   .intro {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding-top: 1.3rem;
+    gap: 0.8rem;
+    padding-top: 0.9rem;
   }
 
   .portrait-card {
@@ -348,22 +393,23 @@ p {
   }
 
   .portrait-card img {
-    width: 136px;
-    height: 136px;
+    width: 104px;
+    height: 104px;
     margin-right: 0;
     margin-left: 0;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.82rem;
   }
 
   h2 {
-    font-size: 1.18rem;
+    font-size: 1.08rem;
   }
 
   .news-list li,
-  .software-list {
+  .software-list,
+  .home-highlights {
     grid-template-columns: 1fr;
   }
 
@@ -372,6 +418,6 @@ p {
   }
 
   .research-map img {
-    max-height: 170px;
+    max-height: 120px;
   }
 }
