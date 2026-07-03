@@ -240,14 +240,48 @@ p {
   color: var(--accent);
 }
 
-.publication-list {
+.publication-page h1 {
+  font-size: 2.1rem;
+}
+
+.publication-note {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.bibliography {
   display: grid;
-  gap: 0.9rem;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .publication {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 1rem;
   border-bottom: 1px solid var(--line);
-  padding-bottom: 0.8rem;
+  padding: 0.85rem 0;
+}
+
+.publication.no-preview {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pub-preview {
+  margin: 0;
+}
+
+.pub-preview img {
+  display: block;
+  width: 145px;
+  height: 104px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  object-fit: contain;
 }
 
 .publication h2,
@@ -268,9 +302,31 @@ p {
   font-weight: 500;
 }
 
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.pub-links a {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.12rem 0.45rem;
+  color: var(--link);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.pub-links a:hover,
+.pub-links a:focus-visible {
+  border-color: var(--accent);
+}
+
 .year-heading {
-  margin-top: 1.35rem;
-  font-size: 1.35rem;
+  margin: 1.35rem 0 0.2rem;
+  color: var(--accent);
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
@@ -375,6 +431,18 @@ p {
     display: block;
     width: auto;
     padding: 0.15rem 0;
+  }
+
+  .publication {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .pub-preview img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    max-height: 150px;
   }
 
   .site-footer {
