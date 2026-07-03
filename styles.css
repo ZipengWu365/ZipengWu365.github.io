@@ -217,6 +217,21 @@ p {
   padding-left: 1.25rem;
 }
 
+.awards-page h1 {
+  margin-bottom: 0.7rem;
+  font-size: 2rem;
+}
+
+.awards-page .award-list {
+  gap: 0.55rem;
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
+.awards-page .award-list strong {
+  font-weight: 500;
+}
+
 .news-table {
   width: 100%;
   border-collapse: collapse;
