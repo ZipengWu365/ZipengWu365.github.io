@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://zipengwu365.github.io/">
   <meta property="og:image" content="https://zipengwu365.github.io/assets/img/zipeng-wu-profile.jpg">
   <meta property="og:image:alt" content="Portrait of Zipeng Wu.">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zipeng Wu | Temporal Representation Learning">
   <meta name="twitter:description" content="Temporal representation learning for foundation/world models and non-stationary time-series ML.">
   <meta name="twitter:image" content="https://zipengwu365.github.io/assets/img/zipeng-wu-profile.jpg">
@@ -45,140 +45,113 @@
 <body id="top">
   <a class="skip-link" href="#content">Skip to main content</a>
   <header class="site-header" aria-label="Primary navigation">
-    <a class="brand" href="#top" aria-label="Zipeng Wu homepage">ZW</a>
+    <a class="brand" href="#top" aria-label="Zipeng Wu homepage">Zipeng Wu</a>
     <nav>
+      <a href="#about">About</a>
       <a href="#research">Research</a>
+      <a href="#news">News</a>
       <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
       <a href="#software">Software</a>
       <a href="#cv">CV</a>
-      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main id="content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-overlay"></div>
-      <p class="visually-hidden">The hero background illustrates temporal traces being mapped into representation components such as trend, periodic structure, residuals, memory, and actions, then connected to world-model rollouts, VLA trajectories, non-stationary signals, and temporal retrieval.</p>
-      <div class="hero-content">
-        <div class="hero-profile">
-          <img class="profile-photo" src="assets/img/zipeng-wu-profile.jpg" alt="Portrait of Zipeng Wu" width="900" height="900">
-          <div>
-            <p class="eyebrow">PhD Researcher in Applied Mathematics - University of Birmingham</p>
-            <h1 id="hero-title">Zipeng Wu</h1>
-            <p class="hero-subtitle">Temporal representation learning for foundation / world models and non-stationary time-series ML.</p>
-            <p class="hero-copy">I study how temporal structure can be represented, decomposed, compared, and evaluated across time series, action histories, VLA trajectories, model rollouts, temporal memory, and noisy sequential systems.</p>
-            <div class="hero-actions" aria-label="Primary links">
-              <a class="button primary" href="assets/cv/Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf">Download CV</a>
-              <a class="button ghost" href="https://scholar.google.com/citations?hl=en&user=CROGdXYAAAAJ">Google Scholar</a>
-            </div>
-          </div>
+  <main id="content" class="page">
+    <section id="about" class="intro section">
+      <div class="intro-copy">
+        <h1>Zipeng Wu</h1>
+        <p class="tagline">Temporal representation learning for foundation / world models and non-stationary time-series ML.</p>
+        <h2>About me</h2>
+        <p>I am a PhD researcher in Applied Mathematics at the <a href="https://www.birmingham.ac.uk/">University of Birmingham</a>. My current research studies how temporal structure can be represented, decomposed, compared, and evaluated across time series, action histories, VLA trajectories, model rollouts, temporal memory, and noisy sequential systems.</p>
+        <p>I am especially interested in temporal/time-series representation as a bridge between classical time-series machine learning and emerging foundation or world-model systems. Recent work includes decomposition as representation extraction, stationarity-aware retrieval, time-series diagnostics, and language-action temporal tokenization.</p>
+        <div class="link-row" aria-label="Profile links">
+          <a href="mailto:zxw365@student.bham.ac.uk">Email</a>
+          <a href="https://scholar.google.com/citations?hl=en&user=CROGdXYAAAAJ">Google Scholar</a>
+          <a href="https://github.com/ZipengWu365">GitHub</a>
+          <a href="https://www.linkedin.com/in/zipeng-wu-a98944189/">LinkedIn</a>
+          <a href="assets/cv/Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf">CV</a>
         </div>
       </div>
+      <aside class="portrait-card" aria-label="Profile portrait">
+        <img src="assets/img/zipeng-wu-profile.jpg" alt="Portrait of Zipeng Wu" width="900" height="900">
+        <p>PhD Researcher in Applied Mathematics<br>University of Birmingham</p>
+      </aside>
     </section>
 
-    <section class="section evidence-band" aria-label="Selected evidence">
-      <div class="metric">
-        <span class="metric-value">ICML 2026</span>
-        <span class="metric-label">First author, CORE/ICORE A*</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value">KDD 2026</span>
-        <span class="metric-label">Co-author, CORE/ICORE A*</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value">20,000 GH200 GPUh</span>
-        <span class="metric-label">UKRI/AIRR compute-only awards</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value">Jan 2024-Jul 2027</span>
-        <span class="metric-label">UoB College PhD scholarship</span>
-      </div>
+    <section id="research" class="section">
+      <h2>Current Research Focuses</h2>
+      <ol class="focus-list">
+        <li><strong>Temporal representation for foundation and world models.</strong> Temporal abstractions for model rollouts, action histories, state/action sequences, temporal memory, and VLA trajectories.</li>
+        <li><strong>Time-series representation learning under non-stationarity.</strong> Decomposition, stationarity-aware retrieval, forecasting diagnostics, classification, and robust evaluation of noisy sequential signals.</li>
+        <li><strong>Representation-driven research software.</strong> Reproducible tools for decomposition and similarity that expose inspectable temporal components, compact JSON outputs, and shareable HTML reports.</li>
+      </ol>
+      <figure class="research-map">
+        <img src="assets/img/temporal-representation-map.png" alt="Illustration of temporal traces mapped into representation components and downstream model behaviours." width="1600" height="900">
+      </figure>
     </section>
 
-    <section id="research" class="section two-column">
-      <div>
-        <p class="section-kicker">Research program</p>
-        <h2>Temporal representations as the common object</h2>
-      </div>
-      <div class="body-copy">
-        <p>My work treats temporal representation as the central problem. Decomposition, forecasting, classification, symbolic regression, similarity search, retrieval, and rollout diagnostics are downstream tests of whether a representation preserves useful temporal structure.</p>
-        <div class="focus-grid">
-          <article class="focus-card">
-            <h3>Foundation / World Models</h3>
-            <p>Temporal representation for foundation and world models, including action histories, temporal memory, VLA trajectories, computer-use sequences, state/action histories, and long-horizon model rollouts.</p>
-          </article>
-          <article class="focus-card">
-            <h3>Time-Series ML</h3>
-            <p>Representation learning under non-stationarity, including decomposition as representation extraction, stationarity-aware retrieval, forecasting diagnostics, and robust evaluation of noisy signals.</p>
-          </article>
-          <article class="focus-card">
-            <h3>Research Software</h3>
-            <p>Open software for decomposition and similarity: stable interfaces, inspectable temporal components, HTML reports, JSON outputs, and reproducible evaluation workflows.</p>
-          </article>
-        </div>
-      </div>
+    <section id="news" class="section">
+      <h2>News</h2>
+      <ul class="news-list">
+        <li><time datetime="2026-07">Jul 2026</time><span>UKRI/AIRR compute-only project <strong>Language-Action Time-Series Tokenization for Efficient VLA Policies</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI.</span></li>
+        <li><time datetime="2026-06">Jun 2026</time><span>UKRI/AIRR compute-only project <strong>Time Series Language and Foundation Model</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI.</span></li>
+        <li><time datetime="2026-06">Jun 2026</time><span>First-author paper accepted to <strong>ICML 2026</strong>, CORE/ICORE A*.</span></li>
+        <li><time datetime="2026-05">May 2026</time><span>Co-authored paper accepted to <strong>KDD 2026</strong>, CORE/ICORE A*.</span></li>
+        <li><time datetime="2024-12">Dec 2024</time><span>First-author BIBM 2024 paper on interpretable tailored age regression published/presented, CORE/ICORE B.</span></li>
+      </ul>
     </section>
 
-    <section class="section two-column">
-      <div>
-        <p class="section-kicker">Compute and funding</p>
-        <h2>Compute-backed temporal representation research</h2>
-      </div>
-      <div class="body-copy">
-        <ul class="award-list">
-          <li><strong>UKRI/AIRR 2026 - Time Series Language and Foundation Model.</strong> Compute-only project allocation, Jun 11-Sep 9 2026: 10,000 GH200 GPUh on Isambard-AI, costed at GBP 45,000 in-kind.</li>
-          <li><strong>UKRI/AIRR 2026 - Language-Action Time-Series Tokenization for Efficient VLA Policies.</strong> Compute-only project allocation, Jul 1-Sep 29 2026: 10,000 GH200 GPUh on Isambard-AI, costed at GBP 45,000 in-kind.</li>
-          <li><strong>Terms.</strong> The two UKRI/AIRR compute awards total 20,000 GH200 GPUh on the 5,448-GH200 Isambard-AI cluster, costed at GBP 90,000 in-kind. These are compute-resource awards, not direct cash funding. I am the project driver and primary recorded compute user to date.</li>
-          <li><strong>University of Birmingham College PhD Scholarship.</strong> Full scholarship support for Applied Mathematics PhD study from Jan 2024 to Jul 2027, covering tuition fees and stipend/living costs.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="publications" class="section two-column">
-      <div>
-        <p class="section-kicker">Publications</p>
-        <h2>Selected publications and presentations</h2>
-      </div>
+    <section id="publications" class="section">
+      <h2>Selected Publications and Presentations</h2>
       <div class="publication-list">
         <article class="publication">
-          <span class="pub-year">ICML 2026</span>
+          <div class="pub-meta">ICML 2026 | CORE/ICORE A*</div>
           <h3>Time-Series Decomposition as a Standalone Task: A Mechanism-Driven Diagnostic Benchmark.</h3>
-          <p><strong>Zipeng Wu</strong>, Jiani Wei, Shiqiao Zhou, Jiajun Chen, Fabian Spill, and J. W. Andrews*. Forty-third International Conference on Machine Learning, <strong>CORE/ICORE A*</strong>. First author.</p>
+          <p><strong>Zipeng Wu</strong>, Jiani Wei, Shiqiao Zhou, Jiajun Chen, Fabian Spill, and J. W. Andrews*. Forty-third International Conference on Machine Learning. First author.</p>
         </article>
         <article class="publication">
-          <span class="pub-year">KDD 2026</span>
+          <div class="pub-meta">KDD 2026 | CORE/ICORE A*</div>
           <h3>Stationarity-Aware Retrieval-Augmented Time Series Forecasting.</h3>
-          <p>Shiqiao Zhou, Holger Schoner, <strong>Zipeng Wu</strong>, Edouard Fouche, IAG Wilson, and Shuo Wang*. 32nd SIGKDD Conference on Knowledge Discovery and Data Mining, <strong>CORE/ICORE A*</strong>. Co-author.</p>
+          <p>Shiqiao Zhou, Holger Schoner, <strong>Zipeng Wu</strong>, Edouard Fouche, IAG Wilson, and Shuo Wang*. 32nd SIGKDD Conference on Knowledge Discovery and Data Mining. Co-author.</p>
         </article>
         <article class="publication">
-          <span class="pub-year">BIBM 2024</span>
+          <div class="pub-meta">BIBM 2024 | CORE/ICORE B</div>
           <h3>iTARGET: Interpretable Tailored Age Regression for Grouped Epigenetic Traits.</h3>
-          <p><strong>Zipeng Wu</strong>, Daniel Herring, Fabian Spill, James Andrews. IEEE International Conference on Bioinformatics and Biomedicine, <strong>CORE/ICORE B</strong>, pp. 647-652. First author.</p>
+          <p><strong>Zipeng Wu</strong>, Daniel Herring, Fabian Spill, James Andrews. IEEE International Conference on Bioinformatics and Biomedicine, pp. 647-652. First author.</p>
         </article>
         <article class="publication">
-          <span class="pub-year">Heliyon 2023</span>
+          <div class="pub-meta">Heliyon 2023 | JCR Q1</div>
           <h3>A novel online multi-task learning for COVID-19 multi-output spatio-temporal prediction.</h3>
-          <p><strong>Zipeng Wu</strong>, Chu Kiong Loo, Unaizah Obaidellah, Kitsuchart Pasupa. Heliyon, <strong>JCR Q1</strong>, 9(8), e18771. First author.</p>
+          <p><strong>Zipeng Wu</strong>, Chu Kiong Loo, Unaizah Obaidellah, Kitsuchart Pasupa. Heliyon, 9(8), e18771. First author.</p>
         </article>
-        <article class="publication compact">
-          <span class="pub-year">ICONIP / IJCNN</span>
-          <p>First-author oral presentations at ICONIP 2023, ICONIP 2022, and IJCNN 2020, covering online multi-output regression, interpretable hierarchical load forecasting, and dynamic regressor chains for demand prediction. ICONIP and IJCNN are listed as <strong>CORE/ICORE B</strong>.</p>
+        <article class="publication">
+          <div class="pub-meta">ICONIP / IJCNN | CORE/ICORE B</div>
+          <h3>Selected first-author oral presentations.</h3>
+          <p>ICONIP 2023, ICONIP 2022, and IJCNN 2020 presentations covering online multi-output regression, interpretable hierarchical load forecasting, and dynamic regressor chains for demand prediction.</p>
         </article>
       </div>
     </section>
 
-    <section id="software" class="section two-column">
-      <div>
-        <p class="section-kicker">Software</p>
-        <h2>Selected research software</h2>
-      </div>
-      <div class="software-grid">
-        <article class="software-card">
+    <section id="awards" class="section">
+      <h2>Awards and Grants</h2>
+      <ul class="award-list">
+        <li><strong>UKRI/AIRR 2026 - Time Series Language and Foundation Model.</strong> Compute-only project allocation, Jun 11-Sep 9 2026: 10,000 GH200 GPU-hours on Isambard-AI.</li>
+        <li><strong>UKRI/AIRR 2026 - Language-Action Time-Series Tokenization for Efficient VLA Policies.</strong> Compute-only project allocation, Jul 1-Sep 29 2026: 10,000 GH200 GPU-hours on Isambard-AI.</li>
+        <li><strong>Combined compute support.</strong> The two UKRI/AIRR awards total 20,000 GH200 GPU-hours. These are compute-resource awards, not direct cash funding.</li>
+        <li><strong>University of Birmingham College PhD Scholarship.</strong> Full scholarship support for Applied Mathematics PhD study from Jan 2024 to Jul 2027, covering tuition fees and stipend/living costs.</li>
+      </ul>
+    </section>
+
+    <section id="software" class="section">
+      <h2>Research Software</h2>
+      <div class="software-list">
+        <article>
           <h3>De-Time</h3>
           <p>Time-series decomposition as representation extraction. Python and CLI workflow for extracting trend, oscillatory/periodic structure, residuals, method-specific components, and metadata through a stable interface.</p>
           <a href="https://systems-mechanobiology.github.io/DeTime/">De-Time project page</a>
         </article>
-        <article class="software-card">
+        <article>
           <h3>EchoTime</h3>
           <p>Explainable time-series similarity for humans and agents. Compares time series and datasets, explains structural matches or differences, and emits compact JSON plus shareable HTML reports.</p>
           <a href="https://zipengwu365.github.io/EchoTime/">EchoTime project page</a>
@@ -187,25 +160,14 @@
     </section>
 
     <section id="cv" class="section cv-section">
-      <div>
-        <p class="section-kicker">CV</p>
-        <h2>Temporal Representation CV</h2>
-        <p>The current CV is aligned around temporal/time-series representation for foundation and world models, with supporting evidence from compute awards, publications, and research software.</p>
-      </div>
-      <div class="cv-actions">
-        <a class="cv-card" href="assets/cv/Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf">
-          <span>Foundation / World Model</span>
-          <strong>Temporal Representation CV</strong>
-        </a>
-      </div>
+      <h2>CV</h2>
+      <p>The current CV is aligned around temporal/time-series representation for foundation and world models, with supporting evidence from compute awards, publications, and research software.</p>
+      <a class="cv-button" href="assets/cv/Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf">Download Temporal Representation CV</a>
     </section>
   </main>
 
   <footer id="contact" class="site-footer">
-    <div>
-      <h2>Contact</h2>
-      <p>Open to research internships and placements in foundation/world models, temporal representation learning, time-series ML, and representation-driven decision systems.</p>
-    </div>
+    <p>Open to research internships and placements in foundation/world models, temporal representation learning, time-series ML, and representation-driven decision systems.</p>
     <div class="footer-links">
       <a href="mailto:zxw365@student.bham.ac.uk">Email</a>
       <a href="https://github.com/ZipengWu365">GitHub</a>
