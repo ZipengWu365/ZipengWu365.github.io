@@ -42,26 +42,36 @@
   }
   </script>
 </head>
-<body id="top">
+<body>
   <a class="skip-link" href="#content">Skip to main content</a>
   <header class="site-header" aria-label="Primary navigation">
-    <a class="brand" href="index.html" aria-label="Zipeng Wu homepage">Zipeng Wu</a>
-    <nav>
-      <a class="active" href="index.html">About</a>
-      <a href="research.html">Research</a>
-      <a href="news.html">News</a>
-      <a href="publications.html">Publications</a>
-      <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
-      <a href="cv.html">CV</a>
-    </nav>
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="Zipeng Wu homepage">Zipeng Wu</a>
+      <nav>
+        <a class="active" href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="news.html">News</a>
+        <a href="publications.html">Publications</a>
+        <a href="awards.html">Awards</a>
+        <a href="software.html">Software</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </div>
   </header>
 
   <main id="content" class="page">
-    <section class="intro section">
-      <div class="intro-copy">
+    <article class="post">
+      <header class="post-header">
         <h1>Zipeng Wu</h1>
-        <p class="tagline">Temporal representation learning for foundation / world models and non-stationary time-series ML.</p>
+        <p class="desc">Temporal representation learning for foundation / world models and non-stationary time-series ML.</p>
+      </header>
+
+      <div class="profile float-right">
+        <img src="assets/img/zipeng-wu-profile.jpg" alt="Portrait of Zipeng Wu" width="900" height="900">
+        <div class="address">PhD Researcher in Applied Mathematics<br>University of Birmingham</div>
+      </div>
+
+      <section class="section">
         <h2>About me</h2>
         <p>I am a PhD researcher in Applied Mathematics at the <a href="https://www.birmingham.ac.uk/">University of Birmingham</a>. My current research studies how temporal structure can be represented, decomposed, compared, and evaluated across time series, action histories, VLA trajectories, model rollouts, temporal memory, and noisy sequential systems.</p>
         <p>I am especially interested in temporal/time-series representation as a bridge between classical time-series machine learning and emerging foundation or world-model systems. Recent work includes decomposition as representation extraction, stationarity-aware retrieval, time-series diagnostics, and language-action temporal tokenization.</p>
@@ -72,62 +82,43 @@
           <a href="https://www.linkedin.com/in/zipeng-wu-a98944189/">LinkedIn</a>
           <a href="cv.html">CV</a>
         </div>
-      </div>
-      <aside class="intro-side">
-        <div class="portrait-card" aria-label="Profile portrait">
-          <img src="assets/img/zipeng-wu-profile.jpg" alt="Portrait of Zipeng Wu" width="900" height="900">
-          <p>PhD Researcher in Applied Mathematics<br>University of Birmingham</p>
-        </div>
-        <section class="news-card" aria-labelledby="home-news-title">
-          <h2 id="home-news-title">Latest News</h2>
-          <ul class="news-list compact-list">
-            <li><time datetime="2026-07">Jul 2026</time><span>UKRI/AIRR compute-only project <strong>Language-Action Time-Series Tokenization for Efficient VLA Policies</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI.</span></li>
-            <li><time datetime="2026-06">Jun 2026</time><span>UKRI/AIRR compute-only project <strong>Time Series Language and Foundation Model</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI.</span></li>
-            <li><time datetime="2026-06">Jun 2026</time><span>First-author paper accepted to <strong>ICML 2026</strong>, CORE/ICORE A*.</span></li>
-          </ul>
-          <a class="more-link" href="news.html">More news</a>
-        </section>
-      </aside>
-    </section>
+      </section>
 
-    <section class="section">
-      <h2>Current Research Focuses</h2>
-      <ol class="focus-list">
-        <li><strong>Temporal representation for foundation and world models.</strong> Temporal abstractions for model rollouts, action histories, state/action sequences, temporal memory, and VLA trajectories.</li>
-        <li><strong>Time-series representation learning under non-stationarity.</strong> Decomposition, stationarity-aware retrieval, forecasting diagnostics, classification, and robust evaluation of noisy sequential signals.</li>
-        <li><strong>Representation-driven research software.</strong> Reproducible tools for decomposition and similarity that expose inspectable temporal components, compact JSON outputs, and shareable HTML reports.</li>
-      </ol>
-    </section>
+      <section class="section">
+        <h2>Current Research Focuses</h2>
+        <p class="focus-lines"><span>(1) Temporal representation for foundation and world models, including model rollouts, action histories, temporal memory, and VLA trajectories.</span><br>
+        <span>(2) Time-series representation learning under non-stationarity, including decomposition, retrieval, forecasting diagnostics, and robust evaluation.</span><br>
+        <span>(3) Representation-driven research software for inspectable temporal components, compact JSON outputs, and shareable reports.</span></p>
+      </section>
 
-    <section class="section home-highlights">
-      <div>
-        <h2>Recent Awards</h2>
-        <ul class="award-list">
-          <li><strong>UKRI/AIRR 2026.</strong> Two compute-only project allocations on Isambard-AI, totalling 20,000 GH200 GPU-hours.</li>
-          <li><strong>University of Birmingham College PhD Scholarship.</strong> Full scholarship support from Jan 2024 to Jul 2027.</li>
-        </ul>
-        <a class="more-link" href="awards.html">Awards and grants</a>
-      </div>
-      <div>
-        <h2>Selected Publications</h2>
-        <ul class="plain-list">
-          <li><strong>ICML 2026.</strong> Time-Series Decomposition as a Standalone Task. First author, CORE/ICORE A*.</li>
-          <li><strong>KDD 2026.</strong> Stationarity-Aware Retrieval-Augmented Time Series Forecasting. Co-author, CORE/ICORE A*.</li>
-        </ul>
-        <a class="more-link" href="publications.html">All selected publications</a>
-      </div>
-    </section>
+      <section class="section">
+        <h2>news</h2>
+        <table class="news-table">
+          <tbody>
+            <tr>
+              <th scope="row">Jul 2026</th>
+              <td>UKRI/AIRR compute-only project <strong>Language-Action Time-Series Tokenization for Efficient VLA Policies</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI, costed at GBP 45,000 in-kind.</td>
+            </tr>
+            <tr>
+              <th scope="row">Jun 2026</th>
+              <td>UKRI/AIRR compute-only project <strong>Time Series Language and Foundation Model</strong> awarded 10,000 GH200 GPU-hours on Isambard-AI, costed at GBP 45,000 in-kind.</td>
+            </tr>
+            <tr>
+              <th scope="row">Jun 2026</th>
+              <td>First-author paper accepted to <strong>ICML 2026</strong>, CORE/ICORE A*.</td>
+            </tr>
+            <tr>
+              <th scope="row">May 2026</th>
+              <td>Co-authored paper accepted to <strong>KDD 2026</strong>, CORE/ICORE A*.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
   </main>
 
   <footer class="site-footer">
-    <p>Open to research internships and placements in foundation/world models, temporal representation learning, time-series ML, and representation-driven decision systems.</p>
-    <div class="footer-links">
-      <a href="mailto:zxw365@student.bham.ac.uk">Email</a>
-      <a href="https://github.com/ZipengWu365">GitHub</a>
-      <a href="https://www.linkedin.com/in/zipeng-wu-a98944189/">LinkedIn</a>
-      <a href="https://scholar.google.com/citations?hl=en&user=CROGdXYAAAAJ">Google Scholar</a>
-      <a href="https://research.birmingham.ac.uk/en/persons/zipeng-wu">UoB Profile</a>
-    </div>
+    <div class="footer-inner">Copyright 2026 Zipeng Wu.</div>
   </footer>
 </body>
 </html>
