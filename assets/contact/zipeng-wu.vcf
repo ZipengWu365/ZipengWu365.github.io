@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Wu;Zipeng;;;
+FN:Zipeng Wu
+TITLE:PhD Researcher in Applied Mathematics
+ORG:University of Birmingham
+EMAIL;TYPE=INTERNET,WORK:zxw365@student.bham.ac.uk
+URL:https://zipengwu365.github.io/
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/zipeng-wu-a98944189/
+URL;TYPE=GitHub:https://github.com/ZipengWu365
+URL;TYPE=Google Scholar:https://scholar.google.com/citations?hl=en&user=CROGdXYAAAAJ
+NOTE:Temporal representation learning for foundation/world models and non-stationary time-series ML.
+END:VCARD

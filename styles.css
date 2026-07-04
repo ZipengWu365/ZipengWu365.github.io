@@ -381,6 +381,133 @@ p {
   padding: 0.45rem 0.65rem;
 }
 
+.connect-body {
+  min-height: 100vh;
+  padding-top: 0;
+  background: #f7f9fb;
+}
+
+.scan-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 1rem;
+}
+
+.scan-panel {
+  width: min(440px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.scan-kicker {
+  margin-bottom: 0.25rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scan-panel h1 {
+  margin-bottom: 0.25rem;
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.scan-title,
+.scan-topic {
+  margin-bottom: 0.45rem;
+}
+
+.scan-title {
+  font-weight: 500;
+}
+
+.scan-topic,
+.contact-note {
+  color: var(--muted);
+}
+
+.qr-block {
+  margin: 0.9rem 0 0.65rem;
+}
+
+.qr-block img {
+  display: block;
+  width: min(78vw, 340px);
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+}
+
+.qr-block figcaption {
+  margin-top: 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.scan-link {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 0.85rem;
+  overflow-wrap: anywhere;
+  font-size: 0.94rem;
+  font-weight: 500;
+}
+
+.scan-actions,
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.scan-actions a,
+.quick-actions a {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.42rem 0.65rem;
+  font-weight: 500;
+}
+
+.quick-actions {
+  justify-content: flex-start;
+  margin: 0.35rem 0 1rem;
+}
+
+.quick-actions .primary-action {
+  border-color: var(--link);
+  background: var(--link);
+  color: #fff;
+}
+
+.contact-hero {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.contact-hero img {
+  display: block;
+  width: 118px;
+  height: 118px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.compact-list {
+  gap: 0.35rem;
+}
+
 .site-footer {
   border-top: 1px solid var(--accent);
   background: var(--accent);
@@ -503,5 +630,27 @@ p {
 
   .site-footer {
     position: static;
+  }
+
+  .scan-page {
+    align-items: start;
+    padding: 0.7rem;
+  }
+
+  .scan-panel {
+    padding: 0.95rem;
+  }
+
+  .qr-block img {
+    width: min(86vw, 330px);
+  }
+
+  .contact-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-hero img {
+    width: 96px;
+    height: 96px;
   }
 }
