@@ -385,7 +385,8 @@ p {
   scroll-margin-top: 5rem;
 }
 
-.research-directions article:first-child {
+.research-directions article:first-child,
+.research-directions article.full-width {
   grid-column: 1 / -1;
 }
 
