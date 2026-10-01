@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Research | Zipeng Wu</title>
-  <meta name="description" content="Zipeng Wu's temporal representation theory: composable representation operators, evaluation dimensions, comparison, and downstream time-series tasks.">
+  <meta name="description" content="Zipeng Wu's research in temporal representation, organized around published work on decomposition, similarity and retrieval, forecasting, and interpretable regression.">
   <link rel="canonical" href="https://zipengwu365.github.io/research.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261001-theory">
+  <link rel="stylesheet" href="styles.css?v=20261001-publications">
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to main content</a>
@@ -28,76 +28,69 @@
   <main id="content" class="page">
     <section class="section page-title">
       <h1>Research</h1>
-      <p class="tagline">A common representation framework for time series, sequential learning, and temporal structure.</p>
-    </section>
-    <section class="section">
-      <h2>Current Research Focuses</h2>
-      <ol class="focus-list">
-        <li><strong>A theory of temporal representation.</strong> Representation operators, their composition, and the properties that connect representation choices to task requirements.</li>
-        <li><strong>Representations for non-stationary time series.</strong> Component decomposition, structural comparison, stationarity-aware retrieval, forecasting, classification, and reproducible evaluation.</li>
-        <li><strong>Symbolic and learned representations for foundation and world models.</strong> Temporal tokenization and abstractions for action histories, VLA trajectories, model rollouts, and temporal memory.</li>
-      </ol>
+      <p class="tagline">Temporal structure, similarity, and prediction.</p>
     </section>
     <section class="section research-overview" id="research-map" aria-labelledby="map-heading">
-      <h2 id="map-heading">Temporal representation</h2>
-      <p>My research centres on <strong>temporal representation</strong>, grounded in time-series representation theory. A representation operator maps a time series into a form that exposes useful temporal information. Operators can compose, connecting numerical approximations, components, symbols, features, images, graphs, and learned embeddings.</p>
+      <h2 id="map-heading">Temporal Representation: A Map of My Research</h2>
+      <p>My published work forms three connected themes: <strong>representation and decomposition</strong>, <strong>similarity and retrieval</strong>, and <strong>prediction and regression</strong>. The map places each paper under its main contribution and connects these themes to my current research.</p>
       <figure class="research-map">
         <picture>
-          <source media="(max-width: 600px)" srcset="assets/img/temporal-representation-mobile.png?v=20261001-theory">
-          <img src="assets/img/temporal-representation.png?v=20261001-theory" alt="Temporal Representation: an operator-theoretic framework and five evaluation dimensions support six composable representation families. DeTime and TSDecompose-Benchmark relate to component representations, temporal tokenization to symbolic representations, and EchoTime to comparison. Forecasting, regression, classification, clustering, and anomaly detection are downstream tasks. Compression and denoising are cross-family goals." width="3200" height="1800">
+          <source media="(max-width: 600px)" srcset="assets/img/temporal-representation-mobile.png?v=20261001-publications">
+          <img src="assets/img/temporal-representation.png?v=20261001-publications" alt="A publication-based map of Temporal Representation. Representation and Decomposition contains the ICML 2026 decomposition benchmark and a 2025 battery ultrasound technical report. Similarity and Retrieval contains SARAF at KDD 2026. Prediction and Regression contains work on taxi demand, load forecasting, online multi-output regression, COVID-19 prediction, and iTARGET. Software, current research, and accepted workshop work are labeled separately." width="3200" height="2240">
         </picture>
-        <figcaption>Families can overlap and compose. Method names are literature examples; labels marked “Work” locate my projects. <a href="assets/img/temporal-representation.png?v=20261001-theory">Full-size image</a> · <a href="assets/slides/temporal-representation.pptx?v=20261001-theory">Editable PowerPoint</a></figcaption>
+        <figcaption>Papers and a published technical report are grouped by research theme. Software, current research, and accepted work are marked separately. <a href="assets/img/temporal-representation.png?v=20261001-publications">Full-size image</a> · <a href="assets/slides/temporal-representation.pptx?v=20261001-publications">Editable PowerPoint</a></figcaption>
       </figure>
       <div class="research-directions">
         <article id="representation-core">
-          <h3>Representation theory</h3>
-          <p>The framework treats a representation as an operator <strong>Φ: T → R</strong> and studies how operators compose. Five dimensions organize its analysis: <strong>information preservation, distance preservation, invariance, reconstructability, and commutativity</strong>. Each task places different demands on these properties. Commutativity concerns whether changing the order of composable operators changes their result.</p>
-        </article>
-        <article class="full-width" id="representation-families">
-          <h3>Composable representation families</h3>
-          <ul class="plain-list">
-            <li><strong>Vectorial representations:</strong> aggregation and approximation (PAA, SAA, PLA, APCA), transform coefficients (DFT, DWT, DCT), and projections (PCA).</li>
-            <li><strong>Component representations:</strong> decompositions such as EMD, SSA, and STL expose temporal components.</li>
-            <li><strong>Symbolic representations:</strong> SAX, SAA-SAX, SFA, and ABBA encode temporal information as discrete symbols.</li>
-            <li><strong>Statistical and dynamical features:</strong> statistical moments, entropy, and recurrence descriptors, including SampEn, permutation entropy (PE), and recurrence quantification analysis (RQA).</li>
-            <li><strong>Image and graph representations:</strong> GAF, MTF, recurrence plots (RP), and visibility graphs. STFT and CWT also produce time-frequency maps.</li>
-            <li><strong>Learned embeddings:</strong> neural encoders produce latent representations. Foundation and world-model applications extend this framework to broader sequential data.</li>
-          </ul>
-          <p>These families describe how representations are constructed and expressed. They can overlap: an operator may transform numerical coefficients into symbols, or summarize an image as numerical features.</p>
+          <h3>Common basis: representation theory</h3>
+          <p>My MRes and PhD work studies representation operators <strong>Φ: T → R</strong>, their composition, and five properties: information preservation, distance preservation, invariance, reconstructability, and commutativity. This framework connects questions about temporal structure with my earlier work on output dependence and interpretable prediction; each task requires different information to be retained.</p>
         </article>
         <article id="component-representations">
-          <h3>Component representations and decomposition</h3>
-          <p>Decomposition makes temporal components explicit and inspectable. <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime</a> provides decomposition tooling; <a href="https://github.com/ZipengWu365/TSDecompose-Benchmark">TSDecompose-Benchmark</a> evaluates decomposition as a standalone task, alongside the <a href="https://icml.cc/virtual/2026/poster/63747">ICML 2026 paper</a>.</p>
-        </article>
-        <article id="symbolic-representation">
-          <h3>Symbolic representation</h3>
-          <p>Discrete descriptions of temporal structure connect time series to token sequences. SAX builds on mean aggregation, while SAA-SAX uses slope aggregation. Both illustrate how numerical and symbolic representation operators compose.</p>
-          <p>Current projects include <em>Time Series Language and Foundation Model</em> and <em>Language-Action Time-Series Tokenization for Efficient VLA Policies</em>. See the <a href="awards.html">associated compute allocations</a>.</p>
-        </article>
-        <article id="compression">
-          <h3>Cross-family goals: compression and denoising</h3>
-          <p>Compression concerns representation size and retained information. It can use aggregation, approximation, coefficient selection, or symbolic encoding. <strong>PAA</strong> (Piecewise Aggregate Approximation) stores segment means, and <strong>SAA</strong> (Slopewise Aggregate Approximation) stores segment slopes. Additional quantization and symbolization produce <a href="https://www.cs.ucr.edu/~stelo/papers/DMKD03.pdf"><strong>SAX</strong></a> and <a href="https://doi.org/10.1109/SSCI50451.2021.9660130"><strong>SAA-SAX</strong></a>, respectively.</p>
-          <p>Full spectral transforms change the representation; selecting or thresholding coefficients can add compression or denoising. Other goals include interpretability and preserving information relevant to the task. Decomposition and image mappings can expose structure without reducing data size.</p>
-        </article>
-        <article id="frequency-conversion">
-          <h3>Spectral and time-frequency representations</h3>
-          <p>DFT, DCT, and wavelet transforms express temporal information through coefficients. STFT and CWT describe how frequency content changes over time. These operators connect vectorial representations with time-frequency maps and can support periodicity analysis, compression, and denoising.</p>
+          <h3>1. Representation &amp; Decomposition</h3>
+          <ul class="plain-list">
+            <li><a href="https://proceedings.mlr.press/v306/wu26bh.html">Time-Series Decomposition as a Standalone Task: A Mechanism-Driven Diagnostic Benchmark</a> (ICML 2026). Evaluates component recovery and diagnoses decomposition methods through controlled temporal mechanisms.</li>
+            <li><a href="https://doi.org/10.33774/miir-2025-btsjk">Non-contact ultrasound testing of batteries</a> (2025 technical report). Uses signal features and acoustic modelling for battery testing.</li>
+          </ul>
+          <p><strong>Software:</strong> <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime</a> and <a href="https://github.com/ZipengWu365/TSDecompose-Benchmark">TSDecompose-Benchmark</a>.</p>
         </article>
         <article id="similarity">
-          <h3>Comparison operators and relational features</h3>
-          <p>Euclidean distance and DTW compare pairs of sequences. Comparison can also construct representations: Matrix Profile stores local nearest-neighbour distances, and Shapelet Transform represents a sequence by its distances to reference subsequences.</p>
-          <p><a href="https://zipengwu365.github.io/EchoTime/">EchoTime</a> compares time series and datasets through explainable structural similarity. Retrieval also connects comparison to forecasting, as in <a href="https://arxiv.org/abs/2606.04135">Stationarity-Aware Retrieval-Augmented Time Series Forecasting</a> (KDD 2026).</p>
+          <h3>2. Similarity &amp; Retrieval</h3>
+          <p><a href="https://arxiv.org/abs/2606.04135">Stationarity-Aware Retrieval-Augmented Time Series Forecasting</a> (SARAF, KDD 2026) selects and aggregates historical segments using temporal similarity, diversity, and stationarity. This connects retrieval directly to forecasting.</p>
+          <p><strong>Software:</strong> <a href="https://zipengwu365.github.io/EchoTime/">EchoTime</a> provides explainable structural comparison of time series and datasets.</p>
         </article>
-        <article id="forecasting">
-          <h3>Forecasting and multi-output prediction</h3>
-          <p>This thread spans <a href="https://doi.org/10.1109/IJCNN48605.2020.9207160">taxi demand prediction</a>, <a href="https://doi.org/10.1007/978-981-99-1648-1_1">hierarchical load forecasting</a>, <a href="https://doi.org/10.1016/j.heliyon.2023.e18771">spatiotemporal prediction</a>, and retrieval-augmented time-series forecasting. Related work on <a href="https://doi.org/10.1007/978-981-99-8067-3_3">online multi-output regression</a> connects through learning dependencies between outputs.</p>
+        <article class="full-width" id="forecasting">
+          <h3>3. Prediction &amp; Regression</h3>
+          <h4>Output Dependencies &amp; Online Learning</h4>
+          <ul class="plain-list">
+            <li><a href="https://doi.org/10.1109/IJCNN48605.2020.9207160">A Novel Dynamically Adjusted Regressor Chain for Taxi Demand Prediction</a> (IJCNN 2020). Uses dynamic regressor chains to model dependencies between prediction targets.</li>
+            <li><a href="https://doi.org/10.1007/978-981-99-8067-3_3">Correlated Online k-Nearest Neighbors Regressor Chain for Online Multi-output Regression</a> (CONNRC, ICONIP 2023). Learns output dependencies through online kNN regressor chains.</li>
+            <li><a href="https://doi.org/10.1016/j.heliyon.2023.e18771">A novel online multi-task learning for COVID-19 multi-output spatio-temporal prediction</a> (Heliyon 2023). Combines temporal autocorrelation, spatial dependence, and adaptation to drift.</li>
+          </ul>
+          <h4>Interpretable Prediction</h4>
+          <ul class="plain-list">
+            <li><a href="https://doi.org/10.1007/978-981-99-1648-1_1">An Interpretable Multi-target Regression Method for Hierarchical Load Forecasting</a> (ICONIP 2022). Provides interpretable multi-target forecasts of hierarchical electricity demand.</li>
+            <li><a href="https://doi.org/10.1109/BIBM62325.2024.10821890">iTARGET: Interpretable Tailored Age Regression for Grouped Epigenetic Traits</a> (BIBM 2024). Uses age-specific CpG features and group-specific regression for interpretable age prediction. This is an adjacent application to epigenetic feature vectors.</li>
+          </ul>
+        </article>
+        <article class="full-width" id="current-research">
+          <h3>Current Research</h3>
+          <p>These directions extend the published work above.</p>
+        </article>
+        <article id="compression">
+          <h3>Symbolic representation, compression &amp; tokenization</h3>
+          <p>Current work studies temporal tokens for foundation and world models, including <em>Time Series Language and Foundation Model</em> and <em>Language-Action Time-Series Tokenization for Efficient VLA Policies</em>. See the <a href="awards.html">associated compute allocations</a>.</p>
+          <p><strong>Literature examples:</strong> PAA stores segment means; <a href="https://www.cs.ucr.edu/~stelo/papers/DMKD03.pdf">SAX</a> adds symbolic encoding, while <a href="https://doi.org/10.1109/SSCI50451.2021.9660130">SAA-SAX</a> encodes slope-based aggregates.</p>
+        </article>
+        <article id="current-retrieval">
+          <h3>Semantics-enhanced retrieval</h3>
+          <p><a href="https://research.birmingham.ac.uk/en/publications/semantics-enhanced-retrieval-augmented-time-series-forecasting/">Semantics-Enhanced Retrieval-Augmented Time Series Forecasting</a> is accepted / in press for an ICML 2026 workshop. It extends the retrieval research theme.</p>
         </article>
         <article id="classification">
-          <h3>Classification · current research</h3>
+          <h3>Time-series classification</h3>
           <p>Time-series classification extends the representation question to distinguishing classes from temporal structure.</p>
         </article>
       </div>
-      <p>Forecasting, regression, classification, clustering, and anomaly detection can use several representation families. A paper may contribute to an operator, a comparison method, a task, or more than one of these. See the <a href="publications.html">publication list</a> for individual works.</p>
+      <p>See the <a href="publications.html">publication list</a> for full bibliographic details and the <a href="software.html">software page</a> for tools.</p>
     </section>
   </main>
   <footer class="site-footer">
