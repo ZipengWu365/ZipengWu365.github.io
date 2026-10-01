@@ -11,12 +11,12 @@ const languages = {
     question: 'How can we capture temporal structure?',
     foundation: ['Decomposition · structure extraction', 'DeTime / TSDecompose-Benchmark'],
     nodes: [
-      ['Symbolic representation', 'Discrete temporal structure', 'Temporal / language-action tokenization'],
-      ['Compression', 'Compact representations of time series', 'Retaining task-relevant information'],
-      ['Frequency conversion', 'Transforming the temporal representation', 'A dedicated direction in the research map'],
+      ['Symbolic representation', 'Discrete temporal structure', 'Temporal / language-action tokens'],
+      ['Compression', 'Compact time-series representations', 'Retaining task-relevant information'],
+      ['Frequency conversion', 'Transforming temporal representations', 'Frequency-based transformations'],
       ['Similarity measurement', 'Comparing temporal structure', 'EchoTime · similarity and retrieval'],
       ['Forecasting', 'Using temporal structure to predict', 'Retrieval / multi-output prediction'],
-      ['Classification', 'Using temporal structure to distinguish', 'Current research · time-series classification']
+      ['Classification', 'Using temporal structure to distinguish', 'Current work · time-series classification']
     ],
     footer: 'A common lens across time series, spatiotemporal data, and action / model trajectories.',
     note: 'Connections denote research relationships; individual works may span several directions.'
@@ -31,7 +31,7 @@ const languages = {
     nodes: [
       ['符号化表示', '用离散符号表达时间结构', '时间序列 / 语言—动作 tokenization'],
       ['压缩', '构建更紧凑的时间序列表示', '保留与任务相关的信息'],
-      ['频率转换', '时间序列表示的变换', '保留为独立研究方向'],
+      ['频率转换', '时间序列表示的变换', '与频率相关的表示变换'],
       ['相似性衡量', '比较时间模式与结构', 'EchoTime · 相似性与检索'],
       ['预测', '利用时间结构推断未来', '检索增强预测 / 多输出预测'],
       ['分类', '利用时间结构区分类别', '当前工作 · 时间序列分类']

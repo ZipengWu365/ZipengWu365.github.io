@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="950" viewBox="0 0 1440 950" role="img" aria-labelledby="title desc" lang="zh">
-<title id="title">时间序列表示 · 研究地图</title><desc id="desc">符号化表示: 用离散符号表达时间结构: 时间序列 / 语言—动作 tokenization. 压缩: 构建更紧凑的时间序列表示: 保留与任务相关的信息. 频率转换: 时间序列表示的变换: 保留为独立研究方向. 相似性衡量: 比较时间模式与结构: EchoTime · 相似性与检索. 预测: 利用时间结构推断未来: 检索增强预测 / 多输出预测. 分类: 利用时间结构区分类别: 当前工作 · 时间序列分类. 连线表示研究关联；一项工作可以同时连接多个方向。</desc>
+<title id="title">时间序列表示 · 研究地图</title><desc id="desc">符号化表示: 用离散符号表达时间结构: 时间序列 / 语言—动作 tokenization. 压缩: 构建更紧凑的时间序列表示: 保留与任务相关的信息. 频率转换: 时间序列表示的变换: 与频率相关的表示变换. 相似性衡量: 比较时间模式与结构: EchoTime · 相似性与检索. 预测: 利用时间结构推断未来: 检索增强预测 / 多输出预测. 分类: 利用时间结构区分类别: 当前工作 · 时间序列分类. 连线表示研究关联；一项工作可以同时连接多个方向。</desc>
 <rect width="1440" height="950" fill="#ffffff"/>
 <g font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif"><text x="48" y="65" font-size="19" fill="#14776f" font-weight="600" text-anchor="start">ZIPENG WU / RESEARCH OVERVIEW</text>
 <text x="48" y="120" font-size="39" fill="#17324d" font-weight="600" text-anchor="start">时间序列表示 · 研究地图</text>
@@ -32,7 +32,7 @@
       <rect x="48" y="678" width="4" height="40" rx="2" fill="#14776f"/>
       <text x="72" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">频率转换</text>
       <text x="72" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">时间序列表示的变换</text>
-      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">保留为独立研究方向</text></g>
+      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">与频率相关的表示变换</text></g>
 <g><rect x="1012" y="654" width="380" height="156" rx="12" fill="#fcf5ec"/>
       <rect x="1012" y="678" width="4" height="40" rx="2" fill="#a16024"/>
       <text x="1036" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">分类</text>

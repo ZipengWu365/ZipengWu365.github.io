@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="950" viewBox="0 0 1440 950" role="img" aria-labelledby="title desc" lang="en">
-<title id="title">A research map of temporal representation</title><desc id="desc">Symbolic representation: Discrete temporal structure: Temporal / language-action tokenization. Compression: Compact representations of time series: Retaining task-relevant information. Frequency conversion: Transforming the temporal representation: A dedicated direction in the research map. Similarity measurement: Comparing temporal structure: EchoTime · similarity and retrieval. Forecasting: Using temporal structure to predict: Retrieval / multi-output prediction. Classification: Using temporal structure to distinguish: Current research · time-series classification. Connections denote research relationships; individual works may span several directions.</desc>
+<title id="title">A research map of temporal representation</title><desc id="desc">Symbolic representation: Discrete temporal structure: Temporal / language-action tokens. Compression: Compact time-series representations: Retaining task-relevant information. Frequency conversion: Transforming temporal representations: Frequency-based transformations. Similarity measurement: Comparing temporal structure: EchoTime · similarity and retrieval. Forecasting: Using temporal structure to predict: Retrieval / multi-output prediction. Classification: Using temporal structure to distinguish: Current work · time-series classification. Connections denote research relationships; individual works may span several directions.</desc>
 <rect width="1440" height="950" fill="#ffffff"/>
 <g font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif"><text x="48" y="65" font-size="19" fill="#14776f" font-weight="600" text-anchor="start">ZIPENG WU / RESEARCH OVERVIEW</text>
 <text x="48" y="120" font-size="39" fill="#17324d" font-weight="600" text-anchor="start">A research map of temporal representation</text>
@@ -12,7 +12,7 @@
       <rect x="48" y="288" width="4" height="40" rx="2" fill="#14776f"/>
       <text x="72" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Symbolic representation</text>
       <text x="72" y="343" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Discrete temporal structure</text>
-      <text x="72" y="387" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Temporal / language-action tokenization</text></g>
+      <text x="72" y="387" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Temporal / language-action tokens</text></g>
 <g><rect x="1012" y="264" width="380" height="156" rx="12" fill="#fcf5ec"/>
       <rect x="1012" y="288" width="4" height="40" rx="2" fill="#a16024"/>
       <text x="1036" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Similarity measurement</text>
@@ -21,7 +21,7 @@
 <g><rect x="48" y="459" width="380" height="156" rx="12" fill="#eff7f5"/>
       <rect x="48" y="483" width="4" height="40" rx="2" fill="#14776f"/>
       <text x="72" y="501" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Compression</text>
-      <text x="72" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Compact representations of time series</text>
+      <text x="72" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Compact time-series representations</text>
       <text x="72" y="582" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Retaining task-relevant information</text></g>
 <g><rect x="1012" y="459" width="380" height="156" rx="12" fill="#fcf5ec"/>
       <rect x="1012" y="483" width="4" height="40" rx="2" fill="#a16024"/>
@@ -31,13 +31,13 @@
 <g><rect x="48" y="654" width="380" height="156" rx="12" fill="#eff7f5"/>
       <rect x="48" y="678" width="4" height="40" rx="2" fill="#14776f"/>
       <text x="72" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Frequency conversion</text>
-      <text x="72" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Transforming the temporal representation</text>
-      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">A dedicated direction in the research map</text></g>
+      <text x="72" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Transforming temporal representations</text>
+      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Frequency-based transformations</text></g>
 <g><rect x="1012" y="654" width="380" height="156" rx="12" fill="#fcf5ec"/>
       <rect x="1012" y="678" width="4" height="40" rx="2" fill="#a16024"/>
       <text x="1036" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Classification</text>
       <text x="1036" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Using temporal structure to distinguish</text>
-      <text x="1036" y="777" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">Current research · time-series classification</text></g>
+      <text x="1036" y="777" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">Current work · time-series classification</text></g>
 <g><rect x="515" y="361" width="410" height="350" rx="18" fill="#17324d"/>
       <text x="720" y="398" font-size="18" fill="#b8d7e6" font-weight="500" text-anchor="middle">SHARED RESEARCH CORE</text>
       <text x="720" y="453" font-size="38" fill="#ffffff" font-weight="600" text-anchor="middle">Temporal</text>
