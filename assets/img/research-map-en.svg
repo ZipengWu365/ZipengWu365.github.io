@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="950" viewBox="0 0 1440 950" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">A research map of temporal representation</title><desc id="desc">Symbolic representation: Discrete temporal structure: Temporal / language-action tokenization. Compression: Compact representations of time series: Retaining task-relevant information. Frequency conversion: Transforming the temporal representation: A dedicated direction in the research map. Similarity measurement: Comparing temporal structure: EchoTime · similarity and retrieval. Forecasting: Using temporal structure to predict: Retrieval / multi-output prediction. Classification: Using temporal structure to distinguish: Current research · time-series classification. Connections denote research relationships; individual works may span several directions.</desc>
+<rect width="1440" height="950" fill="#ffffff"/>
+<g font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif"><text x="48" y="65" font-size="19" fill="#14776f" font-weight="600" text-anchor="start">ZIPENG WU / RESEARCH OVERVIEW</text>
+<text x="48" y="120" font-size="39" fill="#17324d" font-weight="600" text-anchor="start">A research map of temporal representation</text>
+<text x="48" y="164" font-size="23" fill="#526377" font-weight="400" text-anchor="start">One shared research core, connected directions, and a growing body of work.</text>
+<text x="48" y="231" font-size="20" fill="#14776f" font-weight="600" text-anchor="start">ENCODE &amp; TRANSFORM</text>
+<text x="1012" y="231" font-size="20" fill="#a16024" font-weight="600" text-anchor="start">COMPARE &amp; INFER</text>
+<path d="M 428 342 H 467 V 537 H 515 M 428 537 H 515 M 428 732 H 467 V 537" fill="none" stroke="#b7c7d0" stroke-width="2"/>
+<path d="M 925 537 H 973 V 342 H 1012 M 925 537 H 1012 M 973 537 V 732 H 1012" fill="none" stroke="#b7c7d0" stroke-width="2"/>
+<g><rect x="48" y="264" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="288" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Symbolic representation</text>
+      <text x="72" y="343" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Discrete temporal structure</text>
+      <text x="72" y="387" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Temporal / language-action tokenization</text></g>
+<g><rect x="1012" y="264" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="288" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Similarity measurement</text>
+      <text x="1036" y="343" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Comparing temporal structure</text>
+      <text x="1036" y="387" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">EchoTime · similarity and retrieval</text></g>
+<g><rect x="48" y="459" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="483" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="501" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Compression</text>
+      <text x="72" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Compact representations of time series</text>
+      <text x="72" y="582" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">Retaining task-relevant information</text></g>
+<g><rect x="1012" y="459" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="483" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="501" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Forecasting</text>
+      <text x="1036" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Using temporal structure to predict</text>
+      <text x="1036" y="582" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">Retrieval / multi-output prediction</text></g>
+<g><rect x="48" y="654" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="678" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Frequency conversion</text>
+      <text x="72" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Transforming the temporal representation</text>
+      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">A dedicated direction in the research map</text></g>
+<g><rect x="1012" y="654" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="678" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">Classification</text>
+      <text x="1036" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">Using temporal structure to distinguish</text>
+      <text x="1036" y="777" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">Current research · time-series classification</text></g>
+<g><rect x="515" y="361" width="410" height="350" rx="18" fill="#17324d"/>
+      <text x="720" y="398" font-size="18" fill="#b8d7e6" font-weight="500" text-anchor="middle">SHARED RESEARCH CORE</text>
+      <text x="720" y="453" font-size="38" fill="#ffffff" font-weight="600" text-anchor="middle">Temporal</text>
+      <text x="720" y="501" font-size="38" fill="#ffffff" font-weight="600" text-anchor="middle">Representation</text>
+      <text x="720" y="541" font-size="19" fill="#e0edf4" font-weight="400" text-anchor="middle">Time-Series Representation</text>
+      <text x="720" y="586" font-size="20" fill="#ffffff" font-weight="400" text-anchor="middle">How can we capture temporal structure?</text>
+      <path d="M 543 612 H 897" fill="none" stroke="#486077" stroke-width="2"/>
+      <text x="720" y="648" font-size="20" fill="#ffffff" font-weight="500" text-anchor="middle">Decomposition · structure extraction</text>
+      <text x="720" y="682" font-size="18" fill="#b8d7e6" font-weight="400" text-anchor="middle">DeTime / TSDecompose-Benchmark</text>
+      </g>
+<text x="720" y="860" font-size="23" fill="#17324d" font-weight="500" text-anchor="middle">A common lens across time series, spatiotemporal data, and action / model trajectories.</text>
+<text x="720" y="905" font-size="20" fill="#526377" font-weight="400" text-anchor="middle">Connections denote research relationships; individual works may span several directions.</text></g></svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="950" viewBox="0 0 1440 950" role="img" aria-labelledby="title desc" lang="zh">
+<title id="title">时间序列表示 · 研究地图</title><desc id="desc">符号化表示: 用离散符号表达时间结构: 时间序列 / 语言—动作 tokenization. 压缩: 构建更紧凑的时间序列表示: 保留与任务相关的信息. 频率转换: 时间序列表示的变换: 保留为独立研究方向. 相似性衡量: 比较时间模式与结构: EchoTime · 相似性与检索. 预测: 利用时间结构推断未来: 检索增强预测 / 多输出预测. 分类: 利用时间结构区分类别: 当前工作 · 时间序列分类. 连线表示研究关联；一项工作可以同时连接多个方向。</desc>
+<rect width="1440" height="950" fill="#ffffff"/>
+<g font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif"><text x="48" y="65" font-size="19" fill="#14776f" font-weight="600" text-anchor="start">ZIPENG WU / RESEARCH OVERVIEW</text>
+<text x="48" y="120" font-size="39" fill="#17324d" font-weight="600" text-anchor="start">时间序列表示 · 研究地图</text>
+<text x="48" y="164" font-size="23" fill="#526377" font-weight="400" text-anchor="start">以表示为共同核心，连接研究方向，逐步纳入每一项工作。</text>
+<text x="48" y="231" font-size="20" fill="#14776f" font-weight="600" text-anchor="start">表达与变换</text>
+<text x="1012" y="231" font-size="20" fill="#a16024" font-weight="600" text-anchor="start">比较与推断</text>
+<path d="M 428 342 H 467 V 537 H 515 M 428 537 H 515 M 428 732 H 467 V 537" fill="none" stroke="#b7c7d0" stroke-width="2"/>
+<path d="M 925 537 H 973 V 342 H 1012 M 925 537 H 1012 M 973 537 V 732 H 1012" fill="none" stroke="#b7c7d0" stroke-width="2"/>
+<g><rect x="48" y="264" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="288" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">符号化表示</text>
+      <text x="72" y="343" font-size="19" fill="#526377" font-weight="400" text-anchor="start">用离散符号表达时间结构</text>
+      <text x="72" y="387" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">时间序列 / 语言—动作 tokenization</text></g>
+<g><rect x="1012" y="264" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="288" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="306" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">相似性衡量</text>
+      <text x="1036" y="343" font-size="19" fill="#526377" font-weight="400" text-anchor="start">比较时间模式与结构</text>
+      <text x="1036" y="387" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">EchoTime · 相似性与检索</text></g>
+<g><rect x="48" y="459" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="483" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="501" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">压缩</text>
+      <text x="72" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">构建更紧凑的时间序列表示</text>
+      <text x="72" y="582" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">保留与任务相关的信息</text></g>
+<g><rect x="1012" y="459" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="483" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="501" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">预测</text>
+      <text x="1036" y="538" font-size="19" fill="#526377" font-weight="400" text-anchor="start">利用时间结构推断未来</text>
+      <text x="1036" y="582" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">检索增强预测 / 多输出预测</text></g>
+<g><rect x="48" y="654" width="380" height="156" rx="12" fill="#eff7f5"/>
+      <rect x="48" y="678" width="4" height="40" rx="2" fill="#14776f"/>
+      <text x="72" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">频率转换</text>
+      <text x="72" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">时间序列表示的变换</text>
+      <text x="72" y="777" font-size="18" fill="#14776f" font-weight="500" text-anchor="start">保留为独立研究方向</text></g>
+<g><rect x="1012" y="654" width="380" height="156" rx="12" fill="#fcf5ec"/>
+      <rect x="1012" y="678" width="4" height="40" rx="2" fill="#a16024"/>
+      <text x="1036" y="696" font-size="28" fill="#17324d" font-weight="600" text-anchor="start">分类</text>
+      <text x="1036" y="733" font-size="19" fill="#526377" font-weight="400" text-anchor="start">利用时间结构区分类别</text>
+      <text x="1036" y="777" font-size="18" fill="#a16024" font-weight="500" text-anchor="start">当前工作 · 时间序列分类</text></g>
+<g><rect x="515" y="361" width="410" height="350" rx="18" fill="#17324d"/>
+      <text x="720" y="398" font-size="18" fill="#b8d7e6" font-weight="500" text-anchor="middle">共同研究核心</text>
+      <text x="720" y="453" font-size="38" fill="#ffffff" font-weight="600" text-anchor="middle">时间序列</text>
+      <text x="720" y="501" font-size="38" fill="#ffffff" font-weight="600" text-anchor="middle">表示</text>
+      <text x="720" y="541" font-size="19" fill="#e0edf4" font-weight="400" text-anchor="middle">Temporal / Time-Series Representation</text>
+      <text x="720" y="586" font-size="20" fill="#ffffff" font-weight="400" text-anchor="middle">如何提取与表达时间结构？</text>
+      <path d="M 543 612 H 897" fill="none" stroke="#486077" stroke-width="2"/>
+      <text x="720" y="648" font-size="20" fill="#ffffff" font-weight="500" text-anchor="middle">分解 · 结构提取</text>
+      <text x="720" y="682" font-size="18" fill="#b8d7e6" font-weight="400" text-anchor="middle">DeTime / TSDecompose-Benchmark</text>
+      </g>
+<text x="720" y="860" font-size="23" fill="#17324d" font-weight="500" text-anchor="middle">共同视角：时间序列、时空数据，以及动作序列与模型轨迹。</text>
+<text x="720" y="905" font-size="20" fill="#526377" font-weight="400" text-anchor="middle">连线表示研究关联；一项工作可以同时连接多个方向。</text></g></svg>

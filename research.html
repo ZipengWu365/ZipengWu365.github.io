@@ -7,7 +7,7 @@
   <meta name="description" content="Current research focuses of Zipeng Wu: temporal representation learning for foundation/world models and non-stationary time-series ML.">
   <link rel="canonical" href="https://zipengwu365.github.io/research.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260703d">
+  <link rel="stylesheet" href="styles.css?v=20261001-map">
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to main content</a>
@@ -37,9 +37,48 @@
         <li><strong>Time-series representation learning under non-stationarity.</strong> Decomposition, stationarity-aware retrieval, forecasting diagnostics, classification, symbolic regression, and robust evaluation of noisy sequential signals.</li>
         <li><strong>Representation-driven research software.</strong> Reproducible tools for decomposition and similarity that expose inspectable temporal components, compact JSON outputs, and shareable HTML reports.</li>
       </ol>
+    </section>
+    <section class="section research-overview" id="research-map" aria-labelledby="map-heading">
+      <h2 id="map-heading">One core, connected research directions</h2>
+      <p>I study <strong>temporal / time-series representation</strong> as a common foundation for working with sequential data. Symbolic representation, compression, and frequency conversion concern how temporal information is expressed and transformed; similarity measurement, forecasting, and classification concern how that information is used.</p>
       <figure class="research-map">
-        <img src="assets/img/temporal-representation-map.png" alt="Illustration of temporal traces mapped into representation components and downstream model behaviours." width="1600" height="900">
+        <picture>
+          <source media="(max-width: 600px)" srcset="assets/img/research-map-en-mobile.svg">
+          <img src="assets/img/research-map-en.svg" alt="A shared temporal representation core connects six research directions: symbolic representation, compression, frequency conversion, similarity measurement, forecasting, and classification. DeTime and TSDecompose-Benchmark sit within decomposition and structure extraction; EchoTime connects to similarity; classification is current work." width="1440" height="950">
+        </picture>
+        <figcaption>Connections indicate research relationships, rather than a fixed processing pipeline. A paper or project may connect to more than one direction. <a href="assets/img/research-map-en.svg">Full-size map</a> · <a href="assets/img/research-map-zh.svg" lang="zh">中文版</a></figcaption>
       </figure>
+      <div class="research-directions">
+        <article id="representation-core">
+          <h3>Shared core: decomposition and structure extraction</h3>
+          <p>Decomposition makes temporal components explicit and inspectable. <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime</a> provides decomposition tooling; <a href="https://github.com/ZipengWu365/TSDecompose-Benchmark">TSDecompose-Benchmark</a> evaluates decomposition as a standalone task, alongside the <a href="https://icml.cc/virtual/2026/poster/63747">ICML 2026 paper</a>.</p>
+        </article>
+        <article id="symbolic-representation">
+          <h3>Symbolic representation</h3>
+          <p>Discrete descriptions of temporal structure connect time series to token sequences. Current projects include <em>Time Series Language and Foundation Model</em> and <em>Language-Action Time-Series Tokenization for Efficient VLA Policies</em>. See the <a href="awards.html">associated compute allocations</a>.</p>
+        </article>
+        <article id="compression">
+          <h3>Compression</h3>
+          <p>Compact temporal representations that retain information relevant to the task. This direction connects the form of a representation to the information it preserves.</p>
+        </article>
+        <article id="frequency-conversion">
+          <h3>Frequency conversion</h3>
+          <p>A research direction concerned with transforming time-series representations, connected to how temporal information is expressed.</p>
+        </article>
+        <article id="similarity">
+          <h3>Similarity measurement and retrieval</h3>
+          <p><a href="https://zipengwu365.github.io/EchoTime/">EchoTime</a> compares time series and datasets through explainable structural similarity. Retrieval also connects comparison to forecasting, as in <a href="https://arxiv.org/abs/2606.04135">Stationarity-Aware Retrieval-Augmented Time Series Forecasting</a> (KDD 2026).</p>
+        </article>
+        <article id="forecasting">
+          <h3>Forecasting and multi-output prediction</h3>
+          <p>This thread spans <a href="https://doi.org/10.1109/IJCNN48605.2020.9207160">taxi demand prediction</a>, <a href="https://doi.org/10.1007/978-981-99-1648-1_1">hierarchical load forecasting</a>, <a href="https://doi.org/10.1016/j.heliyon.2023.e18771">spatiotemporal prediction</a>, and retrieval-augmented time-series forecasting. Related work on <a href="https://doi.org/10.1007/978-981-99-8067-3_3">online multi-output regression</a> connects through learning dependencies between outputs.</p>
+        </article>
+        <article id="classification">
+          <h3>Classification · current research</h3>
+          <p>Time-series classification extends the representation question to distinguishing classes from temporal structure.</p>
+        </article>
+      </div>
+      <p>These directions provide a common lens across time series, spatiotemporal data, action histories, and model trajectories. See the <a href="publications.html">publication list</a> for individual papers, including related regression work.</p>
     </section>
   </main>
   <footer class="site-footer">
