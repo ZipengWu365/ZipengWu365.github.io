@@ -43,10 +43,10 @@
       <p>My research centres on <strong>temporal representation</strong>. The map connects work on time series with broader questions about the representation of sequential data, including action histories and model trajectories.</p>
       <figure class="research-map">
         <picture>
-          <source media="(max-width: 600px)" srcset="assets/img/temporal-representation-mobile.png">
-          <img src="assets/img/temporal-representation.png" alt="Temporal Representation connects symbolic representation, compression, frequency conversion, similarity measurement, forecasting, classification, and decomposition. DeTime and TSDecompose-Benchmark sit under decomposition; EchoTime sits under similarity; classification is current work." width="2560" height="1440">
+          <source media="(max-width: 600px)" srcset="assets/img/temporal-representation-mobile.png?v=20261001-methods">
+          <img src="assets/img/temporal-representation.png?v=20261001-methods" alt="Temporal Representation connects symbolic representation, compression, frequency conversion, similarity measurement, forecasting, classification, and decomposition. Compression examples include PAA, SAX, and SAA-SAX. DeTime and TSDecompose-Benchmark sit under decomposition; EchoTime sits under similarity; classification is current work." width="2560" height="1440">
         </picture>
-        <figcaption>A paper or project may connect to more than one direction. <a href="assets/img/temporal-representation.png">Full-size image</a> · <a href="assets/slides/temporal-representation.pptx">Editable PowerPoint</a></figcaption>
+        <figcaption>A paper or project may connect to more than one direction. <a href="assets/img/temporal-representation.png?v=20261001-methods">Full-size image</a> · <a href="assets/slides/temporal-representation.pptx?v=20261001-methods">Editable PowerPoint</a></figcaption>
       </figure>
       <div class="research-directions">
         <article id="representation-core">
@@ -55,11 +55,13 @@
         </article>
         <article id="symbolic-representation">
           <h3>Symbolic representation</h3>
-          <p>Discrete descriptions of temporal structure connect time series to token sequences. Current projects include <em>Time Series Language and Foundation Model</em> and <em>Language-Action Time-Series Tokenization for Efficient VLA Policies</em>. See the <a href="awards.html">associated compute allocations</a>.</p>
+          <p>Discrete descriptions of temporal structure connect time series to token sequences. Representative methods include SAX and SAA-SAX, which also connect to compression through aggregation and approximation.</p>
+          <p>Current projects include <em>Time Series Language and Foundation Model</em> and <em>Language-Action Time-Series Tokenization for Efficient VLA Policies</em>. See the <a href="awards.html">associated compute allocations</a>.</p>
         </article>
         <article id="compression">
           <h3>Compression</h3>
-          <p>Compact temporal representations that retain information relevant to the task. This direction connects the form of a representation to the information it preserves.</p>
+          <p>Aggregation and approximation reduce a time series to a compact representation. Representative methods include <strong>PAA</strong> (Piecewise Aggregate Approximation), which replaces each segment with its mean, and <a href="https://www.cs.ucr.edu/~stelo/papers/DMKD03.pdf"><strong>SAX</strong> (Symbolic Aggregate approXimation)</a>, which maps the PAA values to symbols.</p>
+          <p><a href="https://doi.org/10.1109/SSCI50451.2021.9660130"><strong>SAA-SAX</strong> (Slopewise Aggregate Approximation SAX)</a> uses slope-based aggregation to describe temporal trends before discretization. These methods illustrate lossy compression and dimensionality reduction, and connect this direction to symbolic representation.</p>
         </article>
         <article id="frequency-conversion">
           <h3>Frequency conversion</h3>
