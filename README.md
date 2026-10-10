@@ -12,7 +12,8 @@ The site uses a lightweight multi-page academic profile structure. It presents:
 - UKRI/AIRR Isambard-AI compute-only awards;
 - University of Birmingham College PhD scholarship;
 - selected ranked publications and presentations;
-- selected research software: De-Time and EchoTime;
+- selected research software: De-Time, EchoTime, and TOMC;
+- an October 2026 TOMC project page at `/tomc/`, connected to sequence compression and symbolic representation within the temporal representation research theme;
 - one current CV: `Zipeng_Wu_Foundation_Model_Temporal_Representation_CV.pdf`;
 - ICML electronic contact pages: `/connect/` for an in-person LinkedIn QR and `/icml/` for research links and NFC cards.
 

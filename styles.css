@@ -401,6 +401,102 @@ p {
   gap: 1rem;
 }
 
+.software-date {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.project-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+.project-header img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-date {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.project-page .section {
+  margin-top: 1.6rem;
+  scroll-margin-top: 5rem;
+}
+
+.project-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-flow li {
+  border-top: 2px solid var(--link);
+  background: var(--soft);
+  padding: 0.8rem;
+}
+
+.project-flow strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+}
+
+.project-flow p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.project-note {
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem;
+  color: var(--muted);
+}
+
+.project-demo {
+  margin: 1rem 0 0;
+}
+
+.project-demo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.project-demo figcaption,
+.project-license {
+  margin-top: 0.65rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .project-header {
+    grid-template-columns: minmax(0, 1fr) 90px;
+    gap: 0.6rem;
+  }
+
+  .project-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .cv-button {
   display: inline-flex;
   min-height: 38px;
