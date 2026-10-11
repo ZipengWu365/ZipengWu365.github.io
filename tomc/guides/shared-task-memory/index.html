@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reuse Project Notes Across Codex and Claude Code with TOMC | TOMC Memory</title><meta name="description" content="Save and recall explicit project notes across sessions and assistants using a shared local TOMC notebook."><meta name="author" content="Zipeng Wu">
+<link rel="canonical" href="https://zipengwu.me/tomc/guides/shared-task-memory/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css?v=20261010-tomc"><link rel="stylesheet" href="/tomc/guides/guide.css">
+<meta property="og:type" content="article"><meta property="og:title" content="Reuse Project Notes Across Codex and Claude Code with TOMC"><meta property="og:description" content="Save and recall explicit project notes across sessions and assistants using a shared local TOMC notebook."><meta property="og:url" content="https://zipengwu.me/tomc/guides/shared-task-memory/"><meta property="og:image" content="https://zipengwu.me/assets/img/tomc-demo-poster.jpg"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Reuse Project Notes Across Codex and Claude Code with TOMC","name":"Reuse Project Notes Across Codex and Claude Code with TOMC","description":"Save and recall explicit project notes across sessions and assistants using a shared local TOMC notebook.","url":"https://zipengwu.me/tomc/guides/shared-task-memory/","author":{"@type":"Person","@id":"https://zipengwu.me/#person","name":"Zipeng Wu","alternateName":"zipengwu365"},"datePublished":"2026-10-11","dateModified":"2026-10-11","inLanguage":"en","mainEntityOfPage":"https://zipengwu.me/tomc/guides/shared-task-memory/"}</script></head>
+<body><a class="skip-link" href="#content">Skip to main content</a><header class="site-header"><div class="nav-inner"><a class="brand" href="/tomc/">TOMC Memory</a><nav aria-label="Primary navigation"><a href="/tomc/examples/">Examples</a><a href="/tomc/guides/">Guides</a><a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">Install</a><a href="https://github.com/ZipengWu365/TOMC">GitHub</a></nav></div></header>
+<main id="content" class="page guide-page"><article><p class="eyebrow">TOMC field guide</p><h1>Reuse Project Notes Across Codex and Claude Code with TOMC</h1><p class="guide-meta">By <a href="https://zipengwu.me/">Zipeng Wu</a> · zipengwu365 · <time datetime="2026-10-11">11 October 2026</time></p><div class="guide-body"><p>When a project continues in a new chat, the next assistant needs the current constraints, confirmed decisions, completed work and remaining steps. Reconstructing those from memory is easy to get wrong.</p>
+<p>TOMC provides explicit notebook tools for this handoff. A notebook stores the text you supply. On recall, TOMC prepares that history for the next task and memory budget. You can continue in the same assistant or move to another one.</p>
+<h2>Set up one shared notebook location</h2>
+<p>First install TOMC in the clients you plan to use. Follow the <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">current installation guide</a>; the source repository distinguishes the available packages and their validation status.</p>
+<p>Both TOMC processes must open the same SQLite database for a same-computer handoff. The default is <code>~/.tomc/memory.sqlite3</code>. A different OS user, WSL, container or custom configuration can resolve that path differently.</p>
+<p>For an explicit shared location, configure the same absolute file path through the Codex installer&#39;s <code>--store</code> option and the Claude Code server&#39;s <code>TOMC_MEMORY_PATH</code>. An explicit server <code>--store</code> takes precedence over the environment variable. Keep existing databases when changing configuration: selecting a new file does not migrate notes.</p>
+<h2>Try a three-step handoff</h2>
+<p>These prompts use a synthetic project. The notes deliberately distinguish planned testing from completed testing.</p>
+<p><strong>Step 1 — save in Codex.</strong></p>
+<pre><code class="language-text">Use TOMC&#39;s remember_memory to save this content under
+the notebook name tomc-handoff-demo:
+Keep public API routes and response fields unchanged.
+Pagination tests have not been written or run.
+Save only these notes and show the tool result.
+</code></pre>
+<p><strong>Step 2 — recall in a new Claude Code chat.</strong></p>
+<pre><code class="language-text">Use tomc-memory&#39;s recall_memory with:
+name: tomc-handoff-demo
+task: What constraints and unfinished testing should guide the next step?
+budget: 1024
+Show the returned memory before answering.
+</code></pre>
+<p><strong>Step 3 — append a plan, then return to Codex.</strong></p>
+<pre><code class="language-text">Use remember_memory to append this content to tomc-handoff-demo:
+Test plan: cover empty results, the last page and invalid page parameters.
+Tests remain unrun.
+Show the tool result.
+</code></pre>
+<p>In a new Codex chat, recall the same notebook for the latest constraints and testing status. Verify that both the original constraint and the appended plan are present. The small notebook may fit entirely; this handoff demonstrates reuse, not a guaranteed compression saving.</p>
+<h2>Keep notebook contents useful</h2>
+<p>Record confirmed decisions with dates or ordering information when needed. Separate a suggestion from a decision and a test plan from an observed result. TOMC appends notes; it does not silently rewrite each earlier entry into a single authoritative truth.</p>
+<p>Save one notebook per project or topic. Installation does not automatically collect your conversations, and a direct <code>prepare_context</code> call does not save its input to a notebook.</p>
+<p>If one client cannot find a note, call <code>list_memories</code> in both clients and compare their active server configuration and database paths. Matching notebook names do not prove that the clients are reading the same file.</p>
+<h2>Assistant choice and device choice are independent</h2>
+<p>You can keep the same assistant and start another session, switch assistants on one computer, or transfer selected notes to another device. The current preview&#39;s cross-device transfer is manual. It does not provide automatic cloud synchronization or migrate complete native chat histories.</p>
+<p>Only explicitly supplied notes are shared. The local notebook is plaintext, and recalled notes enter the receiving assistant&#39;s context under that host&#39;s data handling. Uninstalling TOMC does not remove the notebook database.</p>
+<p>The practical goal is a handoff you can inspect: which facts were saved, what was recalled, and what remains unfinished. Check those outputs before assuming the next assistant has the full project context.</p>
+<p><a href="https://github.com/ZipengWu365/TOMC/blob/main/docs/usage_tips.md#reuse-notebooks">Shared-path configuration and troubleshooting</a> · <a href="https://zipengwu.me/tomc/">TOMC project</a></p>
+<aside class="guide-note">TOMC is open-source research software. <a href="/tomc/examples/">Inspect recorded examples</a> or <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">install it locally</a>.</aside><h2>Continue reading</h2><ul><li><a href="https://zipengwu.me/tomc/guides/context-compression-api/">Context Compression for LLM APIs with TOMC</a></li><li><a href="https://zipengwu.me/tomc/guides/measure-context-savings/">How to Measure Context Compression and AI Agent Memory</a></li></ul></div></article></main><footer class="site-footer"><div class="footer-inner">By <a href="https://zipengwu.me/">Zipeng Wu</a> · <a href="https://github.com/ZipengWu365">zipengwu365</a> · TOMC Memory · MIT-licensed research software</div></footer></body></html>

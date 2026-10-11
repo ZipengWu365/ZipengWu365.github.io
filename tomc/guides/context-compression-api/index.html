@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Compression for LLM APIs with TOMC | TOMC Memory</title><meta name="description" content="A runnable CPU-only example of task-oriented context preparation, with source inspection and clearly scoped token counting."><meta name="author" content="Zipeng Wu">
+<link rel="canonical" href="https://zipengwu.me/tomc/guides/context-compression-api/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css?v=20261010-tomc"><link rel="stylesheet" href="/tomc/guides/guide.css">
+<meta property="og:type" content="article"><meta property="og:title" content="Context Compression for LLM APIs with TOMC"><meta property="og:description" content="A runnable CPU-only example of task-oriented context preparation, with source inspection and clearly scoped token counting."><meta property="og:url" content="https://zipengwu.me/tomc/guides/context-compression-api/"><meta property="og:image" content="https://zipengwu.me/assets/img/tomc-demo-poster.jpg"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Context Compression for LLM APIs with TOMC","name":"Context Compression for LLM APIs with TOMC","description":"A runnable CPU-only example of task-oriented context preparation, with source inspection and clearly scoped token counting.","url":"https://zipengwu.me/tomc/guides/context-compression-api/","author":{"@type":"Person","@id":"https://zipengwu.me/#person","name":"Zipeng Wu","alternateName":"zipengwu365"},"datePublished":"2026-10-11","dateModified":"2026-10-11","inLanguage":"en","mainEntityOfPage":"https://zipengwu.me/tomc/guides/context-compression-api/"}</script></head>
+<body><a class="skip-link" href="#content">Skip to main content</a><header class="site-header"><div class="nav-inner"><a class="brand" href="/tomc/">TOMC Memory</a><nav aria-label="Primary navigation"><a href="/tomc/examples/">Examples</a><a href="/tomc/guides/">Guides</a><a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">Install</a><a href="https://github.com/ZipengWu365/TOMC">GitHub</a></nav></div></header>
+<main id="content" class="page guide-page"><article><p class="eyebrow">TOMC field guide</p><h1>Context Compression for LLM APIs with TOMC</h1><p class="guide-meta">By <a href="https://zipengwu.me/">Zipeng Wu</a> · zipengwu365 · <time datetime="2026-10-11">11 October 2026</time></p><div class="guide-body"><p>A long project history can contain decisions, superseded values, and background that the next question does not need. TOMC prepares a task-specific representation of that history before the next model request. Your application can pass the prepared text to its existing reader model.</p>
+<p>I developed TOMC around a representation question: what should a model receive when the useful information is spread through a long sequence? The reference implementation combines selected source text with records computed from supported operations. Context preparation runs on CPU without training or an auxiliary neural model.</p>
+<h2>Run the local example</h2>
+<p>The repository includes an example that constructs the next request without calling an LLM. Clone the source and install it in an isolated Python environment:</p>
+<pre><code class="language-bash">git clone https://github.com/ZipengWu365/TOMC.git
+cd TOMC
+python -m venv .venv
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell, instead of the line above:
+# .venv\Scripts\Activate.ps1
+python -m pip install -e .
+python examples/api_context.py
+</code></pre>
+<p>The example begins with this update chain, followed by background project notes:</p>
+<pre><code class="language-text">framework = Flask
+backup_framework copies framework
+framework = FastAPI
+</code></pre>
+<p>The next task asks for the current <code>framework</code> and <code>backup_framework</code>. The copy captures the earlier value: the expected values are FastAPI and Flask. This is a useful distinction to inspect because retaining only the last assignment would lose the basis for the backup value.</p>
+<p>The built-in parser recognizes explicit forms such as these assignments and copies. It does not infer every update expressed in arbitrary natural language. Ordinary prose can be selected as source text; that path needs its own evaluation.</p>
+<h2>Inspect before handing off</h2>
+<p>Here is a complete offline preparation example:</p>
+<pre><code class="language-python">from tomc import prepare_context
+
+history = &quot;framework = Flask\nbackup_framework copies framework\nframework = FastAPI&quot;
+task = &quot;What are the current framework and backup_framework values?&quot;
+prepared = prepare_context(history, task, budget=64)
+print(prepared.prompt)
+print(prepared.note)
+</code></pre>
+<p>This short history fits the budget and remains intact. Use the longer bundled example to inspect compression. Check the returned source text and, when inspecting the full Python result, the record ledger. Candidate ledger rows may be omitted from the packed memory; their <code>included</code> status matters.</p>
+<p>In an application with an existing chat-completions client, the integration is:</p>
+<pre><code class="language-python">prepared = prepare_context(history, task, budget=64)
+if not prepared.prompt:
+    raise ValueError(prepared.note)
+
+# client and model are your application&#39;s existing client and model.
+# This next line calls your provider and may incur its normal charges.
+response = client.chat.completions.create(
+    model=model,
+    messages=prepared.messages,
+)
+</code></pre>
+<p>Preserve any additional application instructions. Send the prepared messages in place of the original history for this request, and retain the original separately for recovery. Other APIs need the returned text mapped to their message format.</p>
+<h2>What the local measurement means</h2>
+<p>On 11 October 2026, I reran the bundled example from source snapshot <code>0583da0</code>. Its message-content count was 138 before preparation and 90 afterward under the default lexical estimate. This includes the same task and instruction text in both conditions. It excludes provider framing, tool schemas, hidden tokens and answer generation. No model request was made.</p>
+<p>Those counts describe one synthetic input. They do not establish billed savings or answer quality. The memory budget applies to memory text under the lexical counter; it is not a ceiling on the complete request. Short inputs can remain unchanged, and record labels can add overhead.</p>
+<h2>Use it where the evidence fits</h2>
+<p>Keep the task specific, preserve the chronological update chain, and compare with the full history on representative questions. When a required fact is missing, increase the budget or provide the original evidence. A larger budget does not fix an unsupported parser operation.</p>
+<p>The MCP integration also requires an explicit handoff: calling a preparation tool inside an existing long chat does not erase earlier host messages.</p>
+<p><a href="https://zipengwu.me/tomc/examples/">Inspect recorded examples</a> · <a href="https://github.com/ZipengWu365/TOMC/blob/main/docs/api_reference.md">Read the API reference</a> · <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">Install TOMC</a></p>
+<aside class="guide-note">TOMC is open-source research software. <a href="/tomc/examples/">Inspect recorded examples</a> or <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">install it locally</a>.</aside><h2>Continue reading</h2><ul><li><a href="https://zipengwu.me/tomc/guides/shared-task-memory/">Reuse Project Notes Across Codex and Claude Code with TOMC</a></li><li><a href="https://zipengwu.me/tomc/guides/measure-context-savings/">How to Measure Context Compression and AI Agent Memory</a></li></ul></div></article></main><footer class="site-footer"><div class="footer-inner">By <a href="https://zipengwu.me/">Zipeng Wu</a> · <a href="https://github.com/ZipengWu365">zipengwu365</a> · TOMC Memory · MIT-licensed research software</div></footer></body></html>
