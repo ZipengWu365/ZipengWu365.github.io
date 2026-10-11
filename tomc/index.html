@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TOMC Memory | Context Compression for Claude Code &amp; Codex</title>
-  <meta name="description" content="TOMC Memory is an open-source context compression and task-memory plugin for Claude Code and Codex. Prepare context and recall saved task notes on CPU.">
+  <meta name="description" content="TOMC Memory by Zipeng Wu (zipengwu365): open-source context compression and task memory for Claude Code, Codex and LLM APIs. Prepare context locally on CPU.">
+  <meta name="author" content="Zipeng Wu">
   <link rel="canonical" href="https://zipengwu.me/tomc/">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261010-tomc">
@@ -31,6 +32,15 @@
     "codeRepository": "https://github.com/ZipengWu365/TOMC",
     "license": "https://github.com/ZipengWu365/TOMC/blob/main/LICENSE",
     "developmentStatus": "Research preview",
+    "author": {
+      "@type": "Person",
+      "@id": "https://zipengwu.me/#person",
+      "name": "Zipeng Wu",
+      "alternateName": "zipengwu365",
+      "url": "https://zipengwu.me/",
+      "sameAs": ["https://github.com/ZipengWu365"]
+    },
+    "sameAs": ["https://github.com/ZipengWu365/TOMC"],
     "keywords": [
         "TOMC Memory",
         "agent memory",
@@ -70,6 +80,7 @@
           <p class="project-date"><time datetime="2026-10">October 2026</time> &middot; Research software</p>
           <h1>TOMC Memory</h1>
           <p class="tagline">Task-Oriented Memory Compilation</p>
+          <p>By <a href="../">Zipeng Wu</a> · <a href="https://github.com/ZipengWu365">zipengwu365</a> on GitHub</p>
           <p>Open-source context compression and task memory for Claude Code and Codex.</p>
           <p lang="zh-CN">汤姆 C：为 AI 助手整理、压缩上下文，保存任务进度。</p>
           <div class="link-row" aria-label="Project links">
@@ -121,10 +132,24 @@
         <p>The current preview supports context preparation through a Python API and assistant integrations, including Codex and Claude Code. The TOMC method has been evaluated on long conversational histories in BEAM and targeted RULER diagnostics, using study-specific evaluation implementations.</p>
         <p>TOMC Memory is available on GitHub. See the repository for current installation instructions and assistant integrations. Feedback, use cases, and evaluation collaborations are welcome.</p>
         <div class="link-row" aria-label="Preview resources">
-          <a href="https://github.com/ZipengWu365/TOMC">GitHub &amp; installation</a>
+          <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">Installation guides</a>
+          <a href="https://github.com/ZipengWu365/TOMC-plugin">Claude Code native plugin</a>
           <a href="mailto:zxw365@student.bham.ac.uk?subject=TOMC%20research%20preview">Discuss a use case</a>
         </div>
         <p class="project-license">The current source is available under the <a href="https://github.com/ZipengWu365/TOMC/blob/main/LICENSE">MIT License</a>.</p>
+      </section>
+
+      <section class="section" id="questions" aria-labelledby="questions-title">
+        <h2 id="questions-title">Using TOMC Memory</h2>
+        <h3>What does TOMC do?</h3>
+        <p>TOMC stands for Task-Oriented Memory Compilation. It prepares task-specific context from supplied history, combining selected source text with supported state, relation and count records. The output is plain text for your existing assistant or LLM API.</p>
+        <h3>Does TOMC automatically reduce every request?</h3>
+        <p>No. Your application must send the prepared context in place of the full history, or you can use it in a new chat. A tool call does not remove messages already in the current conversation. Short histories may remain intact, and tool calls add overhead; measure the complete workflow on your own tasks.</p>
+        <h3>Can I reuse notes in Codex and Claude Code?</h3>
+        <p>Yes, through explicit save and recall calls when both clients use the same local TOMC database. You can also continue with the same assistant in a new session. Cross-device notebook transfer is manual; the current preview does not provide automatic cloud synchronization. See the <a href="https://github.com/ZipengWu365/TOMC#switch-assistants">shared-notebook guide</a>.</p>
+        <h3>Does context preparation require another model?</h3>
+        <p>Context preparation runs locally on CPU without training, another model API key or an auxiliary neural inference service. Your chosen assistant still generates the answer. Fixed parsing and retrieval rules can miss relevant information, so retain the original history and inspect the prepared context.</p>
+        <p>Find the project as <strong>TOMC Memory</strong> or <strong>zipengwu365 TOMC</strong>. <a href="https://github.com/ZipengWu365/TOMC">Source, examples and validation records</a> are available on GitHub.</p>
       </section>
 
       <section class="section" aria-labelledby="related-title">
