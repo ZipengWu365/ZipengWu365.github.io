@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zipengwu365.github.io/sitemap.xml
+Sitemap: https://zipengwu.me/sitemap.xml

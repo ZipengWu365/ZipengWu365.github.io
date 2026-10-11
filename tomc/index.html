@@ -3,57 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TOMC | Context Compression for Claude Code &amp; Codex</title>
-  <meta name="description" content="TOMC is an open-source research plugin for Claude Code and Codex that compresses supplied context to reduce input tokens while aiming to preserve answer quality.">
-  <meta name="author" content="Zipeng Wu">
-  <link rel="canonical" href="https://zipengwu365.github.io/tomc/">
+  <title>TOMC Memory | Context Compression for Claude Code &amp; Codex</title>
+  <meta name="description" content="TOMC Memory is an open-source context compression and task-memory plugin for Claude Code and Codex. Prepare context and recall saved task notes on CPU.">
+  <link rel="canonical" href="https://zipengwu.me/tomc/">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261010-tomc">
-  <meta property="og:title" content="TOMC | Context Compression for Claude Code &amp; Codex">
-  <meta property="og:description" content="An open-source research plugin for Claude Code and Codex. Compress supplied context to reduce input tokens while aiming to preserve answer quality.">
+  <meta property="og:title" content="TOMC Memory | Context Compression for Claude Code &amp; Codex">
+  <meta property="og:description" content="TOMC Memory: open-source context compression and task memory for Claude Code and Codex. Prepare context and recall saved notes on CPU.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zipengwu365.github.io/tomc/">
-  <meta property="og:image" content="https://zipengwu365.github.io/assets/img/tomc-logo.png">
-  <meta property="og:image:alt" content="TOMC project logo.">
+  <meta property="og:url" content="https://zipengwu.me/tomc/">
+  <meta property="og:image" content="https://zipengwu.me/assets/img/tomc-logo.png">
+  <meta property="og:image:alt" content="TOMC Memory project logo.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TOMC | Context Compression for Claude Code &amp; Codex">
-  <meta name="twitter:description" content="An open-source research plugin for Claude Code and Codex. Compress supplied context to reduce input tokens while aiming to preserve answer quality.">
-  <meta name="twitter:image" content="https://zipengwu365.github.io/assets/img/tomc-logo.png">
-  <meta name="twitter:image:alt" content="TOMC project logo.">
+  <meta name="twitter:title" content="TOMC Memory | Context Compression for Claude Code &amp; Codex">
+  <meta name="twitter:description" content="TOMC Memory: open-source context compression and task memory for Claude Code and Codex. Prepare context and recall saved notes on CPU.">
+  <meta name="twitter:image" content="https://zipengwu.me/assets/img/tomc-logo.png">
+  <meta name="twitter:image:alt" content="TOMC Memory project logo.">
   <meta name="theme-color" content="#17324d">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
-    "@id": "https://zipengwu365.github.io/tomc/#software",
-    "name": "TOMC: Task-Oriented Memory Compilation",
-    "description": "An open-source research plugin for Claude Code and Codex that compresses supplied context to reduce input tokens while aiming to preserve answer quality.",
-    "url": "https://zipengwu365.github.io/tomc/",
+    "@id": "https://zipengwu.me/tomc/#software",
+    "name": "TOMC Memory",
+    "description": "Open-source context compression and task memory for Claude Code, Codex and LLM APIs. CPU-only preparation with an MCP server and Python API.",
+    "url": "https://zipengwu.me/tomc/",
     "codeRepository": "https://github.com/ZipengWu365/TOMC",
     "license": "https://github.com/ZipengWu365/TOMC/blob/main/LICENSE",
     "developmentStatus": "Research preview",
-    "keywords": "context compression, input tokens, Claude Code, Codex, temporal representation, sequence compression",
-    "author": {
-      "@type": "Person",
-      "name": "Zipeng Wu",
-      "url": "https://zipengwu365.github.io/"
-    }
-  }
+    "keywords": [
+        "TOMC Memory",
+        "agent memory",
+        "context compression",
+        "Claude Code",
+        "Codex",
+        "MCP",
+        "task memory"
+    ],
+    "alternateName": [
+        "TOMC",
+        "汤姆 C",
+        "Task-Oriented Memory Compilation"
+    ]
+}
   </script>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to main content</a>
   <header class="site-header" aria-label="Primary navigation">
     <div class="nav-inner">
-      <a class="brand" href="../index.html" aria-label="Zipeng Wu homepage">Zipeng Wu</a>
+      <a class="brand" href="./" aria-label="TOMC Memory homepage">TOMC Memory</a>
       <nav>
-        <a href="../index.html">About</a>
-        <a href="../research.html">Research</a>
-        <a href="../news.html">News</a>
-        <a href="../publications.html">Publications</a>
-        <a href="../awards.html">Awards</a>
-        <a class="active" href="../software.html">Software</a>
-        <a href="../cv.html">CV</a>
+        <a href="#overview-title">Overview</a>
+        <a href="#demo">Demo</a>
+        <a href="#workflow-title">How it works</a>
+        <a href="https://github.com/ZipengWu365/TOMC#install-in-your-assistant">Install</a>
+        <a href="https://github.com/ZipengWu365/TOMC">GitHub</a>
       </nav>
     </div>
   </header>
@@ -63,21 +68,22 @@
       <header class="project-header">
         <div>
           <p class="project-date"><time datetime="2026-10">October 2026</time> &middot; Research software</p>
-          <h1>TOMC</h1>
+          <h1>TOMC Memory</h1>
           <p class="tagline">Task-Oriented Memory Compilation</p>
-          <p>Compact representations of conversational histories.</p>
+          <p>Open-source context compression and task memory for Claude Code and Codex.</p>
+          <p lang="zh-CN">汤姆 C：为 AI 助手整理、压缩上下文，保存任务进度。</p>
           <div class="link-row" aria-label="Project links">
             <a href="#demo">Watch demo</a>
             <a href="#research-connection">Research connection</a>
-            <a href="#try-tomc">Try TOMC</a>
+            <a href="#try-tomc">Try TOMC Memory</a>
           </div>
         </div>
-        <img src="../assets/img/tomc-logo.png" alt="TOMC project logo" width="2167" height="726">
+        <img src="../assets/img/tomc-logo.png" alt="TOMC Memory project logo" width="2167" height="726">
       </header>
 
       <section class="section" aria-labelledby="overview-title">
         <h2 id="overview-title">Overview</h2>
-        <p>TOMC prepares context for a task from a long history. It computes supported state, relation, and count records, then combines those records with selected source text under a memory budget. The resulting plain-text context can be used by the same language model that answers the task.</p>
+        <p>TOMC Memory prepares context for a task from a long history. It computes supported state, relation, and count records, then combines those records with selected source text under a memory budget. The resulting plain-text context can be used by the same language model that answers the task.</p>
         <p>Construction runs on CPU without training or an auxiliary neural model. The software includes a Python API and an assistant plugin, with optional task notes that can be explicitly saved and recalled in a later session.</p>
       </section>
 
@@ -95,8 +101,8 @@
 
       <section class="section" id="research-connection" aria-labelledby="connection-title">
         <h2 id="connection-title">From temporal representation to compact histories</h2>
-        <p>My main research focus is <a href="../research.html">temporal representation</a>. Time-series methods such as piecewise aggregate approximation (PAA) and Symbolic Aggregate approXimation (SAX) motivated my interest in representing a sequence compactly while retaining information useful for a task.</p>
-        <p>TOMC explores this representation question in conversational histories. Its task-oriented records make selected information explicit, while retained source text provides supporting detail. Sequence compression and symbolic representation are the conceptual link to my time-series work; TOMC uses its own record-construction procedure.</p>
+        <p>TOMC Memory builds on research in <a href="../research.html">temporal representation</a>: representing a sequence compactly while retaining information useful for a task. Time-series methods such as piecewise aggregate approximation (PAA) and Symbolic Aggregate approXimation (SAX) provide the motivation.</p>
+        <p>TOMC explores this representation question in conversational histories. Its task-oriented records make selected information explicit, while retained source text provides supporting detail. Sequence compression and symbolic representation are the conceptual link to time-series representation; TOMC uses its own record-construction procedure.</p>
       </section>
 
       <section class="section" aria-labelledby="workflow-title">
@@ -113,7 +119,7 @@
       <section class="section" id="try-tomc" aria-labelledby="try-title">
         <h2 id="try-title">Research preview</h2>
         <p>The current preview supports context preparation through a Python API and assistant integrations, including Codex and Claude Code. The TOMC method has been evaluated on long conversational histories in BEAM and targeted RULER diagnostics, using study-specific evaluation implementations.</p>
-        <p>TOMC is available on GitHub. See the repository for current installation instructions and assistant integrations. Feedback, use cases, and evaluation collaborations are welcome.</p>
+        <p>TOMC Memory is available on GitHub. See the repository for current installation instructions and assistant integrations. Feedback, use cases, and evaluation collaborations are welcome.</p>
         <div class="link-row" aria-label="Preview resources">
           <a href="https://github.com/ZipengWu365/TOMC">GitHub &amp; installation</a>
           <a href="mailto:zxw365@student.bham.ac.uk?subject=TOMC%20research%20preview">Discuss a use case</a>
@@ -123,14 +129,14 @@
 
       <section class="section" aria-labelledby="related-title">
         <h2 id="related-title">Related work &amp; software</h2>
-        <p>TOMC is a recent project within my broader work on representations. See <a href="../research.html#compression">symbolic representation and sequence compression</a>, <a href="https://systems-mechanobiology.github.io/DeTime/">De-Time</a> for time-series decomposition, and <a href="https://zipengwu365.github.io/EchoTime/">EchoTime</a> for explainable time-series similarity.</p>
+        <p>TOMC Memory is part of a broader research programme on representations. See <a href="../research.html#compression">symbolic representation and sequence compression</a>, <a href="https://systems-mechanobiology.github.io/DeTime/">De-Time</a> for time-series decomposition, and <a href="https://zipengwu365.github.io/EchoTime/">EchoTime</a> for explainable time-series similarity.</p>
         <p><a href="../software.html">Back to Research Software</a></p>
       </section>
     </article>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Copyright 2026 Zipeng Wu.</div>
+    <div class="footer-inner">TOMC Memory · Open-source research preview · <a href="https://github.com/ZipengWu365/TOMC/blob/main/LICENSE">MIT License</a></div>
   </footer>
 </body>
 </html>
