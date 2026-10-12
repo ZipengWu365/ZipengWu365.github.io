@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Software | Zipeng Wu</title>
-  <meta name="description" content="Selected research software by Zipeng Wu: De-Time for decomposition, EchoTime for similarity, and TOMC Memory for compact representations of conversational histories.">
+  <meta name="description" content="Selected research software by Zipeng Wu: DeTime for Python time-series decomposition, EchoTime for similarity, and TOMC Memory for compact representations of conversational histories.">
   <link rel="canonical" href="https://zipengwu.me/software.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20261010-tomc">
@@ -36,10 +36,11 @@
           <p>Task-Oriented Memory Compilation. Constructs compact representations of long conversational histories by combining task-oriented records with selected source text. CPU-based context preparation and explicitly saved task notes, available through an assistant plugin and Python API.</p>
           <a href="https://github.com/ZipengWu365/TOMC">TOMC Memory official GitHub · Downloads &amp; installation</a>
         </article>
-        <article>
-          <h2>De-Time</h2>
-          <p>Time-series decomposition as representation extraction. Python and CLI workflow for extracting trend, oscillatory/periodic structure, residuals, method-specific components, and metadata through a stable interface.</p>
-          <a href="https://systems-mechanobiology.github.io/DeTime/">De-Time project page</a>
+        <article id="detime">
+          <h2>DeTime: Time-Series Decomposition in Python</h2>
+          <p>DeTime (also written De-Time) is an open-source Python toolkit and CLI for extracting trend, seasonal or oscillatory components, and residuals from univariate and multichannel time series. It provides a shared interface for SSA, MSSA, STL, VMD, EMD, wavelets, and other decomposition methods. Install the package as <code>detime-toolkit</code> and import it as <code>detime</code>.</p>
+          <p><a href="https://systems-mechanobiology.github.io/DeTime/">DeTime documentation and examples</a> · <a href="https://github.com/systems-mechanobiology/DeTime">Source code on GitHub</a> · <a href="https://pypi.org/project/detime-toolkit/">Install from PyPI</a></p>
+          <p>Start with the <a href="https://systems-mechanobiology.github.io/DeTime/quickstart/">Python decomposition quickstart</a>, <a href="https://systems-mechanobiology.github.io/DeTime/methods/">choose a decomposition method</a>, or explore the <a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/">decomposition-based quant research tutorials</a>.</p>
         </article>
         <article>
           <h2>EchoTime</h2>
