@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeTime: Time-Series Decomposition in Python | Zipeng Wu</title>
+  <meta name="description" content="DeTime is a Python time-series decomposition toolkit. Get started with SSA, MSSA and STL, compare methods, and explore walk-forward quant research tutorials.">
+  <link rel="canonical" href="https://zipengwu.me/detime/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DeTime: Time-Series Decomposition in Python">
+  <meta property="og:description" content="A shared Python and CLI interface for time-series decomposition, with method guides and quant research tutorials.">
+  <meta property="og:url" content="https://zipengwu.me/detime/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=20261010-tomc">
+  <style>
+    pre { overflow-x: auto; padding: 1rem; background: var(--soft); border: 1px solid var(--line); border-radius: 6px; line-height: 1.6; }
+    code { font-family: Consolas, monospace; font-size: .9em; }
+    .method-list li, .tutorial-list li { margin-bottom: .8rem; }
+    .project-meta { color: var(--muted); font-size: .9rem; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/#webpage",
+        "url": "https://zipengwu.me/detime/",
+        "name": "DeTime: Time-Series Decomposition in Python",
+        "description": "Project overview, installation and learning paths for the DeTime Python time-series decomposition toolkit.",
+        "mainEntity": {"@id": "https://zipengwu.me/detime/#software"},
+        "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/#software",
+        "name": "DeTime",
+        "alternateName": ["De-Time", "detime-toolkit"],
+        "description": "Python and command-line software for univariate and multichannel time-series decomposition.",
+        "url": "https://systems-mechanobiology.github.io/DeTime/",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "programmingLanguage": "Python",
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "sameAs": ["https://github.com/systems-mechanobiology/DeTime", "https://pypi.org/project/detime-toolkit/"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Zipeng Wu", "item": "https://zipengwu.me/"},
+          {"@type": "ListItem", "position": 2, "name": "Software", "item": "https://zipengwu.me/software.html"},
+          {"@type": "ListItem", "position": 3, "name": "DeTime", "item": "https://zipengwu.me/detime/"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <header class="site-header" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Zipeng Wu homepage">Zipeng Wu</a>
+      <nav>
+        <a href="/">About</a>
+        <a href="/research.html">Research</a>
+        <a class="active" href="/software.html">Software</a>
+        <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime docs</a>
+      </nav>
+    </div>
+  </header>
+  <main id="content" class="page">
+    <p class="project-meta"><a href="/software.html">Research software</a> / DeTime</p>
+    <section class="section page-title">
+      <h1>DeTime: time-series decomposition in Python</h1>
+      <p>DeTime is an open-source Python toolkit for separating time series into trend, seasonal or oscillatory components, and residuals. I develop it as part of my research on temporal representation.</p>
+      <p>Use one Python or command-line interface to work with individual signals or aligned channels, compare decomposition methods, and inspect the resulting components and metadata.</p>
+      <div class="link-row">
+        <a href="https://systems-mechanobiology.github.io/DeTime/quickstart/">Python quickstart</a>
+        <a href="https://github.com/systems-mechanobiology/DeTime">GitHub source</a>
+        <a href="https://pypi.org/project/detime-toolkit/">PyPI package</a>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="install">
+      <h2 id="install">Install DeTime</h2>
+      <p>The project is called DeTime, sometimes written De-Time. Its PyPI distribution is <code>detime-toolkit</code>; the Python import is <code>detime</code>.</p>
+      <pre><code>python -m pip install detime-toolkit</code></pre>
+      <p>This small example uses singular spectrum analysis (SSA) on a synthetic series with a trend and a repeating cycle:</p>
+      <pre><code>import numpy as np
+from detime import DecompositionConfig, decompose
+
+t = np.arange(120, dtype=float)
+series = 0.03 * t + np.sin(2 * np.pi * t / 12)
+result = decompose(
+    series,
+    DecompositionConfig(
+        method="SSA",
+        params={"window": 24, "rank": 6, "primary_period": 12},
+    ),
+)
+print(result.trend.shape)  # (120,)
+print(result.season.shape)
+print(result.residual.shape)</code></pre>
+      <p>The <a href="https://systems-mechanobiology.github.io/DeTime/install/">installation guide</a> covers optional dependencies. The <a href="https://systems-mechanobiology.github.io/DeTime/quickstart/">quickstart</a> also shows CLI usage and multichannel input.</p>
+    </section>
+    <section class="section" aria-labelledby="methods">
+      <h2 id="methods">Choose a decomposition method</h2>
+      <p>The choice depends on the structure you expect in the data. A useful starting point is to compare a small number of methods on the same signal and inspect their residuals.</p>
+      <ul class="method-list">
+        <li><strong>One series with components to explore:</strong> start with SSA. Its window and rank control the subspace representation.</li>
+        <li><strong>A known seasonal period:</strong> consider STD, STDR for noisier cycles or outliers, or an STL baseline. Check that the period matches the sampling frequency.</li>
+        <li><strong>Aligned channels with shared structure:</strong> use MSSA to study them together. Unrelated channels may be better handled separately.</li>
+        <li><strong>A specialist comparison:</strong> consult the wrappers for VMD, EMD, wavelets and related methods. Dependencies and backend support differ across methods.</li>
+      </ul>
+      <p>See the <a href="https://systems-mechanobiology.github.io/DeTime/methods/">method selection guide</a> for parameters and limitations, or the <a href="https://systems-mechanobiology.github.io/DeTime/comparisons/">cross-package comparison</a> for how DeTime fits alongside other tools.</p>
+    </section>
+    <section class="section" aria-labelledby="quant">
+      <h2 id="quant">Time-series decomposition for quant research</h2>
+      <p>The quant tutorials explore features built from trends, oscillations and residuals. The examples cover trend following, mean reversion, pairs and portfolio workflows.</p>
+      <p>For historical trading experiments, a decomposition of the full price series can leak future information into earlier features. Recompute on each available training window, use the last feature row, delay execution and account for turnover costs.</p>
+      <ul class="tutorial-list">
+        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/">Quant research tutorial overview</a>: choose a workflow and understand the shared feature pipeline.</li>
+        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/walkforward/">Walk-forward validation</a>: check window boundaries, execution timing and cost assumptions.</li>
+        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/notebooks/">Executable quant tutorial notebooks</a>: follow the individual examples and inspect their outputs.</li>
+      </ul>
+      <p>These are research examples. A decomposition component or an attractive backtest alone does not establish predictive value.</p>
+    </section>
+    <section class="section" aria-labelledby="contribute">
+      <h2 id="contribute">Developing DeTime</h2>
+      <p>My broader interest is how we represent and understand temporal data. DeTime provides a common software interface for studying decompositions and using their components in downstream experiments.</p>
+      <p>If you encounter a problem or have a reproducible example to contribute, use the <a href="https://github.com/systems-mechanobiology/DeTime/issues">GitHub issue tracker</a>. Include the method, parameters and a small input that reproduces the behavior.</p>
+      <p class="project-meta">Project page by <a href="/">Zipeng Wu</a>. Updated 15 October 2026. API details and current method support are maintained in the <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime documentation</a>.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner">Copyright 2026 Zipeng Wu.</div></footer>
+</body>
+</html>

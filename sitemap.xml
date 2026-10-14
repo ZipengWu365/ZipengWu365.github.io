@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zipengwu.me/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://zipengwu.me/research.html</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://zipengwu.me/software.html</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -53,5 +53,6 @@
   <url><loc>https://zipengwu.me/tomc/guides/context-compression-api/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://zipengwu.me/tomc/guides/shared-task-memory/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://zipengwu.me/tomc/guides/measure-context-savings/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://zipengwu.me/detime/</loc><lastmod>2026-10-15</lastmod></url>
 </urlset>
 
