@@ -386,7 +386,7 @@ display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
 <p>当前聊天默认由宿主负责压缩；原生压缩处于启用或未知状态时，不主动让 TOMC 再压同一聊天。外部历史处理和显式记忆本工作流继续可用。可选的生命周期 hook 负责登记会话元数据和执行 TOMC 开关，不自动替换模型请求。<a href="../context_ownership_zh/">上下文归属</a>。</p>
 <h2 id="021">当前版本：0.2.1</h2>
 <p>0.2.1 安装包共有十个 MCP 工具。0.2.0 新增的四个只读工具是：<code>get_status</code>、<code>list_contexts</code>、<code>get_context</code>、<code>make_handoff</code>。成功准备或召回后，默认保存准备结果正文、任务和元数据；在 TOMC 面板关闭上下文记录后，不再保存后续正文，已有快照需单独删除。短输入可能在结果中完整保留。旧版本仅保存数字的统计无法还原过去的聊天正文。</p>
-<p>全局处理与新登记会话默认开启。用户级配置让工具跨项目可用；逐会话暂停和目录登记还需要安装并加载对应 hook，Codex 另需在 <code>/hooks</code> 审阅并信任。配置更新后可能需要新会话或受支持的重载。活动卡片依据会话与提交输入事件更新，不代表每次点击聊天标签都能被检测。hook 不替换原生客户端的模型请求，配置已启用也不等于已连接或已经省下输入。<a href="https://github.com/ZipengWu365/TOMC/blob/1d53cf6787440a66ac15efb8f80b46cd0cf71506/docs/host_integration_validation_20261022.md">验证与边界</a>。</p>
+<p>全局处理与新登记会话默认开启。用户级配置让工具跨项目可用；逐会话暂停和目录登记还需要安装并加载对应 hook，Codex 另需在 <code>/hooks</code> 审阅并信任。配置更新后可能需要新会话或受支持的重载。活动卡片依据会话与提交输入事件更新，不代表每次点击聊天标签都能被检测。hook 不替换原生客户端的模型请求，配置已启用也不等于已连接或已经省下输入。<a href="https://github.com/ZipengWu365/TOMC/blob/fd7758c5e3969bc41d3fa0cb4449a91ec8737a9b/docs/host_integration_validation_20261022.md">验证与边界</a>。</p>
 <p>管理窗口可复制自包含接续提示词，或导出供其他 Agent、其他电脑读取的文本包；接收方无需安装 TOMC。导出包可以由用户纳入 Git，但 TOMC 不自动 commit 或 push。<code>make_handoff</code> 只返回所选快照的提示词，不替用户发送消息或写入剪贴板。</p>
 <p>下方带日期的客户端测试使用的是早期安装包，不代表 0.2.1 已通过相同宿主验收。</p>
 <p>第一次成功调用工具、确认 TOMC 对你有帮助后，欢迎到 <a href="https://github.com/ZipengWu365/TOMC">TOMC 主仓库</a> 点击 Star 支持项目，完全自愿。Codex 安装器 0.1.2 在每次安装成功后显示一次邀请；加上 <code>--no-support-message</code> 可以隐藏。安装成功不代表首次 MCP 启动已经验证。</p>
@@ -663,7 +663,7 @@ Wednesday notes: the team checked the release checklist, added a rollback task, 
 <p>插件只看到传给工具的内容，不会自动读取全部聊天、拦截 API 请求或替换客户端的上下文窗口。这个日常使用接口采用 Demo 的任务路由和本地记忆本，并非论文 BEAM 实验的精确配置；论文分数不能直接当作此插件流程的效果保证。</p>
 </details>
 <h2 id="012">上下文减少统计（0.1.2）</h2>
-<p>准备和召回会返回本次上下文估算减少量，供助手显示。<code>get_usage_stats</code> 可查询累计、今天和最近七天（UTC）。数字统计本身不含原文或任务；自 0.2.0 起默认另外保存准备结果正文与任务，可关闭上下文记录。不上传遥测，这些数字也不是实际 API 或账单节省；旧的纯数字历史无法还原正文。已有安装需更新运行时并开启新会话或按宿主支持方式重载。<a href="https://github.com/ZipengWu365/TOMC/blob/1d53cf6787440a66ac15efb8f80b46cd0cf71506/docs/token_statistics_zh.md">统计口径与使用方法</a>。</p></div>
+<p>准备和召回会返回本次上下文估算减少量，供助手显示。<code>get_usage_stats</code> 可查询累计、今天和最近七天（UTC）。数字统计本身不含原文或任务；自 0.2.0 起默认另外保存准备结果正文与任务，可关闭上下文记录。不上传遥测，这些数字也不是实际 API 或账单节省；旧的纯数字历史无法还原正文。已有安装需更新运行时并开启新会话或按宿主支持方式重载。<a href="https://github.com/ZipengWu365/TOMC/blob/fd7758c5e3969bc41d3fa0cb4449a91ec8737a9b/docs/token_statistics_zh.md">统计口径与使用方法</a>。</p></div>
             </div>
         </div>
 

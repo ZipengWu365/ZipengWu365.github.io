@@ -5,7 +5,23 @@
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://zipengwu.me/research.html</loc>
+    <loc>https://zipengwu.me/articles/</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://zipengwu.me/awards.html</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://zipengwu.me/cv.html</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://zipengwu.me/detime/</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://zipengwu.me/icml/</loc>
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
@@ -17,7 +33,7 @@
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://zipengwu.me/awards.html</loc>
+    <loc>https://zipengwu.me/research.html</loc>
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
@@ -25,19 +41,15 @@
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://zipengwu.me/cv.html</loc>
+    <loc>https://zipengwu.me/tomc/</loc>
     <lastmod>2026-11-03</lastmod>
-  </url>
-  <url>
-    <loc>https://zipengwu.me/icml/</loc>
-    <lastmod>2026-11-03</lastmod>
-  </url>
-  <url>
-    <loc>https://zipengwu.me/tomc/guides/</loc>
-    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://zipengwu.me/tomc/examples/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://zipengwu.me/tomc/guides/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>
@@ -45,23 +57,11 @@
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>
-    <loc>https://zipengwu.me/tomc/guides/shared-task-memory/</loc>
-    <lastmod>2026-10-12</lastmod>
-  </url>
-  <url>
     <loc>https://zipengwu.me/tomc/guides/measure-context-savings/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>
-    <loc>https://zipengwu.me/detime/</loc>
-    <lastmod>2026-11-03</lastmod>
-  </url>
-  <url>
-    <loc>https://zipengwu.me/tomc/</loc>
-    <lastmod>2026-11-03</lastmod>
-  </url>
-  <url>
-    <loc>https://zipengwu.me/articles/</loc>
-    <lastmod>2026-11-03</lastmod>
+    <loc>https://zipengwu.me/tomc/guides/shared-task-memory/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
 </urlset>

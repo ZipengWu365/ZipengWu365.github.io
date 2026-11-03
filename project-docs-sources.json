@@ -1,8 +1,8 @@
 {
   "tomc": {
     "repository": "ZipengWu365/TOMC",
-    "revision": "1d53cf6787440a66ac15efb8f80b46cd0cf71506",
-    "source_commit_date": "2026-11-02T16:20:57Z",
+    "revision": "fd7758c5e3969bc41d3fa0cb4449a91ec8737a9b",
+    "source_commit_date": "2026-11-03T14:28:59Z",
     "site_url": "https://zipengwu.me/tomc/docs/",
     "html_pages": [
       "api_reference/index.html",

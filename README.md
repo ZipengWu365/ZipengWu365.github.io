@@ -41,17 +41,58 @@ EchoTime export into this repository. The root sitemap index references its
 existing `https://zipengwu.me/EchoTime/sitemap.xml`.
 
 DeTime and TOMC public documentation is built from pinned source checkouts into
-`/detime/docs/` and `/tomc/docs/`. To refresh the published snapshot, install
-`requirements-docs.txt` in a virtual environment and run the documented
-`scripts/sync_project_docs.py --help` command against the updated source
-checkouts. The build preserves the upstream public-documentation exclusions
-and records source revisions; it does not run experiments or alter the source
-repositories. Then rebuild the article index:
+`/detime/docs/` and `/tomc/docs/`. The **Sync project content and deploy** Actions
+workflow checks all three public repositories every five minutes and also runs
+when this website's `main` branch changes. GitHub may delay scheduled runs, so
+this is a polling interval rather than a five-minute publication guarantee.
+
+The workflow compares public source revisions with the last successful
+`publication-state.json` on the live site. An unchanged check skips the build
+and deployment. Updated source revisions rebuild public docs, discover articles,
+regenerate all site maps, validate links and deploy one Pages artifact. It uses
+the standard repository token with a separate Pages deployment job; no new
+personal token or cross-repository secret is needed. Pages must use **GitHub
+Actions** as its publishing source, with the existing `zipengwu.me` domain.
+
+EchoTime still publishes its own project route on each push to `main`. The root
+publisher waits for EchoTime's matching revision and validates the catalog/map
+hashes before including new article links. Failed builds retain the previous
+live artifact and will be retried by a later scheduled run. **Run workflow** in
+Actions requests an immediate full rebuild.
+
+To add content:
+
+- EchoTime: add a public `docs/articles/<filename>.md`, including an H1 and an
+  optional description/language header. The existing project workflow publishes
+  `/EchoTime/articles/<filename>.html` and updates its catalog and sitemap.
+- DeTime: add public Markdown under `docs/research/`, `docs/articles/`,
+  `docs/guides/` or `docs/tutorials/`; research/tutorial articles are discovered
+  by the global index. Existing documentation navigation follows `mkdocs.yml`.
+- TOMC: add public Markdown under `docs/`; the global index discovers pages that
+  are included in the public docs build. Existing `exclude_docs` rules continue
+  to apply.
+
+The source repositories retain code, Issues, Releases, draft/design exclusions
+and version history. The build does not execute notebook or benchmark
+generators. Generated documentation in this branch is a bootstrap snapshot;
+the live artifact and `publication-state.json` record the automatically built
+source revisions.
+
+Previously published canonical URLs are checked against the last successful
+publication. A missing URL stops deployment. Keep filenames stable; for an
+intentional move, add an old-path-to-new-path entry to
+`publication-redirects.json`. Static aliases are recreated on every publication,
+while the sitemap lists the new canonical address. EchoTime aliases belong in
+its own exporter because that route is deployed separately.
+
+For a local docs-only refresh, install `requirements-docs.txt` in a virtual
+environment and run `scripts/sync_project_docs.py --help` against source
+checkouts. Then rebuild the article index:
 
 ```sh
-python scripts/build_article_index.py --sources /path/to/project-checkouts
+python scripts/build_article_index.py --sources /path/to/project-checkouts --echo-catalog /path/to/echo-catalog.json
 ```
 
-The checkouts directory must contain `DeTime/` and `TOMC/`. Existing articles
+The checkouts directory must contain `DeTime/`, `TOMC/` and `EchoTime/`. Existing articles
 stay at their current addresses; new docs URLs use the personal domain. The
 former DeTime documentation site is retained during this first phase.

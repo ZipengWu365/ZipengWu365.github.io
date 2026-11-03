@@ -5,6 +5,8 @@ from html import escape
 import json
 from pathlib import Path
 import re
+from html import unescape
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://zipengwu.me"
@@ -15,11 +17,11 @@ def title(path):
     text = re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.S)
     match = re.search(r"^# (.+)$", text, re.M)
     if not match:
-        raise ValueError(f"Missing article title: {path}")
+        return path.stem.replace("_", " ").replace("-", " ").strip().capitalize()
     return re.sub(r"[*`]", "", match.group(1)).strip()
 
 
-def build(sources):
+def build(sources, echo_catalog=None):
     groups = []
     echo = [
         ("Time-series similarity: choosing between DTW, matrix profiles and learned representations", "/EchoTime/articles/time-series-similarity-guide.en.html", "English · Method selection"),
@@ -30,12 +32,42 @@ def build(sources):
         ("Heatwave vs grid load", "/EchoTime/blog/heatwave_vs_grid_load.html", "Case study · Weather and energy"),
         ("Similarity lab", "/EchoTime/guide/similarity-lab.html", "Interactive method comparisons"),
     ]
+    if echo_catalog:
+        records = json.loads(echo_catalog.read_text())["articles"]
+        discovered = []
+        for record in records:
+            path = record["path"]
+            if not path.startswith("articles/") or ".." in Path(path).parts or urlsplit(path).scheme or not path.endswith(".html"):
+                raise ValueError(f"Invalid EchoTime article path: {path}")
+            language = "中文" if record.get("language", "").startswith("zh") else "English"
+            discovered.append((record["title"], "/EchoTime/" + path, language + " · Article"))
+        # The deployed EchoTime catalog is the publication contract. Blog stories
+        # already use standalone HTML; discover new ones from their source tree.
+        stories = []
+        for path in sorted((sources / "EchoTime" / "docs" / "blog").rglob("*.html")):
+            if path.stem.startswith(("_", ".")) or "draft" in path.stem.lower():
+                continue
+            text = path.read_text(encoding="utf-8")
+            heading = re.search(r"<h1\b[^>]*>(.*?)</h1>", text, re.S | re.I)
+            name = unescape(re.sub(r"<[^>]+>", "", heading[1])) if heading else path.stem.replace("_", " ")
+            stories.append((name.strip(), "/EchoTime/" + path.relative_to(sources / "EchoTime" / "docs").as_posix(), "Case study"))
+        echo = discovered + stories + [echo[-1]]
     groups.append(("echotime", "EchoTime", "/EchoTime/", "Time-series similarity, method selection and worked examples.", [("Articles and examples", echo)]))
 
     detime = sources / "DeTime" / "docs"
-    research = [(title(p), "/detime/docs/" + p.relative_to(detime).with_suffix("").as_posix() + "/", "Research guide") for p in sorted((detime / "research").glob("*.md")) if p.name not in {"index.md", "sharing-kit.md"}]
+    manifest = json.loads((ROOT / "project-docs-sources.json").read_text())
+    public_paths = {key: set(value["html_pages"]) for key, value in manifest.items()}
+
+    def published(project, source, path):
+        relative = path.relative_to(source).with_suffix("").as_posix()
+        output = relative + "/index.html" if path.name != "index.md" else relative[:-5] + "index.html"
+        return output in public_paths[project]
+
+    research = [(title(p), "/detime/docs/" + p.relative_to(detime).with_suffix("").as_posix() + "/", "Research guide") for folder in ["research", "articles", "guides"] for p in sorted((detime / folder).rglob("*.md")) if p.name != "index.md" and published("detime", detime, p)]
     tutorials = []
     for p in sorted((detime / "tutorials").rglob("*.md")):
+        if not published("detime", detime, p):
+            continue
         rel = p.relative_to(detime).with_suffix("").as_posix()
         if rel.endswith("/index"):
             rel = rel[:-5]
@@ -52,8 +84,15 @@ def build(sources):
         ("How to Measure Context Compression and AI Agent Memory", "/tomc/guides/measure-context-savings/", "Evaluation guide"),
     ]
     topics = ["context_ownership", "context_ownership_zh", "prompt_cache_20261017", "prompt_cache_20261017_zh", "comparison_with_llmlingua", "readers_and_agents", "readers_and_agents_zh", "codex_retention_20261005", "codex_retention_20261005_zh", "method", "paper_results", "model_context_limits_20261012"]
-    technical = [(title(tomc / (name + ".md")), "/tomc/docs/" + name + "/", "中文" if name.endswith("_zh") else "Technical article") for name in topics]
-    groups.append(("tomc", "TOMC Memory", "/tomc/", "Context compression, task memory, prompt caching and evaluation.", [("Practical guides", guides), ("Technical articles and research", technical)]))
+    technical = [(title(tomc / (name + ".md")), "/tomc/docs/" + name + "/", "中文" if name.endswith("_zh") else "Technical article") for name in topics if (tomc / (name + ".md")).exists() and published("tomc", tomc, tomc / (name + ".md"))]
+    more = []
+    for path in sorted(tomc.rglob("*.md")):
+        if path.stem in topics or path == tomc / "index.md" or not published("tomc", tomc, path):
+            continue
+        relative = path.relative_to(tomc).with_suffix("").as_posix()
+        relative = relative[:-5] if path.name == "index.md" else relative + "/"
+        more.append((title(path), "/tomc/docs/" + relative, "中文" if path.stem.endswith("_zh") else "Documentation"))
+    groups.append(("tomc", "TOMC Memory", "/tomc/", "Context compression, task memory, prompt caching and evaluation.", [("Practical guides", guides), ("Technical articles and research", technical), ("Documentation and further guides", more)]))
 
     rows = [row for group in groups for _, items in group[4] for row in items]
     assert len({row[1] for row in rows}) == len(rows), "Duplicate article URLs"
@@ -73,7 +112,7 @@ def build(sources):
 <link rel="stylesheet" href="/styles.css?v=20261010-tomc"><link rel="stylesheet" href="/projects.css">
 <meta property="og:type" content="website"><meta property="og:title" content="Articles and Tutorials | Zipeng Wu"><meta property="og:url" content="{BASE}/articles/">
 <meta property="og:description" content="Research articles and practical guides from EchoTime, DeTime and TOMC Memory."><meta name="twitter:card" content="summary">
-<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script></head>
+<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('</', '<' + chr(92) + '/')}</script></head>
 <body><a class="skip-link" href="#content">Skip to main content</a>
 <header class="site-header"><div class="nav-inner"><a class="brand" href="/">Zipeng Wu</a><nav aria-label="Primary navigation"><a href="/research.html">Research</a><a href="/software.html">Projects</a><a class="active" aria-current="page" href="/articles/">Articles</a><a href="/publications.html">Publications</a></nav></div></header>
 <main id="content" class="page"><nav class="project-nav" aria-label="Research projects"><a href="/EchoTime/">EchoTime</a><a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a></nav>
@@ -91,4 +130,6 @@ def build(sources):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sources", type=Path, required=True, help="Directory containing TOMC and DeTime source checkouts")
-    build(parser.parse_args().sources)
+    parser.add_argument("--echo-catalog", type=Path, help="Catalog from the published EchoTime export")
+    args = parser.parse_args()
+    build(args.sources, args.echo_catalog)

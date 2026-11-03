@@ -1,0 +1,121 @@
+name: Sync project content and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '3-58/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zipengwu-root-publication
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      changed: ${{ steps.probe.outputs.changed }}
+      tomc_sha: ${{ steps.probe.outputs.tomc_sha }}
+      detime_sha: ${{ steps.probe.outputs.detime_sha }}
+      echotime_sha: ${{ steps.probe.outputs.echotime_sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts
+      - name: Check source revisions against the live publication
+        id: probe
+        env:
+          FORCE_PUBLISH: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          args=()
+          if [[ "$FORCE_PUBLISH" == "true" ]]; then
+            args+=(--force)
+          fi
+          python3 scripts/publication.py probe --output "$RUNNER_TEMP/publication-probe.json" --github-output "$GITHUB_OUTPUT" "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        if: steps.probe.outputs.changed == 'true'
+        with:
+          name: publication-probe
+          path: ${{ runner.temp }}/publication-probe.json
+          retention-days: 1
+
+  build:
+    needs: probe
+    if: needs.probe.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-docs.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: publication-probe
+          path: ${{ runner.temp }}
+      - uses: actions/checkout@v6
+        with:
+          repository: ZipengWu365/TOMC
+          ref: ${{ needs.probe.outputs.tomc_sha }}
+          path: _sources/TOMC
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/
+            /overrides/
+            /mkdocs.yml
+            /LICENSE*
+      - uses: actions/checkout@v6
+        with:
+          repository: systems-mechanobiology/DeTime
+          ref: ${{ needs.probe.outputs.detime_sha }}
+          path: _sources/DeTime
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/
+            /overrides/
+            /mkdocs.yml
+            /LICENSE*
+      - uses: actions/checkout@v6
+        with:
+          repository: ZipengWu365/EchoTime
+          ref: ${{ needs.probe.outputs.echotime_sha }}
+          path: _sources/EchoTime
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /docs/
+      - name: Install documentation dependencies
+        run: python -m pip install -r requirements-docs.txt
+      - name: Check publication behavior
+        run: python -m unittest discover -s tests -v
+      - name: Build and validate the static publication
+        run: python scripts/publication.py build --sources _sources --probe "$RUNNER_TEMP/publication-probe.json" --output "$RUNNER_TEMP/pages"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the validated artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
