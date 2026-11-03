@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/paper_results/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Paper results - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Paper results - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/paper_results/#article", "url": "https://zipengwu.me/tomc/docs/paper_results/", "headline": "Paper results - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/paper_results/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../readers_and_agents_zh/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../claims_and_limitations/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#current-paper-results" class="nav-link">Current paper results</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#beam-three-readers-and-six-baseline-configurations" class="nav-link">BEAM: three readers and six baseline configurations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#beam-compilation-ablation" class="nav-link">BEAM compilation ablation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ruler-derived-mechanisms-and-component-ablations" class="nav-link">RULER-derived mechanisms and component ablations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#construction-efficiency-and-resources" class="nav-link">Construction efficiency and resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#evidence-and-implementation-scope" class="nav-link">Evidence and implementation scope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="current-paper-results">Current paper results</h1>
+<p>Synced 2026-09-28 from manuscript commit <code>7399657</code>. The report uses recorded benchmark measurements.</p>
+<h2 id="beam-three-readers-and-six-baseline-configurations">BEAM: three readers and six baseline configurations</h2>
+<p><strong>Each score cell is Baseline / TOMC (0–100).</strong> Within a pair, the same reader answers the same questions using memory from the named baseline or memory from TOMC. Bold marks the TOMC score for easy scanning. Combining TOMC with a baseline is a separate configuration that these comparisons do not test.</p>
+<p>Questions and scoring are matched within each comparison. The matched set and scoring protocol can differ across rows, so compare the two scores within a cell. Input change measures TOMC relative to that baseline; negative means fewer API input tokens. The mean averages the three readers' percentage changes equally.</p>
+<p>Each method/reader comparison planned 600 questions covering ten memory abilities: 60 conversations, with 20 at each of 100K, 500K and 1M history tokens. Memory is capped at 8,192 cl100k_base tokens. API input also includes the question and prompt overhead; the history lengths label the original conversations.</p>
+<p>LLMLingua-2-D and -H are the direct and hierarchical configurations. The direct 1M run has 200 empty memories before its final budget check. Their scores remain included, and the cause is unresolved. Its low token count therefore includes failed memory construction.</p>
+<h3 id="overall">Overall</h3>
+<table>
+<thead>
+<tr>
+<th>Baseline memory</th>
+<th style="text-align: right;">GPT-5.1<br>Baseline / TOMC</th>
+<th style="text-align: right;">Rednote preview<br>Baseline / TOMC</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash<br>Baseline / TOMC</th>
+<th style="text-align: right;">Mean input change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">37.69 / <strong>60.16</strong></td>
+<td style="text-align: right;">34.30 / <strong>54.49</strong></td>
+<td style="text-align: right;">33.13 / <strong>57.29</strong></td>
+<td style="text-align: right;">+7.87%</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">35.43 / <strong>55.03</strong></td>
+<td style="text-align: right;">34.34 / <strong>50.28</strong></td>
+<td style="text-align: right;">39.01 / <strong>57.18</strong></td>
+<td style="text-align: right;">-9.32%</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">36.40 / <strong>54.71</strong></td>
+<td style="text-align: right;">35.30 / <strong>51.03</strong></td>
+<td style="text-align: right;">40.17 / <strong>57.18</strong></td>
+<td style="text-align: right;">+275.45%</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">44.67 / <strong>60.45</strong></td>
+<td style="text-align: right;">39.47 / <strong>56.16</strong></td>
+<td style="text-align: right;">37.13 / <strong>57.09</strong></td>
+<td style="text-align: right;">-34.35%</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">52.47 / <strong>59.25</strong></td>
+<td style="text-align: right;">51.63 / <strong>55.90</strong></td>
+<td style="text-align: right;">51.57 / <strong>56.91</strong></td>
+<td style="text-align: right;">+12.96%</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">53.75 / <strong>59.48</strong></td>
+<td style="text-align: right;">51.75 / <strong>55.90</strong></td>
+<td style="text-align: right;">55.65 / <strong>56.91</strong></td>
+<td style="text-align: right;">-34.77%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="100k">100K</h3>
+<table>
+<thead>
+<tr>
+<th>Baseline memory</th>
+<th style="text-align: right;">GPT-5.1<br>Baseline / TOMC</th>
+<th style="text-align: right;">Rednote preview<br>Baseline / TOMC</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash<br>Baseline / TOMC</th>
+<th style="text-align: right;">Mean input change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">51.70 / <strong>62.78</strong></td>
+<td style="text-align: right;">45.03 / <strong>56.24</strong></td>
+<td style="text-align: right;">44.73 / <strong>58.22</strong></td>
+<td style="text-align: right;">-18.54%</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">39.23 / <strong>57.29</strong></td>
+<td style="text-align: right;">35.36 / <strong>50.53</strong></td>
+<td style="text-align: right;">43.55 / <strong>57.63</strong></td>
+<td style="text-align: right;">+13.24%</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">36.67 / <strong>55.90</strong></td>
+<td style="text-align: right;">34.54 / <strong>52.18</strong></td>
+<td style="text-align: right;">44.43 / <strong>57.63</strong></td>
+<td style="text-align: right;">+342.06%</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">53.37 / <strong>63.58</strong></td>
+<td style="text-align: right;">45.19 / <strong>58.53</strong></td>
+<td style="text-align: right;">45.05 / <strong>56.65</strong></td>
+<td style="text-align: right;">-18.85%</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">53.58 / <strong>62.26</strong></td>
+<td style="text-align: right;">53.48 / <strong>58.25</strong></td>
+<td style="text-align: right;">51.57 / <strong>58.21</strong></td>
+<td style="text-align: right;">+44.86%</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">60.50 / <strong>62.26</strong></td>
+<td style="text-align: right;">57.05 / <strong>58.25</strong></td>
+<td style="text-align: right;">61.01 / <strong>58.21</strong></td>
+<td style="text-align: right;">-18.07%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="500k">500K</h3>
+<table>
+<thead>
+<tr>
+<th>Baseline memory</th>
+<th style="text-align: right;">GPT-5.1<br>Baseline / TOMC</th>
+<th style="text-align: right;">Rednote preview<br>Baseline / TOMC</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash<br>Baseline / TOMC</th>
+<th style="text-align: right;">Mean input change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">36.68 / <strong>58.99</strong></td>
+<td style="text-align: right;">33.96 / <strong>56.71</strong></td>
+<td style="text-align: right;">30.49 / <strong>59.22</strong></td>
+<td style="text-align: right;">-27.09%</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">34.36 / <strong>56.82</strong></td>
+<td style="text-align: right;">34.86 / <strong>54.54</strong></td>
+<td style="text-align: right;">36.54 / <strong>59.43</strong></td>
+<td style="text-align: right;">-19.81%</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">37.42 / <strong>55.18</strong></td>
+<td style="text-align: right;">35.71 / <strong>54.00</strong></td>
+<td style="text-align: right;">39.49 / <strong>59.43</strong></td>
+<td style="text-align: right;">+277.64%</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">37.31 / <strong>59.00</strong></td>
+<td style="text-align: right;">37.13 / <strong>57.94</strong></td>
+<td style="text-align: right;">33.53 / <strong>59.58</strong></td>
+<td style="text-align: right;">-41.73%</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">53.09 / <strong>59.10</strong></td>
+<td style="text-align: right;">52.88 / <strong>56.04</strong></td>
+<td style="text-align: right;">53.08 / <strong>59.46</strong></td>
+<td style="text-align: right;">-0.18%</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">49.48 / <strong>59.60</strong></td>
+<td style="text-align: right;">52.38 / <strong>56.04</strong></td>
+<td style="text-align: right;">54.78 / <strong>59.46</strong></td>
+<td style="text-align: right;">-42.00%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1m">1M</h3>
+<table>
+<thead>
+<tr>
+<th>Baseline memory</th>
+<th style="text-align: right;">GPT-5.1<br>Baseline / TOMC</th>
+<th style="text-align: right;">Rednote preview<br>Baseline / TOMC</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash<br>Baseline / TOMC</th>
+<th style="text-align: right;">Mean input change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">24.67 / <strong>58.69</strong></td>
+<td style="text-align: right;">23.90 / <strong>50.54</strong></td>
+<td style="text-align: right;">24.56 / <strong>54.47</strong></td>
+<td style="text-align: right;">+3475.88%</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">32.66 / <strong>50.91</strong></td>
+<td style="text-align: right;">32.81 / <strong>45.75</strong></td>
+<td style="text-align: right;">36.94 / <strong>54.47</strong></td>
+<td style="text-align: right;">-21.75%</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">35.10 / <strong>53.03</strong></td>
+<td style="text-align: right;">35.66 / <strong>46.88</strong></td>
+<td style="text-align: right;">36.58 / <strong>54.47</strong></td>
+<td style="text-align: right;">+205.43%</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">43.34 / <strong>58.78</strong></td>
+<td style="text-align: right;">36.01 / <strong>51.97</strong></td>
+<td style="text-align: right;">32.74 / <strong>55.10</strong></td>
+<td style="text-align: right;">-43.00%</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">50.75 / <strong>56.38</strong></td>
+<td style="text-align: right;">48.51 / <strong>53.40</strong></td>
+<td style="text-align: right;">50.05 / <strong>53.06</strong></td>
+<td style="text-align: right;">-4.93%</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">51.25 / <strong>56.59</strong></td>
+<td style="text-align: right;">45.83 / <strong>53.40</strong></td>
+<td style="text-align: right;">51.15 / <strong>53.06</strong></td>
+<td style="text-align: right;">-44.29%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pair-counts-and-scoring-protocols">Pair counts and scoring protocols</h3>
+<p>Each cell below gives overall valid pairs / scoring protocol. Every comparison planned 600 questions.</p>
+<table>
+<thead>
+<tr>
+<th>Baseline</th>
+<th style="text-align: right;">GPT-5.1</th>
+<th style="text-align: right;">Rednote preview</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">599 / C</td>
+<td style="text-align: right;">599 / E</td>
+<td style="text-align: right;">592 / D</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">593 / B</td>
+<td style="text-align: right;">595 / B</td>
+<td style="text-align: right;">600 / D</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">595 / B</td>
+<td style="text-align: right;">596 / B</td>
+<td style="text-align: right;">600 / D</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">600 / C</td>
+<td style="text-align: right;">592 / C</td>
+<td style="text-align: right;">573 / D</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">598 / A</td>
+<td style="text-align: right;">600 / A</td>
+<td style="text-align: right;">600 / A</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">599 / A</td>
+<td style="text-align: right;">600 / A</td>
+<td style="text-align: right;">600 / A</td>
+</tr>
+</tbody>
+</table>
+<p>A: current RAG/LIGHT, native single-answer Flash scoring. B: archived Pro grouped scoring. C: archived Flash grouped scoring. D: archived Flash-reader answers, native single-answer Flash scoring. E: Rednote direct LLMLingua-2 follow-up, native single-answer Flash scoring. Scoring protocol is shared within a pair, but differs across these groups.</p>
+<p>TOMC has higher quality means in all <strong>36 reader × baseline × length comparisons at 500K/1M</strong>, and in all 18 overall comparisons. At 100K, Flash with LIGHT is an exception. These are comparisons of mean quality; significance and individual abilities need separate analysis.</p>
+<p>Against LIGHT and hierarchical LLMLingua-2, overall equal-reader input savings are <strong>34.77% and 34.35%</strong>, respectively. Reader input is not end-to-end cost.</p>
+<h3 id="pooled-long-histories-500k-and-1m">Pooled long histories (500K and 1M)</h3>
+<p>Within each reader, pool matched questions from 500K and 1M, then calculate quality and input changes. Average the three readers' changes equally.</p>
+<table>
+<thead>
+<tr>
+<th>Baseline</th>
+<th style="text-align: right;">Relative quality gain</th>
+<th style="text-align: right;">Reader input saving</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMLingua-2-D</td>
+<td style="text-align: right;">+94.63%</td>
+<td style="text-align: right;">-40.65%</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td style="text-align: right;">+54.66%</td>
+<td style="text-align: right;">+20.77%</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td style="text-align: right;">+46.77%</td>
+<td style="text-align: right;">-238.50%</td>
+</tr>
+<tr>
+<td>LLMLingua-2-H</td>
+<td style="text-align: right;">+56.44%</td>
+<td style="text-align: right;">+42.36%</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td style="text-align: right;">+9.42%</td>
+<td style="text-align: right;">+2.57%</td>
+</tr>
+<tr>
+<td>LIGHT</td>
+<td style="text-align: right;">+11.00%</td>
+<td style="text-align: right;">+43.15%</td>
+</tr>
+</tbody>
+</table>
+<p>Negative saving means TOMC uses more input. BRIEF-Pro uses the archived candidates from hybrid retrieval. BEAM-RAG uses BGE dense retrieval; historical Hybrid-RAG is a separate control. LIGHT uses the documented writer/filter, API summarization and 8K packing configuration. These results apply to those study configurations.</p>
+<h3 id="ten-memory-abilities">Ten memory abilities</h3>
+<p>TOMC, BEAM-RAG and LIGHT are compared on questions valid for all three methods within each reader and history tier. The 500K and 1M ability means receive equal weight. Cells below are <strong>TOMC / BEAM-RAG / LIGHT</strong>, all on 0–100 scales.</p>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th style="text-align: right;">GPT-5.1</th>
+<th style="text-align: right;">Rednote preview</th>
+<th style="text-align: right;">DeepSeek 4.1 Flash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Information extraction</td>
+<td style="text-align: right;">73.55 / 54.92 / 48.60</td>
+<td style="text-align: right;">69.17 / 65.11 / 49.48</td>
+<td style="text-align: right;">71.83 / 64.33 / 53.29</td>
+</tr>
+<tr>
+<td>Multi session reasoning</td>
+<td style="text-align: right;">62.36 / 51.98 / 50.61</td>
+<td style="text-align: right;">63.49 / 53.35 / 56.86</td>
+<td style="text-align: right;">61.20 / 50.90 / 54.78</td>
+</tr>
+<tr>
+<td>Knowledge update</td>
+<td style="text-align: right;">43.75 / 45.00 / 30.00</td>
+<td style="text-align: right;">61.25 / 45.00 / 48.75</td>
+<td style="text-align: right;">60.00 / 57.50 / 52.50</td>
+</tr>
+<tr>
+<td>Temporal reasoning</td>
+<td style="text-align: right;">62.96 / 26.97 / 40.00</td>
+<td style="text-align: right;">70.42 / 30.83 / 54.17</td>
+<td style="text-align: right;">63.75 / 28.33 / 42.50</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td style="text-align: right;">77.50 / 80.00 / 72.50</td>
+<td style="text-align: right;">47.50 / 57.50 / 30.00</td>
+<td style="text-align: right;">70.00 / 75.00 / 70.00</td>
+</tr>
+<tr>
+<td>Instruction following</td>
+<td style="text-align: right;">51.18 / 75.64 / 64.21</td>
+<td style="text-align: right;">55.00 / 75.00 / 77.08</td>
+<td style="text-align: right;">46.67 / 67.92 / 77.08</td>
+</tr>
+<tr>
+<td>Preference following</td>
+<td style="text-align: right;">92.50 / 91.88 / 88.54</td>
+<td style="text-align: right;">86.88 / 94.58 / 82.29</td>
+<td style="text-align: right;">87.50 / 91.04 / 83.54</td>
+</tr>
+<tr>
+<td>Contradiction resolution</td>
+<td style="text-align: right;">32.50 / 23.75 / 18.12</td>
+<td style="text-align: right;">28.75 / 21.88 / 15.00</td>
+<td style="text-align: right;">40.00 / 24.38 / 17.50</td>
+</tr>
+<tr>
+<td>Event ordering</td>
+<td style="text-align: right;">30.60 / 25.24 / 27.59</td>
+<td style="text-align: right;">23.70 / 20.79 / 22.26</td>
+<td style="text-align: right;">25.46 / 19.58 / 21.57</td>
+</tr>
+<tr>
+<td>Summarization</td>
+<td style="text-align: right;">52.51 / 45.29 / 61.37</td>
+<td style="text-align: right;">41.05 / 42.94 / 55.17</td>
+<td style="text-align: right;">36.21 / 36.69 / 56.88</td>
+</tr>
+</tbody>
+</table>
+<p>TOMC leads both controls on temporal reasoning, information extraction, contradiction resolution, multi-session reasoning and event ordering across these readers. It trails both on instruction following, BEAM-RAG on abstention, and LIGHT on summarization.</p>
+<h2 id="beam-compilation-ablation">BEAM compilation ablation</h2>
+<p><strong>What do the compiled records add?</strong> This comparison removes the reader-visible records and accompanying instructions, keeping source text and upstream routing fixed. The freed space is left empty. Each pair uses matched Pro judging in a separate dated batch from the baseline comparisons above.</p>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th style="text-align: right;">Pairs</th>
+<th style="text-align: right;">Full TOMC / TOMC w/o compilation</th>
+<th style="text-align: right;">Full − removal (points)</th>
+<th style="text-align: right;">Full input change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-5.1</td>
+<td style="text-align: right;">597</td>
+<td style="text-align: right;">56.20 / 55.00</td>
+<td style="text-align: right;">+1.20</td>
+<td style="text-align: right;">+9.46%</td>
+</tr>
+<tr>
+<td>Rednote preview</td>
+<td style="text-align: right;">595</td>
+<td style="text-align: right;">50.34 / 51.25</td>
+<td style="text-align: right;">-0.91</td>
+<td style="text-align: right;">+10.81%</td>
+</tr>
+<tr>
+<td>DeepSeek 4.1 Flash</td>
+<td style="text-align: right;">598</td>
+<td style="text-align: right;">52.74 / 49.74</td>
+<td style="text-align: right;">+3.01</td>
+<td style="text-align: right;">+9.55%</td>
+</tr>
+</tbody>
+</table>
+<p>Compiled records improve temporal reasoning for all three readers, while event ordering declines for all three. Overall changes also vary by reader. The table reports quality and input separately.</p>
+<h2 id="ruler-derived-mechanisms-and-component-ablations">RULER-derived mechanisms and component ablations</h2>
+<p>These targeted tests use 100 examples per task from RULER generators, with a 65,536-token sequence limit. NIAH and QA2 measure token F1; VT measures answer-item recall. Scores use the study's task-specific evaluation, on a 0–100 scale. Memory construction uses a budget of 4,096 tokens estimated from text length; reported API input is measured separately.</p>
+<table>
+<thead>
+<tr>
+<th>Archived task comparison</th>
+<th style="text-align: right;">Query mean</th>
+<th style="text-align: right;">Full/state mean</th>
+<th style="text-align: right;">Input saved vs Query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NIAH · retained-source result¹</td>
+<td style="text-align: right;">80.91</td>
+<td style="text-align: right;">88.30</td>
+<td style="text-align: right;">51.8%</td>
+</tr>
+<tr>
+<td>VT · state-route diagnostic</td>
+<td style="text-align: right;">46.80</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">89.2%</td>
+</tr>
+<tr>
+<td>QA2 · full TOMC</td>
+<td style="text-align: right;">47.49</td>
+<td style="text-align: right;">40.85</td>
+<td style="text-align: right;">25.5%</td>
+</tr>
+</tbody>
+</table>
+<p>¹ A packing error removed the compiled blocks from the archived NIAH full memories. The 88.30 F1 therefore measures the retained source text. The archived source-removal condition scored zero after the same packing failure, so it cannot isolate the effect of removing source text.</p>
+<p><strong>NIAH after the packing fix.</strong> A separate paired rerun keeps compiled records byte-identical and removes only the extra source block, leaving the freed space empty. Query and head–tail were not rerun, so comparisons with Query remain in the archived table above. The savings below use this rerun's full TOMC as the reference.</p>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th style="text-align: right;">Pairs</th>
+<th style="text-align: right;">Full TOMC F1</th>
+<th style="text-align: right;">TOMC w/o extra source F1</th>
+<th style="text-align: right;">Input saved vs full TOMC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-5.1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">85.00</td>
+<td style="text-align: right;">79.03</td>
+<td style="text-align: right;">43.78%</td>
+</tr>
+<tr>
+<td>Rednote preview</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">76.84</td>
+<td style="text-align: right;">68.76</td>
+<td style="text-align: right;">43.95%</td>
+</tr>
+<tr>
+<td>DeepSeek 4.1 Flash</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">99.00</td>
+<td style="text-align: right;">43.33%</td>
+</tr>
+</tbody>
+</table>
+<p>Flash's one-point gap comes from the single prespecified example with no needle; both conditions score 100 on the 99 needle examples. The differences are descriptive.</p>
+<p><strong>VT:</strong> full-history state replay reaches 100% recall for all three readers, including after candidate rows are removed. This diagnostic uses the state route: operations are replayed over the full history. Replaying only selected evidence reaches about 20.4–20.6%, because selection can omit earlier dependencies.</p>
+<p><strong>QA2:</strong> retaining original text from the same selected evidence outperforms records alone and records plus source for every reader. Removing the extra source block from full TOMC lowers mean F1 to 8.44. These questions need source wording to connect facts across passages.</p>
+<h2 id="construction-efficiency-and-resources">Construction efficiency and resources</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Auxiliary neural stage</th>
+<th style="text-align: right;">Recorded construction time</th>
+<th style="text-align: right;">Peak GPU allocation (GiB)</th>
+<th style="text-align: right;">Peak host RAM (RSS, GiB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TOMC</td>
+<td>None</td>
+<td style="text-align: right;">4.21 s/call</td>
+<td style="text-align: right;">0 (CPU)</td>
+<td style="text-align: right;">3.75</td>
+</tr>
+<tr>
+<td>BEAM-RAG</td>
+<td>BGE-small</td>
+<td style="text-align: right;">23.94 s/conversation</td>
+<td style="text-align: right;">0 (CPU)</td>
+<td style="text-align: right;">1.45</td>
+</tr>
+<tr>
+<td>LongLLMLingua</td>
+<td>7B compressor</td>
+<td style="text-align: right;">72.07 s/call</td>
+<td style="text-align: right;">18.50</td>
+<td style="text-align: right;">10.24</td>
+</tr>
+<tr>
+<td>BRIEF-Pro</td>
+<td>3B compressor</td>
+<td style="text-align: right;">47.94 s/call</td>
+<td style="text-align: right;">11.81</td>
+<td style="text-align: right;">5.45</td>
+</tr>
+<tr>
+<td>LIGHT (worker)</td>
+<td>32B AWQ writer/filter</td>
+<td style="text-align: right;">41.53 h/batch</td>
+<td style="text-align: right;">80.82</td>
+<td style="text-align: right;">6.04</td>
+</tr>
+<tr>
+<td>LLMLingua-2 (direct)</td>
+<td>BERT compressor</td>
+<td style="text-align: right;">9.16 s/conversation</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">1.85</td>
+</tr>
+<tr>
+<td>LLMLingua-2 (hier.)</td>
+<td>BERT compressor</td>
+<td style="text-align: right;">10.19 s/conversation</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">1.62</td>
+</tr>
+</tbody>
+</table>
+<p>TOMC averaged <strong>4.21 s/call</strong> over six CPU construction replays and used <strong>3.75 GiB</strong> peak host RAM (process RSS). Timing excludes imports, input loading and tokenizer warm-up.</p>
+<p>The recorded LongLLMLingua and BRIEF-Pro times measure construction stages per call. Other rows use per-conversation or full-batch times, as labeled. These measurements describe the recorded stages; they do not establish matched end-to-end speedups. BEAM-RAG reuses its index and separately averages 9.71 ms/query for retrieval.</p>
+<p>GPU allocation and host RAM are separate observed peaks. LIGHT's memory measurement covers one writer/filter worker, including its allocated KV pool; its 41.53 h timing covers the full 600-memory batch. The worker measurement excludes BGE and remote summarization, and BRIEF-Pro excludes candidate construction. LLMLingua-2 was measured with its CUDA implementation. Reader inference and judging are excluded throughout.</p>
+<h2 id="evidence-and-implementation-scope">Evidence and implementation scope</h2>
+<p>The demo parses explicit operations and retrieves lines with BM25. The benchmark uses the archived task-specific selection, operations and packing configurations. In particular, paper BEAM-RAG uses BGE dense retrieval, and historical Hybrid-RAG is a separate method from the demo's automatic router. TOMC prepares text memory on CPU without auxiliary neural inference; your chosen model then reads that memory and answers.</p>
+<p>Run <code>python benchmarks/reproduce/current.py</code> to check file hashes and recalculate paired score/input changes, reader averages, pooled long-history results, common-question ability means and the repaired NIAH ablation. The script rebuilds this report from saved aggregate measurements. It makes no API calls or new statistical tests.</p>
+<p><a href="https://github.com/ZipengWu365/TOMC/tree/main/benchmarks/current_paper">Snapshot and provenance</a> · <a href="https://github.com/ZipengWu365/TOMC/blob/main/benchmarks/HISTORICAL_BEAM.md">Historical four-reader Hybrid-RAG results</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

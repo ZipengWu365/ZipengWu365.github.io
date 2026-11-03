@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/tutorials/quant-trading/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Time-Series Decomposition for Quant Trading | DeTime</title>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../stylesheets/brand.css" rel="stylesheet">
+        <link href="../../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="Explore DeTime quant research tutorials for trend following, residual reversion and pairs trading, with executed notebooks and walk-forward validation.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Time-Series Decomposition for Quant Trading | DeTime">
+  <meta property="og:description" content="Explore DeTime quant research tutorials for trend following, residual reversion and pairs trading, with executed notebooks and walk-forward validation.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/tutorials/quant-trading/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Time-Series Decomposition for Quant Trading | DeTime">
+  <meta name="twitter:description" content="Explore DeTime quant research tutorials for trend following, residual reversion and pairs trading, with executed notebooks and walk-forward validation.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/tutorials/quant-trading/#webpage",
+        "url": "https://zipengwu.me/detime/docs/tutorials/quant-trading/",
+        "name": "Time-Series Decomposition for Quant Trading | DeTime",
+        "description": "Explore DeTime quant research tutorials for trend following, residual reversion and pairs trading, with executed notebooks and walk-forward validation.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/detime/docs/tutorials/quant-trading/#article", "url": "https://zipengwu.me/detime/docs/tutorials/quant-trading/", "headline": "Time-Series Decomposition for Quant Trading | DeTime", "mainEntityOfPage": "https://zipengwu.me/detime/docs/tutorials/quant-trading/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Overview</a>
+</li>
+            
+<li>
+    <a href="notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../hot-trend-lab/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../ml-workflows/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="notebooks/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#decomposition-first-quant-trading-tutorials-with-detime" class="nav-link">Decomposition-First Quant Trading Tutorials with DeTime</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#strategy-lab-correction-two-concrete-trading-systems" class="nav-link">Strategy-lab correction: two concrete trading systems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implemented-notebooks" class="nav-link">Implemented notebooks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#core-design" class="nav-link">Core design</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#data-layer" class="nav-link">Data layer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#code-modules" class="nav-link">Code modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#smoke-test" class="nav-link">Smoke test</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#latest-implemented-tutorials" class="nav-link">Latest Implemented Tutorials</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#strategy-expansion-method-specific-variants-and-component-pair-trading" class="nav-link">Strategy expansion: method-specific variants and component pair trading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="decomposition-first-quant-trading-tutorials-with-detime">Decomposition-First Quant Trading Tutorials with DeTime</h1>
+<p>This tutorial sequence rebuilds the quant-trading examples around one thesis:
+classic technical strategies are rough, implicit estimates of trend, cycle,
+residual deviation, and market participation. DeTime makes those structures
+explicit before the strategy layer.</p>
+<p>The revised tutorial uses a seven-part path rather than a loose collection of
+indicator notebooks.</p>
+<p><a href="notebooks/">Open the executed tutorial notebook index</a>
+to jump directly between Tutorial 00-07, the strategy lab notebooks, and the
+strategy expansion notebooks.</p>
+<table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Status</th>
+<th>Topic</th>
+<th>Main DeTime role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>implemented</td>
+<td>roadmap</td>
+<td>strategy design map</td>
+</tr>
+<tr>
+<td>01</td>
+<td>implemented</td>
+<td>market data and feature factory</td>
+<td>price + volume decomposition</td>
+</tr>
+<tr>
+<td>02</td>
+<td>implemented</td>
+<td>moving average, multi-MA and MACD</td>
+<td>explicit trend filters with cycle/residual/volume gates</td>
+</tr>
+<tr>
+<td>03</td>
+<td>implemented</td>
+<td>RSI, Bollinger and residual mean reversion</td>
+<td>residual deviation, cycle timing and volume filter</td>
+</tr>
+<tr>
+<td>04</td>
+<td>implemented</td>
+<td>Turtle/Donchian breakout</td>
+<td>trend, cycle, residual overextension and volume confirmation</td>
+</tr>
+<tr>
+<td>05</td>
+<td>implemented</td>
+<td>pairs trading and stat arb</td>
+<td>spread trend drift + spread residual + optional volume news filter</td>
+</tr>
+<tr>
+<td>06</td>
+<td>implemented</td>
+<td>cross-sectional rotation</td>
+<td>trend/cycle/residual/volume decomposition factor score</td>
+</tr>
+<tr>
+<td>07</td>
+<td>implemented</td>
+<td>native SSA high-return / low-drawdown replay</td>
+<td>fast/slow SSA trends, next-open fills, drawdown and monthly trade diagnostics</td>
+</tr>
+</tbody>
+</table>
+<h2 id="strategy-lab-correction-two-concrete-trading-systems">Strategy-lab correction: two concrete trading systems</h2>
+<p>The clearest entry point is now the strategy lab, not the broad seven-tutorial map.
+It implements two complete strategy families:</p>
+<ol>
+<li><strong>Trend following</strong>: <code>trend_slope</code> and <code>trend_strength</code> create the trading signal; <code>cycle_position</code>, <code>residual_abs_z</code>, and volume decomposition control entry timing and overextension.</li>
+<li><strong>Oscillation / residual reversion</strong>: when <code>abs(trend_strength)</code> is small, the strategy trades <code>residual_z</code> around <code>trend + cycle</code>; negative residual buys, positive residual sells or shorts.</li>
+</ol>
+<p>Run it with:</p>
+<pre><code class="language-bash">make strategy-lab
+</code></pre>
+<p>Main implementation files:</p>
+<pre><code class="language-text">examples/quant_trading/strategy_lab.py
+examples/quant_trading/scripts/run_strategy_lab.py
+examples/notebooks/quant_trading/01_detime_trend_following_strategy_lab.ipynb
+examples/notebooks/quant_trading/02_detime_oscillation_reversion_strategy_lab.ipynb
+docs/tutorials/quant-trading/two-strategy-families.md
+</code></pre>
+<p>The script writes strategy stats, order records, round-trip trades, feature coverage, run manifest, and buy/sell charts under <code>examples/quant_trading/reports/strategy_lab/</code>.</p>
+<h2 id="implemented-notebooks">Implemented notebooks</h2>
+<p>The executable notebooks are in <code>examples/notebooks/quant_trading/</code>:
+install the optional notebook and market-data dependencies from
+<code>examples/quant_trading/requirements.txt</code>. The rendered documentation publishes
+the captured outputs directly at
+<code>quant-trading/notebooks/01_market_data_and_decomposition_feature_factory.md</code>
+and the companion pages in the same notebook directory.</p>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>What it teaches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00_decomposition_first_quant_trading_roadmap.ipynb</code></td>
+<td>Why the tutorial is organized around decomposition rather than isolated indicators.</td>
+</tr>
+<tr>
+<td><code>01_market_data_and_decomposition_feature_factory.ipynb</code></td>
+<td>OHLCV audit, period estimation, and walk-forward price/volume feature construction.</td>
+</tr>
+<tr>
+<td><code>02_decomposition_aware_moving_average_macd.ipynb</code></td>
+<td>Classical buy-and-hold, dual MA, MACD, multi-MA and momentum compared with DeTime rewrites.</td>
+</tr>
+<tr>
+<td><code>03_residual_mean_reversion_rsi_bollinger.ipynb</code></td>
+<td>Price z-score, RSI, Bollinger and APO baselines rewritten as residual mean-reversion with cycle timing.</td>
+</tr>
+<tr>
+<td><code>04_turtle_donchian_breakout_volume_confirmation.ipynb</code></td>
+<td>Donchian/Turtle breakout rewritten with trend, cycle, residual and volume confirmation.</td>
+</tr>
+<tr>
+<td><code>05_pairs_spread_decomposition_stat_arb.ipynb</code></td>
+<td>Pair z-score and rolling-beta spread baselines rewritten as residual spread trading with spread-trend drift control.</td>
+</tr>
+<tr>
+<td><code>06_cross_sectional_rotation_portfolio.ipynb</code></td>
+<td>Momentum, multi-MA and inverse-volatility rotation compared with DeTime cross-sectional scoring.</td>
+</tr>
+<tr>
+<td><code>07_native_ssa_high_return_low_drawdown_tutorial.ipynb</code></td>
+<td>Native SSA dual-trend mean-reversion replay for selected high-return FX and crypto strategies under a 20% drawdown constraint.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-design">Core design</h2>
+<p>For price and volume we use:</p>
+<p>[
+\log P_t = T^P_t + C^P_t + R^P_t,
+\qquad
+\log(1 + V_t) = T^V_t + C^V_t + R^V_t.
+]</p>
+<p>The strategy layer then reads:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Trading interpretation</th>
+<th>Example use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>price trend</td>
+<td>direction and persistence</td>
+<td>trend-following state, decomposed MA/MACD</td>
+</tr>
+<tr>
+<td>price cycle</td>
+<td>timing and local oscillation</td>
+<td>avoid buying into overextended cycle peaks</td>
+</tr>
+<tr>
+<td>price residual</td>
+<td>deviation from current structure</td>
+<td>pullback and mean-reversion logic</td>
+</tr>
+<tr>
+<td>volume trend</td>
+<td>participation</td>
+<td>confirm trend or breakout</td>
+</tr>
+<tr>
+<td>volume residual</td>
+<td>abnormal activity</td>
+<td>detect volume shock or weak participation</td>
+</tr>
+<tr>
+<td>reconstruction error / stability</td>
+<td>feature reliability</td>
+<td>reduce exposure when component quality weakens</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-layer">Data layer</h2>
+<p>The code supports live downloads through <code>yfinance</code>. The rendered documentation
+uses archived historical GOOG and FX OHLCV samples from the user-provided Learn
+Algorithmic Trading material so the pages can be rebuilt without network access.</p>
+<p>For formal trading research, replace the educational data source with a licensed
+point-in-time vendor and document symbol membership, corporate actions,
+delistings, borrow, funding, FX, and execution assumptions.</p>
+<h2 id="code-modules">Code modules</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data.py</code></td>
+<td>OHLCV download, panel extraction, archived market-data loader</td>
+</tr>
+<tr>
+<td><code>classic_indicators.py</code></td>
+<td>SMA, EMA, MACD, RSI, Bollinger, momentum, APO</td>
+</tr>
+<tr>
+<td><code>decomposition_features.py</code></td>
+<td>walk-forward price and volume DeTime features</td>
+</tr>
+<tr>
+<td><code>strategy_baselines.py</code></td>
+<td>classical baseline weight recipes</td>
+</tr>
+<tr>
+<td><code>strategy_detime.py</code></td>
+<td>decomposition-aware strategy recipes</td>
+</tr>
+<tr>
+<td><code>strategy_pairs.py</code></td>
+<td>pair spread decomposition and stat-arb recipes</td>
+</tr>
+<tr>
+<td><code>strategy_rotation.py</code></td>
+<td>cross-sectional rotation and portfolio recipes</td>
+</tr>
+<tr>
+<td><code>validation.py</code></td>
+<td>common backtest comparison, turnover, manifest helpers</td>
+</tr>
+<tr>
+<td><code>backtest.py</code></td>
+<td>transparent close-to-close research backtester</td>
+</tr>
+</tbody>
+</table>
+<h2 id="smoke-test">Smoke test</h2>
+<pre><code class="language-bash">export PYTHONPATH=&quot;$PWD/src:$PWD/examples:$PYTHONPATH&quot;
+make smoke-05-06
+</code></pre>
+<p>The smoke tests run on CPU and write hardware/audit outputs under
+<code>examples/quant_trading/reports/</code>.</p>
+<h2 id="latest-implemented-tutorials">Latest Implemented Tutorials</h2>
+<p>Tutorials 03-04 cover single-asset reversion and breakout strategies:</p>
+<ul>
+<li>Tutorial 03 keeps familiar entry points, including RSI, Bollinger Bands, APO and price z-score, but changes the traded object from raw price deviation to residual deviation after trend/cycle removal.</li>
+<li>Tutorial 04 keeps the Donchian/Turtle breakout scaffold but adds trend, cycle, residual-overextension and volume-participation gates.</li>
+</ul>
+<p>Tutorials 05-07 complete the current arc:</p>
+<ul>
+<li>Tutorial 05 rewrites pairs trading by decomposing the rolling hedge spread and trading residual deviation only when spread trend drift is controlled.</li>
+<li>Tutorial 06 turns decomposition outputs into a cross-sectional factor score for top-N, long-short and volatility-targeted rotation portfolios.</li>
+<li>Tutorial 07 replays selected native SSA dual-trend strategies, including buy/sell markers, strategy-vs-buy-hold equity, drawdown curves, and monthly return / win-rate tables.</li>
+</ul>
+<p>Run the latest batch on bundled real FX samples:</p>
+<pre><code class="language-bash">make quant-columns-05-06
+</code></pre>
+<p>Run the bundled-sample Tutorial 01-06 batch:</p>
+<pre><code class="language-bash">make quant-columns-01-06
+</code></pre>
+<p>Tutorial 07 is a notebook replay for local 3-minute intraday files. Open it from
+the rendered documentation or run
+<code>examples/notebooks/quant_trading/07_native_ssa_high_return_low_drawdown_tutorial.ipynb</code>
+after placing the referenced FX and crypto CSVs under
+<code>examples/quant_trading/data/intraday_crypto_fx/</code>.</p>
+<p>Live-data versions are available through <code>make quant-columns-03-04-live</code> and <code>make quant-columns-05-06-live</code>.</p>
+<h2 id="strategy-expansion-method-specific-variants-and-component-pair-trading">Strategy expansion: method-specific variants and component pair trading</h2>
+<p>The strategy lab now includes an additional expansion layer that treats a decomposition method and horizon as part of the strategy definition.</p>
+<pre><code class="language-bash">make strategy-expansion
+</code></pre>
+<p>This command runs:</p>
+<ol>
+<li>method-specific strategy variants: STL/SSA/STD configurations produce different trend, cycle, and residual inputs for the same trend-following, oscillation-reversion, residual-Bollinger, trend-MACD, and trend-crossover rules;</li>
+<li>component-level pair trading: both assets in a pair are decomposed, trend/cycle similarity is measured, cointegration and stationarity diagnostics are reported, and the residual gap or trend+cycle spread deviation is traded.</li>
+</ol>
+<p>Tutorial document:</p>
+<pre><code class="language-text">docs/tutorials/quant-trading/method-specific-strategy-expansion.md
+</code></pre>
+<p>New notebooks:</p>
+<pre><code class="language-text">examples/notebooks/quant_trading/03_detime_method_specific_strategy_variants.ipynb
+examples/notebooks/quant_trading/04_detime_component_pair_trading_cointegration.ipynb
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/method-animations.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

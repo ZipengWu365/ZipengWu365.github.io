@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/traffic_metrics/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Repository traffic - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Repository traffic - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/traffic_metrics/#article", "url": "https://zipengwu.me/tomc/docs/traffic_metrics/", "headline": "Repository traffic - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/traffic_metrics/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../huggingface_space/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#repository-traffic-and-stars" class="nav-link">Repository traffic and Stars</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#how-cumulative-clones-work" class="nav-link">How cumulative clones work</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enable-automatic-collection" class="nav-link">Enable automatic collection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">中文说明</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="repository-traffic-and-stars">Repository traffic and Stars</h1>
+<p>The homepage places Stars and cumulative recorded clones side by side, to the right of the centered TOMC logo. Both badges are generated in this repository, without a Shields.io dependency. Stars are a dated API snapshot and refresh with the daily workflow.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stars</td>
+<td>GitHub repository API <code>stargazers_count</code> at collection time</td>
+</tr>
+<tr>
+<td>Clones (total)</td>
+<td>Sum of archived daily full-clone counts, counting each UTC date once; fetches excluded</td>
+</tr>
+<tr>
+<td>Updated date</td>
+<td>Collection date in UTC; see JSON files for exact timestamps</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-cumulative-clones-work">How cumulative clones work</h2>
+<p>GitHub's <a href="https://docs.github.com/en/rest/metrics/traffic#get-repository-clones">Traffic API</a> returns a rolling 14-day window. We retain its daily records and calculate a cumulative total across archived dates. Dates remain included after they leave the API window. Newer observations of the same date replace older values, including corrections downward. Re-running the workflow does not add the same day again. Overlapping 14-day totals are never added together.</p>
+<p><a href="https://github.com/ZipengWu365/TOMC/blob/main/metrics/traffic/cumulative.json"><code>cumulative.json</code></a> contains the total and daily ledger. It is rebuilt from dated API files in <a href="https://github.com/ZipengWu365/TOMC/tree/main/metrics/traffic/snapshots"><code>snapshots</code></a>, so the calculation is auditable. <a href="https://github.com/ZipengWu365/TOMC/blob/main/metrics/traffic/latest.json"><code>latest.json</code></a> retains the latest raw rolling-window snapshot; it is not the cumulative badge source. <a href="https://github.com/ZipengWu365/TOMC/blob/main/metrics/traffic/stars.json"><code>stars.json</code></a> stores the Star snapshot.</p>
+<p>The first API archive was collected on <strong>2026-10-16</strong>, covering daily records from <strong>2026-10-02 through 2026-10-15</strong>, totaling <strong>648 clones</strong>. The earlier owner screenshot is retained for provenance but excluded from accumulation because it overlaps the API data and has no daily breakdown. The first nonzero archived day is October 6. The owner recalls making the repository public around October 10; that date has not been verified, and earlier recorded clones have not been discarded.</p>
+<p><strong>Scope:</strong> this is the cumulative count of recorded clones. It does not assert a verified all-time count since creation or public release. History unavailable before the first archive cannot be reconstructed. A collection outage longer than GitHub's retention window can leave unrecoverable gaps; the displayed total then includes only recorded dates. An omitted date is not fabricated as zero. The date shown on the homepage identifies the first recorded date, not the public-release date.</p>
+<p>Automation, repeated clones and maintainer activity can contribute. These counts do not establish installations, active users or software quality. No IP addresses, account lists, notebook content or client telemetry are collected. Unique-cloner fields in raw API archives are not displayed on the homepage or summed across dates.</p>
+<h2 id="enable-automatic-collection">Enable automatic collection</h2>
+<p>GitHub's <a href="https://docs.github.com/en/rest/metrics/traffic#get-repository-clones">Traffic API</a> requires repository <strong>Administration: read</strong> for a fine-grained personal access token. The default Actions token does not provide that permission.</p>
+<ol>
+<li>Create a <a href="https://github.com/settings/personal-access-tokens/new">fine-grained token</a> with resource owner <code>ZipengWu365</code>, repository access limited to <strong>TOMC</strong>, and repository <strong>Administration: Read-only</strong>. Keep the automatically required metadata permission. This token does not need code-write permission. Choose an expiry and renew before it expires.</li>
+<li>In <a href="https://github.com/ZipengWu365/TOMC/settings/secrets/actions">TOMC → Settings → Secrets and variables → Actions</a>, add repository secret <strong><code>TRAFFIC_TOKEN</code></strong>. Paste the token there, never into a README, issue or chat.</li>
+<li>Open <a href="https://github.com/ZipengWu365/TOMC/actions/workflows/traffic.yml">Actions → Update clone traffic badges</a> and select <strong>Run workflow</strong> on <code>main</code>.</li>
+<li>Check that the collection step reports a successful collection and that <code>cumulative.json</code>, <code>stars.json</code> and the homepage update date refresh.</li>
+</ol>
+<p>The workflow is scheduled daily at <strong>06:23 UTC</strong>; scheduled runs can be delayed. It uses the read-only secret for read-only Traffic and repository metadata requests. GitHub's separate built-in Actions token commits the aggregate data, SVG badges, dated captions and updated release hashes to <code>main</code>. Branch rules must allow that write. A conflicting push fails rather than overwriting another change; rerun the workflow after such a failure.</p>
+<p>When the secret is missing, the workflow warns and retains the dated snapshot. Expired credentials, HTTP errors or malformed responses do not replace the saved counts with zero. A green workflow that says collection is not configured is not proof of a live refresh. The snapshot date remains visible so stale data is identifiable.</p>
+<h2 id="_1">中文说明</h2>
+<p>首页采用左侧 Star us、中间 TOMC 标志、右侧 Stars 与累计 Clones 并排的布局。两个数字徽章都由仓库内脚本生成，随每日任务更新。</p>
+<p>累计值按 UTC 日期汇总：同一天只记一次，新记录替换当天旧值；离开 GitHub 14 天窗口的旧日期仍永久保留。重复运行不会重复累加，GitHub 修正历史数据时累计值也会相应修正。</p>
+<p>首次 API 记录覆盖 2026-10-02 至 2026-10-15，合计 648 次，最早非零记录是 10 月 6 日。公开日期约为 10 月 10 日是作者回忆，未据此删除更早的记录。徽章表示已记录数据的累计克隆量；未采集到的更早历史、长期中断后过期的日期无法补算。因此不宣称已验证仓库创建以来的完整总量，也不把克隆解释为安装人数或实际使用人数。</p>
+<p>Actions secret <code>TRAFFIC_TOKEN</code> 限定 TOMC 的 <code>Administration: Read-only</code> 权限。每天 06:23 UTC 定时刷新（调度可能延迟）；凭据到期需续期。读取失败保留上次成功结果与日期。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

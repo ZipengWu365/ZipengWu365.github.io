@@ -1,0 +1,68 @@
+{
+  "backend_requested": "auto",
+  "backend_used": "native",
+  "column": null,
+  "columns": [
+    "x0",
+    "x1"
+  ],
+  "device": "cpu",
+  "method": "MSSA",
+  "n_jobs": 1,
+  "repeat": 3,
+  "result_meta": {
+    "backend_requested": "auto",
+    "backend_used": "native",
+    "channel_names": [
+      "x0",
+      "x1"
+    ],
+    "dominant_frequencies": [
+      0.008333333333333333,
+      0.08333333333333333,
+      0.08333333333333333,
+      0.008333333333333333
+    ],
+    "input_shape": [
+      120,
+      2
+    ],
+    "method": "MSSA",
+    "n_channels": 2,
+    "native_method": "MSSA_NATIVE",
+    "native_solver": "numpy-svd",
+    "rank": 10,
+    "result_layout": "multivariate",
+    "season_components": [
+      1,
+      2
+    ],
+    "singular_values": [
+      100.79974081545001,
+      28.28944286870545,
+      27.92627049565418,
+      4.307096686302977
+    ],
+    "speed_mode": "exact",
+    "trend_components": [
+      0,
+      3
+    ],
+    "window": 24
+  },
+  "samples_ms": [
+    1.5549000090686604,
+    1.5266999980667606,
+    1.567400002386421
+  ],
+  "series": "examples/data/example_multivariate.csv",
+  "speed_mode": "exact",
+  "summary": {
+    "mean_ms": 1.549666669840614,
+    "median_ms": 1.5549000090686604,
+    "min_ms": 1.5266999980667606,
+    "p95_ms": 1.567400002386421,
+    "stdev_ms": 0.017022797802005607
+  },
+  "warmup": 1
+}

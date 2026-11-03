@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/reproducibility/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Reproducibility | DeTime</title>
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="Reproducibility: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Reproducibility | DeTime">
+  <meta property="og:description" content="Reproducibility: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/reproducibility/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Reproducibility | DeTime">
+  <meta name="twitter:description" content="Reproducibility: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/reproducibility/#webpage",
+        "url": "https://zipengwu.me/detime/docs/reproducibility/",
+        "name": "Reproducibility | DeTime",
+        "description": "Reproducibility: DeTime Python and CLI time-series decomposition documentation, examples and reference.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    </head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../tutorials/quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../comparisons/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../release-artifacts/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#reproducibility" class="nav-link">Reproducibility</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#included-here" class="nav-link">Included here</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#moved-out" class="nav-link">Moved out</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#external-benchmark-bridge" class="nav-link">External benchmark bridge</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#documentation-and-tutorial-surface" class="nav-link">Documentation and tutorial surface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#release-checks" class="nav-link">Release Checks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#coverage-boundary" class="nav-link">Coverage boundary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#native-agreement-checks" class="nav-link">Native agreement checks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#release-validation-runtime-snapshot" class="nav-link">Release-validation runtime snapshot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#experimental-neural-block-table" class="nav-link">Experimental neural block table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#evidence-artifacts" class="nav-link">Evidence Artifacts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="reproducibility">Reproducibility</h1>
+<p>This repository is focused on the <code>detime</code> software package itself.</p>
+<h2 id="included-here">Included here</h2>
+<ul>
+<li>canonical <code>detime</code> source code,</li>
+<li>deprecated <code>tsdecomp</code> top-level import and CLI alias,</li>
+<li>tests for the retained public surface,</li>
+<li>examples and tutorials for package workflows,</li>
+<li>documentation for installation, APIs, methods, and migration,</li>
+<li>packaged JSON schemas and metadata-based recommendation for machine-facing use.</li>
+</ul>
+<h2 id="moved-out">Moved out</h2>
+<p>Benchmark orchestration, synthetic benchmark generators, leaderboard helpers,
+and benchmark-derived methods belong to the companion repository
+<a href="https://github.com/systems-mechanobiology/de-time-bench"><code>systems-mechanobiology/de-time-bench</code></a>.</p>
+<p>That split keeps the main package installable and reviewable as software rather
+than as a mixed library-plus-benchmark artifact.</p>
+<p>The release artifacts also exclude transition-era compatibility submodules such
+as <code>tsdecomp.methods.*</code>, <code>tsdecomp.leaderboard</code>, and <code>tsdecomp.bench_config</code>.</p>
+<h2 id="external-benchmark-bridge">External benchmark bridge</h2>
+<p>DeTime includes a bridge command for the public Hugging Face bundle
+<a href="https://huggingface.co/datasets/Zipeng365/TSDecompose-Benchmark"><code>Zipeng365/TSDecompose-Benchmark</code></a>.
+The command downloads the bundle's <code>code/TSDecompose</code> source snapshot into a
+local cache and invokes its published paper benchmark runner.</p>
+<p>The bridge executes external source code and is therefore outside the core
+DeTime package boundary. It defaults to the reviewed 40-character Hugging Face
+dataset revision, requires <code>--allow-external-benchmark-code</code>, rejects unpinned
+branch/tag revisions unless <code>--allow-unpinned-benchmark-revision</code> is also set,
+and removes common credential variables from the external runner environment.</p>
+<p>Smoke run:</p>
+<pre><code class="language-bash">detime benchmark --allow-external-benchmark-code --out-dir out/tsdecompose-smoke
+</code></pre>
+<p>Full paper-core run:</p>
+<pre><code class="language-bash">detime benchmark --allow-external-benchmark-code --full --out-dir out/tsdecompose-paper-core
+</code></pre>
+<p>Python API:</p>
+<pre><code class="language-python">from detime import run_tsdecompose_benchmark
+
+result = run_tsdecompose_benchmark(
+    smoke=True,
+    out_dir=&quot;out/tsdecompose-smoke&quot;,
+    allow_external_code=True,
+)
+print(result.leaderboard_path)
+</code></pre>
+<p>This bridge keeps the benchmark source and benchmark-derived methods outside
+the installable DeTime package while still giving readers a direct
+reproduction path for the benchmark claims.</p>
+<h2 id="documentation-and-tutorial-surface">Documentation and tutorial surface</h2>
+<p>The documentation is part of the reviewed software surface, not only a landing
+page. It includes executable examples, rendered notebooks, generated method
+metadata, schemas, and release evidence files.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quant Trading tutorial column</td>
+<td>11 applied notebooks plus one roadmap notebook, with captured code cells, stdout, tables, figures, strategy statistics, and audit outputs</td>
+</tr>
+<tr>
+<td>Hot Trend Lab</td>
+<td>7 case notebooks plus one overview notebook, with source-audit tables, component summaries, residual-event outputs, and publication-context notes</td>
+</tr>
+<tr>
+<td>Core workflow tutorials</td>
+<td>univariate decomposition, multivariate decomposition, CLI export/profiling, visual method comparison, and method-gallery workflows</td>
+</tr>
+<tr>
+<td>Release evidence</td>
+<td>comparison matrices, release-smoke checks, reproducibility notes, JSON schemas, generated method cards, and evidence snapshots</td>
+</tr>
+</tbody>
+</table>
+<h2 id="release-checks">Release Checks</h2>
+<div class="compact-faq">
+
+<details>
+<summary>Commands used for release and docs validation</summary>
+
+The current release and docs were checked with:
+
+- `pytest tests -q`
+- `pytest tests/optional/test_multivar_optional_backends.py -q`
+- `pytest tests --cov=detime --cov-config=.coveragerc`
+- `pytest tests --cov=detime --cov-config=.coveragerc.package`
+- `python scripts/generate_schema_assets.py --check`
+- `python scripts/generate_schema_assets.py`
+- `python scripts/generate_tutorial_assets.py`
+- `mkdocs build --strict`
+- `python -m build`
+- `python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl`
+- `python scripts/check_doc_consistency.py`
+- `python scripts/release_smoke_matrix.py`
+- `python scripts/generate_performance_snapshot.py`
+- `python scripts/generate_method_cards.py`
+- `python benchmarks/software_comparison/generate_comparison_evidence.py`
+- `python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py`
+- `python -m twine check dist/*`
+
+</details>
+
+</div>
+
+<h2 id="coverage-boundary">Coverage boundary</h2>
+<p>The repository now publishes two coverage views so the denominator is explicit:</p>
+<ul>
+<li><strong>core-surface coverage</strong></li>
+<li>the gated selected <code>detime</code> core algorithm contract files</li>
+<li><strong>package-wide coverage</strong></li>
+<li>the broader installable <code>detime</code> package, including CLI, I/O,
+    visualization, wrappers, and machine-facing helpers</li>
+</ul>
+<p>The core gate is applied to selected canonical <code>detime</code> core algorithm contract
+files.</p>
+<p>The core-surface denominator intentionally omits:</p>
+<ul>
+<li>the deprecated <code>tsdecomp</code> compatibility layer,</li>
+<li>CLI wrappers,</li>
+<li>I/O helpers,</li>
+<li>visualization helpers,</li>
+<li>optional wrappers and non-core integrations that remain tested but are
+  not part of the gated coverage surface.</li>
+</ul>
+<p>The 2026-07-14 audit installed the checkout with
+<code>python -m pip install -e .</code> before pytest and normalized installed paths to
+<code>src/detime</code> through the coverage configuration. It reached <code>92.33%</code>
+selected-core coverage and <code>87.78%</code> package-wide coverage. The core gate
+excludes CLI/I/O/visualization presentation layers, optional integrations, and
+experimental operators. The broader maintained-package report includes the
+CLI and wrappers but excludes the deprecated compatibility namespace and the
+optional experimental Torch learned-priors module.</p>
+<p>Package-wide coverage is emitted separately in CI and uploaded as a second
+artifact so release reports can show both the narrow safety gate and the
+broader installable surface.</p>
+<p>Optional <code>.[emd,multivar]</code> integrations are validated separately in a dedicated
+smoke path. It executes EMD and CEEMDAN against PyEMD and MVMD and MEMD against
+PySDKit without broadening the core-method coverage gate. The required
+PyWavelets backend is exercised in the main test suite.</p>
+<h2 id="native-agreement-checks">Native agreement checks</h2>
+<p>Native-backed methods are not treated as correctness shortcuts. The test suite
+includes numeric agreement checks between native and Python implementations for:</p>
+<ul>
+<li><code>SSA</code></li>
+<li><code>STD</code></li>
+<li><code>STDR</code></li>
+</ul>
+<p>The documented tolerances are:</p>
+<ul>
+<li><code>SSA</code>: <code>atol=1e-6</code></li>
+<li><code>STD</code> / <code>STDR</code>: <code>atol=1e-9</code></li>
+</ul>
+<p>Native correctness status:</p>
+<table>
+<thead>
+<tr>
+<th>Native path</th>
+<th>Reference path</th>
+<th>Check type</th>
+<th style="text-align: right;">Public tolerance</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSA</code></td>
+<td>Python SSA</td>
+<td>numerical agreement</td>
+<td style="text-align: right;"><code>1e-6</code></td>
+<td>agreement-tested</td>
+</tr>
+<tr>
+<td><code>STD</code></td>
+<td>Python STD</td>
+<td>numerical agreement</td>
+<td style="text-align: right;"><code>1e-9</code></td>
+<td>agreement-tested</td>
+</tr>
+<tr>
+<td><code>STDR</code></td>
+<td>Python STDR</td>
+<td>numerical agreement</td>
+<td style="text-align: right;"><code>1e-9</code></td>
+<td>agreement-tested</td>
+</tr>
+<tr>
+<td><code>MA_BASELINE</code></td>
+<td>Python fallback</td>
+<td>callable/schema smoke</td>
+<td style="text-align: right;">n/a</td>
+<td>smoke-tested</td>
+</tr>
+<tr>
+<td><code>MSSA</code></td>
+<td>Python fallback</td>
+<td>callable/schema smoke</td>
+<td style="text-align: right;">n/a</td>
+<td>smoke-tested</td>
+</tr>
+<tr>
+<td><code>VMD</code></td>
+<td>Python fallback</td>
+<td>callable/schema smoke</td>
+<td style="text-align: right;">n/a</td>
+<td>smoke-tested</td>
+</tr>
+<tr>
+<td><code>GABOR_CLUSTER</code></td>
+<td>experimental optional clustering path</td>
+<td>callable/schema smoke</td>
+<td style="text-align: right;">n/a</td>
+<td>experimental smoke-tested</td>
+</tr>
+</tbody>
+</table>
+<p>Only the agreement-tested rows should be cited as numerical-equivalence
+evidence. The remaining rows verify routing, result-shape/schema behavior, and
+native availability in the release environment.</p>
+<h2 id="release-validation-runtime-snapshot">Release-validation runtime snapshot</h2>
+<p>The following snapshot records selected native-backed release-validation paths
+against internal Python fallback paths in one review environment. It verifies
+that the native paths are installed, callable, and routed through the same
+result contract. It is not a portable runtime ranking against other packages.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Python median (ms)</th>
+<th style="text-align: right;">Native median (ms)</th>
+<th style="text-align: right;">Python/native ratio</th>
+<th style="text-align: right;">Repeats / warmup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSA</code></td>
+<td style="text-align: right;">0.526</td>
+<td style="text-align: right;">3.523</td>
+<td style="text-align: right;">0.15x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+<tr>
+<td><code>STD</code></td>
+<td style="text-align: right;">0.138</td>
+<td style="text-align: right;">0.111</td>
+<td style="text-align: right;">1.24x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+<tr>
+<td><code>STDR</code></td>
+<td style="text-align: right;">0.176</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">1.50x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+<tr>
+<td><code>MA_BASELINE</code></td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.064</td>
+<td style="text-align: right;">1.10x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+<tr>
+<td><code>MSSA</code></td>
+<td style="text-align: right;">42.933</td>
+<td style="text-align: right;">16.053</td>
+<td style="text-align: right;">2.67x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+<tr>
+<td><code>VMD</code></td>
+<td style="text-align: right;">125.270</td>
+<td style="text-align: right;">464.513</td>
+<td style="text-align: right;">0.27x</td>
+<td style="text-align: right;">50 / 10</td>
+</tr>
+</tbody>
+</table>
+<p>A ratio above 1 means the native path was faster. Native execution was faster
+for STD, STDR, MA baseline, and MSSA; Python execution was faster for SSA and
+VMD on this input and environment.</p>
+<p>Experimental <code>GABOR_CLUSTER</code> timing is excluded from release-validation
+performance evidence because it depends on a trained model object and optional
+clustering backend availability. It can be generated separately with
+<code>scripts/generate_performance_snapshot.py --include-experimental</code>.</p>
+<h2 id="experimental-neural-block-table">Experimental neural block table</h2>
+<p>These operators are exposed through the same DeTime config/result surface for
+decomposition-head ablations, reusable result-contract tests, and interface
+coverage. They remain experimental package-level operators.</p>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Source architecture family</th>
+<th>Standalone operator exposed in DeTime</th>
+<th>Training status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AMD_BLOCK</code></td>
+<td>adaptive multiscale decomposition</td>
+<td>multiscale smoothing trend with periodic-template seasonal reconstruction</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>AUTOFORMER_BLOCK</code></td>
+<td>Autoformer</td>
+<td>moving-average trend and residual-seasonal split</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>DELELSTM_BLOCK</code></td>
+<td>DeLELSTM</td>
+<td>Holt-style trend with periodic-template seasonality</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>DLINEAR_BLOCK</code></td>
+<td>DLinear</td>
+<td>moving-average decomposition head from linear forecasting blocks</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>FREQMOE_BLOCK</code></td>
+<td>FreqMoE</td>
+<td>frequency-band trend plus multi-band seasonal reconstruction</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>INPARFORMER_BLOCK</code></td>
+<td>InParformer</td>
+<td>moving-average trend with periodic-template seasonal head</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>LEDDAM_BLOCK</code></td>
+<td>LEDDAM</td>
+<td>Gaussian-kernel smoothing operator inspired by learnable decomposition</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>MOVING_AVERAGE_DECOMPOSITION_BLOCK</code></td>
+<td>Autoformer/DLinear family</td>
+<td>generic moving-average neural decomposition head</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>NBEATS_INTERPRETABLE</code></td>
+<td>N-BEATS interpretable stacks</td>
+<td>trend and seasonality basis stacks used as a decomposition prior</td>
+<td>torch-backed learned prior</td>
+</tr>
+<tr>
+<td><code>PARSIMONY_BLOCK</code></td>
+<td>parsimony-oriented decomposition</td>
+<td>smooth trend with compact harmonic seasonal projection</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>ST_MTM_BLOCK</code></td>
+<td>ST-MTM</td>
+<td>trend smoothing with smoothed periodic seasonal template</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>TIMEKAN_BLOCK</code></td>
+<td>TimeKAN</td>
+<td>template and harmonic seasonal estimates with smoothed trend</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>TIMES2D_BLOCK</code></td>
+<td>Times2D</td>
+<td>multi-period harmonic decomposition head</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>WAVEFORM_BLOCK</code></td>
+<td>WaveForM</td>
+<td>wavelet multiresolution trend-detail decomposition</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>WAVELETMIXER_BLOCK</code></td>
+<td>WaveletMixer</td>
+<td>mixed wavelet detail-level decomposition</td>
+<td>non-learned extractor</td>
+</tr>
+<tr>
+<td><code>XPATCH_BLOCK</code></td>
+<td>xPatch</td>
+<td>exponential smoothing trend with local seasonal residual</td>
+<td>non-learned extractor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-artifacts">Evidence Artifacts</h2>
+<ul>
+<li><a href="../assets/generated/evidence/performance_snapshot.json">Performance snapshot JSON</a></li>
+<li><a href="../assets/generated/evidence/performance_snapshot.csv">Performance summary CSV</a></li>
+<li><a href="../assets/generated/evidence/coverage_core.json">Core coverage JSON</a></li>
+<li><a href="../assets/generated/evidence/coverage_package.json">Package-wide coverage JSON</a></li>
+<li><a href="../assets/generated/evidence/coverage_summary.json">Coverage summary JSON</a></li>
+<li><a href="../assets/generated/evidence/comparison_evidence.json">Comparison evidence JSON</a></li>
+<li><a href="../assets/generated/evidence/workflow_comparison.json">Workflow comparison demo JSON</a></li>
+<li>JSON schemas: <code>src/detime/schema_assets/*.json</code></li>
+</ul>
+<p>The performance snapshot is reproducible from
+<code>scripts/generate_performance_snapshot.py</code>. Tutorial outputs are reproducible
+from <code>scripts/generate_tutorial_assets.py</code>. Schema assets are reproducible from
+<code>scripts/generate_schema_assets.py</code>. The release smoke report is reproducible
+from <code>scripts/release_smoke_matrix.py</code>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/method-animations.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

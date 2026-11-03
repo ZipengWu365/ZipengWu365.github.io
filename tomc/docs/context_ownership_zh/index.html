@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/context_ownership_zh/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Context ownership (中文) - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Context ownership (中文) - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/context_ownership_zh/#article", "url": "https://zipengwu.me/tomc/docs/context_ownership_zh/", "headline": "Context ownership (\u4e2d\u6587) - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/context_ownership_zh/", "inLanguage": "zh-CN", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../context_ownership/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../prompt_cache_20261017/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#api" class="nav-link">API 请求优化与原生压缩的配合</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">简单规则</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sdk" class="nav-link">接在已有 SDK 前面</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#code-agent" class="nav-link">与 Code Agent 的接入边界</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cpu" class="nav-link">CPU 开销</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="api">API 请求优化与原生压缩的配合</h1>
+<p><a href="../context_ownership/">English</a> · <a href="../model_context_limits_20261012/">模型容量表</a> · <a href="../api_reference/">API 指南</a></p>
+<p>统一按<strong>逻辑模型 API 请求次数</strong>计数，不按用户对话轮数。Agent 处理一条用户消息时，可能发出多次模型请求。<code>AutomaticChatSession</code> 是自己控制请求入口时使用的前置层；安装 MCP 插件不会自动拦截这些请求。</p>
+<h2 id="_1">简单规则</h2>
+<ul>
+<li>模型规格缓存在本地，仅模型 ID 改变时重新对应，不反复查提供商，也不额外调用模型判断。</li>
+<li>尽量让提供商的提示词缓存命中。默认（<code>refresh_policy="stable"</code>）冻结整理好的旧历史记忆：之后的请求即使任务变了也沿用完全相同的文本，新消息原样接在后面，相邻请求的开头保持一致。只有请求快装不下、原历史被改动或显式预算变化时才重新整理；设置 <code>stable_growth_tokens</code> 后，新增历史超过该值也会重整。每次重整是一次完整的缓存未命中。</li>
+<li><code>refresh_policy="cadence"</code> 保留旧行为（<code>refresh_every=2</code> 或 <code>1</code>）。普通聊天里任务取最新一条用户消息，每轮都不同，所以几乎每次都重新整理，会打断前缀缓存：<a href="../prompt_cache_20261017_zh/">实测与模拟</a>中比“完整历史 + 缓存”贵好几倍。只建议在没有提示词缓存的提供商上使用。</li>
+<li>上下文长度提示首次跨过有效窗口的 50% 或 90% 时，各退让一次。1M 模型大约对应 500K、900K。这是 TOMC 的近似避让点，不是宣称宿主的真实触发阈值。优先使用调用方传入或已有 usage；初次字符串长度估算较粗，不能当作精确分词。</li>
+<li>收到可信的原生压缩进行中事件时跳过；刚完成后冷却一或两次 API 请求，默认两次，然后恢复。普通、符合处理条件的原生摘要以后可以再次优化，不永久排除。</li>
+</ul>
+<p>模型最大容量不等于 Code Agent 的压缩阈值；套餐、部署和客户端设置可能更小。未知模型不会被猜成 1M 或 10M，可用已确认的 <code>deployment_context_limit</code> 指定，否则保持原请求。</p>
+<h2 id="sdk">接在已有 SDK 前面</h2>
+<pre><code class="language-python">from tomc import AutomaticChatSession
+
+session = AutomaticChatSession(native_cooldown_requests=2)  # 默认稳定前缀，对缓存友好
+
+# 每个会话复用一个 session，传应用保留的原始 messages。
+response = session.create(
+    client,
+    model=&quot;deepseek-flash&quot;,
+    messages=messages,
+    task=&quot;下一步 Agent 应该做什么？&quot;,
+    max_tokens=8192,
+    stream=True,
+)
+</code></pre>
+<p>保留原来的 client、密钥、模型、tools 和请求设置；返回原 response 或 stream，不额外调用模型，也不读取并消耗流。只替换本次请求的 <code>messages</code>。应用保留完整原始历史，不把上一份 TOMC 发送视图当作原历史继续输入。</p>
+<p>旧历史默认沿用约 80% 的词法预算、最低 1,024，并受模型/部署余量限制。系统与开发者指令、当前用户任务、最近消息和未结束的工具协议保留原样；已结束的较旧工具组一起处理。多模态、不支持的消息、不可解释的推理结构、未缩小的输出保持原请求。估计数不是提供商计费数，也不能保证所有请求都不超窗口。</p>
+<p>正常在 SDK 请求中指定输出上限。省略时，<code>output_reserve</code> 只是规划余量（默认 8,192），不会改变提供商的实际输出限制；例如 Kimi K3 的公开默认值是 131,072。程序不会悄悄改写输出参数。</p>
+<h2 id="code-agent">与 Code Agent 的接入边界</h2>
+<p><code>session.on_native_event("codex", event)</code> 接收真实 app-server <code>contextCompaction</code> 开始/完成事件；<code>session.on_native_event("claude", event)</code> 接收 <code>PreCompact</code>/<code>PostCompact</code>。外层可信接入负责把正确会话的事件送进来。支持压缩、开启压缩或 usage 更新，不等于压缩事件；不需要持续轮询日志。</p>
+<p>本版本没有自动安装这些监听器、修改 Claude Code/Codex/WorkBuddy 设置或代理内置模型。MCP 保留外部历史处理和可选记忆本，其助手规则把当前聊天留给宿主；MCP 本身不是上述请求拦截入口。</p>
+<p>首版 SDK 包装器支持同步、文本 Chat Completions；Anthropic Messages 和 OpenAI Responses 需要对应传输适配，不能把签名推理或不透明的原生压缩项直接变成文本。GPT-6.1 Sol 的工具调用要求 Responses，见<a href="https://developers.openai.com/api/docs/models/gpt-6.1-sol">官方模型页</a>。</p>
+<h2 id="cpu">CPU 开销</h2>
+<p>判断使用计数器和缓存规格，没有额外 LLM 或神经模型。默认词法打包已改为每行只计数一次，避免反复扫描越来越长的输出。本机同一组合成状态/日志样例中，80% 记忆预算下，20K 历史编译约 0.026 秒、100K 约 0.293 秒；旧实现分别约 1.58 秒、38–47 秒。短随机计数器对照及完整 20K 样例保持文本、记录和估计数一致。这是 CPU/编译计时，不是提供商端到端延迟、计费或回答质量测试，也不代表任意历史、其他分词器或 1M 输入的速度。</p>
+<p><a href="https://code.claude.com/docs/en/hooks">Claude 压缩 hooks</a> · <a href="https://learn.chatgpt.com/docs/app-server">Codex app-server</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

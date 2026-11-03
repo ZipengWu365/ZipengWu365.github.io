@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/reproducibility/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Reproducibility - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Reproducibility - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/reproducibility/#article", "url": "https://zipengwu.me/tomc/docs/reproducibility/", "headline": "Reproducibility - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/reproducibility/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../claims_and_limitations/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../data_and_license/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#reproducibility" class="nav-link">Reproducibility</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#run-the-compiler-offline" class="nav-link">Run the compiler offline</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#verify-current-paper-aggregates" class="nav-link">Verify current paper aggregates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#reconstruct-the-historical-four-reader-analysis" class="nav-link">Reconstruct the historical four-reader analysis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#run-a-reader-on-your-own-data" class="nav-link">Run a reader on your own data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#obtain-third-party-data" class="nav-link">Obtain third-party data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="reproducibility">Reproducibility</h1>
+<p>This repository supports three kinds of checks: running synthetic compiler examples, verifying frozen aggregates, and making new reader calls on your own data.</p>
+<h2 id="run-the-compiler-offline">Run the compiler offline</h2>
+<p>Launch <code>make demo</code> or call <code>compile_memory</code>. The five bundled scenarios are original synthetic examples. <code>scripts/generate_examples.py</code> regenerates them byte for byte.</p>
+<p>Tests cover snapshot-copy semantics, declared relation composition, count scope, provenance, budget compliance, CLI behavior and mocked optional integrations. Built-in output is deterministic for fixed input and configuration; measured latency varies.</p>
+<p>The regex counter requires no external assets. BPE encodings and official learned compressors have separate installation or download requirements.</p>
+<h2 id="verify-current-paper-aggregates">Verify current paper aggregates</h2>
+<pre><code class="language-bash">python benchmarks/reproduce/current.py
+</code></pre>
+<p>This checks the snapshot and rebuilds <a href="../paper_results/">the result report</a>. It verifies hashes, row counts, paired score/input arithmetic, equal-reader changes, long-history pooling, common-set ability means and the repaired NIAH pair. The Gradio evidence tab uses the same report code.</p>
+<p>The aggregates come from manuscript commit <code>7399657</code>; sources and exported fields are recorded in <code>benchmarks/current_paper/manifest.json</code>. Resource data retain their original stage boundaries and time units.</p>
+<p>The snapshot contains no raw questions or answers. Aggregate verification therefore checks the exported arithmetic, rather than rerunning scoring or reconstructing every current confidence interval and p value.</p>
+<p>Authors with source access can refresh the export:</p>
+<pre><code class="language-bash">python scripts/sync_paper.py --paper-repo /path/to/writing-checkout
+</code></pre>
+<p>The script reads selected tracked artifacts, requires them to match the supplied commit, and checks BEAM protocols, pair counts and scores against the main-table source. It exports allowlisted aggregates without API calls. Review the resulting changes, then regenerate the report.</p>
+<h2 id="reconstruct-the-historical-four-reader-analysis">Reconstruct the historical four-reader analysis</h2>
+<pre><code class="language-bash">python benchmarks/reproduce/results.py
+</code></pre>
+<p>This reads <code>beam_readers.csv</code> and <code>beam_clusters.csv</code>, reconstructs the historical effects, uncertainty intervals, p values and input reductions, and checks the full-precision freeze. It rebuilds <code>benchmarks/HISTORICAL_BEAM.md</code> and its SVG/PNG plot. <code>make reproduce-results</code> runs both this reconstruction and current aggregate verification.</p>
+<p>Each historical reader configuration has 60 conversation clusters and 600 planned questions. The cluster export contains an ordinal index, history tier, observed/missing counts, summed scores and summed paired differences. It retains first-observed order for seeded resampling, with no original cluster IDs or cross-reader identity join.</p>
+<p>The score columns use available-pair means. Inference divides each cluster's observed difference sum by ten; missing differences enter as zero midpoints, not observed zero scores. The procedure uses:</p>
+<ul>
+<li>10,000 tier-stratified bootstrap resamples, seed 2026080901, with the original nearest-order quantile.</li>
+<li>100,000 cluster sign flips, seed 2026080902, with the plus-one p correction.</li>
+<li>Missingness-expanded endpoints adjusted by missing pairs / 600.</li>
+<li>Provider totals for paired reader-input reduction.</li>
+<li>Verification tolerances of absolute 1e-12 and relative 1e-10.</li>
+</ul>
+<p>Vectorized sign flips preserve Python's original random-bit stream. Near-threshold ties use the original <code>statistics.mean</code> convention. Plot bytes can vary with plotting and font versions, so regenerated images need not match historical PNG hashes. Dependency lockfiles and <code>THIRD_PARTY_LOCK.json</code> record the staging environment.</p>
+<p>Other archived boundary findings are source-hashed transcriptions of the experiment matrix. Their statistical tests are not reconstructed by this command.</p>
+<h2 id="run-a-reader-on-your-own-data">Run a reader on your own data</h2>
+<p>Create a JSONL file containing text you are authorized to use:</p>
+<pre><code class="language-json">{&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;A = 1\nA = 2&quot;}],&quot;query&quot;:&quot;What is the current A?&quot;,&quot;reference_answer&quot;:&quot;2&quot;}
+</code></pre>
+<p>The harness defaults to a dry run. Supply prices in one currency; zero prices below are placeholders for planning:</p>
+<pre><code class="language-bash">python scripts/replicate.py examples/replication.jsonl \
+  --strategies raw tomc tomc_raw hybrid --budget 512 \
+  --input-price 0 --output-price 0 --dry-run
+</code></pre>
+<p>The plan records the input hash, version, model, generation settings, request prompt hashes, budget, timestamp, token estimates, attempts and estimated cost at the output cap. It needs no credentials and makes no reader requests. Its default output directory is ignored by Git.</p>
+<p>For actual calls, set the variables in <code>.env.example</code>, supply your rates and an estimated <code>--max-cost</code>, and add <code>--execute</code>. It cannot be combined with <code>--dry-run</code>. The harness defaults to zero transport retries because failed or timed-out requests may still be billed.</p>
+<p>The cost estimate is not a billing cap. Tokenizer differences, hidden tokens and provider behavior can change actual charges. The connector supports bounded retries when explicitly configured.</p>
+<p>A run saves a local manifest, usage, response model, finish reason and answer hash. <code>--save-answers</code> also writes an ignored private JSONL file. A supplied <code>reference_answer</code> enables local exact match; that metric differs from the BEAM judge rubric.</p>
+<p>This harness compiles and reads your data. It does not include the private BEAM adapter, original data, job grids, provider aliases/endpoints or full judge harness. Historical API experiments cannot be reproduced with a single command here, and model aliases may change between runs.</p>
+<h2 id="obtain-third-party-data">Obtain third-party data</h2>
+<p>Download from the official project and record its license, immutable revision and file hash. <code>benchmarks/download_scripts/download_verified.py</code> accepts an explicit HTTPS URL and required SHA-256, verifies the download, then installs it atomically. It performs no default download and does not extract arbitrary archives.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/linux_validation/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Linux installation - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Linux installation - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/linux_validation/#article", "url": "https://zipengwu.me/tomc/docs/linux_validation/", "headline": "Linux installation - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/linux_validation/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../codex_retention_20261005_zh/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../deepseek_harness_validation_20261029/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#linux-installation-and-feedback" class="nav-link">Linux installation and feedback</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#what-was-tested" class="nav-link">What was tested</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#install-the-demo-on-linux" class="nav-link">Install the demo on Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-the-plugins" class="nav-link">Using the plugins</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#package-verification-and-fixes" class="nav-link">Package verification and fixes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#actual-linux-screenshots" class="nav-link">Actual Linux screenshots</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="linux-installation-and-feedback">Linux installation and feedback</h1>
+<p><strong>Installation succeeded on Ubuntu 24.04.5.</strong> A fresh GitHub checkout ran the English web demo, and the downloaded Codex plugin installed and exposed all five tools. The Claude bundle's extracted MCP runtime also passed. This check used synthetic text and temporary settings, with no model calls.</p>
+<p>The Codex ZIP needs UV and a Codex CLI with plugin commands; after those prerequisites, one installer handles registration. The source demo needs an environment and dependencies. The original system-Python setup failed on this machine because <code>ensurepip</code> was missing; the UV steps below worked. The README, quickstart and assistant guides now include that recovery path.</p>
+<h2 id="what-was-tested">What was tested</h2>
+<p>Verified on <strong>2026-10-02</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Tested configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operating system</td>
+<td>Ubuntu 24.04.5 LTS, x86_64</td>
+</tr>
+<tr>
+<td>Demo source</td>
+<td><a href="https://github.com/ZipengWu365/TOMC/tree/ac42b8464aed5346de8e8658d8bf778ee31c8b95"><code>ac42b8464aed5346de8e8658d8bf778ee31c8b95</code></a>, freshly cloned</td>
+</tr>
+<tr>
+<td>Python / Gradio</td>
+<td>3.12.13 / 5.49.1, installed with <code>.[demo]</code></td>
+</tr>
+<tr>
+<td>Downloaded plugins</td>
+<td><a href="https://github.com/ZipengWu365/TOMC/releases/tag/v0.1.0-assistant-preview.2"><code>v0.1.0-assistant-preview.2</code></a>, tag commit <code>11071dae7bfb8fac488790bd0123ae823510718f</code></td>
+</tr>
+<tr>
+<td>Native Codex host</td>
+<td><code>codex-cli 0.159.0-alpha.12.1</code></td>
+</tr>
+<tr>
+<td>Environment manager</td>
+<td>UV 0.11.20</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fresh demo installation</td>
+<td>Passed; <code>pip check</code> found no broken requirements</td>
+</tr>
+<tr>
+<td>Documented combined installation</td>
+<td>A second fresh environment installed <code>.[demo,mcp]</code>; imports, <code>pip check</code>, the offline example and default/custom-store Cursor link paths passed</td>
+</tr>
+<tr>
+<td>Local startup</td>
+<td>HTTP 200 at <code>http://127.0.0.1:7860</code></td>
+</tr>
+<tr>
+<td>Use now</td>
+<td>Example preparation, exact clipboard copying, Chinese JSONL with Windows line endings and clearing stale results passed</td>
+</tr>
+<tr>
+<td>Other views</td>
+<td>Tour source inspection, updated state/snapshot, strategy comparison and research history selection passed</td>
+</tr>
+<tr>
+<td>Browser layouts</td>
+<td>1440, 390 and 320 px; no page overflow, page errors or external browser requests</td>
+</tr>
+<tr>
+<td>Offline Python API example</td>
+<td>Passed without a reader request</td>
+</tr>
+<tr>
+<td>Codex native installation</td>
+<td>Fresh install, repeated install and reinstall after moving the directory passed; enabled skill recognized and five tools connected</td>
+</tr>
+<tr>
+<td>Downloaded MCP runtimes</td>
+<td>Both packages passed Unicode notes, restart recall, notebook isolation, temporary preparation and exact deletion; Codex also passed retry deduplication and missing-notebook checks</td>
+</tr>
+</tbody>
+</table>
+<p>The default API-migration example displayed <strong>138 → 90</strong> estimated message-content tokens, including task/system text, with a 64-token memory budget. Memory text alone was <strong>93 → 45</strong>. These lexical estimates exclude provider framing and are neither billed usage nor a general saving rate.</p>
+<p>The browser and native CLI were exercised on Linux. Claude/Cursor GUI installation, automatic model tool selection, answer generation and permanent installation in a personal profile were not tested in this run. Earlier Windows model trials are recorded separately in <a href="../validation/">Validation</a>.</p>
+<h2 id="install-the-demo-on-linux">Install the demo on Linux</h2>
+<p>Repository access is required while it is private. Install <a href="https://docs.astral.sh/uv/getting-started/installation/">UV</a>, then run:</p>
+<pre><code class="language-bash">git clone https://github.com/ZipengWu365/TOMC.git
+cd TOMC
+uv venv --python 3.12 --seed .venv
+source .venv/bin/activate
+python -m pip install -e '.[demo]'
+python -m pip check
+python -m demo.app
+</code></pre>
+<p>Open <code>http://127.0.0.1:7860</code>. Choose <strong>Use now → Try demo</strong>, inspect the prepared records and sources, then copy the prompt into a new chat. Dependency installation may need network access; default local preparation needs no API key or model download.</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python: command not found</code> before activation</td>
+<td>Use the UV commands above, or <code>python3 -m venv .venv</code>; activate the environment before using <code>python</code></td>
+</tr>
+<tr>
+<td><code>ensurepip is not available</code></td>
+<td>For Ubuntu/Debian system Python, install its matching <code>python3-venv</code> package; the default distribution Python can use <code>sudo apt install python3-venv</code>. UV can manage Python separately</td>
+</tr>
+<tr>
+<td>A failed command left a partial <code>.venv</code></td>
+<td>For this newly created environment, run <code>uv venv --python 3.12 --allow-existing --seed .venv</code>, activate it and reinstall the dependencies</td>
+</tr>
+<tr>
+<td>Port 7860 is occupied</td>
+<td>Run <code>PORT=7861 python -m demo.app</code> and open <code>http://127.0.0.1:7861</code></td>
+</tr>
+<tr>
+<td>Empty context at a small budget</td>
+<td>Try <strong>Balanced</strong> or <strong>More detail</strong>; complete source lines or records must fit. Empty evidence is not useful compression</td>
+</tr>
+</tbody>
+</table>
+<p>The demo listens on loopback by default. Its printed URL is local to the machine running it; for an SSH session, forward port 7860 to your own computer. Stop the server with <code>Ctrl+C</code> when finished.</p>
+<h2 id="using-the-plugins">Using the plugins</h2>
+<p>Follow the <a href="../assistant_plugin/">assistant installation guide</a> for Claude, Cursor or Codex. Download preview.2 explicitly: it is a prerelease, so GitHub's stable “latest release” selector is not the right entry.</p>
+<ul>
+<li><strong>Codex:</strong> extract the original ZIP to a lasting location and run <code>uv run --no-project install.py</code> there. Start a new Codex session and check for five TOMC tools. If <code>codex</code> is outside <code>PATH</code>, provide <code>--codex /absolute/path/to/codex</code>. Keep the extracted directory; rerun the installer after moving it.</li>
+<li><strong>Cursor or direct MCP:</strong> install <code>.[mcp]</code> in your environment and generate configuration or the Cursor link from that environment. Regenerate it after moving the checkout or environment. A stdio server waiting silently in a terminal is normal; the client launches it itself.</li>
+<li><strong>Choose one TOMC registration per client:</strong> native plugin or standalone MCP. Share the original ZIP/MCPB, rather than a generated configuration containing your machine's absolute paths.</li>
+<li><strong>Start with <code>prepare_context</code>:</strong> pass a history, a specific next task and enough space for complete evidence. Inspect the returned state records and source text before using it. For API use, replace the original history with <code>prepared.messages</code>; for manual copying, use a new chat. Adding context to an existing long chat retains that chat's earlier messages.</li>
+<li><strong>Save only when needed:</strong> notebooks are optional. Ask the assistant explicitly to remember a named notebook, then recall that name in another chat. Installing TOMC does not capture conversations automatically. Tool use also follows the assistant's permissions.</li>
+<li><strong>Share or separate notebooks deliberately:</strong> clients using <code>~/.tomc/memory.sqlite3</code> under the same user account share notes. Across accounts, sharing requires access to the same actual database path. Use the native installer's <code>--store</code> option or the setup command's <code>--store</code> option for a separate database.</li>
+</ul>
+<h2 id="package-verification-and-fixes">Package verification and fixes</h2>
+<p>The actual GitHub downloads matched both their checksum sidecars and GitHub asset digests:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th style="text-align: right;">Bytes</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tomc-memory-0.1.0.mcpb</code></td>
+<td style="text-align: right;">84,418</td>
+<td><code>83b1e3893d291e910f760d6f9ae091a692749e80a89bae8bb409d5e497b5528e</code></td>
+</tr>
+<tr>
+<td><code>tomc-memory-codex-0.1.0.zip</code></td>
+<td style="text-align: right;">89,242</td>
+<td><code>36242fa2362d95c23fb55eb4ab6a6102845f77a3e6d6b503e514ce7112e6973e</code></td>
+</tr>
+</tbody>
+</table>
+<p>The package runtime files also matched the tested main checkout. Both builders now pin ZIP creator metadata, removing a Windows/Linux hash difference. Rebuilt Linux packages are byte-identical to preview.2; no replacement downloads or runtime changes are needed. Regression tests simulate both host metadata defaults and compare complete archive bytes.</p>
+<p>This revision updates installation guidance and packaging metadata. It leaves the compiler, frozen benchmark results and paper figures unchanged. All 128 repository tests, Ruff lint/format checks, strict documentation, wheel/source builds and frozen-result verification passed. A compact <a href="../linux_validation_20261002.json">verification receipt</a> records the environment, checks and artifact hashes without personal configuration or notebook contents.</p>
+<h2 id="actual-linux-screenshots">Actual Linux screenshots</h2>
+<p>The screenshots show the locally running English demo with the synthetic API-migration example after <strong>Try demo</strong>. They are separate from earlier Windows captures.</p>
+<p><img alt="Linux demo at desktop width" src="../assets/linux_demo_desktop_20261002.png" /></p>
+<p><img alt="Linux demo at mobile width" src="../assets/linux_demo_mobile_20261002.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

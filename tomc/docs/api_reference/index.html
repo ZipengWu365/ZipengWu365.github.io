@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/api_reference/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Python API - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Python API - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/api_reference/#article", "url": "https://zipengwu.me/tomc/docs/api_reference/", "headline": "Python API - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/api_reference/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../model_context_limits_20261012/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../method/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#python-api" class="nav-link">Python API</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#prepare-context-before-your-api-call" class="nav-link">Prepare context before your API call</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#prepare-every-turn-from-original-history" class="nav-link">Prepare every turn from original history</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#control-compilation" class="nav-link">Control compilation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#optional-http-reader" class="nav-link">Optional HTTP reader</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#add-a-strategy" class="nav-link">Add a strategy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="python-api">Python API</h1>
+<p>For a caller-controlled request loop, <a href="../context_ownership/">AutomaticChatSession</a> optimizes old message history every one/two logical requests using a cached model limit, with brief native-compaction cooldown. It does not install a client interceptor. MCP tools leave the active chat with the host. <a href="../model_context_limits_20261012/">Model capacities</a>.</p>
+<h2 id="prepare-context-before-your-api-call">Prepare context before your API call</h2>
+<p>Put TOMC between your stored history and the next model request. <code>prepare_context</code> returns a prompt, messages and compilation details. Inspect what it retained, then send the prepared messages in place of the original history. Your model and SDK stay the same.</p>
+<p>This example assumes that <code>history</code>, <code>task</code>, <code>client</code> and <code>model</code> already exist in your application. <code>client</code> supports the chat-completions interface; using it makes your usual model request.</p>
+<pre><code class="language-python">from tomc import prepare_context
+
+prepared = prepare_context(history, task)
+if not prepared.prompt:
+    raise ValueError(prepared.note)  # increase the budget before sending
+
+# Inspect prepared.prompt and prepared.compilation.evidence before handoff.
+response = client.chat.completions.create(
+    model=model,
+    messages=prepared.messages,
+)
+</code></pre>
+<p><strong>Replace the history for this request.</strong> Appending the result to the original history adds input. Preserve your application's required instructions, and keep the original history separately for details omitted by preparation. For other text APIs, map <code>prepared.messages</code> to the provider's input format, or use <code>prepared.prompt</code>. No model weights change. The bundled <code>APIReader</code> below supports chat-completions-compatible HTTP endpoints.</p>
+<p>TOMC can reduce request input when a long history contains material the next task does not need. The saving depends on the history, task and retained records. Short histories can stay unchanged; records and framing can make a request larger. The memory budget is not a cap on the complete model request, and preparation does not guarantee that an answer retains its quality.</p>
+<p>The MCP plugin exposes tools and does not intercept all API traffic. Calling the tool in an existing long chat does not remove that host's previous messages. A smaller request requires your application to adopt the prepared messages, or a new chat to receive the prepared text.</p>
+<h3 id="inputs-budget-and-inspection">Inputs, budget and inspection</h3>
+<p><code>prepare_context(history, task, budget=None, *, adaptive=None, max_chars=None)</code> sets the memory budget to 60–80% of the history's lexical-estimate tokens when <code>budget</code> is omitted (80% for short histories, falling to 60% at a million tokens; at least 1,024, so short histories stay intact); pass an integer to set the memory budget directly. It accepts text, message JSON/JSONL text, a message list, or an object containing <code>messages</code>. Supported text blocks are <code>text</code>, <code>input_text</code> and <code>output_text</code>. Unsupported content blocks raise errors; input is limited to 200,000 characters.</p>
+<p>For notes and documents, <code>adaptive</code> (default <code>None</code>, meaning automatic) may keep less than the budget when the task's evidence is unambiguous. TOMC then keeps the strongly matching lines, their headings and wrapped neighbours, the few lines that share their rare names or values (the next step of a two-step question), and a margin of further matches. It fills the budget as before when a task word is missing from the history, many lines match about equally, strong lines repeat one claim with different values, the task is in Chinese or another CJK language, or the matches are too large. Conversation histories, chat transcripts, notebooks and the request gateways always fill the budget. Pass <code>adaptive=False</code> to always fill, or <code>adaptive=True</code> to try it on a conversation. Typed records compile the same either way.</p>
+<p>When an agent reads the prepared text as one tool or command output, the client may cut it: in one external test, Codex delivered a 20,000-character result intact but cut a 58,000-character one, and the answers that depended on the missing part were wrong. Pass <code>max_chars</code> (for example <code>20_000</code>) so TOMC keeps the most relevant memory within that many characters and a quarter as many estimated tokens. <code>prepared.compilation.diagnostics["delivery_limit"]</code> records the reduced budget. The CLI takes <code>--max-chars</code>; the MCP tools apply a limit by default.</p>
+<p>Fitting histories stay intact. For longer input, the <code>hybrid</code> router selects <code>tomc_raw</code> for supported task routes and wording-sensitive questions, or <code>rag</code> for source retrieval. The budget covers memory under the lexical counter; the task and prompt framing add tokens afterward. <code>prepared.compilation</code> contains the detailed result. If no complete record fits, <code>prepared.prompt</code> is empty and <code>prepared.note</code> asks for a larger budget. This function calls no reader and writes no persistent memory.</p>
+<p>Check <code>prepared.prompt</code> for the actual handoff text, <code>prepared.compilation.evidence</code> for selected sources, and <code>prepared.compilation.ledger</code> for derived records. Ledger rows can be omitted from the output; check their <code>included</code> field. The parser recognizes documented operations and uses lexical routing. Inspect the sources when the history contains paraphrases, implicit updates or unfamiliar formats.</p>
+<h3 id="measure-the-input-you-actually-send">Measure the input you actually send</h3>
+<p>Compare the complete original and prepared requests using the same model, task and application instructions. Count the prepared records, selected source text, task and prompt framing. The default lexical counter is an estimate. <code>cl100k_base</code> below is one encoding, and may differ from your model's tokenizer or billing rules. Provider-reported usage, when available, is the measure of the billed request.</p>
+<p>The memory-level statistics in <code>prepared.compilation.stats</code> do not include every request overhead. A smaller memory alone is not a measured reduction in API input, total cost or answer quality.</p>
+<p>Run the included <a href="https://github.com/ZipengWu365/TOMC/blob/main/examples/api_context.py">API-input example</a> without sending a model request:</p>
+<pre><code class="language-bash">python examples/api_context.py
+# Optional BPE text counting:
+python -m pip install -e '.[tokenizers]'
+python examples/api_context.py --tokenizer tiktoken:cl100k_base
+</code></pre>
+<p>For the README's six-line migration history and 64-token lexical memory budget, the identical system/task framing yields 138 → 90 message-content tokens under the lexical estimate, or 147 → 108 under <code>cl100k_base</code>. Both paths count instructions and the task as well as history/memory text. Neither includes provider chat framing, tool schemas or hidden tokens. This synthetic example demonstrates request-text reduction; it is not billed usage or a general saving rate. The generated <code>messages</code> payload replaces the original history in the next request.</p>
+<p>For local notebooks, see <a href="../assistant_setup/">assistant setup</a>.</p>
+<h2 id="prepare-every-turn-from-original-history">Prepare every turn from original history</h2>
+<p>Call <code>prepare_context</code> inside your request loop. Each call currently parses and compiles the supplied history again; it has no result cache or incremental compiler. When one conversation keeps every context it was given, <code>tomc.incremental.ContextUpdates(budget, max_chars=None).prepare(history, task)</code> sends the first context in full. Later calls send a short note when the source is unchanged, or only the lines shown earlier that now read differently or were deleted, and newly relevant lines, each with its headings. A full replacement is sent when compiled records change or the update would exceed 60% of a full context. <code>MemoryStore</code> preserves submitted records and also recompiles on recall. Keep original evidence separately: an item omitted for one task may be needed for a later task. Do not replace your stored history with <code>prepared.prompt</code>.</p>
+<p>The <a href="https://github.com/ZipengWu365/TOMC/blob/main/examples/api_multiturn.py">multi-turn API example</a> prepares each request, preserves explicit application instructions, sends only the prepared messages, and appends the actual task and answer to the original history after a successful response. Empty memory stops the request; a failed request leaves history unchanged.</p>
+<pre><code class="language-bash"># Offline: inspect two prepared requests; no model, key or network needed.
+python examples/api_multiturn.py
+
+# After setting TOMC_READER_API_KEY, TOMC_READER_BASE_URL and TOMC_READER_MODEL:
+# Sends TWO potentially billable requests to your configured reader.
+python examples/api_multiturn.py --live
+</code></pre>
+<p>The example compares message text with identical task and instruction framing, reports preparation/request latency, and keeps provider-reported usage separate from lexical estimates. The offline mode generates no answers and does not append simulated responses. The live mode is a usage example, not a controlled quality or cost comparison against full history.</p>
+<p>This is a text-evidence workflow. Historical tool calls can be serialized as observations, but preparation does not preserve live tool-call IDs or provider-specific tool-result envelopes. Keep pending tool calls and their matching results in your application's native protocol. Pass required system/developer instructions separately as trusted application configuration; instructions embedded in historical evidence are not promoted to trusted roles.</p>
+<p>Before adding incremental updates, distinguish retained source history/state from the budgeted memory sent on a particular turn. For result caching, include history revision, task, budget and compiler/tokenizer configuration in the cache key. Provider prompt caching is separate: compare reported cached/uncached usage and the applicable rates before claiming monetary savings.</p>
+<h2 id="control-compilation">Control compilation</h2>
+<p>Use <code>compile_memory</code> to select a strategy, tokenizer and budget explicitly. Its default strategy is <code>tomc_raw</code>, which combines records with selected source text. Choose <code>tomc</code> to inspect the records-only mechanism.</p>
+<pre><code class="language-python">from tomc import compile_memory
+
+result = compile_memory(
+    messages=&quot;preference = tea\npreference = decaf tea&quot;,
+    query=&quot;What is the current preference?&quot;,
+    token_budget=256,
+    strategy=&quot;tomc_raw&quot;,
+    tokenizer=&quot;regex&quot;,
+    input_price_per_million=1.0,  # illustrative caller-supplied price
+    deterministic=True,
+)
+</code></pre>
+<p><code>messages</code> accepts text or a sequence of <code>Message</code>/mapping objects with string roles and content. JSON-serializable <code>tool_calls</code> become observations. Multimodal content, invalid inputs and unknown strategies raise errors. <code>token_budget</code> must be a nonnegative integer.</p>
+<table>
+<thead>
+<tr>
+<th>Result field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compiled_memory</code></td>
+<td>Budgeted text intended for the reader</td>
+</tr>
+<tr>
+<td><code>ledger</code></td>
+<td>Candidate records, source IDs, derivation basis and inclusion status</td>
+</tr>
+<tr>
+<td><code>evidence</code></td>
+<td>Original lines supporting included records or raw text</td>
+</tr>
+<tr>
+<td><code>raw_fallback</code></td>
+<td>Source text included in the memory</td>
+</tr>
+<tr>
+<td><code>stats</code></td>
+<td>Token counts, retention, ratio, signed savings, latency, budget status and optional cost estimate</td>
+</tr>
+<tr>
+<td><code>warnings</code></td>
+<td>Parser, heuristic, budget and counting limitations</td>
+</tr>
+<tr>
+<td><code>diagnostics</code></td>
+<td>Selected strategy, routing reason, scope and kernel identity</td>
+</tr>
+</tbody>
+</table>
+<p><code>to_dict()</code> returns a JSON-serializable result. <code>reader_messages(query)</code> builds provider-neutral messages and treats the memory as untrusted user data. Audit metadata is not included automatically.</p>
+<p>The ledger can contain omitted records; check <code>included</code> before attributing a row to a reader request. Packing keeps whole records. A tiny budget can produce empty output, and <code>raw</code> deliberately ignores the cap. A null compression ratio means empty output; negative token savings mean the memory grew.</p>
+<p>For BPE counting, install <code>.[tokenizers]</code> and select <code>tokenizer="tiktoken:cl100k_base"</code>. Initial setup may retrieve the encoding vocabulary; pre-cache it or use the offline regex counter. Neither counter includes provider-specific chat framing or hidden tokens.</p>
+<h2 id="optional-http-reader">Optional HTTP reader</h2>
+<p>Set <code>TOMC_READER_API_KEY</code>, <code>TOMC_READER_BASE_URL</code> and <code>TOMC_READER_MODEL</code> in your shell. The base URL ends before <code>/chat/completions</code>. See <code>.env.example</code>; the library does not load environment files automatically.</p>
+<pre><code class="language-python">from tomc.adapters.reader import APIReader
+
+reader = APIReader(timeout=30, retries=2)
+response = reader.complete(
+    result.reader_messages(&quot;What is the current preference?&quot;),
+    max_tokens=256,
+    temperature=0,
+    seed=42,
+)
+print(response.text)
+print(response.usage)
+</code></pre>
+<p><code>complete</code> makes a potentially billable request. Constructing the reader makes no request. Omit options such as <code>seed</code> if your provider does not support them. Usage fields come from the provider when available.</p>
+<p><code>response.usage</code> retains nonnegative integer <code>prompt_tokens</code>, <code>completion_tokens</code>, <code>total_tokens</code>, <code>prompt_cache_hit_tokens</code> and <code>prompt_cache_miss_tokens</code> when reported. It also retains nonnegative integer <code>*_tokens</code> counters inside <code>prompt_tokens_details</code> and <code>completion_tokens_details</code>, including <code>cached_tokens</code> and <code>reasoning_tokens</code>. Nested counters can be subsets of the totals; do not add them together as independent charges. Missing fields stay absent and missing usage returns <code>{}</code>. No cached usage, billing amount or saving is inferred. Malformed non-object usage raises a sanitized <code>ReaderError("invalid_response")</code> without retrying.</p>
+<p><code>ReaderError.category</code> distinguishes configuration, authentication, rate-limit, request, server, transport/timeout and malformed-response failures. Only rate-limit, server and transport failures retry. Redirects are refused, and error messages omit request and response details. A timed-out request may already have been billed.</p>
+<h2 id="add-a-strategy">Add a strategy</h2>
+<p>Implement <code>CompressionStrategy.compress(history, units, query, budget, counter) → StrategyOutput</code> and pass the instance as <code>strategy</code>. Shared code enforces the budget and computes statistics.</p>
+<p>Provide source references for derived records so users can inspect them. The optional <code>LLMLinguaAdapter</code> shows how to delegate to an installed compressor without loading a model on import. See <a href="../comparison_with_llmlingua/">comparison with LLMLingua</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

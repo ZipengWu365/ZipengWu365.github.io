@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+  <title>04 GitHub Star Velocity | DeTime</title>
+
+        <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../../../stylesheets/brand.css" rel="stylesheet">
+        <link href="../../../../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="04 GitHub Star Velocity: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="04 GitHub Star Velocity | DeTime">
+  <meta property="og:description" content="04 GitHub Star Velocity: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="04 GitHub Star Velocity | DeTime">
+  <meta name="twitter:description" content="04 GitHub Star Velocity: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/#webpage",
+        "url": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/",
+        "name": "04 GitHub Star Velocity | DeTime",
+        "description": "04 GitHub Star Velocity: DeTime Python and CLI time-series decomposition documentation, examples and reference.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/#article", "url": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/", "headline": "04 GitHub Star Velocity | DeTime", "mainEntityOfPage": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../../../../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../../../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../../../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../../../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../../../../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../../../univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../../multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../../cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../../../../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../../quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../../data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../../arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../../open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../../wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../../release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../../../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../../../../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../../../../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../../../../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../../../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../../../../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../../../../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../03_huggingface_open_model_pulse/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../05_wikipedia_attention_hype_decay/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#github-ai-agent-star-velocity" class="nav-link">GitHub AI-Agent Star Velocity</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#executed-notebook" class="nav-link">Executed Notebook</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-select-repositories" class="nav-link">1. Select repositories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-fetch-repository-metadata" class="nav-link">2. Fetch repository metadata</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-fetch-sampled-stargazer-timestamps" class="nav-link">3. Fetch sampled stargazer timestamps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-convert-stargazer-timestamps-to-daily-velocity" class="nav-link">4. Convert stargazer timestamps to daily velocity</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-github-star-velocity" class="nav-link">Visualization: GitHub star velocity</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-decompose-star-velocity-if-enough-days-exist" class="nav-link">5. Decompose star velocity if enough days exist</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-github-coverage-and-residual-events" class="nav-link">Visualization: GitHub coverage and residual events</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-publication-language" class="nav-link">6. Publication language</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- Generated by scripts/generate_column_notebook_pages.py; do not edit manually. -->
+<h1 id="github-ai-agent-star-velocity">GitHub AI-Agent Star Velocity</h1>
+<div class="gallery-note notebook-transcript-note">
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/04_github_ai_agent_star_velocity.ipynb"><code>examples/notebooks/hot_trends/04_github_ai_agent_star_velocity.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+</div>
+
+<h2 id="executed-notebook">Executed Notebook</h2>
+<p>This notebook asks how much developer attention is visible in a sampled set of GitHub stargazer timestamps. Star velocity is useful for launch and attention analysis, but it is sensitive to repository choice, token limits, pagination depth, bots, and the covered window.</p>
+<p>The main output is a repo basket, a source card, a coverage table, and a residual-event view over the fetched stargazer window.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [1]</div>
+
+
+<pre><code class="language-python">from pathlib import Path
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+from examples.hot_trends.data import (
+    HotTrendDataError,
+    append_real_snapshot,
+    build_arxiv_monthly_counts,
+    fetch_coingecko_market_chart,
+    fetch_defillama_stablecoin_chains,
+    fetch_github_repo_metadata,
+    fetch_github_stargazers,
+    fetch_huggingface_models,
+    fetch_wikipedia_pageviews,
+    source_audit_table,
+)
+from examples.hot_trends.decomposition import (
+    component_summary,
+    decompose_table,
+    editorial_priority,
+    residual_event_table,
+)
+from examples.hot_trends.scoring import article_publication_phrasing
+
+pd.set_option(&quot;display.max_columns&quot;, 80)
+pd.set_option(&quot;display.max_rows&quot;, 80)
+plt.rcParams.update({&quot;axes.grid&quot;: True})
+
+CACHE_DIR = Path(&quot;examples/hot_trends/cache&quot;)
+OUTPUT_DIR = Path(&quot;examples/hot_trends/outputs&quot;)
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+def save_table(df, name):
+    path = OUTPUT_DIR / f&quot;{name}.csv&quot;
+    df.to_csv(path, index=False)
+    print(f&quot;saved: {path.as_posix()}&quot;)
+</code></pre>
+
+</div>
+
+<h2 id="1-select-repositories">1. Select repositories</h2>
+<p>Use a small basket for unauthenticated runs. Set <code>GITHUB_TOKEN</code> for higher rate limits and record the repository list because basket selection changes the result.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [2]</div>
+
+
+<pre><code class="language-python">repos = [
+    &quot;langchain-ai/langchain&quot;,
+    &quot;microsoft/autogen&quot;,
+    &quot;crewAIInc/crewAI&quot;,
+    &quot;browser-use/browser-use&quot;,
+    &quot;modelcontextprotocol/servers&quot;,
+]
+token = os.environ.get(&quot;GITHUB_TOKEN&quot;)
+pd.DataFrame({&quot;repo&quot;: repos})
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>langchain-ai/langchain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>microsoft/autogen</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>crewAIInc/crewAI</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>browser-use/browser-use</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>modelcontextprotocol/servers</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="2-fetch-repository-metadata">2. Fetch repository metadata</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [3]</div>
+
+
+<pre><code class="language-python">metadata_rows = []
+for repo in repos:
+    meta = fetch_github_repo_metadata(repo, token=token)
+    metadata_rows.append({
+        &quot;repo&quot;: repo,
+        &quot;stars&quot;: meta.get(&quot;stargazers_count&quot;),
+        &quot;forks&quot;: meta.get(&quot;forks_count&quot;),
+        &quot;open_issues&quot;: meta.get(&quot;open_issues_count&quot;),
+        &quot;pushed_at&quot;: meta.get(&quot;pushed_at&quot;),
+        &quot;source&quot;: &quot;GitHub REST API&quot;,
+        &quot;endpoint&quot;: f&quot;https://api.github.com/repos/{repo}&quot;,
+    })
+metadata = pd.DataFrame(metadata_rows).sort_values(&quot;stars&quot;, ascending=False)
+metadata
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo</th>
+      <th>stars</th>
+      <th>forks</th>
+      <th>open_issues</th>
+      <th>pushed_at</th>
+      <th>source</th>
+      <th>endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>langchain-ai/langchain</td>
+      <td>137416</td>
+      <td>22731</td>
+      <td>581</td>
+      <td>2026-05-22T21:27:05Z</td>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/langchain-ai/lang...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>browser-use/browser-use</td>
+      <td>95129</td>
+      <td>10715</td>
+      <td>227</td>
+      <td>2026-05-22T20:58:44Z</td>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/browser-use/brows...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>modelcontextprotocol/servers</td>
+      <td>86094</td>
+      <td>10787</td>
+      <td>510</td>
+      <td>2026-05-21T18:10:38Z</td>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/modelcontextproto...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>microsoft/autogen</td>
+      <td>58298</td>
+      <td>8804</td>
+      <td>846</td>
+      <td>2026-04-15T11:59:09Z</td>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/microsoft/autogen</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>crewAIInc/crewAI</td>
+      <td>51979</td>
+      <td>7204</td>
+      <td>353</td>
+      <td>2026-05-22T19:50:26Z</td>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/crewAIInc/crewAI</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="3-fetch-sampled-stargazer-timestamps">3. Fetch sampled stargazer timestamps</h2>
+<p>This notebook fetches a bounded number of stargazer pages for each repository. The result is a sampled history window, not complete production adoption. Increase pages or run a scheduled collection for deeper coverage.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
+
+
+<pre><code class="language-python">STARGAZER_PAGES = 3
+PER_PAGE = 100
+source_card = pd.DataFrame([{
+    &quot;source&quot;: &quot;GitHub REST API&quot;,
+    &quot;endpoint&quot;: &quot;https://api.github.com/repos/{repo}/stargazers&quot;,
+    &quot;access_date&quot;: pd.Timestamp.today().date().isoformat(),
+    &quot;query_params&quot;: f&quot;repos={len(repos)}; pages={STARGAZER_PAGES}; per_page={PER_PAGE}; token_used={bool(token)}&quot;,
+    &quot;time_range&quot;: &quot;derived from fetched starred_at timestamps below&quot;,
+    &quot;cache_path&quot;: &quot;not cached; outputs saved to examples/hot_trends/outputs&quot;,
+    &quot;interpretation_scope&quot;: &quot;star velocity measures developer attention in the fetched window; stars are not production usage&quot;,
+}])
+star_rows = []
+for repo in repos:
+    sg = fetch_github_stargazers(repo, pages=STARGAZER_PAGES, per_page=PER_PAGE, token=token)
+    star_rows.append(sg)
+stars = pd.concat(star_rows, ignore_index=True)
+display(source_card)
+stars.head(20)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source</th>
+      <th>endpoint</th>
+      <th>access_date</th>
+      <th>query_params</th>
+      <th>time_range</th>
+      <th>cache_path</th>
+      <th>interpretation_scope</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>GitHub REST API</td>
+      <td>https://api.github.com/repos/{repo}/stargazers</td>
+      <td>2026-05-22</td>
+      <td>repos=5; pages=3; per_page=100; token_used=False</td>
+      <td>derived from fetched starred_at timestamps below</td>
+      <td>not cached; outputs saved to examples/hot_tren...</td>
+      <td>star velocity measures developer attention in ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo</th>
+      <th>starred_at</th>
+      <th>login</th>
+      <th>source</th>
+      <th>data_quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T15:45:15Z</td>
+      <td>JohnShahawy</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T16:47:34Z</td>
+      <td>davidtsong</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T16:50:28Z</td>
+      <td>salomartin</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T16:57:12Z</td>
+      <td>sjwhitmore</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:00:55Z</td>
+      <td>achuthasubhash</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:06:38Z</td>
+      <td>Agrover112</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:14:31Z</td>
+      <td>gemasphi</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:15:00Z</td>
+      <td>robinsingh1</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:17:23Z</td>
+      <td>jvmncs</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:25:58Z</td>
+      <td>vvonchain</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:28:58Z</td>
+      <td>dhnanjay</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:43:55Z</td>
+      <td>igorbrigadir</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:44:25Z</td>
+      <td>rahular</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:47:37Z</td>
+      <td>JadenGeller</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:48:45Z</td>
+      <td>tkersey</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:54:09Z</td>
+      <td>Banguiskode</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T17:59:06Z</td>
+      <td>stanleyjacob</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T18:05:13Z</td>
+      <td>orban</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T18:34:33Z</td>
+      <td>mgorenstein</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25T18:37:24Z</td>
+      <td>odagayev</td>
+      <td>GitHub REST API</td>
+      <td>public_api_snapshot</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="4-convert-stargazer-timestamps-to-daily-velocity">4. Convert stargazer timestamps to daily velocity</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+
+<pre><code class="language-python">stars[&quot;date&quot;] = pd.to_datetime(stars[&quot;starred_at&quot;]).dt.normalize()
+raw_daily = stars.groupby([&quot;repo&quot;, &quot;date&quot;]).size().reset_index(name=&quot;count&quot;)
+calendar_rows = []
+for repo, sub in raw_daily.groupby(&quot;repo&quot;):
+    calendar = pd.date_range(sub[&quot;date&quot;].min(), sub[&quot;date&quot;].max(), freq=&quot;D&quot;)
+    filled = sub.set_index(&quot;date&quot;).reindex(calendar, fill_value=0).rename_axis(&quot;date&quot;).reset_index()
+    filled[&quot;repo&quot;] = repo
+    calendar_rows.append(filled[[&quot;repo&quot;, &quot;date&quot;, &quot;count&quot;]])
+daily = pd.concat(calendar_rows, ignore_index=True)
+daily[&quot;date&quot;] = daily[&quot;date&quot;].dt.date.astype(str)
+raw_daily[&quot;date&quot;] = raw_daily[&quot;date&quot;].dt.date.astype(str)
+daily.head(20)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo</th>
+      <th>date</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>browser-use/browser-use</td>
+      <td>2024-11-05</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>browser-use/browser-use</td>
+      <td>2024-11-06</td>
+      <td>134</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-14</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-15</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-17</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-19</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-20</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-21</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-22</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-23</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-24</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-25</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-26</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-27</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-28</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-29</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-30</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-12-01</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="visualization-github-star-velocity">Visualization: GitHub star velocity</h2>
+<p>The x-axis is the fetched stargazer window and the y-axis is stars per day after missing calendar days are filled with zero. Treat the line as attention in the sampled window; do not compare repositories without checking coverage.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
+
+
+<pre><code class="language-python">star_velocity = daily.copy()
+star_velocity[&quot;date&quot;] = pd.to_datetime(star_velocity[&quot;date&quot;])
+velocity_pivot = star_velocity.pivot_table(index=&quot;date&quot;, columns=&quot;repo&quot;, values=&quot;count&quot;, aggfunc=&quot;sum&quot;).fillna(0).sort_index()
+ax = velocity_pivot.rolling(7, min_periods=1).mean().plot(figsize=(11, 4), title=&quot;7-day average GitHub star velocity&quot;)
+ax.set_ylabel(&quot;stars/day&quot;)
+ax.set_xlabel(&quot;date&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/04_github_ai_agent_star_velocity/cell-012-output-01.png" alt="Notebook output cell 12" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="5-decompose-star-velocity-if-enough-days-exist">5. Decompose star velocity if enough days exist</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
+
+
+<pre><code class="language-python">coverage = source_audit_table(raw_daily, value_col=&quot;count&quot;, entity_col=&quot;repo&quot;, time_col=&quot;date&quot;)
+calendar_coverage = daily.groupby(&quot;repo&quot;).agg(calendar_days=(&quot;date&quot;, &quot;nunique&quot;), total_fetched_stars=(&quot;count&quot;, &quot;sum&quot;)).reset_index().rename(columns={&quot;repo&quot;: &quot;series&quot;})
+coverage = coverage.merge(calendar_coverage, on=&quot;series&quot;, how=&quot;left&quot;)
+coverage[&quot;pages_per_repo&quot;] = STARGAZER_PAGES
+coverage[&quot;per_page&quot;] = PER_PAGE
+ready = coverage.loc[coverage[&quot;calendar_days&quot;] &gt;= 14, &quot;series&quot;].tolist()
+if ready:
+    components = decompose_table(daily[daily[&quot;repo&quot;].isin(ready)], entity_col=&quot;repo&quot;, time_col=&quot;date&quot;, value_col=&quot;count&quot;, method=&quot;MA_BASELINE&quot;, period=7, trend_window=5, transform=&quot;log1p&quot;)
+    summary = editorial_priority(component_summary(components, entity_col=&quot;repo&quot;, time_col=&quot;date&quot;), entity_col=&quot;repo&quot;)
+    events = residual_event_table(components, entity_col=&quot;repo&quot;, time_col=&quot;date&quot;, top_n=20, trim_edges=7)
+else:
+    components = pd.DataFrame()
+    summary = pd.DataFrame([{&quot;status&quot;: &quot;not_enough_stargazer_calendar_days&quot;, &quot;required&quot;: &quot;increase pages or run repeated snapshots&quot;}])
+    events = pd.DataFrame()
+coverage
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>series</th>
+      <th>first_timestamp</th>
+      <th>last_timestamp</th>
+      <th>observations</th>
+      <th>missing_ratio</th>
+      <th>min_value</th>
+      <th>max_value</th>
+      <th>calendar_days</th>
+      <th>total_fetched_stars</th>
+      <th>pages_per_repo</th>
+      <th>per_page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>browser-use/browser-use</td>
+      <td>2024-11-05 00:00:00</td>
+      <td>2024-11-06 00:00:00</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>134.0</td>
+      <td>166.0</td>
+      <td>2</td>
+      <td>300</td>
+      <td>3</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>crewAIInc/crewAI</td>
+      <td>2023-11-14 00:00:00</td>
+      <td>2023-12-22 00:00:00</td>
+      <td>31</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>38.0</td>
+      <td>39</td>
+      <td>300</td>
+      <td>3</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>langchain-ai/langchain</td>
+      <td>2022-10-25 00:00:00</td>
+      <td>2022-11-16 00:00:00</td>
+      <td>23</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>45.0</td>
+      <td>23</td>
+      <td>300</td>
+      <td>3</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>microsoft/autogen</td>
+      <td>2023-08-29 00:00:00</td>
+      <td>2023-09-27 00:00:00</td>
+      <td>14</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>138.0</td>
+      <td>30</td>
+      <td>300</td>
+      <td>3</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>modelcontextprotocol/servers</td>
+      <td>2024-11-25 00:00:00</td>
+      <td>2024-11-25 00:00:00</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>300.0</td>
+      <td>1</td>
+      <td>300</td>
+      <td>3</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="visualization-github-coverage-and-residual-events">Visualization: GitHub coverage and residual events</h2>
+<p>Coverage bars show fetched stargazer days by repository. The residual panel highlights unusually large deviations after calendar zero-fill and edge trimming; inspect the event date before treating it as launch evidence.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [8]</div>
+
+
+<pre><code class="language-python">coverage_plot = coverage.sort_values(&quot;observations&quot;)
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+coverage_plot.plot(kind=&quot;barh&quot;, x=&quot;series&quot;, y=&quot;observations&quot;, ax=axes[0], color=&quot;tab:blue&quot;, legend=False, title=&quot;Observed stargazer days&quot;)
+axes[0].axvline(14, color=&quot;tab:red&quot;, linestyle=&quot;--&quot;, linewidth=1.0)
+axes[0].set_ylabel(&quot;&quot;)
+if events.empty:
+    axes[1].axis(&quot;off&quot;)
+    axes[1].set_title(&quot;No residual events until coverage threshold is met&quot;)
+else:
+    event_plot = events.copy()
+    event_plot[&quot;date&quot;] = pd.to_datetime(event_plot[&quot;date&quot;])
+    repo_order = coverage_plot[&quot;series&quot;].tolist()
+    event_plot[&quot;repo_code&quot;] = pd.Categorical(event_plot[&quot;repo&quot;], categories=repo_order, ordered=True).codes
+    sc = axes[1].scatter(event_plot[&quot;date&quot;], event_plot[&quot;repo_code&quot;], s=50 + event_plot[&quot;abs_residual_z&quot;] * 35, c=event_plot[&quot;residual_z&quot;], cmap=&quot;RdBu_r&quot;)
+    axes[1].set_yticks(range(len(repo_order)))
+    axes[1].set_yticklabels(repo_order)
+    axes[1].set_title(&quot;Residual star-velocity events&quot;)
+    fig.colorbar(sc, ax=axes[1], label=&quot;residual z&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/04_github_ai_agent_star_velocity/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
+
+
+<pre><code class="language-python">summary
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo</th>
+      <th>observations</th>
+      <th>first_timestamp</th>
+      <th>last_timestamp</th>
+      <th>trend_last</th>
+      <th>trend_slope_per_step</th>
+      <th>cycle_strength_proxy</th>
+      <th>residual_std</th>
+      <th>max_abs_residual_z</th>
+      <th>method</th>
+      <th>trend_slope_per_step_rank_pct</th>
+      <th>cycle_strength_proxy_rank_pct</th>
+      <th>max_abs_residual_z_rank_pct</th>
+      <th>editorial_priority_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>microsoft/autogen</td>
+      <td>30</td>
+      <td>2023-08-29 00:00:00</td>
+      <td>2023-09-27 00:00:00</td>
+      <td>2.523944</td>
+      <td>0.070044</td>
+      <td>0.822280</td>
+      <td>0.540199</td>
+      <td>4.627360</td>
+      <td>MA_BASELINE</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>crewAIInc/crewAI</td>
+      <td>39</td>
+      <td>2023-11-14 00:00:00</td>
+      <td>2023-12-22 00:00:00</td>
+      <td>1.499108</td>
+      <td>0.043173</td>
+      <td>0.629650</td>
+      <td>0.701591</td>
+      <td>2.245717</td>
+      <td>MA_BASELINE</td>
+      <td>0.666667</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.516667</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>langchain-ai/langchain</td>
+      <td>23</td>
+      <td>2022-10-25 00:00:00</td>
+      <td>2022-11-16 00:00:00</td>
+      <td>1.277376</td>
+      <td>-0.021586</td>
+      <td>0.601288</td>
+      <td>0.353917</td>
+      <td>3.217347</td>
+      <td>MA_BASELINE</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.483333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="6-publication-language">6. Publication language</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [10]</div>
+
+
+<pre><code class="language-python">phrasing = article_publication_phrasing()
+phrasing
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>This trend predicts the next price move.</td>
+      <td>This trend summarizes the observed public seri...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>This model is better because it has more downl...</td>
+      <td>Downloads are a public adoption proxy interpre...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>This repo is winning because stars are rising.</td>
+      <td>Star velocity measures developer attention for...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>This pageview spike shows the topic matters most.</td>
+      <td>Pageviews measure public attention during the ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>This residual is a buy signal.</td>
+      <td>This residual marks an event-like deviation fr...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [11]</div>
+
+
+<pre><code class="language-python">save_table(source_card, &quot;04_github_source_card&quot;)
+save_table(metadata, &quot;04_github_repo_metadata&quot;)
+save_table(coverage, &quot;04_github_stargazer_coverage&quot;)
+save_table(daily, &quot;04_github_star_velocity_daily&quot;)
+save_table(summary, &quot;04_github_decomposition_or_collection_status&quot;)
+if not events.empty:
+    save_table(events, &quot;04_github_residual_events&quot;)
+save_table(phrasing, &quot;04_github_publication_phrasing&quot;)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">stdout</div>
+
+<pre><code class="language-text">saved: examples/hot_trends/outputs/04_github_source_card.csv
+saved: examples/hot_trends/outputs/04_github_repo_metadata.csv
+saved: examples/hot_trends/outputs/04_github_stargazer_coverage.csv
+saved: examples/hot_trends/outputs/04_github_star_velocity_daily.csv
+saved: examples/hot_trends/outputs/04_github_decomposition_or_collection_status.csv
+saved: examples/hot_trends/outputs/04_github_residual_events.csv
+saved: examples/hot_trends/outputs/04_github_publication_phrasing.csv
+</code></pre>
+
+</div>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js"></script>
+        <script src="../../../../javascripts/method-animations.js"></script>
+        <script src="../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

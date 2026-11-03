@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/usage_tips_zh/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Usage tips (中文) - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Usage tips (中文) - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/usage_tips_zh/#article", "url": "https://zipengwu.me/tomc/docs/usage_tips_zh/", "headline": "Usage tips (\u4e2d\u6587) - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/usage_tips_zh/", "inLanguage": "zh-CN", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../usage_tips/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../context_ownership/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tomc" class="nav-link">TOMC 使用技巧</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1" class="nav-link">1. 把下一步任务说具体</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2" class="nav-link">2. 保留完整更新链，按发生顺序提供</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">3. 把准备结果用于下一次请求</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4" class="nav-link">4. 根据遗漏的内容调整预算</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5" class="nav-link">5. 别称、隐含修改和原文细节需要回查</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-notebook" class="nav-link">6. 只把需要复用的内容存进 notebook</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7" class="nav-link">7. 先比较实际请求，再检查答案</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tomc">TOMC 使用技巧</h1>
+<p>先告诉 TOMC 下一步要解决什么，再让它准备上下文。插件负责准备与你的问题相关的内容，你原来使用的模型负责回答。直接调用 <code>prepare_context</code> 就可以使用，不需要先建 notebook。</p>
+<p><a href="../assistant_plugin_zh/">安装插件</a> · <a href="../api_reference/">Python API</a> · <a href="../usage_tips/">English</a></p>
+<h2 id="1">1. 把下一步任务说具体</h2>
+<p>在 <code>task</code> 中写清要查的对象和希望的回答形式。例如，“当前 framework 和 backup_framework 分别是什么？”比“压缩一下聊天”更明确。写代码时，可以说明涉及哪个组件、要遵守什么约束、哪些工作还没完成。需要解释原因或引用原文时，也要直接说明。</p>
+<p>安装后可以把下面这段复制给你的助手：</p>
+<pre><code class="language-text">请调用 TOMC 的 prepare_context 工具，参数如下：
+
+history:
+framework = Flask
+backup_framework copies framework
+framework = FastAPI
+Monday notes: the team reviewed the project backlog, discussed deployment windows and agreed to keep the public API routes and response fields unchanged during the refactor.
+Tuesday notes: the migration plan still needs a review from the database owner, and the pagination tests have not yet been written or run.
+Wednesday notes: the team checked the release checklist, added a rollback task, and postponed the documentation update until after the test results are available.
+
+task: 当前 framework 和 backup_framework 分别是什么？每行给出一个值；如果证据缺失，请明确说明。
+budget: 64
+
+先展示工具返回的 memory、note 和 warnings，再依据这些证据回答。
+不要把这段 history 保存到 notebook。
+</code></pre>
+<p>工具的实际参数是 <code>history</code>、<code>task</code>、<code>budget</code>。回答格式写在 <code>task</code> 里，没有独立的“回答格式”参数。是否调用工具由宿主助手决定；可以查看它是否真的返回了 TOMC 工具结果。</p>
+<p>在 Claude Code 中，点名已注册服务，例如“用 tomc-memory 的 prepare_context 处理这段 history，task 是……，budget 设为 200”。<a href="../validation/#claude-code-windows-validation">Windows 试用</a>中的明确请求成功；一次未点名对照没有调用 TOMC。工具不可用时，先检查 <a href="../assistant_plugin_zh/#claude-code">Claude Code 接入</a>。</p>
+<h2 id="2">2. 保留完整更新链，按发生顺序提供</h2>
+<p>把最初的值、复制操作和后续修改一起提供。示例中的 <code>backup_framework copies framework</code> 读取的是复制发生时的值。如果删掉最初的 Flask 赋值，备份值就失去了依据。</p>
+<p>按时间顺序排列消息，并保留已有日期。当前参考解析器按输入顺序执行支持的操作，不会按日期自动重排。对同一个对象使用一致的名称。已经确认的结构化事实可以使用 <code>framework = FastAPI</code>、<code>backup_framework copies framework</code> 等支持的形式；“可能迁移到 FastAPI”不能写成已确认的赋值。</p>
+<p>普通对话可以保留原文，再明确下一步任务。插件会选择相关源文本，但不能可靠识别所有隐含更新或别称。完整原文要另外保留，以便回查。</p>
+<h2 id="3">3. 把准备结果用于下一次请求</h2>
+<p>在自己的应用里，用准备后的消息替换这次请求中的原始历史：</p>
+<pre><code class="language-python">from tomc import prepare_context
+
+prepared = prepare_context(history, task)
+if not prepared.prompt:
+    raise ValueError(prepared.note)
+
+# 保留你的应用需要的其他指令。
+response = client.chat.completions.create(
+    model=model,
+    messages=prepared.messages,
+)
+</code></pre>
+<p>这里的 <code>history</code>、<code>task</code>、<code>client</code> 和 <code>model</code> 来自你的应用；<code>client</code> 使用 chat-completions 调用形式。其他 API 需要把返回的文本或消息映射到对应格式，不能理解为安装后自动兼容所有 SDK。</p>
+<p>在助手里，可以把 demo 生成的完整 prompt 复制到新聊天，再继续任务。在已有长聊天中调用 MCP，不会清除宿主已经持有的消息。把准备结果追加到完整历史后面会增加输入；仅仅调用工具，不能证明 API token 已经减少。</p>
+<p><a id="choose-budget"></a></p>
+<h2 id="4">4. 根据遗漏的内容调整预算</h2>
+<p>不传 <code>budget</code> 时，TOMC 保留历史词法估计长度的约 80%（至少 1,024）；在 <a href="../validation/#claude-code-windows-validation">Claude Code 实测</a>中，这个默认值的答案与完整历史全部一致，输入约减少 20%。显式传入的预算限制的是词法估计下的 memory 文本，不是整个模型请求。任务、应用指令和提供商封装还会增加输入。</p>
+<p><a href="../codex_retention_20261005_zh/">Windows Codex 对比</a>在同样九份合成历史上测试了完整历史、40%、60% 和默认 80% 历史预算。四种条件均为 45/45，请求输入的平均配对减少分别为 29.7%、19.5%、9.2%。40% 是这次测试中更小的选项；60% 给证据留下更多空间，80% 仍是默认值。采用较小预算前，先用自己的任务检查。这次普通叙述历史使用原文选择，没有生成操作记录。</p>
+<p>Python API 接受绝对预算。要试历史估算长度的 60%，可以这样写：</p>
+<pre><code class="language-python">from tomc import prepare_context
+
+probe = prepare_context(history, task)
+history_tokens = probe.compilation.stats.input_tokens
+prepared = prepare_context(history, task, budget=int(history_tokens * 0.60))
+# 将 0.60 换成 0.40，可试本次测试中更小的预算。
+</code></pre>
+<p>两次准备都在 CPU 上完成，不调用 LLM。MCP 工具同样接受绝对 <code>budget</code>，没有 <code>retention_ratio</code> 参数。先从默认准备结果读取 <code>input_estimated_tokens</code>，乘以 0.40 或 0.60，向下取整，再把这个整数作为 <code>budget</code> 传入。使用默认值时省略 <code>budget</code>；其公式为 <code>max(1024, ceil(history_estimate × 0.8))</code>。</p>
+<p>先为同一个任务准备一份预算较宽松的结果，检查保留了哪些事实，再降低预算，观察哪些内容消失。记录需要完整放入预算；如果 memory 为空，先增加预算再交给模型。如果缺少重要证据，可以增加预算，或者直接补上所需原文。</p>
+<p>本来就能放下的短历史会原样保留，这是正常行为，不代表发生了压缩。源标记和指令也可能使小请求变大。</p>
+<h2 id="5">5. 别称、隐含修改和原文细节需要回查</h2>
+<p>参考实现使用明确的操作语法和词法规则。同一个人的不同称呼、同义词、否定表达和隐含修改，都可能造成漏选证据或路由不合适。增大预算也不会让解析器理解不支持的更新方式。</p>
+<p>先看工具返回的 <code>memory</code>、<code>note</code> 和 <code>warnings</code>。需要查看完整审计信息时，使用 demo 的 <strong>Workbench</strong>，或者检查 Python 返回值：</p>
+<pre><code class="language-python">print(prepared.prompt)
+print(prepared.compilation.ledger)
+print(prepared.compilation.evidence)
+</code></pre>
+<p>ledger 中的行是候选记录，只有 <code>included=True</code> 的记录进入 memory。既要检查实际保留的记录，也要检查选中的源文本；缺少关键事实时回到原文。MCP 返回值不包含完整 ledger 或源文本检查器。源链接便于核对，但不能证明所有相关证据都被保留了。</p>
+<p>TOMC 从 <code>u0</code> 开始分配源编号，对应第一条非空行。历史原文里已有的 <code>u1:</code> 等标签只是原文内容，不是 TOMC 的编号。用返回的源文本核对对应关系，不要假定两套编号一致。</p>
+<p><a id="reuse-notebooks"></a></p>
+<h2 id="6-notebook">6. 只把需要复用的内容存进 notebook</h2>
+<p>每个项目或主题使用一个名字，例如 <code>api-refactor</code>。适合保存下一次还要用的约束、已确认决策和未完成工作。安装插件不会自动收集你的所有聊天。</p>
+<h3 id="_1">换个助手，继续同一项任务</h3>
+<p>两个客户端都能调用 TOMC 时，可以在 Codex 保存项目笔记，再到新的 Claude Code 聊天中按下一步任务取回，也可以反过来。记忆本保留原始笔记；取回时，TOMC 再按新任务和预算准备上下文。短笔记可以保持完整。</p>
+<p>两边的 TOMC 进程必须打开同一个 SQLite 文件。默认是 <code>~/.tomc/memory.sqlite3</code>，但自定义配置、不同系统用户、WSL 或容器可能解析到不同文件。需要显式共享时，向 <a href="../assistant_plugin_zh/#codex">Codex 安装助手的 <code>--store</code> 选项</a>和 <a href="../assistant_plugin_zh/#claude-code">Claude Code 服务的 <code>TOMC_MEMORY_PATH</code></a>传入同一绝对路径。服务命令中显式设置的 <code>--store</code> 优先于环境变量。也要检查 Claude Code 当前项目的注册配置，它可能选用另一项服务。调整路径时保留原数据库；选择新路径不会迁移原笔记。</p>
+<p>确认两边打开同一个文件后，试这两段提示词：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>提示词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在 Codex 保存</td>
+<td>“请调用 TOMC 的 remember_memory，name 为 api-refactor，content 为：公共 API 路由和返回字段保持不变。分页测试尚未编写，也没有运行。只保存这些笔记，并确认工具返回的保存结果。”</td>
+</tr>
+<tr>
+<td>到 Claude Code 接续</td>
+<td>“请调用 tomc-memory 的 recall_memory，name 为 api-refactor，task 为：继续之前，提醒我 API 的约束和还没完成的测试，budget 为 1024。先展示返回的 memory，再依据它回答。”</td>
+</tr>
+<tr>
+<td>查找名字</td>
+<td>“请用 TOMC 的 list_memories 列出 notebook 名称。”</td>
+</tr>
+<tr>
+<td>补充已确认的纠正</td>
+<td>“请用 remember_memory 向 api-refactor 追加这条已确认更新：framework = FastAPI。保留之前的历史，这是最新确认的框架。”</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>“请用 TOMC 的 forget_memory 删除名称恰好为 api-refactor 的 notebook。”</td>
+</tr>
+</tbody>
+</table>
+<p><code>remember_memory</code> 是追加，不会编辑某条旧记录。把已纠正的值和顺序说清楚，并检查下一次 recall。<code>forget_memory</code> 删除整个指定 notebook，工具不能撤销删除。如果要完全重建，先保留需要的原文，明确要求删除该名称，再保存替换内容。</p>
+<p>notebook 以明文保存传给工具的内容。使用同一数据库的客户端会共享它，卸载插件不会删除数据库。只想临时准备一次上下文时，直接使用 <code>prepare_context</code>。</p>
+<p>如果一个助手找不到记忆本，先在两边调用 <code>list_memories</code>，核对正在使用的服务和数据库路径。同名记忆本不代表两边打开了同一个文件。<a href="../validation/#cross-assistant-notebooks">Windows MCP 检查</a>在独立数据库中验证了双向读取、更新、重启和并发追加。</p>
+<p>共享的只是明确传给工具的笔记，不会自动同步原生聊天记录，也不提供跨设备云端服务。取回的笔记会进入接收方助手的上下文，遵循该宿主的数据政策。</p>
+<h2 id="7">7. 先比较实际请求，再检查答案</h2>
+<p>比较原始请求与准备后的请求时，使用相同模型、任务、应用指令和准备预算，统计实际发送的全部文本，包括任务和 memory 的封装。比较答案时，也保持模型的回答设置一致。</p>
+<p>工具中的 <code>input_estimated_tokens</code> 和 <code>memory_estimated_tokens</code> 是历史与 memory 的词法估计，不包含整个宿主请求。可以运行仓库中的本地示例：</p>
+<pre><code class="language-bash">python examples/api_context.py
+# 可选：用 BPE 编码统计消息正文
+python -m pip install -e '.[tokenizers]'
+python examples/api_context.py --tokenizer tiktoken:cl100k_base
+</code></pre>
+<p>该示例保持 system 指令和 task 一致，使用 64-token 的词法 memory 预算。<code>cl100k_base</code> 统计的是一种编码下的消息正文，你的模型可能使用其他 tokenizer。这里没有计算提供商聊天封装、工具 schema 或隐藏 token；判断实际计费输入时，应查看提供商返回的 usage。</p>
+<p>用有代表性的任务检查：准备后的证据是否仍能支持回答。输入变小本身不能证明答案更好或总费用更低。论文实验与当前插件工作流的评测范围不同，也没有适用于所有历史的固定节省比例。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

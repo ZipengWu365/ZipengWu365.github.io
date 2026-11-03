@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Time-Series Decomposition in 2026: Methods and Research Map | DeTime</title>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../stylesheets/brand.css" rel="stylesheet">
+        <link href="../../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="Compare classical decomposition, wavelet tokenization, neural decomposition blocks, new SSA and VMD research, and evaluation methods with verified references.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Time-Series Decomposition in 2026: Methods and Research Map | DeTime">
+  <meta property="og:description" content="Compare classical decomposition, wavelet tokenization, neural decomposition blocks, new SSA and VMD research, and evaluation methods with verified references.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Time-Series Decomposition in 2026: Methods and Research Map | DeTime">
+  <meta name="twitter:description" content="Compare classical decomposition, wavelet tokenization, neural decomposition blocks, new SSA and VMD research, and evaluation methods with verified references.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/#webpage",
+        "url": "https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/",
+        "name": "Time-Series Decomposition in 2026: Methods and Research Map | DeTime",
+        "description": "Compare classical decomposition, wavelet tokenization, neural decomposition blocks, new SSA and VMD research, and evaluation methods with verified references.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/#article", "url": "https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/", "headline": "Time-Series Decomposition in 2026: Methods and Research Map | DeTime", "mainEntityOfPage": "https://zipengwu.me/detime/docs/research/decomposition-landscape-2026/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../../tutorials/hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../python-decomposition-tools/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../notebook-gallery/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#time-series-decomposition-in-2026-algorithms-tokens-and-losses" class="nav-link">Time-Series Decomposition in 2026: Algorithms, Tokens, and Losses</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#start-with-the-object-you-need" class="nav-link">Start with the object you need</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#classical-families-remain-useful-because-their-assumptions-differ" class="nav-link">Classical families remain useful because their assumptions differ</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#decomposition-inside-modern-forecasting-systems" class="nav-link">Decomposition inside modern forecasting systems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#three-developments-to-read-from-2026" class="nav-link">Three developments to read from 2026</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#evaluate-the-claim-you-want-to-make" class="nav-link">Evaluate the claim you want to make</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#where-detime-fits" class="nav-link">Where DeTime fits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#reference-maintenance-and-scope" class="nav-link">Reference maintenance and scope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="time-series-decomposition-in-2026-algorithms-tokens-and-losses">Time-Series Decomposition in 2026: Algorithms, Tokens, and Losses</h1>
+<p>Decomposition now enters time-series systems at several stages: an explicit
+signal transform, a forecasting block, a discrete tokenizer, a decoder, a
+training objective, or a statistical diagnostic. These choices answer different
+questions. A useful comparison starts by identifying the object each method
+produces and the evidence needed to judge it.</p>
+<p>This reading map covers <strong>20 selected references</strong>, with publication records
+checked on <strong>29 October 2026</strong>. It connects classical methods to recent research
+through 2026. The accompanying <a href="../decomposition-reading-list.csv">CSV</a> records
+publication status, sources, method role, and relationship to DeTime; the
+<a href="../decomposition-reading-list.bib">BibTeX file</a> contains normalized citations.
+Scope is selective, with an emphasis on decomposition mechanisms and evaluation.</p>
+<h2 id="start-with-the-object-you-need">Start with the object you need</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Representative work</th>
+<th>What to inspect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Components of an observed signal</td>
+<td>STL, SSA, EMD, VMD</td>
+<td>Component meaning, reconstruction, boundary behavior, and parameter sensitivity</td>
+</tr>
+<tr>
+<td>A forecasting architecture</td>
+<td><a href="https://proceedings.neurips.cc/paper_files/paper/2021/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html">Autoformer</a>, <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/a7ac8a21e5a27e7ab31a5f42a0117bdb-Abstract-Conference.html">TimeMixer</a></td>
+<td>Held-out forecast accuracy and an ablation isolating the decomposition block</td>
+</tr>
+<tr>
+<td>Discrete tokens for a pretrained forecaster</td>
+<td><a href="https://proceedings.mlr.press/v267/masserano25a.html">WaveToken</a></td>
+<td>Tokenization error, coefficient ordering, vocabulary, training data, and forecast quality</td>
+</tr>
+<tr>
+<td>A loss applied during training</td>
+<td><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/2823c4f838727564c108c85d7e6e8507-Abstract-Conference.html">DBLoss</a></td>
+<td>The loss definition and performance with the same backbone and training budget</td>
+</tr>
+<tr>
+<td>A structured forecast decoder</td>
+<td><a href="https://papers.neurips.cc/paper_files/paper/2025/hash/0e82ef0c89df6a6eff8734ea7e27c42f-Abstract-Conference.html">Implicit Forecaster</a></td>
+<td>The parameterization of future waves and the decoder's incremental contribution</td>
+</tr>
+<tr>
+<td>A rule for selecting signal components</td>
+<td><a href="https://link.springer.com/article/10.1007/s10463-026-00987-8">Confident grouping in SSA</a></td>
+<td>Statistical assumptions, error control, and sensitivity to the grouping criterion</td>
+</tr>
+</tbody>
+</table>
+<p>The inspection criteria in the last column are editorial recommendations.
+They are not a cross-paper performance ranking.</p>
+<h2 id="classical-families-remain-useful-because-their-assumptions-differ">Classical families remain useful because their assumptions differ</h2>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Mechanism</th>
+<th>Useful starting question</th>
+<th>Choices to record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.scb.se/contentassets/ca21efb41fee47d293bbee5bf7be7fb3/stl-a-seasonal-trend-decomposition-procedure-based-on-loess.pdf">STL</a>, 1990</td>
+<td>Iterative LOESS smoothing separates trend, a seasonal component, and remainder.</td>
+<td>Does a specified seasonal period provide a meaningful description?</td>
+<td>Period, smoothing spans, robustness settings, and endpoint treatment</td>
+</tr>
+<tr>
+<td><a href="https://www.inderscience.com/info/e_inarticle.php?artid=143957">MSTL</a>, 2025 journal version</td>
+<td>Extends STL to several seasonal periods.</td>
+<td>Are multiple recurring periods relevant, such as daily and weekly cycles?</td>
+<td>Every period, seasonal window, transformation, and iteration setting</td>
+</tr>
+<tr>
+<td><a href="https://link.springer.com/book/10.1007/978-3-662-62436-4">SSA</a>, 2020 reference monograph</td>
+<td>Embeds a series in a trajectory matrix, decomposes it, groups components, and reconstructs time-domain signals.</td>
+<td>Can a low-dimensional subspace capture the structure of interest?</td>
+<td>Embedding window, retained rank, grouping rule, and reconstruction procedure</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.1098/rspa.1998.0193">EMD</a>, 1998</td>
+<td>Uses data-dependent sifting to extract intrinsic mode functions.</td>
+<td>Which oscillatory modes emerge without fixing a sinusoidal basis?</td>
+<td>Extrema/envelope implementation, stopping criteria, mode count, and boundaries</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.1142/S1793536909000047">EEMD</a>, 2009</td>
+<td>Averages decompositions of noise-perturbed copies of a signal.</td>
+<td>How do ensemble settings affect extracted modes?</td>
+<td>Noise scale, number of trials, seed, and mode-alignment behavior</td>
+</tr>
+<tr>
+<td><a href="https://sinc.unl.edu.ar/sinc-publications/2011/TCSF11/">CEEMDAN</a>, 2011</td>
+<td>Uses adaptive noise-assisted ensembles and a residual-based construction.</td>
+<td>Does the chosen implementation provide the intended ensemble decomposition?</td>
+<td>Exact algorithm variant, noise settings, trials, seed, and residual handling</td>
+</tr>
+<tr>
+<td><a href="https://math.montana.edu/dzosso/code/">VMD</a>, 2014</td>
+<td>Jointly estimates band-limited modes and their center frequencies through a variational objective.</td>
+<td>Is a chosen number of narrow-band modes appropriate?</td>
+<td>Mode count, bandwidth penalty, initialization, tolerance, and boundary extension</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.1109/34.192463">Wavelet multiresolution analysis</a>, 1989 foundation</td>
+<td>Represents a signal through approximation and detail coefficients across scales.</td>
+<td>Which scales and localized changes are useful for the task?</td>
+<td>Wavelet family, levels, extension mode, coefficient handling, and inverse transform</td>
+</tr>
+</tbody>
+</table>
+<p>The dates distinguish original work from later reference material. SSA predates
+the 2020 monograph. MSTL's <a href="https://arxiv.org/abs/2107.13462">preprint appeared in 2021</a>,
+while its journal version is <em>International Journal of Operational Research</em>
+52(1), 79–98 (2025). The bibliography uses the published version.</p>
+<p>The columns describing useful questions and recorded choices are practical
+guidance. They do not establish that a family will outperform another on a new
+dataset. A frequency band, an intrinsic mode function, and an SSA eigentriple
+group also need explicit interpretation before being called a physical trend,
+season, or noise source.</p>
+<h2 id="decomposition-inside-modern-forecasting-systems">Decomposition inside modern forecasting systems</h2>
+<h3 id="architecture-a-family-of-design-choices">Architecture: a family of design choices</h3>
+<p><a href="https://proceedings.neurips.cc/paper_files/paper/2021/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html">Autoformer (NeurIPS 2021)</a>
+uses decomposition as an internal forecasting block, alongside its
+Auto-Correlation mechanism.
+<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26317">DLinear, introduced in AAAI 2023</a>,
+provides a simpler decomposition-based linear forecasting reference. Together,
+they motivate a useful experimental control: compare the same data and split
+with a simple decomposed model before attributing a gain to a more elaborate
+architecture.</p>
+<p><a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/a7ac8a21e5a27e7ab31a5f42a0117bdb-Abstract-Conference.html">TimeMixer (ICLR 2024)</a>
+decomposes series at multiple sampling scales and mixes seasonal and trend
+representations in different directions. Its contribution concerns the joint
+architecture of decomposition, mixing, and prediction. Replacing one smoothing
+operation alone does not reproduce that architecture.</p>
+<p><a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/2b187165e28fdfdc0ffb34d1bfff2b0c-Abstract-Conference.html">TimeMixer++ (ICLR 2025)</a>
+introduces time imaging, time-image decomposition with dual-axis attention,
+and mixing across scales and resolutions. It extends the discussion to several
+analysis tasks. Its latent representations need task-specific interpretation;
+their names alone do not establish recovery of unique physical components.</p>
+<h3 id="tokenization-decomposition-changes-what-a-model-predicts">Tokenization: decomposition changes what a model predicts</h3>
+<p><a href="https://proceedings.mlr.press/v267/masserano25a.html">WaveToken (ICML 2025)</a>
+scales a time series, applies wavelet decomposition, thresholds and quantizes
+coefficients, and trains an autoregressive model to forecast coefficients.
+The reconstructed forecast comes from the inverse tokenization process.</p>
+<p>This is a useful reference when the research question concerns a representation
+for a foundation model. A standalone wavelet transform exposes only part of
+that system. A convincing tokenizer comparison should keep the training data,
+backbone, evaluation split, and compute allocation controlled while examining
+both representation error and downstream forecast quality. That is an
+experimental recommendation; this article does not supply a new tokenizer
+benchmark.</p>
+<h3 id="training-and-decoding-decomposition-has-additional-entry-points">Training and decoding: decomposition has additional entry points</h3>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Published venue</th>
+<th>Role described by the paper</th>
+<th>A useful comparison to run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/2823c4f838727564c108c85d7e6e8507-Abstract-Conference.html">DBLoss</a></td>
+<td>NeurIPS 2025</td>
+<td>Decomposes horizon sequences with exponential moving averages and weights losses for the resulting components.</td>
+<td>Hold the forecaster fixed and compare objectives, including their effect on the original task metric.</td>
+</tr>
+<tr>
+<td><a href="https://proceedings.nips.cc/paper_files/paper/2025/hash/2e56189f02f4b00de8bf6020455830e0-Abstract-Conference.html">DecompNet</a></td>
+<td>NeurIPS 2025</td>
+<td>Transfers decomposition-related knowledge into a model through an implicit-decomposition framework; the paper describes inference without explicit input decomposition.</td>
+<td>Account for training cost as well as inference cost and compare the same backbone with and without the framework.</td>
+</tr>
+<tr>
+<td><a href="https://papers.neurips.cc/paper_files/paper/2025/hash/0e82ef0c89df6a6eff8734ea7e27c42f-Abstract-Conference.html">Implicit Forecaster</a></td>
+<td>NeurIPS 2025</td>
+<td>Predicts constituent waves through frequency, amplitude, and phase in an added decoding module.</td>
+<td>Compare decoder variants while holding the representation and forecasting protocol fixed.</td>
+</tr>
+</tbody>
+</table>
+<p>These papers enlarge the design space. They do not supply interchangeable
+standalone decomposers. Their original experimental results remain tied to
+their own datasets, implementations, and evaluation protocols.</p>
+<h2 id="three-developments-to-read-from-2026">Three developments to read from 2026</h2>
+<h3 id="short-time-vmd-local-frequency-structure">Short-time VMD: local frequency structure</h3>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0165168425003172">Short-time variational mode decomposition</a>
+appears in <em>Signal Processing</em> 238, article 110203 (2026). It introduces
+windowed variational decomposition using a short-time Fourier representation,
+with dynamic and non-dynamic versions distinguished by whether center
+frequencies can change over time. The paper links
+<a href="https://github.com/plustar/Short-Time-Variational-Mode-Decomposition">author-provided code</a>.
+The issue year is 2026; the <a href="https://upcommons.upc.edu/bitstreams/50ad1039-832e-47b9-9bfd-7b58bb25c1a7/download">publisher version</a>
+records online availability on 19 July 2025.</p>
+<p>For a decomposition library, this suggests a concrete extension to investigate:
+how local windows and time-varying frequencies change mode recovery. Window
+length, overlap, edge behavior, and mode correspondence should be included in
+any implementation comparison. This article records the method as literature;
+it does not claim an STVMD implementation in DeTime.</p>
+<h3 id="ssa-grouping-a-statistical-decision">SSA grouping: a statistical decision</h3>
+<p><a href="https://link.springer.com/article/10.1007/s10463-026-00987-8">Movahedifar, Preusse, Vesely, and Dickhaus</a>
+published <em>Confident grouping in singular spectrum analysis via multiple
+testing</em> on 25 June 2026. Their procedure tests weighted-correlation-based
+separability across candidate signal/noise groupings, using a wild bootstrap
+and family-wise error control.</p>
+<p>This addresses a practical part of SSA that a fast singular-value decomposition
+alone leaves open: selecting components. Its statistical guarantees belong to
+the paper's hypotheses and assumptions. They should not be interpreted as a
+general certificate that an estimated component is a particular biological,
+economic, or mechanical process. The grouping procedure is not implemented by
+adding this reference to DeTime.</p>
+<h3 id="timerecipe-test-the-contribution-of-a-module">TimeRecipe: test the contribution of a module</h3>
+<p><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/f46ddea413df86832418c5e04e59644f-Abstract-Conference.html">TimeRecipe (ICLR 2026)</a>
+studies forecasting designs at the module level, including choices such as
+decomposition and normalization. It offers a relevant evaluation perspective
+for developers comparing alternative decomposition operators inside a model.</p>
+<p>The practical implication is to preserve the rest of the pipeline while
+changing the component under study. Changing the tokenizer, scaling, backbone,
+and training budget together answers a different question: whether the whole
+system performs better under that combined configuration.</p>
+<h2 id="evaluate-the-claim-you-want-to-make">Evaluate the claim you want to make</h2>
+<p>Two evaluation questions deserve separate evidence. A forecasting experiment
+asks whether a representation helps predict unseen observations. A component
+recovery experiment asks whether estimated components match an explicit target.
+The published
+<a href="https://proceedings.mlr.press/v306/wu26bh.html">standalone decomposition benchmark (ICML 2026)</a>
+provides an example of the latter using controlled generating mechanisms and
+complementary structural metrics. That paper and the DeTime software package
+are distinct artifacts; their relationship is described in the repository's
+<a href="https://github.com/systems-mechanobiology/DeTime/blob/main/RELATION_TO_ICML2026.md">project note</a>.</p>
+<p>Reconstruction alone cannot determine the correct component allocation.
+For an additive decomposition, <code>x[t] = T[t] + S[t] + R[t]</code>.
+Replacing <code>T[t]</code> by <code>T[t] + a[t]</code> and <code>S[t]</code> by <code>S[t] - a[t]</code> preserves
+the same reconstruction for any sequence <code>a[t]</code>. Additional assumptions or
+reference information are therefore necessary to judge component meaning.</p>
+<p>The following is a proposed validation checklist, rather than a new empirical
+result:</p>
+<table>
+<thead>
+<tr>
+<th>Intended claim</th>
+<th>Evidence to collect</th>
+<th>Common ambiguity to resolve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faithful numerical reconstruction</td>
+<td>Reconstruction error, shape checks, and missing-value policy</td>
+<td>Components can sum correctly while carrying the wrong structure.</td>
+</tr>
+<tr>
+<td>Useful component recovery</td>
+<td>Known or defensible component targets, including shape, phase, and frequency behavior</td>
+<td>A smooth-looking curve does not identify a generating mechanism.</td>
+</tr>
+<tr>
+<td>Better forecasting</td>
+<td>Chronological holdout, a frozen preprocessing policy, and rolling-origin evaluation where appropriate</td>
+<td>Full-series preprocessing can expose future observations to an earlier prediction origin.</td>
+</tr>
+<tr>
+<td>Stable decomposition</td>
+<td>Repeated seeds for stochastic methods and perturbations of parameters, endpoints, and observations</td>
+<td>A single favorable run hides variability.</td>
+</tr>
+<tr>
+<td>More efficient software</td>
+<td>Matched inputs, settings, precision, dependencies, and hardware</td>
+<td>A faster configuration may be computing a different approximation.</td>
+</tr>
+<tr>
+<td>Useful downstream features</td>
+<td>Fixed feature definitions, training-only fitting, and held-out evaluation</td>
+<td>Fitting the original series from its own reconstructing components is not evidence of predictive value.</td>
+</tr>
+</tbody>
+</table>
+<p>For forecasting, document the information available at each prediction origin.
+Fit every data-dependent preprocessing step using that information. If a
+decomposition revises old components when new samples arrive, measure those
+revisions separately from the final offline fit. For offline signal analysis,
+using the complete observed record can be appropriate; the intended use must
+be stated.</p>
+<h2 id="where-detime-fits">Where DeTime fits</h2>
+<p>DeTime supplies a shared configuration, result object, and execution surface for
+decomposition workflows. Its
+<a href="../../method-matrix/">method matrix</a>,
+<a href="../../method-references/">method references</a>, and
+<a href="../../machine-api/">machine-facing interface</a>
+describe the implementation boundaries.</p>
+<p>The current documentation distinguishes maintained SSA/MSSA and STD/STDR paths,
+upstream wrappers such as STL/MSTL, EMD-family methods, VMD and wavelets,
+optional backends, and experimental operators. Several experimental names refer
+to operators <strong>inspired by</strong> published forecasting models. An operator carrying
+an architecture's name does not establish reproduction of that model's training
+procedure, complete network, or paper results. Consult the method's actual
+status and upstream reference before selecting an experimental baseline.</p>
+<p>A useful first workflow is to choose two or three families with different
+assumptions, fix their settings, inspect the output contract and diagnostics,
+and evaluate the property needed downstream. Start with
+<a href="../../choose-a-method/">choosing a method</a> and the
+<a href="../../quickstart/">quickstart</a>, then use the
+<a href="../../comparisons/">software comparison</a> for package-level trade-offs.</p>
+<h2 id="reference-maintenance-and-scope">Reference maintenance and scope</h2>
+<p>The CSV contains the exact publication titles and author lists, role labels,
+primary URLs, verified identifiers, bibliographic provenance, and an access
+date. Blank identifier fields mean that no identifier was included in this
+verification pass. They do not assert that an identifier does not exist.</p>
+<p>DBLP records were preferred for bibliographic corroboration where available;
+publisher and official proceedings records determine publication status.
+The BibTeX entries are normalized from those records, with stable local keys
+and optional fields omitted when unnecessary or unverified. They are not
+presented as unmodified downloads. MSTL cites its 2025 journal version, and
+WaveToken cites its 2025 ICML proceedings entry rather than the earlier
+preprint. The 2026 SSA grouping paper is recorded as a published online article
+without inventing volume or page numbers.</p>
+<p>This map does not claim exhaustive coverage of all decomposition applications,
+all 2026 publications, or the latest revision of every linked implementation.
+Source verification establishes what the papers describe; independent
+reproduction of their experiments is a separate task. Additions should retain
+that distinction and supply a primary source before changing implementation
+or performance claims.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/method-animations.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

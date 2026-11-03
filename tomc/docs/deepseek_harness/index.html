@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/deepseek_harness/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>DeepSeek Harness - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="DeepSeek Harness - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/deepseek_harness/#article", "url": "https://zipengwu.me/tomc/docs/deepseek_harness/", "headline": "DeepSeek Harness - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/deepseek_harness/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../workbuddy_zh/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../deepseek_harness_zh/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tomc-memory-for-deepseek-harness" class="nav-link">TOMC Memory for DeepSeek Harness</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#install-from-source" class="nav-link">Install from source</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#verify-in-two-fresh-dsh-sessions" class="nav-link">Verify in two fresh DSH sessions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#data-and-scope" class="nav-link">Data and scope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tomc-memory-for-deepseek-harness">TOMC Memory for DeepSeek Harness</h1>
+<p><a href="../deepseek_harness_zh/">中文</a></p>
+<p><strong>Unofficial community integration, independently developed and maintained.</strong>
+TOMC connects to DeepSeek Harness (DSH) through the official
+<code>@deepseek-ai/dsh-mcp-client</code> over local stdio. DSH launches the Python server and
+exposes its tools as <code>mcp__tomc__&lt;tool&gt;</code>. No fork of DSH is required.</p>
+<p><a href="../deepseek_harness_validation_20261029/">Dated validation and test scope</a>.</p>
+<p>TOMC runs memory preparation on CPU without an additional model service. Your
+chosen DSH model still performs the assistant's reasoning and answer generation.
+Use explicitly saved task notes or separately supplied history; the MCP connection
+does not intercept model requests or replace DSH's active-chat compaction.</p>
+<h2 id="install-from-source">Install from source</h2>
+<p>Requirements: Git, Python 3.10+ and a Node.js version supported by your DSH release
+(the validation uses Node.js 24). Configure your model in DSH separately. TOMC
+itself needs no model API key.</p>
+<p>Clone the <strong>public software repository</strong>:</p>
+<pre><code class="language-sh">git clone https://github.com/ZipengWu365/TOMC.git
+cd TOMC
+python -m venv .venv
+</code></pre>
+<p>On Windows PowerShell, run:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m pip install -e '.[mcp]'
+.\.venv\Scripts\python.exe scripts/setup_deepseek.py --output &quot;$env:USERPROFILE/.tomc/deepseek/tomc.cordis.yml&quot;
+npx.cmd --yes @deepseek-ai/dsh@0.2.1-rc.5 web --patch &quot;$env:USERPROFILE/.tomc/deepseek/tomc.cordis.yml&quot;
+</code></pre>
+<p>On macOS/Linux, the equivalent commands are:</p>
+<pre><code class="language-sh">.venv/bin/python -m pip install -e '.[mcp]'
+.venv/bin/python scripts/setup_deepseek.py --output &quot;$HOME/.tomc/deepseek/tomc.cordis.yml&quot;
+npx --yes @deepseek-ai/dsh@0.2.1-rc.5 web --patch &quot;$HOME/.tomc/deepseek/tomc.cordis.yml&quot;
+</code></pre>
+<p>The overlay contains absolute paths to <strong>your</strong> Python and notebook database.
+Keep the checkout and virtual environment in place. It has no credentials and
+adds only the TOMC MCP entry. The helper writes UTF-8 and refuses to overwrite
+an existing file; choose a new output filename if regenerating after a move.
+Do not distribute your generated configuration as a portable installer.</p>
+<p>The example pins the DSH version used for validation. DSH is a preview and later
+versions may change integration APIs. The macOS/Linux commands are provided as
+equivalents; consult the validation record for actually tested platforms.</p>
+<p>For an already-installed DSH CLI, replace <code>npx ... web</code> with <code>dsh web</code>. Keep
+<code>--patch</code> before app-specific flags such as <code>--port</code>. Launch with that overlay
+each time. For persistent integration, merge its single <code>insert</code> operation into
+your existing profile's <code>cordis.patch.yml</code>; never replace an existing patch file
+that may contain other configuration. Do not register TOMC twice in one profile.</p>
+<p>For a separate notebook database, add <code>--store /absolute/path/memory.sqlite3</code>
+when generating the overlay. To share notes with another assistant, explicitly
+choose the same database file in both clients. Default storage is
+<code>~/.tomc/memory.sqlite3</code>, unless <code>TOMC_MEMORY_PATH</code> is configured.</p>
+<h2 id="verify-in-two-fresh-dsh-sessions">Verify in two fresh DSH sessions</h2>
+<p>Open the authenticated local URL printed by DSH and configure a working model.
+Allow the requested TOMC calls through DSH's normal permission prompts.</p>
+<ol>
+<li>In session A, send:</li>
+</ol>
+<blockquote>
+<p>Use mcp__tomc__remember_memory to save a notebook named dsh-demo:
+Project Lark uses port 4317. Keep the public API unchanged. Pagination tests
+are still pending. Show whether the tool succeeded.</p>
+</blockquote>
+<ol>
+<li>Create a <strong>new session</strong> in the same DSH profile, without copying the earlier
+   conversation, and send:</li>
+</ol>
+<blockquote>
+<p>Use mcp__tomc__recall_memory on notebook dsh-demo. What port does Project
+Lark use, what must stay unchanged, and which tests remain? Do not guess.</p>
+</blockquote>
+<ol>
+<li>Ask for a next-step checklist based on the recalled constraints. Verify the
+   actual tool result and answer, rather than accepting a claim that it was saved.</li>
+</ol>
+<p><code>mcp__tomc__get_status</code> reports runtime settings, while
+<code>mcp__tomc__list_memories</code> lists available notebook names. To remove the synthetic
+demo note, explicitly ask to forget only <code>dsh-demo</code>.</p>
+<h2 id="data-and-scope">Data and scope</h2>
+<ul>
+<li>Named notebook writes are explicit. TOMC does not automatically collect the
+  entire DSH chat or inspect your other chats.</li>
+<li>Successful preparation and recall save prepared context and task text locally
+  by default in TOMC 0.2.1. Context recording can be disabled in TOMC's controls;
+  existing snapshots remain until deleted. Inspect <code>get_status</code> before use.</li>
+<li>TOMC's processing is local. Tool results selected for the conversation are
+  visible to the DSH model provider, just like other model context.</li>
+<li>Token estimates refer to prepared memory, not full API billing. Short inputs
+  may remain intact; tool overhead can outweigh savings. This integration does
+  not establish a universal quality, latency, or cost improvement.</li>
+<li>Removing <code>--patch</code> disconnects this integration on the next launch but does
+  not delete saved notes or context snapshots.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If tools do not appear, inspect DSH startup errors and check that the configured
+Python still exists and can run <code>-m tomc mcp</code>. Regenerate the overlay if you moved
+the virtual environment. This is an additive Cordis patch, not an <code>mcpServers</code>
+JSON file for another client.</p>
+<p>A DSH page loading while its APIs return HTTP 403 is a browser Host/Origin issue,
+not evidence that TOMC connected. Keep the printed hostname and port consistent,
+and inspect browser/proxy rewriting; do not disable DSH's trust checks. The local
+Windows validation required a loopback port-80 launch because the browser sent
+an Origin without the non-default port. Use <code>--port 80</code> only if available and
+permitted on your system; other machines can use DSH's normal port.</p>
+<p>Upstream references: <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/mcp/mcp-client/README.md">MCP client</a>,
+<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/mcp-memory.md">memory MCP guide</a>,
+<a href="https://github.com/deepseek-ai/deepseek-harness/discussions/2004">community posting rules</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

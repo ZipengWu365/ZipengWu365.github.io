@@ -1,0 +1,8 @@
+package,primary_scope,unified_config_object,unified_result_object,machine_readable_catalog,batch_cli,profiling_path,multivariate_support,maturity_labeling,compact_output
+DeTime,standalone cross-family time-series decomposition,yes,yes,yes,yes,yes,yes,explicit,yes
+statsmodels,classical decomposition and modeling,per-method constructors,shared for STL/MSTL,library metadata,library API,external tooling,limited,implicit,method result
+PyEMD,EMD-family toolkit,family classes,IMF arrays,method state,library API,external tooling,family-specific,family-specific,IMF arrays
+PyWavelets,wavelet toolkit,function arguments,coefficient trees,transform metadata,library API,external tooling,transform-specific,family-specific,coefficients
+PySDKit,signal decomposition toolkit,method-family classes,method-specific,method documentation,library API,external tooling,yes,less explicit,method-specific
+SSALib,SSA specialist toolkit,SSA-specific,SSA-specific,SSA metadata,library API,external tooling,no,focused,SSA results
+sktime,broad time-series ecosystem,estimator parameters,task-specific,runtime estimator registry,library API,external tooling,partial,ecosystem-level,task-specific

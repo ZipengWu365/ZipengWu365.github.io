@@ -1,0 +1,294 @@
+{
+  "audit_date": "2026-07-14",
+  "audit_date_source": "utc-current",
+  "capability_matrix": [
+    {
+      "batch_cli": "yes",
+      "compact_output": "yes",
+      "machine_readable_catalog": "yes",
+      "maturity_labeling": "explicit",
+      "multivariate_support": "yes",
+      "package": "DeTime",
+      "primary_scope": "standalone cross-family time-series decomposition",
+      "profiling_path": "yes",
+      "unified_config_object": "yes",
+      "unified_result_object": "yes"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "method result",
+      "machine_readable_catalog": "library metadata",
+      "maturity_labeling": "implicit",
+      "multivariate_support": "limited",
+      "package": "statsmodels",
+      "primary_scope": "classical decomposition and modeling",
+      "profiling_path": "external tooling",
+      "unified_config_object": "per-method constructors",
+      "unified_result_object": "shared for STL/MSTL"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "IMF arrays",
+      "machine_readable_catalog": "method state",
+      "maturity_labeling": "family-specific",
+      "multivariate_support": "family-specific",
+      "package": "PyEMD",
+      "primary_scope": "EMD-family toolkit",
+      "profiling_path": "external tooling",
+      "unified_config_object": "family classes",
+      "unified_result_object": "IMF arrays"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "coefficients",
+      "machine_readable_catalog": "transform metadata",
+      "maturity_labeling": "family-specific",
+      "multivariate_support": "transform-specific",
+      "package": "PyWavelets",
+      "primary_scope": "wavelet toolkit",
+      "profiling_path": "external tooling",
+      "unified_config_object": "function arguments",
+      "unified_result_object": "coefficient trees"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "method-specific",
+      "machine_readable_catalog": "method documentation",
+      "maturity_labeling": "less explicit",
+      "multivariate_support": "yes",
+      "package": "PySDKit",
+      "primary_scope": "signal decomposition toolkit",
+      "profiling_path": "external tooling",
+      "unified_config_object": "method-family classes",
+      "unified_result_object": "method-specific"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "SSA results",
+      "machine_readable_catalog": "SSA metadata",
+      "maturity_labeling": "focused",
+      "multivariate_support": "no",
+      "package": "SSALib",
+      "primary_scope": "SSA specialist toolkit",
+      "profiling_path": "external tooling",
+      "unified_config_object": "SSA-specific",
+      "unified_result_object": "SSA-specific"
+    },
+    {
+      "batch_cli": "library API",
+      "compact_output": "task-specific",
+      "machine_readable_catalog": "runtime estimator registry",
+      "maturity_labeling": "ecosystem-level",
+      "multivariate_support": "partial",
+      "package": "sktime",
+      "primary_scope": "broad time-series ecosystem",
+      "profiling_path": "external tooling",
+      "unified_config_object": "estimator parameters",
+      "unified_result_object": "task-specific"
+    }
+  ],
+  "comparator_versions": {
+    "PyEMD/EMD-signal": "not installed in local audit environment",
+    "PySDKit": "0.4.25",
+    "PyWavelets": "1.9.0",
+    "SSALib": "not installed in local audit environment",
+    "sktime": "not installed in local audit environment",
+    "statsmodels": "0.14.6"
+  },
+  "evidence_type": "curated feature audit",
+  "family_fairness": [
+    {
+      "de_time_position": "wraps STL and MSTL under one config/result/CLI layer",
+      "family": "classical decomposition",
+      "specialist": "statsmodels",
+      "specialist_deeper_strength": "deeper classical decomposition and statistical modeling"
+    },
+    {
+      "de_time_position": "uses SSA as one core method inside a cross-family workflow layer",
+      "family": "SSA",
+      "specialist": "SSALib",
+      "specialist_deeper_strength": "deeper SSA-only environment with SSA-specific tooling"
+    },
+    {
+      "de_time_position": "exposes EMD and CEEMDAN through the same contract used for other families",
+      "family": "EMD family",
+      "specialist": "PyEMD",
+      "specialist_deeper_strength": "deeper EMD-family tooling"
+    },
+    {
+      "de_time_position": "uses wavelets as one workflow option rather than a wavelet-first toolkit",
+      "family": "wavelet workflows",
+      "specialist": "PyWavelets",
+      "specialist_deeper_strength": "deeper wavelet transforms and transform-specific APIs"
+    },
+    {
+      "de_time_position": "focuses on time-series decomposition workflows, machine-facing contracts, and compact outputs",
+      "family": "unified toolkit layer",
+      "specialist": "PySDKit",
+      "specialist_deeper_strength": "broader signal-decomposition toolkit with optional multivariate backends"
+    }
+  ],
+  "generated_at": "2026-07-14T15:15:44.279658+00:00",
+  "install_matrix": [
+    {
+      "api_docs": "yes",
+      "ci_platforms": "ubuntu, macOS, windows",
+      "coverage_disclosure": "dual report",
+      "docs_website": "GitHub Pages",
+      "github_release": "not verified",
+      "package": "DeTime",
+      "public_release_story": "0.1.3 local source state; publication status unverified",
+      "pypi_path": "not verified",
+      "reproducibility_script": "yes",
+      "tutorials": "yes",
+      "wheels": "yes"
+    },
+    {
+      "api_docs": "yes",
+      "ci_platforms": "yes",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "yes",
+      "github_release": "yes",
+      "package": "statsmodels",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "project-dependent",
+      "tutorials": "yes",
+      "wheels": "yes"
+    },
+    {
+      "api_docs": "partial",
+      "ci_platforms": "project-dependent",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "partial",
+      "github_release": "yes",
+      "package": "PyEMD",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "no",
+      "tutorials": "partial",
+      "wheels": "partial"
+    },
+    {
+      "api_docs": "yes",
+      "ci_platforms": "yes",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "yes",
+      "github_release": "yes",
+      "package": "PyWavelets",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "no",
+      "tutorials": "yes",
+      "wheels": "yes"
+    },
+    {
+      "api_docs": "partial",
+      "ci_platforms": "project-dependent",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "yes",
+      "github_release": "yes",
+      "package": "PySDKit",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "no",
+      "tutorials": "partial",
+      "wheels": "partial"
+    },
+    {
+      "api_docs": "partial",
+      "ci_platforms": "project-dependent",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "yes",
+      "github_release": "yes",
+      "package": "SSALib",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "no",
+      "tutorials": "partial",
+      "wheels": "partial"
+    },
+    {
+      "api_docs": "yes",
+      "ci_platforms": "yes",
+      "coverage_disclosure": "project-dependent",
+      "docs_website": "yes",
+      "github_release": "yes",
+      "package": "sktime",
+      "public_release_story": "yes",
+      "pypi_path": "yes",
+      "reproducibility_script": "project-dependent",
+      "tutorials": "yes",
+      "wheels": "yes"
+    }
+  ],
+  "machine_contract_matrix": [
+    {
+      "artifact_contract": "yes",
+      "cli_schema_command": "yes",
+      "compact_result_modes": "full/summary/meta",
+      "json_schema_assets": "yes",
+      "machine_readable_catalog": "yes",
+      "metadata_shortlist_interface": "yes",
+      "package": "DeTime"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "no",
+      "metadata_shortlist_interface": "no",
+      "package": "statsmodels"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "no",
+      "metadata_shortlist_interface": "no",
+      "package": "PyEMD"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "no",
+      "metadata_shortlist_interface": "no",
+      "package": "PyWavelets"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "no",
+      "metadata_shortlist_interface": "no",
+      "package": "PySDKit"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "no",
+      "metadata_shortlist_interface": "no",
+      "package": "SSALib"
+    },
+    {
+      "artifact_contract": "no",
+      "cli_schema_command": "no",
+      "compact_result_modes": "no",
+      "json_schema_assets": "no",
+      "machine_readable_catalog": "yes-runtime-registry",
+      "metadata_shortlist_interface": "no",
+      "package": "sktime"
+    }
+  ],
+  "release_state": "local-unverified",
+  "release_target_version": "0.1.3",
+  "runtime_memory_boundary": "Feature audit only; no cross-package runtime or peak-memory ranking is claimed.",
+  "runtime_snapshot_csv": "docs\\assets\\generated\\evidence\\performance_snapshot.csv"
+}

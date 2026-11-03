@@ -1,0 +1,33 @@
+{
+  "package": "detime-toolkit",
+  "release_target": "0.1.3",
+  "audit_date": "2026-07-14",
+  "python": "3.11.9",
+  "platform": "Windows",
+  "source_import_policy": "The test bootstrap prepends the checkout source tree while using the installed native extension; coverage path mapping normalizes files to src/detime.",
+  "tests": {
+    "command": "pytest tests --cov=detime",
+    "result": "145 passed, 1 skipped",
+    "warnings": 4
+  },
+  "coverage": {
+    "core_surface": {
+      "config": ".coveragerc",
+      "covered_lines": 1348,
+      "num_statements": 1460,
+      "missing_lines": 112,
+      "percent": 92.33,
+      "json": "coverage_core.json",
+      "denominator": "Selected canonical detime core and maintained-method files; excludes CLI, I/O and visualization presentation layers, deprecated tsdecomp compatibility, optional integrations, and experimental operators."
+    },
+    "package_wide": {
+      "config": ".coveragerc.package",
+      "covered_lines": 3082,
+      "num_statements": 3511,
+      "missing_lines": 429,
+      "percent": 87.78,
+      "json": "coverage_package.json",
+      "denominator": "Broader maintained detime package, including CLI, I/O, visualization, wrappers, methods, schemas, serialization, and profiling; excludes deprecated tsdecomp compatibility and the optional experimental Torch learned-priors module."
+    }
+  }
+}

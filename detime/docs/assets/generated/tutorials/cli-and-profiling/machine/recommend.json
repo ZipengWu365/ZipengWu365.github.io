@@ -1,0 +1,388 @@
+{
+  "recommendations": [
+    {
+      "metadata": {
+        "alias_of": null,
+        "assumptions": [
+          "expects a 2D array with at least two aligned channels",
+          "works best when window and rank reflect the dominant temporal structure",
+          "MSSA should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "claim_scope": "maintained",
+        "dependency_tier": "core",
+        "example_config": {
+          "backend": "auto",
+          "channel_names": [
+            "channel_a",
+            "channel_b",
+            "channel_c"
+          ],
+          "method": "MSSA",
+          "params": {
+            "primary_period": 12,
+            "rank": 6,
+            "window": 24
+          },
+          "speed_mode": "exact"
+        },
+        "family": "SSA",
+        "implementation": "native-backed",
+        "input_mode": "multivariate",
+        "maturity": "maintained",
+        "min_length": 24,
+        "multivariate_support": "shared-model",
+        "name": "MSSA",
+        "native_backed": true,
+        "not_recommended_for": [
+          "single-series workflows where a univariate core method is sufficient",
+          "very short series that cannot support a sensible window length"
+        ],
+        "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.elementary"
+        ],
+        "package_links": [
+          {
+            "note": "SSA-focused package; useful comparison point for SSA-family workflows.",
+            "title": "SSALib",
+            "url": "https://github.com/ADSCIAN/ssalib"
+          }
+        ],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Shared embedding window length. When omitted, max(4, T // 4), clipped to [2, T - 1]. Omit the parameter to select this rule; explicit null is not accepted.",
+            "name": "window",
+            "required": false,
+            "type": "int"
+          },
+          {
+            "common": true,
+            "default": null,
+            "description": "Number of shared elementary components. When omitted, min(10, window * channels, T - window + 1). Explicit null is not accepted.",
+            "name": "rank",
+            "required": false,
+            "type": "int"
+          },
+          {
+            "common": true,
+            "default": null,
+            "description": "Dominant shared period used by automatic grouping.",
+            "name": "primary_period",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 1.0,
+            "description": "Sampling frequency used by frequency-based grouping.",
+            "name": "fs",
+            "required": false,
+            "type": "float"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Explicit component indexes assigned to trend.",
+            "name": "trend_components",
+            "required": false,
+            "type": "list[int] | None"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Explicit component indexes assigned to season.",
+            "name": "season_components",
+            "required": false,
+            "type": "list[int] | None"
+          },
+          {
+            "common": false,
+            "default": 0.25,
+            "description": "Relative frequency tolerance for automatic seasonal grouping.",
+            "name": "season_freq_tol_ratio",
+            "required": false,
+            "type": "float"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Low-frequency threshold for automatic trend grouping.",
+            "name": "trend_freq_threshold",
+            "required": false,
+            "type": "float | None"
+          },
+          {
+            "common": false,
+            "default": 12,
+            "description": "Fast native mode iteration count when speed_mode='fast'.",
+            "name": "power_iterations",
+            "required": false,
+            "type": "int"
+          }
+        ],
+        "recommended_for": [
+          "multivariate component recovery",
+          "shared seasonal structure across channels",
+          "accuracy-first multivariate workflows"
+        ],
+        "references": [
+          {
+            "note": "Primary SSA/MSSA reference used for the multivariate extension.",
+            "title": "Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series",
+            "url": "https://link.springer.com/book/10.1007/978-3-662-62436-4"
+          }
+        ],
+        "summary": "Multivariate SSA for shared-structure decomposition across channels.",
+        "typical_failure_modes": [
+          "too few channels for MSSA",
+          "window or rank too small for the shared structure"
+        ]
+      },
+      "method": "MSSA",
+      "rank": 1,
+      "reason_codes": [
+        "maturity:maintained",
+        "native_backed",
+        "shared_multivariate",
+        "accuracy_shortlist",
+        "multivariate_accuracy_bonus",
+        "long_series_native"
+      ],
+      "score": 15.75,
+      "summary": "Multivariate SSA for shared-structure decomposition across channels."
+    },
+    {
+      "metadata": {
+        "alias_of": null,
+        "assumptions": [
+          "treats each channel independently under one shared method surface",
+          "works best when one seasonal period or block structure is reasonably stable",
+          "STDR should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "claim_scope": "maintained",
+        "dependency_tier": "core",
+        "example_config": {
+          "backend": "auto",
+          "method": "STDR",
+          "params": {
+            "period": 12
+          },
+          "speed_mode": "exact"
+        },
+        "family": "SeasonalTrend",
+        "implementation": "native-backed",
+        "input_mode": "channelwise",
+        "maturity": "maintained",
+        "min_length": 8,
+        "multivariate_support": "channelwise",
+        "name": "STDR",
+        "native_backed": true,
+        "not_recommended_for": [
+          "problems that require one shared latent model across channels",
+          "series where the dominant period is unknown and cannot be inferred reliably"
+        ],
+        "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.dispersion",
+          "components.seasonal_shape"
+        ],
+        "package_links": [],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Seasonal period in samples. If omitted, DeTime estimates it.",
+            "name": "period",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 128,
+            "description": "Upper bound for the inferred seasonal period when period is omitted.",
+            "name": "max_period_search",
+            "required": false,
+            "type": "int"
+          },
+          {
+            "common": false,
+            "default": 1e-12,
+            "description": "Centered blocks with L2 norm at or below this threshold receive zero dispersion; this does not apply robust weighting.",
+            "name": "eps",
+            "required": false,
+            "type": "float"
+          }
+        ],
+        "recommended_for": [
+          "shared normalized seasonal shapes with cycle-dependent dispersion",
+          "channelwise multivariate workflows",
+          "native-backed seasonal structure recovery"
+        ],
+        "references": [
+          {
+            "note": "Primary reference for STD and STDR; STDR adds an irregular remainder to the seasonal-trend-dispersion representation.",
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398"
+          }
+        ],
+        "summary": "Seasonal-trend-dispersion decomposition with an averaged cycle shape and a remainder.",
+        "typical_failure_modes": [
+          "period omitted or mis-specified",
+          "heavy structural breaks that violate shared seasonal assumptions"
+        ]
+      },
+      "method": "STDR",
+      "rank": 2,
+      "reason_codes": [
+        "maturity:maintained",
+        "native_backed",
+        "channelwise_multivariate",
+        "accuracy_shortlist",
+        "long_series_native"
+      ],
+      "score": 11.75,
+      "summary": "Seasonal-trend-dispersion decomposition with an averaged cycle shape and a remainder."
+    },
+    {
+      "metadata": {
+        "alias_of": null,
+        "assumptions": [
+          "treats each channel independently under one shared method surface",
+          "works best when one seasonal period or block structure is reasonably stable",
+          "STD should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "claim_scope": "maintained",
+        "dependency_tier": "core",
+        "example_config": {
+          "backend": "auto",
+          "method": "STD",
+          "params": {
+            "period": 12
+          },
+          "speed_mode": "exact"
+        },
+        "family": "SeasonalTrend",
+        "implementation": "native-backed",
+        "input_mode": "channelwise",
+        "maturity": "maintained",
+        "min_length": 8,
+        "multivariate_support": "channelwise",
+        "name": "STD",
+        "native_backed": true,
+        "not_recommended_for": [
+          "problems that require one shared latent model across channels",
+          "series where the dominant period is unknown and cannot be inferred reliably"
+        ],
+        "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.dispersion",
+          "components.seasonal_shape"
+        ],
+        "package_links": [],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Seasonal period in samples. If omitted, DeTime estimates it.",
+            "name": "period",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 128,
+            "description": "Upper bound for the inferred seasonal period when period is omitted.",
+            "name": "max_period_search",
+            "required": false,
+            "type": "int"
+          },
+          {
+            "common": false,
+            "default": 1e-12,
+            "description": "Centered blocks with L2 norm at or below this threshold receive zero dispersion.",
+            "name": "eps",
+            "required": false,
+            "type": "float"
+          }
+        ],
+        "recommended_for": [
+          "fast seasonal-trend baselines",
+          "channelwise multivariate workflows",
+          "native-backed production paths"
+        ],
+        "references": [
+          {
+            "note": "Primary reference for STD and STDR; STDR adds an irregular remainder to the seasonal-trend-dispersion representation.",
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398"
+          }
+        ],
+        "summary": "Fast seasonal-trend decomposition with dispersion-aware diagnostics.",
+        "typical_failure_modes": [
+          "period omitted or mis-specified",
+          "shared seasonal structure changing too quickly across cycles"
+        ]
+      },
+      "method": "STD",
+      "rank": 3,
+      "reason_codes": [
+        "maturity:maintained",
+        "native_backed",
+        "channelwise_multivariate",
+        "long_series_native"
+      ],
+      "score": 9.25,
+      "summary": "Fast seasonal-trend decomposition with dispersion-aware diagnostics."
+    }
+  ],
+  "rejected_methods": {
+    "AMD_BLOCK": "univariate_only",
+    "AUTOFORMER_BLOCK": "univariate_only",
+    "CEEMDAN": "univariate_only",
+    "DELELSTM_BLOCK": "univariate_only",
+    "DLINEAR_BLOCK": "univariate_only",
+    "EMD": "univariate_only",
+    "FREQMOE_BLOCK": "univariate_only",
+    "GABOR_CLUSTER": "univariate_only",
+    "INPARFORMER_BLOCK": "univariate_only",
+    "LEDDAM_BLOCK": "univariate_only",
+    "MA_BASELINE": "univariate_only",
+    "MEMD": "optional_backend_disabled",
+    "MOVING_AVERAGE_DECOMPOSITION_BLOCK": "univariate_only",
+    "MSTL": "univariate_only",
+    "MVMD": "optional_backend_disabled",
+    "NBEATS_INTERPRETABLE": "univariate_only",
+    "PARSIMONY_BLOCK": "univariate_only",
+    "ROBUST_STL": "univariate_only",
+    "SSA": "univariate_only",
+    "STL": "univariate_only",
+    "ST_MTM_BLOCK": "univariate_only",
+    "TIMEKAN_BLOCK": "univariate_only",
+    "TIMES2D_BLOCK": "univariate_only",
+    "VMD": "univariate_only",
+    "WAVEFORM_BLOCK": "univariate_only",
+    "WAVELET": "univariate_only",
+    "WAVELETMIXER_BLOCK": "univariate_only",
+    "XPATCH_BLOCK": "univariate_only"
+  },
+  "request": {
+    "allow_experimental": false,
+    "allow_optional_backends": false,
+    "channels": 3,
+    "length": 192,
+    "prefer": "accuracy",
+    "require_native": false,
+    "top_k": 5
+  }
+}

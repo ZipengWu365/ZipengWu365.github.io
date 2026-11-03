@@ -1,20 +1,136 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TOMC Memory（汤姆 C）插件官网地址、下载与安装 | GitHub</title>
-  <meta name="description" content="TOMC Memory（汤姆 C）插件的官方主页已统一到 GitHub。在同一仓库查看源码、下载插件并阅读 Codex、Claude Code 和 MCP 客户端中文安装教程。">
-  <link rel="canonical" href="https://github.com/ZipengWu365/TOMC">
-  <meta http-equiv="refresh" content="0; url=https://github.com/ZipengWu365/TOMC">
+  <title>TOMC Memory: Context Compression &amp; Task Memory | Zipeng Wu</title>
+  <meta name="description" content="TOMC Memory prepares compact context on CPU and recalls explicitly saved project notes. Explore the Python API, MCP integrations, practical guides and recorded examples.">
+  <meta name="author" content="Zipeng Wu">
+  <link rel="canonical" href="https://zipengwu.me/tomc/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=20261010-tomc">
+  <link rel="stylesheet" href="/tomc/guides/guide.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Zipeng Wu">
+  <meta property="og:title" content="TOMC Memory: Context Compression &amp; Task Memory">
+  <meta property="og:description" content="Prepare compact context on CPU, recall saved project notes, and inspect the result before your next model request.">
+  <meta property="og:url" content="https://zipengwu.me/tomc/">
+  <meta property="og:image" content="https://zipengwu.me/assets/img/tomc-demo-poster.jpg">
+  <meta property="og:image:alt" content="TOMC Memory context preparation and task-memory overview">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/tomc/#webpage",
+        "url": "https://zipengwu.me/tomc/",
+        "name": "TOMC Memory: Context Compression and Task Memory",
+        "description": "Project overview, documentation, practical guides and recorded examples for TOMC Memory.",
+        "mainEntity": {"@id": "https://zipengwu.me/tomc/#software"},
+        "author": {"@id": "https://zipengwu.me/#person"},
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/tomc/#software",
+        "name": "TOMC Memory",
+        "alternateName": "Task-Oriented Memory Compilation",
+        "description": "CPU context preparation and explicitly saved task memory through a Python API and MCP server.",
+        "url": "https://zipengwu.me/tomc/",
+        "codeRepository": "https://github.com/ZipengWu365/TOMC",
+        "programmingLanguage": "Python",
+        "license": "https://github.com/ZipengWu365/TOMC/blob/main/LICENSE",
+        "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"},
+        "sameAs": ["https://github.com/ZipengWu365/TOMC"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Zipeng Wu", "item": "https://zipengwu.me/"},
+          {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://zipengwu.me/software.html"},
+          {"@type": "ListItem", "position": 3, "name": "TOMC Memory", "item": "https://zipengwu.me/tomc/"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <main>
-    <h1>TOMC Memory 插件官方主页</h1>
-    <p>官网、插件下载和安装教程已统一到 GitHub，正在前往官方仓库。</p>
-    <p><a href="https://github.com/ZipengWu365/TOMC">TOMC 插件官网地址：https://github.com/ZipengWu365/TOMC</a></p>
-    <p><a href="https://github.com/ZipengWu365/TOMC/blob/main/README_zh.md">中文下载安装教程</a></p>
-    <p lang="en">The official TOMC Memory homepage, downloads and installation instructions are now on GitHub.</p>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/tomc/" aria-current="page">TOMC Memory</a>
+      <nav aria-label="Primary navigation">
+        <a href="/software.html">Projects</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tomc/docs/">Docs</a>
+        <a href="https://github.com/ZipengWu365/TOMC">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="content" class="page guide-page">
+    <p class="eyebrow">Research software · CPU context preparation</p>
+    <h1>TOMC Memory</h1>
+    <p class="tagline">Context compression and task memory for AI assistants.</p>
+    <p>TOMC Memory is an open-source tool built on Task-Oriented Memory Compilation. Give it a history, the next task and a memory budget. It selects source text and computes supported state, relation or count records to prepare context for that task. Preparation runs on CPU, with no training or extra model service.</p>
+    <p>Use the Python API in your application, or save and recall project notes through an MCP server in assistants such as Codex and Claude Code.</p>
+    <div class="link-row">
+      <a href="/tomc/docs/assistant_plugin/">Install TOMC Memory</a>
+      <a href="/tomc/docs/">Read the documentation</a>
+      <a href="/tomc/examples/">Inspect recorded examples</a>
+    </div>
+
+    <section aria-labelledby="use-tomc">
+      <h2 id="use-tomc">Two ways to use TOMC</h2>
+      <h3>Prepare context before an API call</h3>
+      <p>Your application sends the prepared context in place of the original history, while preserving its instructions and protocol. The reader model stays the same. Inspect the selected evidence and check answer quality on your own tasks before choosing a smaller budget.</p>
+      <p><a href="/tomc/guides/context-compression-api/">Follow the Python API guide →</a></p>
+      <h3>Resume a project from saved notes</h3>
+      <p>Explicitly save a brief, decisions, constraints and unfinished work with <code>remember_memory</code>, then prepare those notes for the next task with <code>recall_memory</code>. Assistants on the same computer can reuse notes when their TOMC servers open the same local database.</p>
+      <p><a href="/tomc/guides/shared-task-memory/">Try a Codex → Claude Code → Codex handoff →</a></p>
+      <p class="guide-note">TOMC is a research preview. Savings depend on the history, task and budget. The assistant host manages its active chat; use TOMC with separately supplied history or explicitly saved notes. See the documentation for client support, integration behavior and current limitations.</p>
+    </section>
+
+    <section aria-labelledby="guides">
+      <h2 id="guides">Practical guides</h2>
+      <div class="guide-cards">
+        <article class="guide-card">
+          <h3><a href="/tomc/guides/context-compression-api/">Context Compression for LLM APIs with TOMC</a></h3>
+          <p>Run a local example, inspect its evidence and understand what its token counts measure.</p>
+        </article>
+        <article class="guide-card">
+          <h3><a href="/tomc/guides/shared-task-memory/">Reuse Project Notes Across Codex and Claude Code with TOMC</a></h3>
+          <p>Save and recall explicit project notes across sessions and assistants using a shared local notebook.</p>
+        </article>
+        <article class="guide-card">
+          <h3><a href="/tomc/guides/measure-context-savings/">How to Measure Context Compression and AI Agent Memory</a></h3>
+          <p>Compare context size, complete request input, answer quality and workflow cost.</p>
+        </article>
+      </div>
+      <p><a href="/tomc/guides/">Browse the guide collection</a> · <a href="/articles/">Browse articles across all projects</a></p>
+    </section>
+
+    <section aria-labelledby="research-source">
+      <h2 id="research-source">Research, source and releases</h2>
+      <p>The paper, <em>Task-Oriented Memory Compilation: Executable State Representations for Long-Context Language Models</em>, studies context preparation with task-oriented records and selected source text. The repository contains the method description, benchmark results and their protocols.</p>
+      <div class="link-row">
+        <a href="/tomc/docs/paper_results/">Paper and results</a>
+        <a href="https://github.com/ZipengWu365/TOMC">Source code</a>
+        <a href="https://github.com/ZipengWu365/TOMC/releases">Plugin releases</a>
+        <a href="https://github.com/ZipengWu365/TOMC/issues">Issues and feedback</a>
+      </div>
+      <p>Source code, plugin packages and contributions are maintained on GitHub under the MIT License.</p>
+    </section>
+
+    <nav aria-label="Research projects">
+      <h2>More research software</h2>
+      <p><a href="/EchoTime/">EchoTime: time-series similarity</a> · <a href="/detime/">DeTime: time-series decomposition</a> · <a href="/tomc/" aria-current="page">TOMC Memory</a></p>
+    </nav>
   </main>
+  <footer class="site-footer">
+    <div class="footer-inner">By <a href="/">Zipeng Wu</a> · <a href="/software.html">Projects</a> · <a href="/articles/">Articles</a> · TOMC Memory</div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/desktop_companion/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Desktop companion - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Desktop companion - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/desktop_companion/#article", "url": "https://zipengwu.me/tomc/docs/desktop_companion/", "headline": "Desktop companion - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/desktop_companion/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_plugin_zh/" class="dropdown-item">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../assistant_plugin_zh/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../macos_usage/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tomc-desktop-companion-beta" class="nav-link">TOMC desktop companion (beta)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#install-on-windows" class="nav-link">Install on Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#install-on-macos" class="nav-link">Install on macOS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-the-cat" class="nav-link">Using the cat</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#what-to-expect" class="nav-link">What to expect</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#your-data-and-privacy" class="nav-link">Your data and privacy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#update-and-uninstall-windows" class="nav-link">Update and uninstall (Windows)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#chinese-quickstart" class="nav-link">Chinese quickstart</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tomc-desktop-companion-beta">TOMC desktop companion (beta)</h1>
+<p><a href="#chinese-quickstart">中文速查</a> · <a href="../macos_usage/">macOS details</a> · <a href="../assistant_plugin/">Install the assistant plugins</a></p>
+<p>The desktop companion is a small cat on your screen. It shows how many tokens TOMC has saved,
+what they are worth at each model's listed input price, and which conversations they came from.
+It also keeps the contexts TOMC prepared, organized by your original conversation names, so you can
+copy a continuation prompt for another assistant or move a context to another computer.</p>
+<p>On Windows you can also turn on <strong>automatic request processing</strong>: a local gateway that compresses
+eligible old history in Codex and Claude Code requests before they leave your computer. Without the
+gateway, the cat counts savings from TOMC's own tools (<code>prepare_context</code>, <code>recall_memory</code>).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Windows</th>
+<th>macOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desktop cat, savings dashboard, context library, analysis report</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Automatic request processing for Codex and Claude Code</td>
+<td>Yes (optional)</td>
+<td>Not yet</td>
+</tr>
+<tr>
+<td>Installer</td>
+<td><code>scripts/install_windows_companion.py</code></td>
+<td><code>scripts/install_macos_pet.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="install-on-windows">Install on Windows</h2>
+<p>You need Windows 10 or 11, Python 3.10 or newer (<a href="https://www.python.org/downloads/">python.org</a>
+or the Microsoft Store) and this repository:</p>
+<pre><code class="language-powershell">git clone https://github.com/ZipengWu365/TOMC.git
+cd TOMC
+py scripts\install_windows_companion.py
+</code></pre>
+<p>The first command only shows the plan; nothing changes. Then install the cat:</p>
+<pre><code class="language-powershell">py scripts\install_windows_companion.py --install
+</code></pre>
+<p>or the cat plus automatic request processing:</p>
+<pre><code class="language-powershell">py scripts\install_windows_companion.py --install --gateway
+</code></pre>
+<p>The installer:</p>
+<ul>
+<li>creates a private Python environment for the cat in <code>%USERPROFILE%\.codex\tomc</code> and downloads Qt
+  (PySide6-Essentials) into it;</li>
+<li>copies TOMC from this checkout, so the cat keeps working if you move or delete the checkout;</li>
+<li>adds <strong>TOMC</strong> to the Start menu and starts the cat at Windows sign-in;</li>
+<li>starts the cat in the bottom-right corner of the screen.</li>
+</ul>
+<p>With <code>--gateway</code> it also creates the gateway's own environment, starts it at sign-in (hidden),
+waits until it answers on <code>127.0.0.1:43187</code>, and only then points Codex
+(<code>openai_base_url</code> in <code>.codex\config.toml</code>) and Claude Code (<code>ANTHROPIC_BASE_URL</code> in
+<code>.claude\settings.json</code>) at it. Your sign-in, models and other settings are kept, and exact copies
+of both files are saved first. <strong>Quit and reopen Codex and Claude Code</strong> afterwards so new requests
+use the gateway.</p>
+<p>Gateway requirements and choices:</p>
+<ul>
+<li>Codex must be signed in with ChatGPT; API-key Codex setups are not supported by the gateway yet.
+  Open Codex once before installing so <code>.codex\config.toml</code> exists.</li>
+<li><code>--hosts claude</code> (or <code>--hosts codex</code>) routes only one assistant.</li>
+<li>If Codex or Claude Code already uses a custom endpoint, another model provider or a Codex profile,
+  the installer says so and changes nothing.</li>
+</ul>
+<p>The command prints a receipt path. Keep it: it is how you undo the installation.</p>
+<h2 id="install-on-macos">Install on macOS</h2>
+<p>Follow <a href="../macos_usage/#desktop-companion-beta-macos">Desktop companion beta: macOS</a>. It builds a
+local <code>TOMC.app</code> from this checkout; automatic request processing is not available on macOS yet.</p>
+<h2 id="using-the-cat">Using the cat</h2>
+<ul>
+<li><strong>Click the cat</strong> to see tokens saved, money saved per model and the last 14 days. Choose today,
+  the last seven days or all time.</li>
+<li><strong>Analysis ›</strong> opens a report: savings per conversation and per kind of work, a ranked table, how
+  requests were handled, how much each compression removed, context lengths and 30 days of savings.</li>
+<li><strong>All records ›</strong> opens the context library: your conversations under their original names, each
+  saved context with copy, export, rename and delete, and import of a package from another computer.</li>
+<li><strong>Right-click the cat</strong> for the menu. To quit, hover over the cat and click the <strong>×</strong> on its head,
+  or choose <strong>Quit TOMC</strong>. Closing other windows never quits the cat; it restarts at sign-in.</li>
+</ul>
+<p>The cat grows through four stages with the length of the contexts it has compressed.</p>
+<h2 id="what-to-expect">What to expect</h2>
+<p>Savings appear only for requests TOMC actually shortens. Codex and Claude Code manage much of their
+context themselves, short histories already fit, and some content formats are not supported yet;
+those requests pass through unchanged, and the analysis report shows how many of each there were.
+Long working sessions benefit most. Amounts are the tokens removed, valued at each model's listed
+input price.</p>
+<h2 id="your-data-and-privacy">Your data and privacy</h2>
+<ul>
+<li>Statistics, saved contexts and settings stay in <code>%USERPROFILE%\.tomc\memory.sqlite3</code>
+  (<code>~/.tomc</code> on macOS). Turn off context recording, or TOMC for one conversation, in
+  <strong>All records › Settings and connections</strong>.</li>
+<li>The gateway listens on <code>127.0.0.1</code> only. Request bodies and sign-in headers are forwarded in memory
+  and never written to disk.</li>
+<li><strong>Send anonymous feedback</strong> in the analysis report shows the complete report first. It contains
+  kinds of work (coding, writing, papers …) and numbers only: no conversation names, content,
+  folders or IDs. It is submitted only when you confirm it on GitHub, as a public pull request
+  under your account. See <a href="https://github.com/ZipengWu365/TOMC/tree/main/feedback">feedback/README.md</a>.</li>
+</ul>
+<h2 id="update-and-uninstall-windows">Update and uninstall (Windows)</h2>
+<p>To update the cat, update the checkout (<code>git pull</code>) and run the installer again with <code>--install</code>.
+The previous copy is kept in <code>%USERPROFILE%\.codex\tomc\archive</code>. An existing gateway is updated with
+<code>py scripts\patch_gateway_runtime.py --runtime &lt;gateway folder&gt;</code> (preview first, then <code>--install</code>).</p>
+<p>To uninstall:</p>
+<pre><code class="language-powershell">py scripts\install_windows_companion.py --uninstall &quot;&lt;receipt path&gt;&quot;
+</code></pre>
+<p>This restores the Codex and Claude Code settings it changed, stops the cat and the gateway, and
+removes the shortcuts and the programs it installed. If you have edited those settings since, it
+stops and says so instead of overwriting your changes. Your data in <code>.tomc</code> is kept. Receipts are
+under <code>%USERPROFILE%\.codex\tomc\archive\windows-install-*</code>.</p>
+<h2 id="chinese-quickstart">Chinese quickstart</h2>
+<p>桌面小猫显示 TOMC 节省了多少 token、按各模型输入价值多少钱、来自哪些对话，并按原对话名整理压缩后的上下文，可以复制接续提示词交给别的 Agent，或导出到另一台电脑。Windows 上还可以开启自动请求处理：本机网关在请求发出前压缩 Codex 和 Claude Code 中符合条件的旧历史。macOS 暂不支持自动请求处理。</p>
+<p>Windows 安装（需要 Python 3.10+ 和本仓库）：</p>
+<pre><code class="language-powershell">git clone https://github.com/ZipengWu365/TOMC.git
+cd TOMC
+py scripts\install_windows_companion.py                      # 只预览，不做任何修改
+py scripts\install_windows_companion.py --install            # 安装小猫
+py scripts\install_windows_companion.py --install --gateway  # 小猫 + 自动请求处理
+</code></pre>
+<p>开启自动请求处理后，退出并重新打开 Codex 和 Claude Code。Codex 需要用 ChatGPT 登录（暂不支持 API key 方式）；<code>--hosts claude</code> 只接入 Claude Code。安装会打印回执路径，卸载时用：</p>
+<pre><code class="language-powershell">py scripts\install_windows_companion.py --uninstall &quot;&lt;回执路径&gt;&quot;
+</code></pre>
+<p>卸载会恢复它改过的 Codex / Claude Code 设置、移除快捷方式和安装的程序，保留 <code>.tomc</code> 里的数据；如果之后你手动改过这些设置，它会停下来说明，不覆盖你的修改。macOS 安装见 <a href="../macos_usage/#desktop-companion-beta-macos">macOS 说明</a>。</p>
+<p>使用：点小猫看节省的 token 和钱；「分析报告 ›」看各对话和工作类型的节省；「全部记录 ›」管理上下文。退出请把鼠标移到小猫上，点猫头上的 ×，或右键选「退出 TOMC」；关闭其他窗口不会退出小猫。数据都保存在本机；「匿名提交反馈」只提交工作类型和数字，提交前会先给你看完整内容。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

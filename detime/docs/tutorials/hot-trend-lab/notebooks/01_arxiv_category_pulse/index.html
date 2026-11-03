@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+  <title>01 arXiv Category Pulse | DeTime</title>
+
+        <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../../../stylesheets/brand.css" rel="stylesheet">
+        <link href="../../../../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="01 arXiv Category Pulse: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="01 arXiv Category Pulse | DeTime">
+  <meta property="og:description" content="01 arXiv Category Pulse: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="01 arXiv Category Pulse | DeTime">
+  <meta name="twitter:description" content="01 arXiv Category Pulse: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/#webpage",
+        "url": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/",
+        "name": "01 arXiv Category Pulse | DeTime",
+        "description": "01 arXiv Category Pulse: DeTime Python and CLI time-series decomposition documentation, examples and reference.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/#article", "url": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/", "headline": "01 arXiv Category Pulse | DeTime", "mainEntityOfPage": "https://zipengwu.me/detime/docs/tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../../../../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../../../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../../../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../../../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../../../../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../../../univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../../multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../../../cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../../../../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../../quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../../../quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../../data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../../arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../../open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../../wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../../release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../../../../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../../../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../../../../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../../../../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../../../../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../../../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../../../../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../../../../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../00_hot_trend_lab_overview/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../02_arxiv_agent_research_pulse/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#arxiv-category-pulse" class="nav-link">arXiv Category Pulse</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#executed-notebook" class="nav-link">Executed Notebook</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-define-the-category-watchlist" class="nav-link">1. Define the category watchlist</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-fetch-monthly-counts" class="nav-link">2. Fetch monthly counts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-audit-the-source-table" class="nav-link">3. Audit the source table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-decompose-counts-with-detime" class="nav-link">4. Decompose counts with DeTime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-rank-fields-by-trend-and-residual-shock" class="nav-link">5. Rank fields by trend and residual shock</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-arxiv-category-trend-shock-scatter" class="nav-link">Visualization: arXiv category trend shock scatter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-arxiv-category-component-panels" class="nav-link">Visualization: arXiv category component panels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-top-residual-events" class="nav-link">6. Top residual events</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-arxiv-category-residual-heatmap" class="nav-link">Visualization: arXiv category residual heatmap</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-article-ready-language" class="nav-link">7. Article-ready language</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- Generated by scripts/generate_column_notebook_pages.py; do not edit manually. -->
+<h1 id="arxiv-category-pulse">arXiv Category Pulse</h1>
+<div class="gallery-note notebook-transcript-note">
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb"><code>examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+</div>
+
+<h2 id="executed-notebook">Executed Notebook</h2>
+<p>This notebook counts real arXiv submissions by category and decomposes the resulting monthly count series.</p>
+<p>Use it for articles such as:</p>
+<ul>
+<li>Which AI fields are actually accelerating?</li>
+<li>Is <code>cs.CL</code> still rising after the LLM boom?</li>
+<li>Are biology and finance categories showing durable AI-adjacent growth?</li>
+</ul>
+<p>Data source: arXiv API.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [1]</div>
+
+
+<pre><code class="language-python">from pathlib import Path
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+from examples.hot_trends.data import (
+    HotTrendDataError,
+    append_real_snapshot,
+    build_arxiv_monthly_counts,
+    fetch_coingecko_market_chart,
+    fetch_defillama_stablecoin_chains,
+    fetch_github_repo_metadata,
+    fetch_github_stargazers,
+    fetch_huggingface_models,
+    fetch_wikipedia_pageviews,
+    source_audit_table,
+)
+from examples.hot_trends.decomposition import (
+    component_summary,
+    decompose_table,
+    editorial_priority,
+    residual_event_table,
+)
+from examples.hot_trends.scoring import article_publication_phrasing
+
+pd.set_option(&quot;display.max_columns&quot;, 80)
+pd.set_option(&quot;display.max_rows&quot;, 80)
+plt.rcParams.update({&quot;axes.grid&quot;: True})
+
+CACHE_DIR = Path(&quot;examples/hot_trends/cache&quot;)
+OUTPUT_DIR = Path(&quot;examples/hot_trends/outputs&quot;)
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+def save_table(df, name):
+    path = OUTPUT_DIR / f&quot;{name}.csv&quot;
+    df.to_csv(path, index=False)
+    print(f&quot;saved: {path.as_posix()}&quot;)
+</code></pre>
+
+</div>
+
+<h2 id="1-define-the-category-watchlist">1. Define the category watchlist</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [2]</div>
+
+
+<pre><code class="language-python">queries = {
+    &quot;cs.AI&quot;: &quot;cat:cs.AI&quot;,
+    &quot;cs.LG&quot;: &quot;cat:cs.LG&quot;,
+    &quot;cs.CL&quot;: &quot;cat:cs.CL&quot;,
+    &quot;cs.CV&quot;: &quot;cat:cs.CV&quot;,
+    &quot;stat.ML&quot;: &quot;cat:stat.ML&quot;,
+    &quot;q-bio.QM&quot;: &quot;cat:q-bio.QM&quot;,
+    &quot;q-fin.ST&quot;: &quot;cat:q-fin.ST&quot;,
+    &quot;econ.EM&quot;: &quot;cat:econ.EM&quot;,
+}
+watchlist = pd.DataFrame([{&quot;series&quot;: k, &quot;query&quot;: v} for k, v in queries.items()])
+watchlist
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>series</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>cs.LG</td>
+      <td>cat:cs.LG</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>cs.CL</td>
+      <td>cat:cs.CL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>cs.CV</td>
+      <td>cat:cs.CV</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>stat.ML</td>
+      <td>cat:stat.ML</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>q-bio.QM</td>
+      <td>cat:q-bio.QM</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>q-fin.ST</td>
+      <td>cat:q-fin.ST</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>econ.EM</td>
+      <td>cat:econ.EM</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="2-fetch-monthly-counts">2. Fetch monthly counts</h2>
+<p>The default window is intentionally modest so the notebook can run without hammering the API. Increase the window for a full article.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [3]</div>
+
+
+<pre><code class="language-python">START_MONTH = &quot;2025-01-01&quot;
+END_MONTH = &quot;2026-05-01&quot;
+SLEEP_SECONDS = 3.0
+
+cache_path = CACHE_DIR / f&quot;arxiv_category_counts_{START_MONTH}_{END_MONTH}.csv&quot;
+if cache_path.exists():
+    counts = pd.read_csv(cache_path, parse_dates=[&quot;month&quot;])
+else:
+    counts = build_arxiv_monthly_counts(queries, start_month=START_MONTH, end_month=END_MONTH, sleep_seconds=SLEEP_SECONDS)
+    counts.to_csv(cache_path, index=False)
+counts.head(16)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>series</th>
+      <th>query</th>
+      <th>count</th>
+      <th>source</th>
+      <th>access_date</th>
+      <th>data_quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>2485</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-02-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3761</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-03-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3406</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-04-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3031</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-05-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4805</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2025-06-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3949</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2025-07-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3474</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2025-08-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3825</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2025-09-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4260</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2025-10-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4844</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2025-11-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3919</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2025-12-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>3374</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2026-01-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4201</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2026-02-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4448</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2026-03-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>5018</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2026-04-01</td>
+      <td>cs.AI</td>
+      <td>cat:cs.AI</td>
+      <td>4784</td>
+      <td>arXiv API</td>
+      <td>2026-05-22</td>
+      <td>public_api_snapshot</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="3-audit-the-source-table">3. Audit the source table</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
+
+
+<pre><code class="language-python">audit = source_audit_table(counts, value_col=&quot;count&quot;, entity_col=&quot;series&quot;, time_col=&quot;month&quot;)
+audit
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>series</th>
+      <th>first_timestamp</th>
+      <th>last_timestamp</th>
+      <th>observations</th>
+      <th>missing_ratio</th>
+      <th>min_value</th>
+      <th>max_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>cs.AI</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>2485.0</td>
+      <td>5018.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>cs.CL</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>1312.0</td>
+      <td>2954.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>cs.CV</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>2052.0</td>
+      <td>4059.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>cs.LG</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>3000.0</td>
+      <td>5054.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>econ.EM</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>48.0</td>
+      <td>112.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>q-bio.QM</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>91.0</td>
+      <td>153.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>q-fin.ST</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>16.0</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>stat.ML</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>17</td>
+      <td>0.0</td>
+      <td>344.0</td>
+      <td>767.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="4-decompose-counts-with-detime">4. Decompose counts with DeTime</h2>
+<p>For monthly counts, period 12 is the first cycle to test. The method is <code>MA_BASELINE</code> by default because it is built into DeTime and keeps the tutorial dependency-light.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+
+<pre><code class="language-python">components = decompose_table(
+    counts,
+    entity_col=&quot;series&quot;,
+    time_col=&quot;month&quot;,
+    value_col=&quot;count&quot;,
+    method=&quot;MA_BASELINE&quot;,
+    period=12,
+    trend_window=5,
+    transform=&quot;log1p&quot;,
+)
+components.head(16)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>series</th>
+      <th>observed</th>
+      <th>trend</th>
+      <th>season</th>
+      <th>residual</th>
+      <th>method</th>
+      <th>period</th>
+      <th>transform</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-01</td>
+      <td>cs.AI</td>
+      <td>7.818430</td>
+      <td>4.836945</td>
+      <td>0.918014</td>
+      <td>2.063471</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-02-01</td>
+      <td>cs.AI</td>
+      <td>8.232706</td>
+      <td>6.440340</td>
+      <td>0.332074</td>
+      <td>1.460292</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-03-01</td>
+      <td>cs.AI</td>
+      <td>8.133587</td>
+      <td>8.135864</td>
+      <td>-0.532397</td>
+      <td>0.530121</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-04-01</td>
+      <td>cs.AI</td>
+      <td>8.016978</td>
+      <td>8.228472</td>
+      <td>0.173453</td>
+      <td>-0.384948</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-05-01</td>
+      <td>cs.AI</td>
+      <td>8.477620</td>
+      <td>8.212601</td>
+      <td>1.214337</td>
+      <td>-0.949318</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2025-06-01</td>
+      <td>cs.AI</td>
+      <td>8.281471</td>
+      <td>8.235799</td>
+      <td>-0.532441</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2025-07-01</td>
+      <td>cs.AI</td>
+      <td>8.153350</td>
+      <td>8.303855</td>
+      <td>-0.728619</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2025-08-01</td>
+      <td>cs.AI</td>
+      <td>8.249575</td>
+      <td>8.305471</td>
+      <td>-0.634010</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2025-09-01</td>
+      <td>cs.AI</td>
+      <td>8.357259</td>
+      <td>8.303947</td>
+      <td>-0.524801</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2025-10-01</td>
+      <td>cs.AI</td>
+      <td>8.485703</td>
+      <td>8.298107</td>
+      <td>-0.390518</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2025-11-01</td>
+      <td>cs.AI</td>
+      <td>8.273847</td>
+      <td>8.316855</td>
+      <td>-0.621121</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2025-12-01</td>
+      <td>cs.AI</td>
+      <td>8.124151</td>
+      <td>8.325490</td>
+      <td>-0.779453</td>
+      <td>0.578113</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2026-01-01</td>
+      <td>cs.AI</td>
+      <td>8.343316</td>
+      <td>8.332547</td>
+      <td>0.918014</td>
+      <td>-0.907245</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2026-02-01</td>
+      <td>cs.AI</td>
+      <td>8.400435</td>
+      <td>8.372426</td>
+      <td>0.332074</td>
+      <td>-0.304065</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2026-03-01</td>
+      <td>cs.AI</td>
+      <td>8.520986</td>
+      <td>8.427277</td>
+      <td>-0.532397</td>
+      <td>0.626106</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2026-04-01</td>
+      <td>cs.AI</td>
+      <td>8.473241</td>
+      <td>6.758614</td>
+      <td>0.173453</td>
+      <td>1.541174</td>
+      <td>MA_BASELINE</td>
+      <td>12</td>
+      <td>log1p</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="5-rank-fields-by-trend-and-residual-shock">5. Rank fields by trend and residual shock</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
+
+
+<pre><code class="language-python">summary = component_summary(components, entity_col=&quot;series&quot;, time_col=&quot;month&quot;)
+priority = editorial_priority(summary, entity_col=&quot;series&quot;)
+priority
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>series</th>
+      <th>observations</th>
+      <th>first_timestamp</th>
+      <th>last_timestamp</th>
+      <th>trend_last</th>
+      <th>trend_slope_per_step</th>
+      <th>cycle_strength_proxy</th>
+      <th>residual_std</th>
+      <th>max_abs_residual_z</th>
+      <th>method</th>
+      <th>trend_slope_per_step_rank_pct</th>
+      <th>cycle_strength_proxy_rank_pct</th>
+      <th>max_abs_residual_z_rank_pct</th>
+      <th>editorial_priority_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>cs.LG</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>5.017982</td>
+      <td>0.007983</td>
+      <td>-29.718421</td>
+      <td>0.872881</td>
+      <td>62.286532</td>
+      <td>MA_BASELINE</td>
+      <td>0.625</td>
+      <td>0.125</td>
+      <td>0.875</td>
+      <td>0.63750</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>econ.EM</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>2.694439</td>
+      <td>0.025516</td>
+      <td>-3.497653</td>
+      <td>0.479359</td>
+      <td>6.797311</td>
+      <td>MA_BASELINE</td>
+      <td>1.000</td>
+      <td>0.875</td>
+      <td>0.250</td>
+      <td>0.63750</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>cs.AI</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>5.078527</td>
+      <td>0.018128</td>
+      <td>-21.214366</td>
+      <td>0.857312</td>
+      <td>21.466554</td>
+      <td>MA_BASELINE</td>
+      <td>0.875</td>
+      <td>0.375</td>
+      <td>0.500</td>
+      <td>0.60625</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>q-bio.QM</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>2.826560</td>
+      <td>-0.003319</td>
+      <td>-11.445934</td>
+      <td>0.508898</td>
+      <td>135.798595</td>
+      <td>MA_BASELINE</td>
+      <td>0.125</td>
+      <td>0.500</td>
+      <td>1.000</td>
+      <td>0.59375</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>cs.CV</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>4.863904</td>
+      <td>0.006207</td>
+      <td>-23.594874</td>
+      <td>0.844894</td>
+      <td>39.630611</td>
+      <td>MA_BASELINE</td>
+      <td>0.500</td>
+      <td>0.250</td>
+      <td>0.750</td>
+      <td>0.56250</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>q-fin.ST</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>1.991595</td>
+      <td>0.012333</td>
+      <td>-1.209950</td>
+      <td>0.305315</td>
+      <td>2.004959</td>
+      <td>MA_BASELINE</td>
+      <td>0.750</td>
+      <td>1.000</td>
+      <td>0.125</td>
+      <td>0.51875</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>cs.CL</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>4.579115</td>
+      <td>0.000606</td>
+      <td>-10.569187</td>
+      <td>0.760387</td>
+      <td>31.452320</td>
+      <td>MA_BASELINE</td>
+      <td>0.250</td>
+      <td>0.625</td>
+      <td>0.625</td>
+      <td>0.49375</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>stat.ML</td>
+      <td>17</td>
+      <td>2025-01-01 00:00:00</td>
+      <td>2026-05-01 00:00:00</td>
+      <td>3.815449</td>
+      <td>0.003491</td>
+      <td>-7.626177</td>
+      <td>0.673733</td>
+      <td>8.585748</td>
+      <td>MA_BASELINE</td>
+      <td>0.375</td>
+      <td>0.750</td>
+      <td>0.375</td>
+      <td>0.45000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="visualization-arxiv-category-trend-shock-scatter">Visualization: arXiv category trend shock scatter</h2>
+<p>The scatter compares trend slope, shock magnitude, and cycle strength in the editorial priority table.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
+
+
+<pre><code class="language-python">scatter_frame = priority.dropna(subset=[&quot;trend_slope_per_step&quot;, &quot;max_abs_residual_z&quot;]).copy()
+fig, ax = plt.subplots(figsize=(7.5, 4.8))
+sizes = 80 + scatter_frame[&quot;cycle_strength_proxy&quot;].fillna(0).clip(lower=0) * 260
+sc = ax.scatter(
+    scatter_frame[&quot;trend_slope_per_step&quot;],
+    scatter_frame[&quot;max_abs_residual_z&quot;],
+    s=sizes,
+    c=scatter_frame[&quot;editorial_priority_score&quot;],
+    cmap=&quot;viridis&quot;,
+)
+for _, row in scatter_frame.head(8).iterrows():
+    ax.annotate(str(row[&quot;series&quot;]), (row[&quot;trend_slope_per_step&quot;], row[&quot;max_abs_residual_z&quot;]), fontsize=8, xytext=(4, 4), textcoords=&quot;offset points&quot;)
+ax.axvline(0, color=&quot;0.45&quot;, linewidth=0.8)
+ax.set_xlabel(&quot;trend slope per step&quot;)
+ax.set_ylabel(&quot;max absolute residual z&quot;)
+ax.set_title(&quot;Trend slope versus residual shock&quot;)
+fig.colorbar(sc, ax=ax, label=&quot;editorial priority score&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/01_arxiv_category_pulse/cell-014-output-01.png" alt="Notebook output cell 14" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="visualization-arxiv-category-component-panels">Visualization: arXiv category component panels</h2>
+<p>Observed and trend lines plus residual bars turn the component table into an inspectable trend narrative.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [8]</div>
+
+
+<pre><code class="language-python">top_entities = priority[&quot;series&quot;].head(4).tolist()
+fig, axes = plt.subplots(len(top_entities), 2, figsize=(11, max(3.0, 2.4 * len(top_entities))), squeeze=False)
+for row, entity in enumerate(top_entities):
+    panel = components.loc[components[&quot;series&quot;].eq(entity)].sort_values(&quot;month&quot;).copy()
+    panel[&quot;month&quot;] = pd.to_datetime(panel[&quot;month&quot;])
+    axes[row, 0].plot(panel[&quot;month&quot;], panel[&quot;observed&quot;], label=&quot;observed&quot;, linewidth=1.6)
+    axes[row, 0].plot(panel[&quot;month&quot;], panel[&quot;trend&quot;], label=&quot;trend&quot;, linewidth=1.8)
+    axes[row, 0].set_title(str(entity))
+    axes[row, 1].bar(panel[&quot;month&quot;], panel[&quot;residual&quot;], color=np.where(panel[&quot;residual&quot;] &gt;= 0, &quot;tab:red&quot;, &quot;tab:blue&quot;), width=20)
+    axes[row, 1].set_title(&quot;residual&quot;)
+    axes[row, 0].set_ylabel(&quot;transformed count&quot;)
+    axes[row, 1].set_ylabel(&quot;residual&quot;)
+axes[0, 0].legend(loc=&quot;best&quot;)
+plt.suptitle(&quot;arXiv category observed/trend/residual panels&quot;, y=1.01)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/01_arxiv_category_pulse/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="6-top-residual-events">6. Top residual events</h2>
+<p>These rows are article hooks. Causal interpretation requires additional evidence; the rows mark months that do not fit the smooth trend/cycle baseline.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
+
+
+<pre><code class="language-python">events = residual_event_table(components, entity_col=&quot;series&quot;, time_col=&quot;month&quot;, top_n=20)
+events
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>series</th>
+      <th>observed</th>
+      <th>trend</th>
+      <th>season</th>
+      <th>residual</th>
+      <th>residual_z</th>
+      <th>abs_residual_z</th>
+      <th>method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-01</td>
+      <td>q-bio.QM</td>
+      <td>4.624973</td>
+      <td>2.822589</td>
+      <td>0.512617</td>
+      <td>1.289767</td>
+      <td>135.798595</td>
+      <td>135.798595</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-01-01</td>
+      <td>q-bio.QM</td>
+      <td>4.615121</td>
+      <td>4.735994</td>
+      <td>0.512617</td>
+      <td>-0.633490</td>
+      <td>-135.798595</td>
+      <td>135.798595</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-05-01</td>
+      <td>q-bio.QM</td>
+      <td>4.990433</td>
+      <td>4.813606</td>
+      <td>0.692669</td>
+      <td>-0.515842</td>
+      <td>-119.184690</td>
+      <td>119.184690</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-05-01</td>
+      <td>q-bio.QM</td>
+      <td>4.691348</td>
+      <td>2.826560</td>
+      <td>0.692669</td>
+      <td>1.172119</td>
+      <td>119.184690</td>
+      <td>119.184690</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-04-01</td>
+      <td>q-bio.QM</td>
+      <td>4.595120</td>
+      <td>4.772203</td>
+      <td>0.044841</td>
+      <td>-0.221925</td>
+      <td>-77.678425</td>
+      <td>77.678425</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2026-04-01</td>
+      <td>q-bio.QM</td>
+      <td>4.653960</td>
+      <td>3.730918</td>
+      <td>0.044841</td>
+      <td>0.878202</td>
+      <td>77.678425</td>
+      <td>77.678425</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2026-02-01</td>
+      <td>q-bio.QM</td>
+      <td>4.521789</td>
+      <td>4.681335</td>
+      <td>0.023867</td>
+      <td>-0.183413</td>
+      <td>-72.239976</td>
+      <td>72.239976</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2025-02-01</td>
+      <td>q-bio.QM</td>
+      <td>4.605170</td>
+      <td>3.741613</td>
+      <td>0.023867</td>
+      <td>0.839690</td>
+      <td>72.239976</td>
+      <td>72.239976</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2026-01-01</td>
+      <td>cs.LG</td>
+      <td>8.225503</td>
+      <td>8.277744</td>
+      <td>0.934998</td>
+      <td>-0.987239</td>
+      <td>-62.286532</td>
+      <td>62.286532</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2025-01-01</td>
+      <td>cs.LG</td>
+      <td>8.006701</td>
+      <td>4.918570</td>
+      <td>0.934998</td>
+      <td>2.153133</td>
+      <td>62.286532</td>
+      <td>62.286532</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2025-05-01</td>
+      <td>cs.LG</td>
+      <td>8.528133</td>
+      <td>8.236510</td>
+      <td>1.276077</td>
+      <td>-0.984454</td>
+      <td>-62.176076</td>
+      <td>62.176076</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2026-05-01</td>
+      <td>cs.LG</td>
+      <td>8.444407</td>
+      <td>5.017982</td>
+      <td>1.276077</td>
+      <td>2.150348</td>
+      <td>62.176076</td>
+      <td>62.176076</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2025-01-01</td>
+      <td>cs.CV</td>
+      <td>7.627057</td>
+      <td>4.721890</td>
+      <td>0.795382</td>
+      <td>2.109786</td>
+      <td>39.630611</td>
+      <td>39.630611</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2026-01-01</td>
+      <td>cs.CV</td>
+      <td>7.801800</td>
+      <td>8.012935</td>
+      <td>0.795382</td>
+      <td>-1.006516</td>
+      <td>-39.630611</td>
+      <td>39.630611</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2026-05-01</td>
+      <td>cs.CV</td>
+      <td>7.913155</td>
+      <td>4.863904</td>
+      <td>1.002250</td>
+      <td>2.047002</td>
+      <td>38.033743</td>
+      <td>38.033743</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2025-05-01</td>
+      <td>cs.CV</td>
+      <td>8.098947</td>
+      <td>8.040429</td>
+      <td>1.002250</td>
+      <td>-0.943732</td>
+      <td>-38.033743</td>
+      <td>38.033743</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2025-04-01</td>
+      <td>cs.LG</td>
+      <td>8.012018</td>
+      <td>8.284370</td>
+      <td>0.063321</td>
+      <td>-0.335673</td>
+      <td>-36.440039</td>
+      <td>36.440039</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2026-04-01</td>
+      <td>cs.LG</td>
+      <td>8.273337</td>
+      <td>6.708449</td>
+      <td>0.063321</td>
+      <td>1.501566</td>
+      <td>36.440039</td>
+      <td>36.440039</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2025-02-01</td>
+      <td>cs.LG</td>
+      <td>8.374938</td>
+      <td>6.520974</td>
+      <td>0.428431</td>
+      <td>1.425534</td>
+      <td>33.423958</td>
+      <td>33.423958</td>
+      <td>MA_BASELINE</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2026-02-01</td>
+      <td>cs.LG</td>
+      <td>8.452335</td>
+      <td>8.283544</td>
+      <td>0.428431</td>
+      <td>-0.259640</td>
+      <td>-33.423958</td>
+      <td>33.423958</td>
+      <td>MA_BASELINE</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="visualization-arxiv-category-residual-heatmap">Visualization: arXiv category residual heatmap</h2>
+<p>The heatmap shows where residual shocks cluster across entities and time.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [10]</div>
+
+
+<pre><code class="language-python">residual_grid = components.copy()
+residual_grid[&quot;residual_z&quot;] = residual_grid.groupby(&quot;series&quot;)[&quot;residual&quot;].transform(lambda s: (s - s.median()) / (1.4826 * (s - s.median()).abs().median() + 1e-12))
+heat = residual_grid.pivot_table(index=&quot;series&quot;, columns=&quot;month&quot;, values=&quot;residual_z&quot;, aggfunc=&quot;mean&quot;)
+heat = heat.reindex(priority[&quot;series&quot;].tolist()).dropna(how=&quot;all&quot;)
+values = heat.to_numpy(dtype=float)
+absmax = float(np.nanmax(np.abs(values))) if np.isfinite(values).any() else 1.0
+fig, ax = plt.subplots(figsize=(11, 4.5))
+im = ax.imshow(values, aspect=&quot;auto&quot;, cmap=&quot;RdBu_r&quot;, vmin=-absmax, vmax=absmax)
+ax.set_yticks(range(len(heat.index)))
+ax.set_yticklabels(heat.index)
+tick_step = max(1, len(heat.columns) // 8)
+xticks = list(range(0, len(heat.columns), tick_step))
+ax.set_xticks(xticks)
+ax.set_xticklabels([pd.to_datetime(heat.columns[i]).strftime(&quot;%Y-%m&quot;) for i in xticks], rotation=45, ha=&quot;right&quot;)
+ax.set_title(&quot;arXiv category residual z-score heatmap&quot;)
+fig.colorbar(im, ax=ax, label=&quot;robust residual z&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/01_arxiv_category_pulse/cell-020-output-01.png" alt="Notebook output cell 20" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="7-article-ready-language">7. Article-ready language</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [11]</div>
+
+
+<pre><code class="language-python">phrasing = article_publication_phrasing()
+phrasing
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>This trend predicts the next price move.</td>
+      <td>This trend summarizes the observed public seri...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>This model is better because it has more downl...</td>
+      <td>Downloads are a public adoption proxy interpre...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>This repo is winning because stars are rising.</td>
+      <td>Star velocity measures developer attention for...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>This pageview spike shows the topic matters most.</td>
+      <td>Pageviews measure public attention during the ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>This residual is a buy signal.</td>
+      <td>This residual marks an event-like deviation fr...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [12]</div>
+
+
+<pre><code class="language-python">save_table(watchlist, &quot;01_arxiv_category_watchlist&quot;)
+save_table(audit, &quot;01_arxiv_category_audit&quot;)
+save_table(priority, &quot;01_arxiv_category_priority&quot;)
+save_table(events, &quot;01_arxiv_category_residual_events&quot;)
+save_table(phrasing, &quot;01_arxiv_category_publication_phrasing&quot;)
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">stdout</div>
+
+<pre><code class="language-text">saved: examples/hot_trends/outputs/01_arxiv_category_watchlist.csv
+saved: examples/hot_trends/outputs/01_arxiv_category_audit.csv
+saved: examples/hot_trends/outputs/01_arxiv_category_priority.csv
+saved: examples/hot_trends/outputs/01_arxiv_category_residual_events.csv
+saved: examples/hot_trends/outputs/01_arxiv_category_publication_phrasing.csv
+</code></pre>
+
+</div>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js"></script>
+        <script src="../../../../javascripts/method-animations.js"></script>
+        <script src="../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

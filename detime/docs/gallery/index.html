@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/gallery/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>All 31 DeTime Method Animations | DeTime</title>
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="Explore all 31 DeTime method entries with four-step animations, parameter explanations, maturity labels, source arrays and references.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="All 31 DeTime Method Animations | DeTime">
+  <meta property="og:description" content="Explore all 31 DeTime method entries with four-step animations, parameter explanations, maturity labels, source arrays and references.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/gallery/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="All 31 DeTime Method Animations | DeTime">
+  <meta name="twitter:description" content="Explore all 31 DeTime method entries with four-step animations, parameter explanations, maturity labels, source arrays and references.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/gallery/#webpage",
+        "url": "https://zipengwu.me/detime/docs/gallery/",
+        "name": "All 31 DeTime Method Animations | DeTime",
+        "description": "Explore all 31 DeTime method entries with four-step animations, parameter explanations, maturity labels, source arrays and references.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    </head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../tutorials/quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../tutorials/hot-trend-lab/release-calendar/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="ssa/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#all-31-method-animations" class="nav-link">All 31 Method Animations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#read-the-scope-labels" class="nav-link">Read the scope labels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#smoothing-seasonal-structure-and-subspaces" class="nav-link">Smoothing, seasonal structure and subspaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adaptive-modes-wavelets-and-time-frequency-structure" class="nav-link">Adaptive modes, wavelets and time-frequency structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#experimental-decomposition-blocks" class="nav-link">Experimental decomposition blocks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#data-and-reproduction" class="nav-link">Data and reproduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="all-31-method-animations">All 31 Method Animations</h1>
+<p>Choose a method to see its calculation unfold in four steps. Each page includes
+a <strong>Play animation</strong> control, a static diagram, parameter explanations, references,
+and downloadable numerical arrays with source provenance. Playback starts only
+when requested; the written steps remain available without JavaScript.</p>
+<p>The gallery covers <strong>31 registered entries</strong>: 8 smoothing, seasonal and subspace
+entries, 7 adaptive or time-frequency entries, and 16 experimental decomposition
+blocks. Autoformer and DLinear are aliases of the moving-average block. The count
+includes these aliases and does not imply 31 independent algorithms.</p>
+<h2 id="read-the-scope-labels">Read the scope labels</h2>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Meaning in DeTime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maintained</code></td>
+<td>A maintained core implementation with Python and native execution paths.</td>
+</tr>
+<tr>
+<td><code>stable</code></td>
+<td>A retained method or wrapper on the supported interface.</td>
+</tr>
+<tr>
+<td><code>optional-backend</code></td>
+<td>Requires an additional upstream package, such as PySDKit.</td>
+</tr>
+<tr>
+<td><code>experimental</code></td>
+<td>A research operator or illustration with the limits stated on its page.</td>
+</tr>
+</tbody>
+</table>
+<p>These labels describe the package support level. The synthetic teaching examples
+show computations; they do not measure forecasting accuracy or establish clinical
+or financial performance. Experimental architecture names refer to the implemented
+decomposition blocks. <strong>N-BEATS uses explicitly chosen, untrained coefficients in
+its animation.</strong> The Gabor example uses a fixed teaching codebook.</p>
+<h2 id="smoothing-seasonal-structure-and-subspaces">Smoothing, seasonal structure and subspaces</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Computation illustrated</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ma-baseline/#how-it-works">MA_BASELINE</a></td>
+<td>Slide a uniform window → Subtract the smooth trend → Average seasonal phases → Center and form residual</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="mssa/#how-it-works">MSSA</a></td>
+<td>Stack aligned windows → Compute shared singular modes → Reconstruct each channel → Group trend and season</td>
+<td>maintained</td>
+</tr>
+<tr>
+<td><a href="mstl/#how-it-works">MSTL</a></td>
+<td>Specify the seasonal periods → Estimate seasonal terms → Add back and refine each term → Aggregate the common output</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="robust-stl/#how-it-works">ROBUST_STL</a></td>
+<td>Fit initial smooths → Compute robustness weights → Refit and update the weights → Retain a residual</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="ssa/#how-it-works">SSA</a></td>
+<td>Embed overlapping windows → Factor the trajectory matrix → Average each anti-diagonal → Group trend and season</td>
+<td>maintained</td>
+</tr>
+<tr>
+<td><a href="std/#how-it-works">STD</a></td>
+<td>Partition and center cycles → Separate dispersion and shape → Restore each cycle's shape → Compute the common result</td>
+<td>maintained</td>
+</tr>
+<tr>
+<td><a href="stdr/#how-it-works">STDR</a></td>
+<td>Partition and center cycles → Separate dispersion and shape → Average shapes across cycles → Compute the common result</td>
+<td>maintained</td>
+</tr>
+<tr>
+<td><a href="stl/#how-it-works">STL</a></td>
+<td>Form seasonal-phase subseries → Use local polynomial smoothing → Alternate seasonal and trend → Form the additive result</td>
+<td>stable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="adaptive-modes-wavelets-and-time-frequency-structure">Adaptive modes, wavelets and time-frequency structure</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Computation illustrated</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ceemdan/#how-it-works">CEEMDAN</a></td>
+<td>Generate perturbations → Average first IMFs → Update adaptively → Retain the residue</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="emd/#how-it-works">EMD</a></td>
+<td>Locate extrema → Build envelopes → Sift → Remove the IMF</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="gabor-cluster/#how-it-works">GABOR_CLUSTER</a></td>
+<td>Window and transform → Build atom features → Assign the codebook → Mask and reconstruct</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="memd/#how-it-works">MEMD</a></td>
+<td>Project the data → Construct vector envelopes → Sift jointly → Extract aligned modes</td>
+<td>optional-backend</td>
+</tr>
+<tr>
+<td><a href="mvmd/#how-it-works">MVMD</a></td>
+<td>Align the channels → Update channel spectra → Pool spectral energy → Recover mode stacks</td>
+<td>optional-backend</td>
+</tr>
+<tr>
+<td><a href="vmd/#how-it-works">VMD</a></td>
+<td>Prepare the spectrum → Update a mode → Update its center → Reconstruct and group</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><a href="wavelet/#how-it-works">WAVELET</a></td>
+<td>Choose the filter bank → Build the pyramid → Select coefficient blocks → Assign outputs</td>
+<td>stable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="experimental-decomposition-blocks">Experimental decomposition blocks</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Computation illustrated</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="amd-block/#how-it-works">AMD_BLOCK</a></td>
+<td>Compute several smooth trends → Average equal seasonal phases → Repeat the phase template → Inspect the derived residual</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="autoformer-block/#how-it-works">AUTOFORMER_BLOCK</a></td>
+<td>Specify the filter → Move along the series → Subtract the trend → Inspect the output contract</td>
+<td>experimental; alias of <code>MOVING_AVERAGE_DECOMPOSITION_BLOCK</code></td>
+</tr>
+<tr>
+<td><a href="delelstm-block/#how-it-works">DELELSTM_BLOCK</a></td>
+<td>Update level and slope → Average equal seasonal phases → Repeat the phase template → Inspect the derived residual</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="dlinear-block/#how-it-works">DLINEAR_BLOCK</a></td>
+<td>Specify the filter → Move along the series → Subtract the trend → Inspect the output contract</td>
+<td>experimental; alias of <code>MOVING_AVERAGE_DECOMPOSITION_BLOCK</code></td>
+</tr>
+<tr>
+<td><a href="freqmoe-block/#how-it-works">FREQMOE_BLOCK</a></td>
+<td>Separate trend and selection input → Select discrete spectral peaks → Fit and average candidate seasons → Inspect actual output streams</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="inparformer-block/#how-it-works">INPARFORMER_BLOCK</a></td>
+<td>Smooth the prefix → Average equal seasonal phases → Repeat the phase template → Inspect the derived residual</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="leddam-block/#how-it-works">LEDDAM_BLOCK</a></td>
+<td>Specify the filter → Move along the series → Subtract the trend → Inspect the output contract</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="moving-average-decomposition-block/#how-it-works">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a></td>
+<td>Specify the filter → Move along the series → Subtract the trend → Inspect the output contract</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="nbeats-interpretable/#how-it-works">NBEATS_INTERPRETABLE</a></td>
+<td>Construct fixed basis functions → Separate backcast and output weights → Pass a remainder to seasonal blocks → Distinguish the two residuals</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="parsimony-block/#how-it-works">PARSIMONY_BLOCK</a></td>
+<td>Remove a smoothed trend → Build the harmonic design → Add fitted basis terms → Inspect the decomposition</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="st-mtm-block/#how-it-works">ST_MTM_BLOCK</a></td>
+<td>Smooth the prefix → Average equal seasonal phases → Smooth the repeated template → Inspect the derived residual</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="timekan-block/#how-it-works">TIMEKAN_BLOCK</a></td>
+<td>Smooth and inspect prefix frequencies → Fit two kinds of seasonal estimate → Apply the implemented fixed blend → Inspect the checked output</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="times2d-block/#how-it-works">TIMES2D_BLOCK</a></td>
+<td>Separate trend and selection input → Select discrete spectral peaks → Fit and average candidate seasons → Inspect actual output streams</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="waveform-block/#how-it-works">WAVEFORM_BLOCK</a></td>
+<td>Analyze with fixed wavelet filters → Reconstruct the approximation → Reconstruct selected detail bands → Inspect the remaining detail</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="waveletmixer-block/#how-it-works">WAVELETMIXER_BLOCK</a></td>
+<td>Analyze with fixed wavelet filters → Reconstruct the approximation → Reconstruct selected detail bands → Inspect the remaining detail</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="xpatch-block/#how-it-works">XPATCH_BLOCK</a></td>
+<td>Mix observation and state → Advance the recurrence → Smooth the difference → Inspect all three streams</td>
+<td>experimental</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-and-reproduction">Data and reproduction</h2>
+<p><a href="https://github.com/systems-mechanobiology/DeTime/blob/92a3682424ddbb1b15a9a4e060f80c3749526ad9/docs/maintenance/method-animations.md">Reproduction guide</a> ·
+<a href="../assets/generated/method-animations/manifest.json">Complete numerical manifest</a> ·
+<a href="../config-reference/">Parameter reference</a> ·
+<a href="../notebook-gallery/">Runnable notebook examples</a></p>
+<p>Every animation records its synthetic input, computed intermediate arrays, checks,
+dependency versions and source hashes. The per-method <strong>What this animation
+computes</strong> section identifies whether the trace is a public-method run, an
+instrumented solver, or a teaching illustration.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/method-animations.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -38,7 +38,7 @@
         "name": "DeTime",
         "alternateName": ["De-Time", "detime-toolkit"],
         "description": "Python and command-line software for univariate and multichannel time-series decomposition.",
-        "url": "https://systems-mechanobiology.github.io/DeTime/",
+        "url": "https://zipengwu.me/detime/docs/",
         "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
         "programmingLanguage": "Python",
         "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
@@ -55,7 +55,7 @@
     ]
   }
   </script>
-</head>
+<link rel="stylesheet" href="/projects.css"></head>
 <body>
   <a class="skip-link" href="#content">Skip to main content</a>
   <header class="site-header" aria-label="Primary navigation">
@@ -65,18 +65,18 @@
         <a href="/">About</a>
         <a href="/research.html">Research</a>
         <a class="active" href="/software.html">Software</a>
-        <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime docs</a>
+        <a href="https://zipengwu.me/detime/docs/">DeTime docs</a>
       </nav>
     </div>
   </header>
-  <main id="content" class="page">
+  <main id="content" class="page"><nav class="project-nav" aria-label="Research projects"><a href="/software.html">All projects</a><a href="/EchoTime/">EchoTime</a><a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a><a href="/articles/">All articles</a></nav>
     <p class="project-meta"><a href="/software.html">Research software</a> / DeTime</p>
     <section class="section page-title">
       <h1>DeTime: time-series decomposition in Python</h1>
       <p>DeTime is an open-source Python toolkit for separating time series into trend, seasonal or oscillatory components, and residuals. I develop it as part of my research on temporal representation.</p>
       <p>Use one Python or command-line interface to work with individual signals or aligned channels, compare decomposition methods, and inspect the resulting components and metadata.</p>
       <div class="link-row">
-        <a href="https://systems-mechanobiology.github.io/DeTime/quickstart/">Python quickstart</a>
+        <a href="https://zipengwu.me/detime/docs/quickstart/">Python quickstart</a>
         <a href="https://github.com/systems-mechanobiology/DeTime">GitHub source</a>
         <a href="https://pypi.org/project/detime-toolkit/">PyPI package</a>
       </div>
@@ -101,7 +101,7 @@ result = decompose(
 print(result.trend.shape)  # (120,)
 print(result.season.shape)
 print(result.residual.shape)</code></pre>
-      <p>The <a href="https://systems-mechanobiology.github.io/DeTime/install/">installation guide</a> covers optional dependencies. The <a href="https://systems-mechanobiology.github.io/DeTime/quickstart/">quickstart</a> also shows CLI usage and multichannel input.</p>
+      <p>The <a href="https://zipengwu.me/detime/docs/install/">installation guide</a> covers optional dependencies. The <a href="https://zipengwu.me/detime/docs/quickstart/">quickstart</a> also shows CLI usage and multichannel input.</p>
     </section>
     <section class="section" aria-labelledby="methods">
       <h2 id="methods">Choose a decomposition method</h2>
@@ -112,24 +112,33 @@ print(result.residual.shape)</code></pre>
         <li><strong>Aligned channels with shared structure:</strong> use MSSA to study them together. Unrelated channels may be better handled separately.</li>
         <li><strong>A specialist comparison:</strong> consult the wrappers for VMD, EMD, wavelets and related methods. Dependencies and backend support differ across methods.</li>
       </ul>
-      <p>See the <a href="https://systems-mechanobiology.github.io/DeTime/methods/">method selection guide</a> for parameters and limitations, or the <a href="https://systems-mechanobiology.github.io/DeTime/comparisons/">cross-package comparison</a> for how DeTime fits alongside other tools.</p>
+      <p>See the <a href="https://zipengwu.me/detime/docs/methods/">method selection guide</a> for parameters and limitations, or the <a href="https://zipengwu.me/detime/docs/comparisons/">cross-package comparison</a> for how DeTime fits alongside other tools.</p>
     </section>
     <section class="section" aria-labelledby="quant">
       <h2 id="quant">Time-series decomposition for quant research</h2>
       <p>The quant tutorials explore features built from trends, oscillations and residuals. The examples cover trend following, mean reversion, pairs and portfolio workflows.</p>
       <p>For historical trading experiments, a decomposition of the full price series can leak future information into earlier features. Recompute on each available training window, use the last feature row, delay execution and account for turnover costs.</p>
       <ul class="tutorial-list">
-        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/">Quant research tutorial overview</a>: choose a workflow and understand the shared feature pipeline.</li>
-        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/walkforward/">Walk-forward validation</a>: check window boundaries, execution timing and cost assumptions.</li>
-        <li><a href="https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/notebooks/">Executable quant tutorial notebooks</a>: follow the individual examples and inspect their outputs.</li>
+        <li><a href="https://zipengwu.me/detime/docs/tutorials/quant-trading/">Quant research tutorial overview</a>: choose a workflow and understand the shared feature pipeline.</li>
+        <li><a href="https://zipengwu.me/detime/docs/tutorials/quant-trading/walkforward/">Walk-forward validation</a>: check window boundaries, execution timing and cost assumptions.</li>
+        <li><a href="https://zipengwu.me/detime/docs/tutorials/quant-trading/notebooks/">Executable quant tutorial notebooks</a>: follow the individual examples and inspect their outputs.</li>
       </ul>
       <p>These are research examples. A decomposition component or an attractive backtest alone does not establish predictive value.</p>
+    </section>
+    <section class="section" aria-labelledby="reading">
+      <h2 id="reading">Research articles and tutorial series</h2>
+      <ul class="tutorial-list">
+        <li><a href="/detime/docs/research/python-decomposition-tools/">Choosing Python decomposition tools</a>: compare STL, SSA, wavelets, EMD and VMD libraries by the outputs and assumptions your task needs.</li>
+        <li><a href="/detime/docs/research/decomposition-landscape-2026/">Time-series decomposition in 2026</a>: a research map of components, forecasting blocks, tokenizers and evaluation.</li>
+        <li><a href="/detime/docs/tutorials/hot-trend-lab/">Hot Trend Lab</a>: notebook walkthroughs for research activity, developer attention and public time series.</li>
+        <li><a href="/articles/#detime">All DeTime articles and tutorial walkthroughs</a>.</li>
+      </ul>
     </section>
     <section class="section" aria-labelledby="contribute">
       <h2 id="contribute">Developing DeTime</h2>
       <p>My broader interest is how we represent and understand temporal data. DeTime provides a common software interface for studying decompositions and using their components in downstream experiments.</p>
       <p>If you encounter a problem or have a reproducible example to contribute, use the <a href="https://github.com/systems-mechanobiology/DeTime/issues">GitHub issue tracker</a>. Include the method, parameters and a small input that reproduces the behavior.</p>
-      <p class="project-meta">Project page by <a href="/">Zipeng Wu</a>. Updated 15 October 2026. API details and current method support are maintained in the <a href="https://systems-mechanobiology.github.io/DeTime/">DeTime documentation</a>.</p>
+      <p class="project-meta">Project page by <a href="/">Zipeng Wu</a>. Updated 3 November 2026. API details and current method support are maintained in the <a href="https://zipengwu.me/detime/docs/">DeTime documentation</a>.</p>
     </section>
   </main>
   <footer class="site-footer"><div class="footer-inner">Copyright 2026 Zipeng Wu.</div></footer>

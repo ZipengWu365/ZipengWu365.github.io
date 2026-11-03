@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/tomc/docs/assistant_plugin_zh/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Assistant plugins (中文) - TOMC Memory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    <meta name="description" content="Assistant plugins (中文) - TOMC Memory: TOMC Memory documentation and practical guides by Zipeng Wu.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://zipengwu.me/tomc/docs/assistant_plugin_zh/#article", "url": "https://zipengwu.me/tomc/docs/assistant_plugin_zh/", "headline": "Assistant plugins (\u4e2d\u6587) - TOMC Memory", "mainEntityOfPage": "https://zipengwu.me/tomc/docs/assistant_plugin_zh/", "inLanguage": "zh-CN", "author": {"@type": "Person", "@id": "https://zipengwu.me/#person", "name": "Zipeng Wu", "url": "https://zipengwu.me/"}}</script>
+</head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">TOMC Memory</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Overview</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Install</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../assistant_plugin/" class="dropdown-item">Assistant plugins</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Assistant plugins (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../desktop_companion/" class="dropdown-item">Desktop companion</a>
+</li>
+                                    
+<li>
+    <a href="../macos_usage/" class="dropdown-item">macOS</a>
+</li>
+                                    
+<li>
+    <a href="../assistant_setup/" class="dropdown-item">Manual MCP setup</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae/" class="dropdown-item">Cursor and TRAE</a>
+</li>
+                                    
+<li>
+    <a href="../cursor_trae_zh/" class="dropdown-item">Cursor and TRAE (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy/" class="dropdown-item">WorkBuddy</a>
+</li>
+                                    
+<li>
+    <a href="../workbuddy_zh/" class="dropdown-item">WorkBuddy (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness/" class="dropdown-item">DeepSeek Harness</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_zh/" class="dropdown-item">DeepSeek Harness (中文)</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips/" class="dropdown-item">Usage tips</a>
+</li>
+                                    
+<li>
+    <a href="../usage_tips_zh/" class="dropdown-item">Usage tips (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership/" class="dropdown-item">Context ownership</a>
+</li>
+                                    
+<li>
+    <a href="../context_ownership_zh/" class="dropdown-item">Context ownership (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017/" class="dropdown-item">Prompt caching</a>
+</li>
+                                    
+<li>
+    <a href="../prompt_cache_20261017_zh/" class="dropdown-item">Prompt caching (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../model_context_limits_20261012/" class="dropdown-item">Model context limits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api_reference/" class="dropdown-item">Python API</a>
+</li>
+                                    
+<li>
+    <a href="../method/" class="dropdown-item">Method</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../comparison_with_llmlingua/" class="dropdown-item">LLMLingua comparison</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Research</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../paper_scope/" class="dropdown-item">Paper scope</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents/" class="dropdown-item">Readers and agent hosts</a>
+</li>
+                                    
+<li>
+    <a href="../readers_and_agents_zh/" class="dropdown-item">Readers and agent hosts (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../paper_results/" class="dropdown-item">Paper results</a>
+</li>
+                                    
+<li>
+    <a href="../claims_and_limitations/" class="dropdown-item">Claims and limitations</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../data_and_license/" class="dropdown-item">Data and licensing</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Validation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../platform_checks/" class="dropdown-item">Platform checks</a>
+</li>
+                                    
+<li>
+    <a href="../platform_checks_zh/" class="dropdown-item">Platform checks (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback/" class="dropdown-item">Windows installation</a>
+</li>
+                                    
+<li>
+    <a href="../windows_installation_feedback_zh/" class="dropdown-item">Windows installation (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005/" class="dropdown-item">Codex input comparison</a>
+</li>
+                                    
+<li>
+    <a href="../codex_retention_20261005_zh/" class="dropdown-item">Codex input comparison (中文)</a>
+</li>
+                                    
+<li>
+    <a href="../linux_validation/" class="dropdown-item">Linux installation</a>
+</li>
+                                    
+<li>
+    <a href="../deepseek_harness_validation_20261029/" class="dropdown-item">DeepSeek Harness validation</a>
+</li>
+                                    
+<li>
+    <a href="../validation/" class="dropdown-item">Validation record</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../legacy_extensions/" class="dropdown-item">Legacy compatibility</a>
+</li>
+                                    
+<li>
+    <a href="../huggingface_space/" class="dropdown-item">Hugging Face Space</a>
+</li>
+                                    
+<li>
+    <a href="../traffic_metrics/" class="dropdown-item">Repository traffic</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../assistant_plugin/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../desktop_companion/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/ZipengWu365/TOMC" class="nav-link">ZipengWu365/TOMC</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tomc" class="nav-link">把 TOMC 装进常用助手</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#021" class="nav-link">当前版本：0.2.1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">选择安装方式</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#linuxmacos-mcp" class="nav-link">Linux/macOS 的手动 MCP 环境</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#claude-desktop" class="nav-link">Claude Desktop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#claude-code" class="nav-link">Claude Code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cursor" class="nav-link">Cursor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#trae" class="nav-link">TRAE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#workbuddy" class="nav-link">腾讯 WorkBuddy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#codex" class="nav-link">Codex</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">准备上下文</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">工具</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_8" class="nav-link">用两次对话试一下</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_9" class="nav-link">存储与能力范围</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#012" class="nav-link">上下文减少统计（0.1.2）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tomc">把 TOMC 装进常用助手</h1>
+<p><a href="../assistant_plugin/">English guide</a></p>
+<p>TOMC 按任务准备上下文，让你用结果替换较长的历史。传入历史、下一步任务和记忆预算后，它选择原文，对支持的状态、关系或计数操作计算记录，输出文本，交给原来的助手。准备过程在 CPU 上运行，无需训练；插件本身不需要额外的大模型 API key、GPU 或模型服务。</p>
+<p>安装后调用 <code>prepare_context</code>，检查结果，再用于新聊天或应用请求。短历史可以保持原样；记录与提示开销有时会增加输入。编译器本身无状态，但自 0.2.0 起，MCP 运行时默认保存成功准备的上下文和任务，可关闭正文记录；命名记忆本仍是可选功能。直接接入请求可参考 <a href="../api_reference/#prepare-context-before-your-api-call">Python API</a>。</p>
+<p>当前聊天默认由宿主负责压缩；原生压缩处于启用或未知状态时，不主动让 TOMC 再压同一聊天。外部历史处理和显式记忆本工作流继续可用。可选的生命周期 hook 负责登记会话元数据和执行 TOMC 开关，不自动替换模型请求。<a href="../context_ownership_zh/">上下文归属</a>。</p>
+<h2 id="021">当前版本：0.2.1</h2>
+<p>0.2.1 安装包共有十个 MCP 工具。0.2.0 新增的四个只读工具是：<code>get_status</code>、<code>list_contexts</code>、<code>get_context</code>、<code>make_handoff</code>。成功准备或召回后，默认保存准备结果正文、任务和元数据；在 TOMC 面板关闭上下文记录后，不再保存后续正文，已有快照需单独删除。短输入可能在结果中完整保留。旧版本仅保存数字的统计无法还原过去的聊天正文。</p>
+<p>全局处理与新登记会话默认开启。用户级配置让工具跨项目可用；逐会话暂停和目录登记还需要安装并加载对应 hook，Codex 另需在 <code>/hooks</code> 审阅并信任。配置更新后可能需要新会话或受支持的重载。活动卡片依据会话与提交输入事件更新，不代表每次点击聊天标签都能被检测。hook 不替换原生客户端的模型请求，配置已启用也不等于已连接或已经省下输入。<a href="https://github.com/ZipengWu365/TOMC/blob/1d53cf6787440a66ac15efb8f80b46cd0cf71506/docs/host_integration_validation_20261022.md">验证与边界</a>。</p>
+<p>管理窗口可复制自包含接续提示词，或导出供其他 Agent、其他电脑读取的文本包；接收方无需安装 TOMC。导出包可以由用户纳入 Git，但 TOMC 不自动 commit 或 push。<code>make_handoff</code> 只返回所选快照的提示词，不替用户发送消息或写入剪贴板。</p>
+<p>下方带日期的客户端测试使用的是早期安装包，不代表 0.2.1 已通过相同宿主验收。</p>
+<p>第一次成功调用工具、确认 TOMC 对你有帮助后，欢迎到 <a href="https://github.com/ZipengWu365/TOMC">TOMC 主仓库</a> 点击 Star 支持项目，完全自愿。Codex 安装器 0.1.2 在每次安装成功后显示一次邀请；加上 <code>--no-support-message</code> 可以隐藏。安装成功不代表首次 MCP 启动已经验证。</p>
+<h2 id="_1">选择安装方式</h2>
+<table>
+<thead>
+<tr>
+<th>客户端</th>
+<th>安装方式</th>
+<th>当前范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Desktop</td>
+<td>安装 <code>.mcpb</code> 文件</td>
+<td>UV 安装候选包，桌面界面仍待实测</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>从本仓库的插件市场安装，或用 <code>claude mcp add</code> 注册解压后的 <code>.mcpb</code> 运行环境</td>
+<td>已在 VS Code 扩展中用新会话测试；面板内的交互使用尚未测试</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>生成 Add to Cursor 链接，或<a href="../cursor_trae_zh/">添加本地 MCP 配置</a></td>
+<td>已有 MCP 后端检查；客户端工具调用尚未验证</td>
+</tr>
+<tr>
+<td>TRAE（国际版 / 国内版）</td>
+<td><a href="../cursor_trae_zh/#trae">添加本地 MCP 服务</a></td>
+<td>手动配置预览；客户端工具调用尚未验证</td>
+</tr>
+<tr>
+<td>腾讯 WorkBuddy</td>
+<td><a href="../workbuddy_zh/">添加本地 MCP 服务</a></td>
+<td>手动配置预览；客户端工具调用尚未验证</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>运行 ZIP 内的安装助手</td>
+<td>preview.4 已通过 Windows 个人配置中的原生安装与默认模型调用；此前 macOS 试用使用 preview.2</td>
+</tr>
+</tbody>
+</table>
+<p>从<a href="https://github.com/ZipengWu365/TOMC/releases/tag/v0.2.1-preview.1">发布页</a>下载 0.2.1 安装包：<a href="https://github.com/ZipengWu365/TOMC/releases/download/v0.2.1-preview.1/tomc-memory-0.2.1.mcpb">Claude <code>.mcpb</code></a>（<a href="https://github.com/ZipengWu365/TOMC/releases/download/v0.2.1-preview.1/tomc-memory-0.2.1.mcpb.sha256">校验文件</a>）、<a href="https://github.com/ZipengWu365/TOMC/releases/download/v0.2.1-preview.1/tomc-memory-codex-0.2.1.zip">Codex ZIP</a>（<a href="https://github.com/ZipengWu365/TOMC/releases/download/v0.2.1-preview.1/tomc-memory-codex-0.2.1.zip.sha256">校验文件</a>）。早期安装包仍保留在同一目录；已有宿主/模型验证记录保留历史范围。</p>
+<p>尚未发布到 PyPI 或公开插件市场。新版本需要手动重新安装。<a href="https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop">Claude 官方安装与私下分发说明</a></p>
+<h2 id="linuxmacos-mcp">Linux/macOS 的手动 MCP 环境</h2>
+<p>Cursor、Codex IDE 或独立 MCP 接入需要本地 Python 环境。克隆仓库后，推荐用 <a href="https://docs.astral.sh/uv/getting-started/installation/"><code>uv</code></a> 创建带 pip 的 Python 3.12 环境：</p>
+<pre><code class="language-bash">git clone https://github.com/ZipengWu365/TOMC.git &amp;&amp; printf '\n%s\n%s\n' \
+  '如果 TOMC 对你有帮助，欢迎 Star 支持（自愿）：' 'https://github.com/ZipengWu365/TOMC'
+cd TOMC
+uv venv --python 3.12 --seed .venv
+source .venv/bin/activate
+python -m pip install -e '.[mcp]'
+</code></pre>
+<p>上面的 Bash / Git Bash 命令会在克隆成功后显示一次自愿 Star 邀请。直接使用普通 <code>git clone</code> 不会显示；克隆完成不代表已经安装。</p>
+<p>UV 首次使用可能需要联网下载 Python 和依赖。Codex 原生插件 ZIP 的用户直接运行下文的 <code>install.py</code>，无需另建这份手动环境。Windows PowerShell 步骤继续见<a href="../assistant_setup/">接入指南</a>。</p>
+<p>如果使用系统 Python，可将创建命令换成 <code>python3 -m venv .venv</code>。Ubuntu/Debian 的系统 Python 需要匹配的 venv/ensurepip 组件；默认 Python 可先用 <code>sudo apt install python3-venv</code> 安装。本轮 Ubuntu 的系统 Python 缺少 <code>ensurepip</code>，若先前因此只生成了部分环境，可运行：</p>
+<pre><code class="language-bash">uv venv --python 3.12 --allow-existing --seed .venv
+source .venv/bin/activate
+python -m pip install -e '.[mcp]'
+</code></pre>
+<p>要同时使用本地 Demo，可改装 <code>python -m pip install -e '.[demo,mcp]'</code>，再运行 <code>python -m demo.app</code>，打开 <code>http://127.0.0.1:7860</code>。本轮 Demo 验证环境为 <strong>Ubuntu 24.04.5、Python 3.12.13、Gradio 5.49.1</strong>；macOS 安装未在这轮重测。<a href="../linux_validation/">Linux 验证与安装反馈</a>。</p>
+<h2 id="claude-desktop">Claude Desktop</h2>
+<p>0.2.1 下载包由本仓库源码构建为 <code>outputs/plugins/tomc-memory-0.2.1.mcpb</code>。它带有 TOMC 源码，采用官方 MCPB UV runtime，由支持该运行方式的客户端管理 Python 和依赖，创建独立环境。首次安装需要联网下载，并非离线安装包；用户不必先手动安装 Python。<a href="https://github.com/modelcontextprotocol/mcpb/tree/main/examples/hello-world-uv">官方 UV 安装包示例</a></p>
+<p>维护者可以在仓库中构建和检查：</p>
+<pre><code class="language-bash">python scripts/build_plugin.py
+python scripts/plugin_smoke.py outputs/plugins/tomc-memory-0.2.1.mcpb
+</code></pre>
+<p>第二条命令需要 <code>uv</code> 和 MCP 测试客户端（<code>.[mcp]</code>）。它在仓库外解压安装包并启动锁定的运行环境，不会安装到助手中，也不会更改助手配置。分享时提供 <code>.mcpb</code> 文件及其 <code>.sha256</code> 校验文件；不要把自己电脑生成的 Cursor 路径链接当成可移植安装包。</p>
+<ol>
+<li>更新 Claude Desktop，取得 <code>.mcpb</code> 文件。</li>
+<li>进入 <strong>Settings → Extensions → Advanced settings → Install Extension…</strong>。</li>
+<li>选择文件，查看说明并按提示确认安装。</li>
+<li>开启对话，检查 TOMC 工具是否可用；0.2.1 共十个，包括四个新的只读上下文与状态工具。</li>
+</ol>
+<p>这是<a href="https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop">官方支持的自定义安装路径</a>。完成打包和 MCP 协议检查，并不等于已通过所有桌面环境验收；macOS、Windows 上的实际 Claude Desktop 安装仍需验证。</p>
+<h2 id="claude-code">Claude Code</h2>
+<h3 id="_2">作为插件安装（推荐）</h3>
+<p>安装 <a href="https://docs.astral.sh/uv/getting-started/installation/">UV</a>，确保 <code>uv</code> 在 PATH 中。然后在 Claude Code 中运行：</p>
+<pre><code>/plugin marketplace add ZipengWu365/TOMC
+/plugin install tomc-memory@tomc
+</code></pre>
+<p>新开会话或重新加载 VS Code 窗口，运行 <code>/mcp</code>，服务显示为 <code>plugin:tomc-memory:tomc</code>。插件目录是 <a href="https://github.com/ZipengWu365/TOMC/tree/main/plugins/claude-code"><code>plugins/claude-code</code></a>；首次启动会按需下载 Python 和锁定的 <code>mcp</code> 依赖。更新时先运行 <code>claude plugin marketplace update tomc</code>，再运行 <code>claude plugin update tomc-memory@tomc</code>；卸载用 <code>claude plugin uninstall tomc-memory@tomc</code>。如果以前手动注册过 TOMC，请用 <code>claude mcp remove tomc-memory --scope user</code> 删除旧条目，避免出现两套工具。</p>
+<h3 id="mcp">手动注册 MCP 运行环境</h3>
+<p>Claude Code 不能直接安装 <code>.mcpb</code> 文件，但可以把包里同一套锁定环境作为本地 stdio MCP 服务启动。</p>
+<ol>
+<li>下载 <code>tomc-memory-0.2.1.mcpb</code>，核对 SHA-256，再解压（它是 ZIP 格式）到一个会长期保留的目录。</li>
+<li>安装 <a href="https://docs.astral.sh/uv/getting-started/installation/">UV</a>，确保 <code>uv</code> 在 PATH 中，再运行下文的命令。将示例路径替换为实际解压目录；路径包含空格时保留引号。</li>
+<li>运行 <code>uv sync --locked --directory "/absolute/path/to/extracted"</code>，安装锁定的依赖。</li>
+<li>注册服务，在所有项目中可用：</li>
+</ol>
+<p><code>bash
+   claude mcp add tomc-memory --scope user -- uv run --locked --directory "/absolute/path/to/extracted" src/server.py</code></p>
+<p>如果想把笔记本放在单独的数据库里，在 <code>--</code> 前加上 <code>-e TOMC_MEMORY_PATH="/absolute/path/to/memory.sqlite3"</code>。<code>claude mcp get tomc-memory</code> 应显示 <strong>Connected</strong>。
+5. 新开一个 Claude Code 会话，或重新加载 VS Code 窗口，再输入 <code>/mcp</code>。每个工具第一次使用时，Claude Code 会请求权限。</p>
+<p>用 <code>claude mcp remove tomc-memory --scope user</code> 可以删除。请保留解压目录；移动目录后需要重新注册。</p>
+<h3 id="vs-code">VS Code 扩展注意事项</h3>
+<p>以下内容适用于所有操作系统，只是文件路径不同。</p>
+<ul>
+<li>VS Code 里的 Claude Code 面板和 <code>claude</code> 命令是同一个 Claude Code，用 <code>--scope user</code> 注册的服务在面板里同样可用。注册后重新加载 VS Code 窗口，或新开一个会话即可。</li>
+<li>如果 <code>claude</code> 不在 PATH 中，扩展自带的 CLI 位于 <code>~/.vscode/extensions/anthropic.claude-code-&lt;版本&gt;-&lt;平台&gt;/resources/native-binary/</code>。在 Windows 上是 <code>%USERPROFILE%\.vscode\extensions\anthropic.claude-code-&lt;版本&gt;-win32-x64\resources\native-binary\claude.exe</code>。用完整路径调用即可。</li>
+<li>虚拟环境里的可执行文件，在 Windows 上位于 <code>.venv/Scripts/</code>，在 macOS 和 Linux 上位于 <code>.venv/bin/</code>。</li>
+<li>如果当前激活了 conda 或其他虚拟环境，uv 会提示 <code>VIRTUAL_ENV ... will be ignored</code>。这不影响使用：<code>--directory</code> 会选用包自己的环境。</li>
+<li>会话进行中新加的服务，要到下一个会话才能用。</li>
+</ul>
+<h3 id="_3">使用技巧</h3>
+<ul>
+<li><strong>请求里要点名工具。</strong> 如果历史已经在对话里，Claude 会直接回答：工具调用无法缩减宿主已经持有的上下文。可以明确写：<em>"用 tomc-memory 的 prepare_context 处理这段历史，task 是……，budget 设为 200，然后根据返回的 memory 回答。"</em></li>
+<li><strong>适合跨会话使用，或在 API 调用前使用。</strong> 用 <code>remember_memory</code> 保存长历史，之后在新会话里用 <code>recall_memory</code> 加上任务和预算取回；也可以在下一次 API 请求中改发准备好的上下文，代替完整历史。</li>
+<li><strong>预算要小于历史长度。</strong> 本来就放得下的历史会原样返回（<code>raw</code>）。</li>
+<li><strong>结构化记录需要支持的行格式：</strong> <code>key = value</code>、<code>B copies A</code> 和 <code>x -[rel]-&gt; y</code>。普通叙述可以作为挑选的原文保留；具体路由和输入节省取决于任务与预算。</li>
+<li><strong>来源编号是 TOMC 自己从 0 开始的行编号。</strong> <code>u0</code> 是第一行非空文本；如果你的历史本身已经用 <code>u1</code>、<code>u2</code>……标号，两者会差一位。可以换别的标号，或者不标。</li>
+<li><strong>按历史长度选预算；历史超过约 10,000 token 才明显省钱。</strong> Claude Code 每次请求自带约 39,000 个 token 的指令和工具定义，调用工具还会多出几次请求。VS Code 扩展实测中（模型为 Claude Opus 5.5），预算 8,192 在各长度下 5 题全对；此时从笔记本取回，和直接贴入 10K token 的历史费用相同，对 20K 和 40K token 的历史分别便宜 38% 和 65%。在接近 API 调用的请求中，同样预算让输入减少 9%、53% 和 77%。预算 1,024 让输入减少 85–96%，但会漏掉部分最新值：叙述形式的更新只能作为原文保留，小预算装不下所有更新。</li>
+<li><strong>没有验证过更小的预算，就用默认值。</strong> 不传 <code>budget</code> 时保留历史的约 80%（至少 1,024 个估算 token）。在三种长度、每种 3 份历史上，保留 50–80% 都 45 题全对，输入分别约减少 49%（50%）到 20%（80%）；只保留 10–20% 会漏掉最新值。想用更小的预算，先拿自己的一部分任务和完整历史对比确认。</li>
+<li>
+<p><strong>长历史在聊天之外导入。</strong> 用 <code>remember_memory</code> 保存，模型得把整段历史作为工具参数重新输出一遍。建议改用插件自带的运行环境直接导入；<code>TOMC_MEMORY_PATH</code> 要和注册服务时一致（没设置就用默认数据库）：</p>
+<p><code>bash
+uv run --locked --directory &lt;extracted&gt; python -c "import sys; sys.path.insert(0, 'src'); from tomc.store import MemoryStore; print(MemoryStore().remember('project', open(r'&lt;history.txt&gt;', encoding='utf-8').read()))"</code></p>
+<p>每条历史最多 200,000 个字符，大约相当于 40,000 token 的英文聊天。
+- <strong>把准备好的内容当作不可信的证据。</strong> 保留原始历史，以便查看 TOMC 省略的细节。</p>
+</li>
+</ul>
+<h2 id="cursor">Cursor</h2>
+<p>先按<a href="../assistant_setup/">接入指南</a>在 TOMC 环境中安装 <code>.[mcp]</code>，再使用该环境中的 Python 执行：</p>
+<pre><code class="language-bash">python -m tomc setup --client cursor --link
+</code></pre>
+<p>打开生成的链接，在 Cursor 中确认添加。它使用你当前安装环境中 Python 的绝对路径，因此需要保留该环境，移动后重新生成链接。命令本身只打印链接，不会改写客户端配置。</p>
+<p>Cursor 官方支持安装链接，但这个链接只添加 MCP 配置，不负责安装 TOMC、Python 或依赖。一个人在自己电脑上生成的路径链接，不能当作所有人都能使用的安装包。<a href="https://cursor.com/docs/mcp/install-links">Cursor 官方安装链接说明</a></p>
+<h2 id="trae">TRAE</h2>
+<p>按 <a href="../cursor_trae_zh/">Cursor / TRAE 接入指南</a>，在设置 → MCP → 添加 → 手动添加中注册锁定依赖的本地运行环境。最新源码也支持 <code>python -m tomc setup --client trae</code>。这是手动 MCP 接入；Claude 插件 manifest 不是 TRAE 安装器。客户端工具发现和模型调用尚未验证。</p>
+<h2 id="workbuddy">腾讯 WorkBuddy</h2>
+<p>按 <a href="../workbuddy_zh/">WorkBuddy 接入指南</a>，通过插件 → MCP 服务器 → 配置 MCP 注册锁定依赖的本地运行环境。最新源码也支持 <code>python -m tomc setup --client workbuddy</code>。配置使用 <code>.workbuddy/mcp.json</code>。客户端工具发现与模型调用尚未验证；目前是手动 MCP 接入，尚未上架腾讯市场。</p>
+<h2 id="codex">Codex</h2>
+<p>0.2.1 下载包构建为 <code>outputs/plugins/tomc-memory-codex-0.2.1.zip</code>。它包含 <code>.agents/plugins/marketplace.json</code> 本地市场目录、<code>install.py</code> 安装助手，以及 <code>plugins/tomc-memory/</code> 插件：其中有官方支持的 <code>.codex-plugin/plugin.json</code> 兼容 manifest、与 Claude 包相同的锁定 TOMC 运行环境和记忆 skill。兼容 manifest 声明随包提供的工具和 skill，安装助手则为当前安装生成启动路径。可以私下分享原始 ZIP，这并不意味着 TOMC 已上线公开插件目录。<a href="https://developers.openai.com/plugins/build/plugins">OpenAI 官方插件打包与本地市场说明</a></p>
+<p>维护者可以在仓库中运行 <code>python scripts/build_codex_plugin.py</code> 构建候选包，再分享 ZIP 及其 <code>.sha256</code> 校验文件。</p>
+<p>使用支持插件的新版本 Codex CLI，并按<a href="https://docs.astral.sh/uv/getting-started/installation/">官方说明安装 UV</a>。与 Claude Desktop 自动管理 UV 扩展不同，这个包需要已有的 UV 可执行文件。TOMC 需要 Python 3.10 或更新版本，macOS 的系统 Python 可能过旧。无需单独安装兼容 Python：下面的命令让 UV 提供 Python 3.12 和依赖，因此首次启动需要联网。</p>
+<ol>
+<li>将 ZIP 解压到准备长期保留的目录。</li>
+<li>在包含 <code>install.py</code> 的解压目录中打开终端，执行：</li>
+</ol>
+<pre><code class="language-bash">uv run --no-project --python 3.12 install.py --check
+uv run --no-project --python 3.12 install.py
+</code></pre>
+<ol>
+<li>新开 Codex 会话，检查 TOMC 工具是否可用。</li>
+</ol>
+<p><code>--check</code> 检查包文件、可执行文件路径和 Codex 插件支持，不写入配置或注册插件。可执行文件不在 PATH 中时，把占位路径替换为这台电脑的实际路径：</p>
+<pre><code class="language-bash">&quot;/absolute/path/to/uv&quot; run --no-project --python 3.12 install.py \
+  --uv &quot;/absolute/path/to/uv&quot; --codex &quot;/absolute/path/to/codex&quot;
+</code></pre>
+<p>安装助手会解析这台电脑上 UV 和运行环境的绝对路径，更新解压目录中的候选包启动配置，再调用官方 Codex 市场注册和插件安装命令。它不会整份覆盖已有的 Codex 配置。生成的路径属于当前安装，移动解压目录后需要重新运行助手。分享时请使用原始 ZIP，不要分享包含自己电脑路径的已配置副本。</p>
+<p>需要独立记忆本时，在安装命令后加 <code>--store /path/to/notebooks.sqlite3</code>，为 Codex 的 MCP 进程显式设置数据库路径；默认仍为 <code>~/.tomc/memory.sqlite3</code>。</p>
+<h3 id="windows-codex">Windows：先检查目标 Codex</h3>
+<p>在 PowerShell 中查看终端实际选择的程序：</p>
+<pre><code class="language-powershell">Get-Command codex | Select-Object Source
+codex --version
+Get-Command uv | Select-Object Source
+uv --version
+</code></pre>
+<p>PATH 中的 CLI 可能与桌面应用内置引擎不同。安装助手默认选择 PATH 中的 CLI；需要指定其他程序时，用 <code>--codex</code>，并将下面占位路径换成真实路径：</p>
+<pre><code class="language-powershell">uv run --no-project install.py --codex 'C:\path\to\codex.exe'
+</code></pre>
+<p>目标 host 应同时支持插件命令和你的模型账户。安装成功提示说明完成了注册，不代表模型请求一定成功。新开会话后，先检查 TOMC 工具（0.2.1 共十个），再运行<a href="#prepare-context">准备例子</a>。明确要求调用 <code>prepare_context</code>，并查看实际工具结果。<a href="../windows_installation_feedback_zh/">Windows 反馈</a>分别记录安装、运行和真实模型试用。</p>
+<p>若只希望生成本地启动配置、打印后续安装命令，而不注册市场或安装插件，可以执行：</p>
+<pre><code class="language-bash">uv run --no-project --python 3.12 install.py --configure-only
+</code></pre>
+<p>市场注册后，也可以在支持的 Codex CLI 中输入 <code>/plugins</code>，浏览该市场并安装 TOMC。<a href="https://learn.chatgpt.com/docs/developer-commands">官方插件命令</a>、<a href="https://developers.openai.com/codex/plugins">插件浏览器</a></p>
+<p>Codex IDE 扩展目前不支持原生插件。IDE 用户或没有插件命令的旧版 CLI 用户，可以按<a href="../assistant_setup/">接入指南</a>安装 <code>.[mcp]</code>，再用该环境中的 Python 生成配置：</p>
+<pre><code class="language-bash">python -m tomc setup --client codex
+</code></pre>
+<p>将打印出的条目加入 MCP 设置。也可以使用 CLI 直接注册已安装的 Python，将占位路径替换为实际路径：</p>
+<pre><code class="language-bash">codex mcp add tomc -- /absolute/path/to/installed/python -m tomc mcp
+</code></pre>
+<p>Codex CLI 和 IDE 均支持直接 MCP 接入。同一客户端中，原生插件与单独注册的 TOMC 服务二选一，避免工具重复。<a href="https://developers.openai.com/codex/mcp">官方 MCP 接入说明</a></p>
+<p>2026-10-04，已发布 preview.4 ZIP 通过桌面内置 CLI 0.160.0，作为原生插件长期安装到这台 Windows 的 Codex 个人配置中。原有 <code>gpt-6.1-sol</code> 模型、OpenAI provider 和登录完成两次模型回合、四次 TOMC 调用：第一段聊天准备、保存并取回；独立新聊天只收到记忆本名称和任务，也取回成功。准备和取回都没有传入预算参数，使用新默认值；两段回答均给出正确的当前值 FastAPI 与复制快照 Flask。没有配置、feature、MCP server 或工具 namespace 覆盖设置，其他插件保持启用。安装目录长期保留在 <code>~/.codex/tomc/assistant-preview.4</code>，UV 位于 <code>~/.codex/tomc/tools/Scripts/uv.exe</code>。</p>
+<p>合成记忆本实际保存到默认 <code>~/.tomc/memory.sqlite3</code>，完整 host 重启后仍可取回，随后被精确删除。保存前和删除后的 host 列表均为空，独立只读 SQLite 检查确认最终零条目。正常存取使数据库元数据发生变化；安装后的配置和认证元数据保持不变。桌面 GUI 安装按钮仍未逐步点击验收。具体条件及证据见 <a href="../windows_installation_feedback_zh/">Windows 反馈</a>与 <a href="../validation/#windows-codex-preview4">preview.4 验证记录</a>。移除插件不会删除已有记忆本。</p>
+<p>历史 2026-10-02 的检查范围更窄：preview.2 和 preview.3 在 Windows CLI 0.146.0、0.159.2 的隔离配置中通过完整安装及实际 host 工具检查，没有模型调用；preview.1 的模型准备及新聊天取回使用临时 MCP 设置与直接开放工具。这些条件按原日期保留，不代表上文的 preview.4 安装。Claude Desktop 与 Cursor 仍只有运行检查。</p>
+<p>本轮 Linux 使用 <strong>Codex CLI 0.159.0-alpha.12.1</strong> 对 preview.2 验证了原生插件安装及 MCP 工具，并检查 <code>.mcpb</code> 的后端运行。检查仅使用临时配置和记忆库，没有调用模型；Claude/Cursor GUI 安装、个人配置中的永久安装以及模型自动使用工具仍未验证。此前 Windows 的模型调用结果与本轮 Linux 协议检查分别报告，不互相替代。<a href="../linux_validation/">Linux 验证记录</a>。</p>
+<p>2026-10-02 下载的 preview.2 ZIP 在 macOS 26.3 arm64、Codex CLI 0.159.2 上作为原生插件安装并启用。模型实际调用其 <code>prepare_context</code> 工具，正确回答当前值 FastAPI 与此前复制的 Flask 快照。已安装的客户端提供全部五个工具；独立数据库上的中文笔记经进程重启仍可取回，也能删除。这台 Mac 原先没有 UV，系统 Python 为 3.9.6，因此需要先准备兼容运行环境。Codex、Claude Desktop、Cursor 的 GUI 安装仍未验收。<a href="../macos_usage/#chinese-quickstart">macOS 安装与使用技巧</a> · <a href="../validation/">验证记录</a>。</p>
+<p>历史 Windows preview.1 排查中，npm Codex CLI 0.146.0 可以安装插件，但原默认模型请求返回 HTTP 400；桌面内置 CLI 0.159.2 则支持相同模型和登录。应指定预期可执行文件，不要假设 PATH 中的 CLI 就是桌面引擎。</p>
+<h3 id="_4">试用后移除原生插件</h3>
+<p>使用安装时同一个 Codex 可执行文件：</p>
+<pre><code class="language-bash">codex plugin remove tomc-memory@tomc-local
+codex plugin marketplace remove tomc-local
+</code></pre>
+<p>停止 TOMC 会话后可删除试用解压目录。若使用 <code>--store</code>，确认笔记不再需要后，可选择删除该独立测试数据库。卸载保留默认 <code>~/.tomc/memory.sqlite3</code>；不要仅为卸载插件而删除已有记忆本。如需删除某个记忆本，可先调用 <code>forget_memory</code> 再卸载。</p>
+<p><a id="prepare-context"></a></p>
+<h2 id="_5">准备上下文</h2>
+<p>日常使用可以参考<a href="../usage_tips_zh/">使用技巧</a>：具体任务、更新顺序、原文核对和 notebook 提示词。</p>
+<p>安装后，让助手调用 TOMC 的 <code>prepare_context</code> 工具：把下面的文本传给 <code>history</code>，将 <code>task</code> 设为 <code>"当前 framework 和 backup_framework 的值是什么？"</code>，<code>budget</code> 设为 <code>64</code>，再让助手根据返回的记忆回答。</p>
+<pre><code class="language-text">framework = Flask
+backup_framework copies framework
+framework = FastAPI
+Monday notes: the team reviewed the project backlog, discussed deployment windows and agreed to keep the public API routes and response fields unchanged during the refactor.
+Tuesday notes: the migration plan still needs a review from the database owner, and the pagination tests have not yet been written or run.
+Wednesday notes: the team checked the release checklist, added a rollback task, and postponed the documentation update until after the test results are available.
+</code></pre>
+<p>这个例子使用显式赋值和复制。TOMC 准备 <code>framework = FastAPI</code>、<code>backup_framework = Flask</code> 两条记录，并保留来源链接。是否调用工具由客户端控制，回答由原来的模型生成。</p>
+<p>MCP 的 <code>prepare_context</code> 默认保存成功准备的结果和任务，可关闭上下文记录。它不另外复制全部原始历史，但已能放进预算的历史可能完整保留在快照中；较长的普通文本可以使用检索，不一定产生结构化记录。<code>budget</code> 按词法计数器限制记忆文本，任务和工具消息框架还会增加输入。</p>
+<p>上面的 64-token 预算是明确指定的小例子。使用当前默认值时，省略 <code>budget</code>：TOMC 按历史 lexical 估算长度的约 80% 选择预算，最低为 1,024；本来就放得下的历史原样保留。这不是固定节省比例。</p>
+<p>每次 MCP 结果都能放进一次工具输出。客户端会截断过长的工具结果，所以 TOMC 自己在约 20,000 字符内保留最相关的内容（Claude Code 通过 hook 标明身份时为 50,000），可用 <code>TOMC_MCP_MAX_CHARS</code> 调整。对笔记和文档，如果问题的证据很明确，结果还可能小于预算。同一聊天里再次处理同一份来源时，助手可以把上次的 <code>delivery.id</code> 作为 <code>since_delivery_id</code> 传入：TOMC 只返回改动、删除或新相关的行，没有变化时只返回一句说明。新聊天、重启后的服务或过期的 ID 会拿到完整上下文。</p>
+<h3 id="_6">在下一次调用中使用更少的上下文</h3>
+<p>应用请求使用 <code>prepared.messages</code> 替换原历史；助手中可以把准备后的文本交给新聊天。在已有长聊天里调用 TOMC，不会清除客户端保存的原消息，因此一次工具调用本身并不代表节省了 token。插件不会全局拦截 API 请求。衡量节省量时，用模型的 tokenizer 检查完整输入；保留原历史，以便查看结果未包含的细节。</p>
+<p>先核对选中的原文、来源链接和计算出的状态，再交给模型。Demo 的 <strong>Small request</strong> 面向短记录示例；普通段落可在 <strong>Memory size</strong> 中选择 <strong>Balanced</strong> 或 <strong>More detail</strong>，并展开 <strong>How this context was prepared</strong> 查看结果。预算太小可能放不下完整原文行，不能把空上下文当作成功压缩。</p>
+<h2 id="_7">工具</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prepare_context</code></td>
+<td>按任务处理历史；开启上下文记录时保存结果和任务</td>
+</tr>
+<tr>
+<td><code>remember_memory</code></td>
+<td>将传入的笔记追加到指定记忆本</td>
+</tr>
+<tr>
+<td><code>recall_memory</code></td>
+<td>为当前任务取回指定记忆本</td>
+</tr>
+<tr>
+<td><code>list_memories</code></td>
+<td>查看记忆本名称，不返回内容</td>
+</tr>
+<tr>
+<td><code>forget_memory</code></td>
+<td>按要求删除指定记忆本</td>
+</tr>
+<tr>
+<td><code>get_usage_stats</code></td>
+<td>查看累计、今日或最近七天（UTC）的本地上下文估算减少量</td>
+</tr>
+<tr>
+<td><code>get_status</code></td>
+<td>只读查看设置、配置证据和最近准备状态</td>
+</tr>
+<tr>
+<td><code>list_contexts</code></td>
+<td>列出已保存的上下文快照，不返回正文</td>
+</tr>
+<tr>
+<td><code>get_context</code></td>
+<td>读取选定快照，作为可能不完整的历史证据</td>
+</tr>
+<tr>
+<td><code>make_handoff</code></td>
+<td>返回自包含接续提示词，不发送消息</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>可选：跨聊天保存与取回历史</summary>
+<p>记忆本保存传入的原始文本；<code>recall_memory</code> 在取回时按任务准备上下文。<code>prepare_context</code> 不需要记忆本。自 0.2.0 起，在开启上下文记录时，会将这两条准备路径的成功结果和任务保存为独立快照。</p>
+<h2 id="_8">用两次对话试一下</h2>
+<p>第一段对话：</p>
+<blockquote>
+<p>请用 TOMC 把这些笔记保存到 workshop：研讨会人数现为 28 人，B 会议室有空但尚未预订，还需确认无障碍设施。</p>
+</blockquote>
+<p>新开一段对话：</p>
+<blockquote>
+<p>从 TOMC 取回 workshop，告诉我接下来需要确认什么。</p>
+</blockquote>
+<p>助手决定是否调用工具，并遵循客户端的权限设置；保存笔记不会替你预订会议室，也不会把待确认事项变成已完成。</p>
+<h2 id="_9">存储与能力范围</h2>
+<p>要从 Codex 切到 Claude Code 继续，或反过来，让两边的 TOMC 服务使用同一数据库，并传入同一记忆本名称。<a href="../usage_tips_zh/#reuse-notebooks">共享路径设置与两段接续提示词</a>。</p>
+<p>默认记忆存放在用户目录的 <code>~/.tomc/memory.sqlite3</code>，不放在安装包中。同一台电脑上使用同一数据库的客户端可以共享记忆；不同路径则相互独立。笔记以本地明文存储，取回后进入助手上下文，遵循助手平台的数据政策；卸载插件不会自动删除数据库。</p>
+<p>插件只看到传给工具的内容，不会自动读取全部聊天、拦截 API 请求或替换客户端的上下文窗口。这个日常使用接口采用 Demo 的任务路由和本地记忆本，并非论文 BEAM 实验的精确配置；论文分数不能直接当作此插件流程的效果保证。</p>
+</details>
+<h2 id="012">上下文减少统计（0.1.2）</h2>
+<p>准备和召回会返回本次上下文估算减少量，供助手显示。<code>get_usage_stats</code> 可查询累计、今天和最近七天（UTC）。数字统计本身不含原文或任务；自 0.2.0 起默认另外保存准备结果正文与任务，可关闭上下文记录。不上传遥测，这些数字也不是实际 API 或账单节省；旧的纯数字历史无法还原正文。已有安装需更新运行时并开启新会话或按宿主支持方式重载。<a href="https://github.com/ZipengWu365/TOMC/blob/1d53cf6787440a66ac15efb8f80b46cd0cf71506/docs/token_statistics_zh.md">统计口径与使用方法</a>。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

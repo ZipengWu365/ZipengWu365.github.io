@@ -1,0 +1,111 @@
+{
+  "mode": "summary",
+  "trend": {
+    "shape": [
+      120,
+      2
+    ],
+    "mean": 0.5960651650247738,
+    "std": 1.419847522120112,
+    "min": -1.22004361127767,
+    "max": 3.512498372262608,
+    "l2_norm": 23.855870558132892
+  },
+  "season": {
+    "shape": [
+      120,
+      2
+    ],
+    "mean": -0.0010651650247739189,
+    "std": 0.5802140220684495,
+    "min": -1.0049930878733186,
+    "max": 1.002362089338589,
+    "l2_norm": 8.98865212562654
+  },
+  "residual": {
+    "shape": [
+      120,
+      2
+    ],
+    "mean": 7.211593337832592e-17,
+    "std": 1.3010796146941441e-15,
+    "min": -4.551914400963142e-15,
+    "max": 4.440892098500626e-15,
+    "l2_norm": 2.0187177345749096e-14
+  },
+  "components": {
+    "modes": {
+      "shape": [
+        4,
+        120,
+        2
+      ],
+      "mean": 0.14875,
+      "std": 0.7886473184778724,
+      "min": -1.2664982699545373,
+      "max": 3.655975046087448,
+      "l2_norm": 24.8661920933754
+    }
+  },
+  "meta": {
+    "method": "MSSA",
+    "window": 24,
+    "rank": 8,
+    "n_channels": 2,
+    "singular_values": [
+      100.79974081545001,
+      28.28944286870545,
+      27.92627049565418,
+      4.307096686302977
+    ],
+    "trend_components": [
+      0,
+      3
+    ],
+    "season_components": [
+      1,
+      2
+    ],
+    "dominant_frequencies": [
+      0.008333333333333333,
+      0.08333333333333333,
+      0.08333333333333333,
+      0.008333333333333333
+    ],
+    "native_solver": "numpy-svd",
+    "speed_mode": "exact",
+    "native_method": "MSSA_NATIVE",
+    "backend_requested": "auto",
+    "backend_used": "native",
+    "input_shape": [
+      120,
+      2
+    ],
+    "result_layout": "multivariate",
+    "channel_names": [
+      "x0",
+      "x1"
+    ]
+  },
+  "diagnostics": {
+    "component_count": 1,
+    "component_names": [
+      "modes"
+    ],
+    "component_shapes": {
+      "modes": [
+        4,
+        120,
+        2
+      ]
+    },
+    "quality_metrics": {
+      "trend_l2_norm": 23.855870558132892,
+      "season_l2_norm": 8.98865212562654,
+      "residual_l2_norm": 2.0187177345749096e-14,
+      "residual_ratio": 7.981304111047507e-16
+    },
+    "warnings": [],
+    "limitations": []
+  }
+}

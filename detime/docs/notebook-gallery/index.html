@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://zipengwu.me/detime/docs/notebook-gallery/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Notebook Gallery | DeTime</title>
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+   
+  
+  <meta name="description" content="Notebook Gallery: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <meta property="og:site_name" content="DeTime">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Notebook Gallery | DeTime">
+  <meta property="og:description" content="Notebook Gallery: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta property="og:url" content="https://zipengwu.me/detime/docs/notebook-gallery/">
+  <meta property="og:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  <meta property="og:image:alt" content="DeTime time-series decomposition toolkit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Notebook Gallery | DeTime">
+  <meta name="twitter:description" content="Notebook Gallery: DeTime Python and CLI time-series decomposition documentation, examples and reference.">
+  <meta name="twitter:image" content="https://zipengwu.me/detime/docs/assets/brand/detime-logo-color.png">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zipengwu.me/detime/docs/#website",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "url": "https://zipengwu.me/detime/docs/",
+        "description": "DeTime documentation for Python and CLI time-series decomposition software.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://zipengwu.me/detime/docs/#software",
+        "name": "DeTime",
+        "alternateName": ["detime", "De-Time", "detime-toolkit"],
+        "description": "Python and CLI toolkit for reproducible time-series decomposition with native C++ backed SSA, MSSA, VMD, STD, STDR, MA baseline, and Gabor clustering paths.",
+        "codeRepository": "https://github.com/systems-mechanobiology/DeTime",
+        "sameAs": [
+          "https://github.com/systems-mechanobiology/DeTime",
+          "https://pypi.org/project/detime-toolkit/"
+        ],
+        "license": "https://github.com/systems-mechanobiology/DeTime/blob/main/LICENSE",
+        "url": "https://zipengwu.me/detime/docs/",
+        "programmingLanguage": ["Python", "C++"],
+        "applicationCategory": "Scientific software",
+        "keywords": "DeTime, time-series decomposition, Python, SSA, MSSA, VMD, STL, EMD, wavelet, native C++",
+        "author": {
+          "@type": "Person",
+          "@id": "https://zipengwu.me/#person",
+          "name": "Zipeng Wu",
+          "url": "https://zipengwu.me/",
+          "sameAs": ["https://github.com/ZipengWu365"]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://zipengwu.me/detime/docs/notebook-gallery/#webpage",
+        "url": "https://zipengwu.me/detime/docs/notebook-gallery/",
+        "name": "Notebook Gallery | DeTime",
+        "description": "Notebook Gallery: DeTime Python and CLI time-series decomposition documentation, examples and reference.",
+        "isPartOf": {"@id": "https://zipengwu.me/detime/docs/#website"},
+        "about": {"@id": "https://zipengwu.me/detime/docs/#software"}
+      }
+    ]
+  }
+  </script>
+  
+
+    </head>
+
+    <body>
+<nav class="domain-project-nav" aria-label="Research projects and articles">
+  <a href="/">Zipeng Wu</a><a href="/software.html">Projects</a>
+  <a href="/articles/">Articles</a><a href="/EchoTime/">EchoTime</a>
+  <a href="/detime/">DeTime</a><a href="/tomc/">TOMC Memory</a>
+</nav>
+<style>
+.domain-project-nav{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;
+max-width:1320px;margin:0 auto 1rem;padding:.8rem 1rem;
+border-bottom:1px solid #d7dfe6;font-size:.9rem;line-height:1.5}
+.domain-project-nav a{color:#0f6680;text-decoration:none}
+.domain-project-nav a:hover,.domain-project-nav a:focus-visible{text-decoration:underline}
+.domain-project-nav a:focus-visible{outline:2px solid #c98a00;outline-offset:3px}
+/* Accommodate Bootstrap 5 utility navigation and the upstream DeTime theme. */
+.navbar.fixed-top>.container{min-width:0;max-width:100%}
+.navbar.fixed-top #navbar-collapse{min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{
+min-width:0;max-width:100%;flex-wrap:wrap}
+.navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+display:flex!important;min-width:0;max-width:100%;flex:0 1 auto;flex-wrap:wrap}
+@media(min-width:992px){
+ .navbar.fixed-top #navbar-collapse>.navbar-nav:first-child{flex:1 1 auto}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li{min-height:44px}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav>li>.nav-link{
+ min-height:44px;padding:.55rem .65rem}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{margin-left:auto!important}
+}
+@media(max-width:991.98px){
+ .navbar.fixed-top #navbar-collapse{overflow-x:hidden}
+ .navbar.fixed-top #navbar-collapse>.navbar-nav.ms-md-auto{
+ margin-left:0!important;align-items:stretch}
+ .navbar.fixed-top #navbar-collapse .dropdown-menu{
+ min-width:0!important;max-width:100%!important;width:100%;
+ grid-template-columns:minmax(0,1fr)!important;box-sizing:border-box}
+ .navbar.fixed-top #navbar-collapse .dropdown-item{
+ white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">DeTime</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Research Guides</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../research/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../research/python-decomposition-tools/" class="dropdown-item">Choosing Python Tools</a>
+</li>
+            
+<li>
+    <a href="../research/decomposition-landscape-2026/" class="dropdown-item">Decomposition Research in 2026</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                    
+<li>
+    <a href="../ml-workflows/" class="dropdown-item">ML Features and Forecasting</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Quant Trading Tutorial</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/" class="dropdown-item">Tutorial Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap/" class="dropdown-item">Tutorial 00 Roadmap</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/two-strategy-families/" class="dropdown-item">Two Strategy Families</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_detime_trend_following_strategy_lab/" class="dropdown-item">01 Trend-Following Lab</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_detime_oscillation_reversion_strategy_lab/" class="dropdown-item">02 Oscillation-Reversion Lab</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Strategy Expansion</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/method-specific-strategy-expansion/" class="dropdown-item">Method-Specific Strategy Expansion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_detime_method_specific_strategy_variants/" class="dropdown-item">03 Method-Specific Variants</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_detime_component_pair_trading_cointegration/" class="dropdown-item">04 Component Pair Trading</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Tutorial Sequence</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory/" class="dropdown-item">01 Real Market Data and Feature Factory</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/02_decomposition_aware_moving_average_macd/" class="dropdown-item">02 Decomposition-aware MA and MACD</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger/" class="dropdown-item">03 Residual Mean Reversion</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation/" class="dropdown-item">04 Donchian Breakout</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb/" class="dropdown-item">05 Pair-Spread Stat-Arb</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/06_cross_sectional_rotation_portfolio/" class="dropdown-item">06 Cross-Sectional Rotation</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Native SSA Replay</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/quant-trading/notebooks/07_native_ssa_high_return_low_drawdown_tutorial/" class="dropdown-item">07 Native SSA High-Return / Low-Drawdown</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../tutorials/quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hot Trend Lab</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/" class="dropdown-item">Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/" class="dropdown-item">Rendered Notebooks</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview/" class="dropdown-item">00 Column Overview</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse/" class="dropdown-item">01 arXiv Category Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse/" class="dropdown-item">02 arXiv Agent Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse/" class="dropdown-item">03 Hugging Face Open-Model Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity/" class="dropdown-item">04 GitHub Star Velocity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay/" class="dropdown-item">05 Wikipedia Attention Decay</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse/" class="dropdown-item">06 Crypto Stablecoin Liquidity</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse/" class="dropdown-item">07 AI Infrastructure Market Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
+</li>
+            
+<li>
+    <a href="../tutorials/hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/" class="dropdown-item">All 31 animations</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/amd-block/" class="dropdown-item">AMD_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/autoformer-block/" class="dropdown-item">AUTOFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/delelstm-block/" class="dropdown-item">DELELSTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/dlinear-block/" class="dropdown-item">DLINEAR_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/freqmoe-block/" class="dropdown-item">FREQMOE_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/inparformer-block/" class="dropdown-item">INPARFORMER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/leddam-block/" class="dropdown-item">LEDDAM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/moving-average-decomposition-block/" class="dropdown-item">MOVING_AVERAGE_DECOMPOSITION_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/nbeats-interpretable/" class="dropdown-item">NBEATS_INTERPRETABLE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/parsimony-block/" class="dropdown-item">PARSIMONY_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/st-mtm-block/" class="dropdown-item">ST_MTM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/timekan-block/" class="dropdown-item">TIMEKAN_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/times2d-block/" class="dropdown-item">TIMES2D_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/waveform-block/" class="dropdown-item">WAVEFORM_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/waveletmixer-block/" class="dropdown-item">WAVELETMIXER_BLOCK</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/xpatch-block/" class="dropdown-item">XPATCH_BLOCK</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../release-artifacts/" class="dropdown-item">Release Artifacts</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../research/decomposition-landscape-2026/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../tutorials/univariate/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/DeTime" class="nav-link">systems-mechanobiology/DeTime</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#detime-method-gallery" class="nav-link">DeTime Method Gallery</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#imports-and-synthetic-data" class="nav-link">Imports and synthetic data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#univariate-ssa" class="nav-link">Univariate SSA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#seasonal-trend-dispersion-decomposition" class="nav-link">Seasonal-trend-dispersion decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#seasonal-trend-dispersion-decomposition-with-a-remainder" class="nav-link">Seasonal-trend-dispersion decomposition with a remainder</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#multivariate-ssa" class="nav-link">Multivariate SSA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#statsmodels-stl-wrapper" class="nav-link">Statsmodels STL wrapper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#statsmodels-mstl-wrapper" class="nav-link">Statsmodels MSTL wrapper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#robust-stl-wrapper" class="nav-link">Robust STL wrapper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#empirical-mode-decomposition" class="nav-link">Empirical mode decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#noise-assisted-emd" class="nav-link">Noise-assisted EMD</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#variational-mode-decomposition" class="nav-link">Variational mode decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#wavelet-decomposition" class="nav-link">Wavelet decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#moving-average-baseline" class="nav-link">Moving-average baseline</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#optional-multivariate-vmd-backend" class="nav-link">Optional multivariate VMD backend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#optional-multivariate-emd-backend" class="nav-link">Optional multivariate EMD backend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#experimental-gabor-clustering-path" class="nav-link">Experimental Gabor clustering path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary" class="nav-link">Summary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#downloads" class="nav-link">Downloads</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="detime-method-gallery">DeTime Method Gallery</h1>
+<div class="gallery-note">
+  <strong>Note</strong><br>
+  <a href="#download-gallery">Go to the end</a> to download the full notebook, Python source, or zipped example.
+</div>
+
+<p>This gallery follows the same pattern as a Sphinx-Gallery example page:
+short explanation, executable code blocks, printed output, figures, and
+download links. The examples use compact synthetic data so they run quickly
+in docs builds and local checkouts.</p>
+<p>Regenerate this page and its assets with <code>python scripts/generate_notebook_gallery.py</code>.</p>
+<p><a href="../methods/#animated-method-explanations">Animated method explanations</a> show the
+calculation steps for every registered method, with GIFs, static images and source arrays.</p>
+<h2 id="imports-and-synthetic-data">Imports and synthetic data</h2>
+<pre><code class="language-python">import sys
+import warnings
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from IPython.display import display
+
+# Prefer the checkout when this notebook is run inside the repository.
+repo_src = Path.cwd() / &quot;src&quot;
+if (repo_src / &quot;detime&quot;).exists():
+    sys.meta_path[:] = [
+        finder for finder in sys.meta_path
+        if not any(token in finder.__class__.__module__.lower() for token in (&quot;detime&quot;, &quot;de_time&quot;))
+    ]
+    sys.path.insert(0, str(repo_src))
+
+from detime import DecompositionConfig, MethodRegistry, decompose
+
+warnings.filterwarnings(&quot;ignore&quot;, category=FutureWarning)
+plt.rcParams.update(
+    {
+        &quot;figure.figsize&quot;: (7.6, 3.0),
+        &quot;figure.dpi&quot;: 130,
+        &quot;savefig.dpi&quot;: 220,
+        &quot;axes.grid&quot;: False,
+        &quot;axes.spines.top&quot;: False,
+        &quot;axes.spines.right&quot;: False,
+        &quot;font.size&quot;: 10,
+    }
+)
+
+rng = np.random.default_rng(42)
+t = np.arange(96, dtype=float)
+seasonal = np.sin(2.0 * np.pi * t / 12.0)
+slow = 0.018 * t + 0.25 * np.sin(2.0 * np.pi * t / 48.0)
+noise = 0.05 * rng.standard_normal(t.shape)
+series = slow + seasonal + noise
+panel = np.column_stack(
+    [
+        series,
+        0.8 * slow + np.sin(2.0 * np.pi * (t + 2.0) / 12.0) + 0.04 * rng.standard_normal(t.shape),
+        1.15 * slow + 0.7 * np.sin(2.0 * np.pi * (t + 4.0) / 12.0) + 0.04 * rng.standard_normal(t.shape),
+    ]
+)
+
+CASES = {
+    &quot;SSA&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;SSA&quot;, &quot;params&quot;: {&quot;window&quot;: 24, &quot;rank&quot;: 6, &quot;primary_period&quot;: 12}, &quot;backend&quot;: &quot;auto&quot;, &quot;speed_mode&quot;: &quot;exact&quot;}},
+    &quot;STD&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;STD&quot;, &quot;params&quot;: {&quot;period&quot;: 12}, &quot;backend&quot;: &quot;auto&quot;}},
+    &quot;STDR&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;STDR&quot;, &quot;params&quot;: {&quot;period&quot;: 12}, &quot;backend&quot;: &quot;auto&quot;}},
+    &quot;MSSA&quot;: {&quot;data&quot;: panel, &quot;config&quot;: {&quot;method&quot;: &quot;MSSA&quot;, &quot;params&quot;: {&quot;window&quot;: 24, &quot;rank&quot;: 6, &quot;primary_period&quot;: 12}, &quot;backend&quot;: &quot;python&quot;, &quot;channel_names&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]}},
+    &quot;STL&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;STL&quot;, &quot;params&quot;: {&quot;period&quot;: 12}}},
+    &quot;MSTL&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;MSTL&quot;, &quot;params&quot;: {&quot;periods&quot;: [12, 24]}}},
+    &quot;ROBUST_STL&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;ROBUST_STL&quot;, &quot;params&quot;: {&quot;period&quot;: 12}}},
+    &quot;EMD&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;EMD&quot;, &quot;params&quot;: {&quot;primary_period&quot;: 12, &quot;n_imfs&quot;: 4}}},
+    &quot;CEEMDAN&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;CEEMDAN&quot;, &quot;params&quot;: {&quot;primary_period&quot;: 12, &quot;trials&quot;: 3, &quot;noise_width&quot;: 0.03}}},
+    &quot;VMD&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;VMD&quot;, &quot;params&quot;: {&quot;K&quot;: 4, &quot;alpha&quot;: 300.0, &quot;primary_period&quot;: 12}}},
+    &quot;WAVELET&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;WAVELET&quot;, &quot;params&quot;: {&quot;wavelet&quot;: &quot;db4&quot;, &quot;level&quot;: 3}}},
+    &quot;MA_BASELINE&quot;: {&quot;data&quot;: series, &quot;config&quot;: {&quot;method&quot;: &quot;MA_BASELINE&quot;, &quot;params&quot;: {&quot;trend_window&quot;: 7, &quot;season_period&quot;: 12}}},
+    &quot;MVMD&quot;: {&quot;data&quot;: panel, &quot;config&quot;: {&quot;method&quot;: &quot;MVMD&quot;, &quot;params&quot;: {&quot;K&quot;: 4, &quot;alpha&quot;: 300.0, &quot;primary_period&quot;: 12}, &quot;channel_names&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]}},
+    &quot;MEMD&quot;: {&quot;data&quot;: panel, &quot;config&quot;: {&quot;method&quot;: &quot;MEMD&quot;, &quot;params&quot;: {&quot;primary_period&quot;: 12}, &quot;channel_names&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]}},
+    &quot;GABOR_CLUSTER&quot;: {&quot;data&quot;: series, &quot;skip&quot;: &quot;requires a trained GaborClusterModel or model_path plus the experimental clustering backend&quot;},
+}
+
+GALLERY_RESULTS = []
+</code></pre>
+<pre><code class="language-python">def _plot_vector(values):
+    arr = np.asarray(values, dtype=float)
+    if arr.ndim == 2:
+        return arr[:, 0]
+    return arr
+
+
+def _style_gallery_axis(ax, title):
+    ax.set_facecolor(&quot;#ffffff&quot;)
+    ax.grid(True, axis=&quot;y&quot;, alpha=0.22, color=&quot;#94a3b8&quot;, linewidth=0.8)
+    ax.grid(False, axis=&quot;x&quot;)
+    ax.spines[&quot;left&quot;].set_color(&quot;#cbd5e1&quot;)
+    ax.spines[&quot;bottom&quot;].set_color(&quot;#cbd5e1&quot;)
+    ax.tick_params(colors=&quot;#334155&quot;)
+    ax.set_title(title, loc=&quot;left&quot;, fontsize=12, fontweight=&quot;bold&quot;, color=&quot;#0f172a&quot;)
+
+
+def run_gallery_case(name):
+    case = CASES[name]
+    metadata = MethodRegistry.get_metadata(name)
+    print(f&quot;{name}: {metadata['summary']}&quot;)
+    if &quot;skip&quot; in case:
+        row = {
+            &quot;method&quot;: name,
+            &quot;status&quot;: &quot;skipped&quot;,
+            &quot;reason&quot;: case[&quot;skip&quot;],
+            &quot;input_mode&quot;: metadata[&quot;input_mode&quot;],
+            &quot;output_shape&quot;: &quot;&quot;,
+            &quot;reconstruction_rmse&quot;: np.nan,
+        }
+        GALLERY_RESULTS.append(row)
+        display(pd.DataFrame([row]))
+        return
+
+    data = case[&quot;data&quot;]
+    cfg = DecompositionConfig(**case[&quot;config&quot;])
+    try:
+        result = decompose(data, cfg)
+    except Exception as exc:
+        row = {
+            &quot;method&quot;: name,
+            &quot;status&quot;: &quot;skipped&quot;,
+            &quot;reason&quot;: f&quot;{type(exc).__name__}: {exc}&quot;,
+            &quot;input_mode&quot;: metadata[&quot;input_mode&quot;],
+            &quot;output_shape&quot;: &quot;&quot;,
+            &quot;reconstruction_rmse&quot;: np.nan,
+        }
+        GALLERY_RESULTS.append(row)
+        display(pd.DataFrame([row]))
+        return
+
+    original = _plot_vector(data)
+    trend = _plot_vector(result.trend)
+    season = _plot_vector(result.season)
+    residual = _plot_vector(result.residual)
+    reconstruction = np.asarray(result.trend) + np.asarray(result.season) + np.asarray(result.residual)
+    rmse = float(np.sqrt(np.mean((np.asarray(data) - reconstruction) ** 2)))
+
+    row = {
+        &quot;method&quot;: name,
+        &quot;status&quot;: &quot;ran&quot;,
+        &quot;reason&quot;: &quot;&quot;,
+        &quot;input_mode&quot;: metadata[&quot;input_mode&quot;],
+        &quot;output_shape&quot;: str(np.asarray(result.trend).shape),
+        &quot;reconstruction_rmse&quot;: round(rmse, 8),
+    }
+    GALLERY_RESULTS.append(row)
+    display(pd.DataFrame([row]))
+
+    fig, ax = plt.subplots(facecolor=&quot;#f8fafc&quot;)
+    ax.plot(original, label=&quot;input&quot;, color=&quot;#0f172a&quot;, linewidth=1.6)
+    ax.plot(trend, label=&quot;trend&quot;, color=&quot;#2563eb&quot;, linewidth=1.4)
+    ax.plot(season, label=&quot;season&quot;, color=&quot;#0f766e&quot;, linewidth=1.2)
+    ax.plot(residual, label=&quot;residual&quot;, color=&quot;#f97316&quot;, linewidth=1.0, alpha=0.85)
+    _style_gallery_axis(ax, f&quot;{name} decomposition&quot;)
+    ax.set_xlabel(&quot;time step&quot;)
+    ax.legend(loc=&quot;upper right&quot;, ncol=2, fontsize=8, frameon=True, framealpha=0.92)
+    fig.tight_layout()
+    plt.show()
+</code></pre>
+<h2 id="univariate-ssa">Univariate SSA</h2>
+<p><a href="../gallery/ssa/#how-it-works">Watch how SSA works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;SSA&quot;]
+run_gallery_case(&quot;SSA&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+SSA: Singular spectrum analysis for structured univariate decomposition.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: native
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="SSA decomposition" src="../assets/generated/notebooks/method-gallery/ssa.png" /></p>
+<h2 id="seasonal-trend-dispersion-decomposition">Seasonal-trend-dispersion decomposition</h2>
+<p><a href="../gallery/std/#how-it-works">Watch how STD works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;STD&quot;]
+run_gallery_case(&quot;STD&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+STD: Fast seasonal-trend decomposition with dispersion-aware diagnostics.
+status: ran
+input mode: channelwise
+trend shape: (96,)
+backend: native
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="STD decomposition" src="../assets/generated/notebooks/method-gallery/std.png" /></p>
+<h2 id="seasonal-trend-dispersion-decomposition-with-a-remainder">Seasonal-trend-dispersion decomposition with a remainder</h2>
+<p><a href="../gallery/stdr/#how-it-works">Watch how STDR works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;STDR&quot;]
+run_gallery_case(&quot;STDR&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+STDR: Seasonal-trend-dispersion decomposition with an averaged cycle shape and a remainder.
+status: ran
+input mode: channelwise
+trend shape: (96,)
+backend: native
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="STDR decomposition" src="../assets/generated/notebooks/method-gallery/stdr.png" /></p>
+<h2 id="multivariate-ssa">Multivariate SSA</h2>
+<p><a href="../gallery/mssa/#how-it-works">Watch how MSSA works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;MSSA&quot;]
+run_gallery_case(&quot;MSSA&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+MSSA: Multivariate SSA for shared-structure decomposition across channels.
+status: ran
+input mode: multivariate
+trend shape: (96, 3)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="MSSA decomposition" src="../assets/generated/notebooks/method-gallery/mssa.png" /></p>
+<h2 id="statsmodels-stl-wrapper">Statsmodels STL wrapper</h2>
+<p><a href="../gallery/stl/#how-it-works">Watch how STL works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;STL&quot;]
+run_gallery_case(&quot;STL&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+STL: Classical STL wrapped into the DeTime workflow contract.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="STL decomposition" src="../assets/generated/notebooks/method-gallery/stl.png" /></p>
+<h2 id="statsmodels-mstl-wrapper">Statsmodels MSTL wrapper</h2>
+<p><a href="../gallery/mstl/#how-it-works">Watch how MSTL works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;MSTL&quot;]
+run_gallery_case(&quot;MSTL&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+MSTL: Statsmodels MSTL wrapped into the DeTime workflow surface.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="MSTL decomposition" src="../assets/generated/notebooks/method-gallery/mstl.png" /></p>
+<h2 id="robust-stl-wrapper">Robust STL wrapper</h2>
+<p><a href="../gallery/robust-stl/#how-it-works">Watch how ROBUST_STL works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;ROBUST_STL&quot;]
+run_gallery_case(&quot;ROBUST_STL&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+ROBUST_STL: Robust STL-style decomposition wrapped for reproducible workflows.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="ROBUST_STL decomposition" src="../assets/generated/notebooks/method-gallery/robust_stl.png" /></p>
+<h2 id="empirical-mode-decomposition">Empirical mode decomposition</h2>
+<p><a href="../gallery/emd/#how-it-works">Watch how EMD works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;EMD&quot;]
+run_gallery_case(&quot;EMD&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+EMD: Empirical mode decomposition under the DeTime result contract.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="EMD decomposition" src="../assets/generated/notebooks/method-gallery/emd.png" /></p>
+<h2 id="noise-assisted-emd">Noise-assisted EMD</h2>
+<p><a href="../gallery/ceemdan/#how-it-works">Watch how CEEMDAN works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;CEEMDAN&quot;]
+run_gallery_case(&quot;CEEMDAN&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+CEEMDAN: Noise-assisted EMD wrapper with IMFs in (mode, time, channel) layout.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="CEEMDAN decomposition" src="../assets/generated/notebooks/method-gallery/ceemdan.png" /></p>
+<h2 id="variational-mode-decomposition">Variational mode decomposition</h2>
+<p><a href="../gallery/vmd/#how-it-works">Watch how VMD works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;VMD&quot;]
+run_gallery_case(&quot;VMD&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+VMD: Variational mode decomposition integrated into the common workflow layer.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: native
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="VMD decomposition" src="../assets/generated/notebooks/method-gallery/vmd.png" /></p>
+<h2 id="wavelet-decomposition">Wavelet decomposition</h2>
+<p><a href="../gallery/wavelet/#how-it-works">Watch how WAVELET works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;WAVELET&quot;]
+run_gallery_case(&quot;WAVELET&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+WAVELET: Wavelet-based decomposition exposed through the common output contract.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="WAVELET decomposition" src="../assets/generated/notebooks/method-gallery/wavelet.png" /></p>
+<h2 id="moving-average-baseline">Moving-average baseline</h2>
+<p><a href="../gallery/ma-baseline/#how-it-works">Watch how MA_BASELINE works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;MA_BASELINE&quot;]
+run_gallery_case(&quot;MA_BASELINE&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+MA_BASELINE: Simple moving-average baseline for smoke tests and lightweight workflows.
+status: ran
+input mode: univariate
+trend shape: (96,)
+backend: native
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="MA_BASELINE decomposition" src="../assets/generated/notebooks/method-gallery/ma_baseline.png" /></p>
+<h2 id="optional-multivariate-vmd-backend">Optional multivariate VMD backend</h2>
+<p><a href="../gallery/mvmd/#how-it-works">Watch how MVMD works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;MVMD&quot;]
+run_gallery_case(&quot;MVMD&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+MVMD: Optional multivariate VMD backend for shared frequency structure.
+status: ran
+input mode: multivariate
+trend shape: (96, 3)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="MVMD decomposition" src="../assets/generated/notebooks/method-gallery/mvmd.png" /></p>
+<h2 id="optional-multivariate-emd-backend">Optional multivariate EMD backend</h2>
+<p><a href="../gallery/memd/#how-it-works">Watch how MEMD works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;MEMD&quot;]
+run_gallery_case(&quot;MEMD&quot;)
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+MEMD: Optional multivariate EMD backend for shared oscillatory structure.
+status: ran
+input mode: multivariate
+trend shape: (96, 3)
+backend: python
+reconstruction RMSE: 0.00000000
+</pre>
+</div>
+
+<p><img alt="MEMD decomposition" src="../assets/generated/notebooks/method-gallery/memd.png" /></p>
+<h2 id="experimental-gabor-clustering-path">Experimental Gabor clustering path</h2>
+<p><a href="../gallery/gabor-cluster/#how-it-works">Watch how GABOR_CLUSTER works</a>.</p>
+<pre><code class="language-python">case = CASES[&quot;GABOR_CLUSTER&quot;]
+print(case[&quot;skip&quot;])
+</code></pre>
+<p>Out:</p>
+<div class="gallery-out">
+<pre>
+requires a trained GaborClusterModel or model_path plus the experimental clustering backend
+</pre>
+</div>
+
+<h2 id="summary">Summary</h2>
+<p>Reconstruction RMSE is computed from input minus the sum of trend, season, and residual
+over all samples and channels. It checks additive bookkeeping, not forecasting accuracy
+or recovery of ground-truth components.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Status</th>
+<th>Input mode</th>
+<th>Trend shape</th>
+<th style="text-align: right;">Reconstruction RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSA</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>STD</code></td>
+<td>ran</td>
+<td><code>channelwise</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>STDR</code></td>
+<td>ran</td>
+<td><code>channelwise</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>MSSA</code></td>
+<td>ran</td>
+<td><code>multivariate</code></td>
+<td><code>(96, 3)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>STL</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>MSTL</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>ROBUST_STL</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>EMD</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>CEEMDAN</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>VMD</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>WAVELET</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>MA_BASELINE</code></td>
+<td>ran</td>
+<td><code>univariate</code></td>
+<td><code>(96,)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>MVMD</code></td>
+<td>ran</td>
+<td><code>multivariate</code></td>
+<td><code>(96, 3)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>MEMD</code></td>
+<td>ran</td>
+<td><code>multivariate</code></td>
+<td><code>(96, 3)</code></td>
+<td style="text-align: right;">0.00000000</td>
+</tr>
+<tr>
+<td><code>GABOR_CLUSTER</code></td>
+<td>skipped</td>
+<td><code>univariate</code></td>
+<td>``</td>
+<td style="text-align: right;">n/a</td>
+</tr>
+</tbody>
+</table>
+<p>Total running time of the gallery script: 10.234 seconds.</p>
+<p>Methods run: 14; skipped with explicit reason: 1.</p>
+<p><a id="download-gallery"></a></p>
+<h2 id="downloads">Downloads</h2>
+<div class="download-grid">
+  <a class="download-card" href="../assets/generated/notebooks/method-gallery/de_time_method_gallery.ipynb">Download Jupyter notebook: <code>de_time_method_gallery.ipynb</code></a>
+  <a class="download-card" href="../assets/generated/notebooks/method-gallery/de_time_method_gallery.py">Download Python source code: <code>de_time_method_gallery.py</code></a>
+  <a class="download-card" href="../assets/generated/notebooks/method-gallery/de_time_method_gallery.zip">Download zipped example: <code>de_time_method_gallery.zip</code></a>
+</div>
+
+<p>The GitHub-rendered notebook is also available at
+<a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/de_time_method_gallery.ipynb">examples/notebooks/de_time_method_gallery.ipynb</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/method-animations.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
