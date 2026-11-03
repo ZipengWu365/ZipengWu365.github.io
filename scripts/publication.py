@@ -64,6 +64,10 @@ def fingerprint(website_revision, revisions):
     return hashlib.sha256(json.dumps({"website_revision": website_revision, "source_revisions": revisions}, sort_keys=True).encode()).hexdigest()
 
 
+def sitemap_dates(node):
+    return {row.findtext(f"{{{NS}}}loc"): row.findtext(f"{{{NS}}}lastmod") for row in node if row.findtext(f"{{{NS}}}lastmod")}
+
+
 def probe(output, github_output=None, force=False):
     revision = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     revisions = {key: source_revision(repository) for key, repository in REPOSITORIES.items()}
@@ -76,9 +80,13 @@ def probe(output, github_output=None, force=False):
     # Bootstrap the URL contract from the currently published maps once. A fetch
     # error aborts rather than treating a temporary outage as deleted content.
     previous_urls = previous["canonical_urls"] if previous is not None else sorted(sitemap_urls(BASE + "/sitemap.xml"))
+    previous_dates = (previous or {}).get("pages_lastmod")
+    if changed and previous_dates is None:
+        previous_dates = sitemap_dates(ET.fromstring(download(BASE + "/pages-sitemap.xml")))
     data = {"schema_version": 1, "website_revision": revision, "source_revisions": revisions,
             "fingerprint": key, "changed": changed, "previous_urls": previous_urls,
-            "previous_article_index_sha256": (previous or {}).get("article_index_sha256")}
+            "previous_article_index_sha256": (previous or {}).get("article_index_sha256"),
+            "previous_pages_lastmod": previous_dates or {}}
     output.write_text(json.dumps(data, indent=2) + "\n")
     if github_output:
         with github_output.open("a") as stream:
@@ -152,9 +160,13 @@ def write_xml(path, node):
     ET.ElementTree(node).write(path, encoding="UTF-8", xml_declaration=True)
 
 
-def build_sitemaps(article_index_changed, echo_urls):
+def build_sitemaps(article_index_changed, echo_urls, previous_dates=None):
     old = ET.parse(ROOT / "pages-sitemap.xml").getroot()
-    dates = {row.findtext(f"{{{NS}}}loc"): row.findtext(f"{{{NS}}}lastmod") for row in old}
+    dates = sitemap_dates(old)
+    for url, date in (previous_dates or {}).items():
+        # A later publication's real change date must survive the next clean
+        # checkout; rebuilding unchanged text does not make it newly modified.
+        dates[url] = max(dates.get(url) or "", date)
     urls = set()
     for path in ROOT.rglob("*.html"):
         relative = path.relative_to(ROOT)
@@ -245,7 +257,7 @@ def validate_site(canonical, root=ROOT):
                 if parts.path.endswith((".html", "/")) and url.split("#")[0].split("?")[0] not in echo_urls:
                     # index.html and directory URLs share one canonical address.
                     alternate = re.sub(r"index\.html$", "", url.split("#")[0].split("?")[0])
-                    if alternate not in echo_urls:
+                    if alternate not in echo_urls and alternate + "/" not in echo_urls:
                         errors.append(f"EchoTime link absent from its map: {rel}: {value}")
             elif not (root / local_file(url).relative_to(ROOT)).is_file():
                 errors.append(f"Missing local page/asset: {rel}: {value}")
@@ -274,12 +286,13 @@ def build(sources, probe_path, destination, echo_timeout):
         subprocess.run([sys.executable, str(ROOT / "scripts/sync_project_docs.py"), "--tomc-source", str(sources / "TOMC"), "--detime-source", str(sources / "DeTime")], check=True)
         subprocess.run([sys.executable, str(ROOT / "scripts/build_article_index.py"), "--sources", str(sources), "--echo-catalog", str(catalog)], check=True)
     article_hash = hashlib.sha256((ROOT / "articles/index.html").read_bytes()).hexdigest()
-    canonical = build_sitemaps(article_hash != data.get("previous_article_index_sha256"), echo_urls)
+    canonical = build_sitemaps(article_hash != data.get("previous_article_index_sha256"), echo_urls, data.get("previous_pages_lastmod"))
     redirects = json.loads((ROOT / "publication-redirects.json").read_text())
     preserve_urls(data["previous_urls"], canonical, redirects)
     validate_site(canonical)
     state = {"schema_version": 1, "website_revision": data["website_revision"], "source_revisions": data["source_revisions"],
-             "fingerprint": data["fingerprint"], "canonical_urls": sorted(canonical), "article_index_sha256": article_hash}
+             "fingerprint": data["fingerprint"], "canonical_urls": sorted(canonical), "article_index_sha256": article_hash,
+             "pages_lastmod": sitemap_dates(ET.parse(ROOT / "pages-sitemap.xml").getroot())}
     (ROOT / "publication-state.json").write_text(json.dumps(state, indent=2) + "\n")
     stage(destination)
     validate_site(canonical, destination)

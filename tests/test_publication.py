@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from unittest.mock import patch
 
 
@@ -20,6 +21,20 @@ catalog = module("article_index", "build_article_index.py")
 
 
 class PublicationTests(unittest.TestCase):
+    def test_a_later_real_article_change_date_survives_an_unchanged_rebuild(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "articles").mkdir()
+            (root / "articles/index.html").write_text(f'<link rel="canonical" href="{publication.BASE}/articles/">')
+            (root / "pages-sitemap.xml").write_text(f'<urlset xmlns="{publication.NS}"><url><loc>{publication.BASE}/articles/</loc><lastmod>2026-11-03</lastmod></url></urlset>')
+            for name in ("tomc", "detime"):
+                folder = root / name / "docs"
+                folder.mkdir(parents=True)
+                (folder / "sitemap.xml").write_text(f'<urlset xmlns="{publication.NS}"/>')
+            with patch.object(publication, "ROOT", root):
+                publication.build_sitemaps(False, set(), {publication.BASE + "/articles/": "2026-11-05"})
+            self.assertEqual(publication.sitemap_dates(ET.parse(root / "pages-sitemap.xml").getroot())[publication.BASE + "/articles/"], "2026-11-05")
+
     def test_echo_catalog_and_map_must_match_the_marker_hashes(self):
         catalog_bytes = b'{"articles": []}'
         map_bytes = b'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://zipengwu.me/EchoTime/</loc></url></urlset>'
@@ -36,7 +51,7 @@ class PublicationTests(unittest.TestCase):
     def test_unchanged_source_revisions_skip_and_each_source_change_rebuilds(self):
         revisions = {name: str(number) * 40 for number, name in enumerate(publication.REPOSITORIES, 1)}
         website = "a" * 40
-        previous = {"schema_version": 1, "canonical_urls": [], "fingerprint": publication.fingerprint(website, revisions)}
+        previous = {"schema_version": 1, "canonical_urls": [], "pages_lastmod": {}, "fingerprint": publication.fingerprint(website, revisions)}
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "probe.json"
             with patch.object(publication.subprocess, "check_output", return_value=website), patch.object(publication, "download", return_value=json.dumps(previous).encode()), patch.object(publication, "source_revision", side_effect=lambda repo: revisions[next(name for name, value in publication.REPOSITORIES.items() if value == repo)]):
