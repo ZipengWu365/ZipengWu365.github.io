@@ -16,7 +16,7 @@ The site uses a lightweight multi-page academic profile structure. It presents:
 - selected ranked publications and presentations;
 - selected research software: De-Time, EchoTime, and TOMC;
 - an October 2026 TOMC project page at `/tomc/`, connected to sequence compression and symbolic representation within the temporal representation research theme;
-- one current CV: `Zipeng_Wu_Foundation_Model_Temporal_Representation_CV_20261018_174715UTC.pdf`;
+- one current CV: `Zipeng_Wu_CV_Main_Compact_2026-11-06_v7.pdf`;
 - ICML electronic contact pages: `/connect/` for an in-person LinkedIn QR and `/icml/` for research links and NFC cards.
 
 The site is intentionally static: `index.html`, topic pages such as `publications.html` and `awards.html`, `styles.css`, and files under `assets/`.
